@@ -1,0 +1,193 @@
+---
+// Hero section — two-column layout, left text + right image
+// Background: var(--color-cream-hero) = #FFEFDA
+// Parallax beagle illustration positioned absolutely over section
+---
+
+<section id="hero">
+  <!-- Faint decorative paw prints on the cream left half -->
+  <svg class="hero-paw hero-paw--1" viewBox="14.245 16.736 171.51 166.528" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><g><path d="M98.902 88.05c-21.698 0-59.447 52.147-61.533 66.037-2.393 15.935 11.019 29.177 27.133 29.177 10.137 0 30.913-11.779 34.4-11.779 3.367 0 23.912 11.779 34.017 11.779 16.114 0 30.472-13.299 27.725-29.177-2.294-13.264-40.009-66.037-61.742-66.037z" fill="currentColor"/><path fill="currentColor" d="M91.411 45.161c0 15.699-8.055 28.425-17.991 28.425S55.429 60.86 55.429 45.161s8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/><path fill="currentColor" d="M50.227 93.365c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425S22.3 64.94 32.236 64.94s17.991 12.726 17.991 28.425z"/><path fill="currentColor" d="M144.571 45.161c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/><path fill="currentColor" d="M185.755 89.042c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/></g></svg>
+  <svg class="hero-paw hero-paw--3" viewBox="14.245 16.736 171.51 166.528" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><g><path d="M98.902 88.05c-21.698 0-59.447 52.147-61.533 66.037-2.393 15.935 11.019 29.177 27.133 29.177 10.137 0 30.913-11.779 34.4-11.779 3.367 0 23.912 11.779 34.017 11.779 16.114 0 30.472-13.299 27.725-29.177-2.294-13.264-40.009-66.037-61.742-66.037z" fill="currentColor"/><path fill="currentColor" d="M91.411 45.161c0 15.699-8.055 28.425-17.991 28.425S55.429 60.86 55.429 45.161s8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/><path fill="currentColor" d="M50.227 93.365c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425S22.3 64.94 32.236 64.94s17.991 12.726 17.991 28.425z"/><path fill="currentColor" d="M144.571 45.161c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/><path fill="currentColor" d="M185.755 89.042c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/></g></svg>
+
+
+  <div class="hero-grid">
+
+    <!-- LEFT COLUMN: text content -->
+    <div class="hero-text">
+      <h1 data-reveal>
+        From survival to <span class="gold">safety.</span>
+        <svg class="paw-inline" aria-hidden="true" viewBox="14.245 16.736 171.51 166.528" xmlns="http://www.w3.org/2000/svg" width="48" height="48">
+          <path d="M98.902 88.05c-21.698 0-59.447 52.147-61.533 66.037-2.393 15.935 11.019 29.177 27.133 29.177 10.137 0 30.913-11.779 34.4-11.779 3.367 0 23.912 11.779 34.017 11.779 16.114 0 30.472-13.299 27.725-29.177-2.294-13.264-40.009-66.037-61.742-66.037z" fill="currentColor"/>
+          <path fill="currentColor" d="M91.411 45.161c0 15.699-8.055 28.425-17.991 28.425S55.429 60.86 55.429 45.161s8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/>
+          <path fill="currentColor" d="M50.227 93.365c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425S22.3 64.94 32.236 64.94s17.991 12.726 17.991 28.425z"/>
+          <path fill="currentColor" d="M144.571 45.161c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/>
+          <path fill="currentColor" d="M185.755 89.042c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/>
+        </svg>
+      </h1>
+
+      <p class="hero-body" data-reveal>
+        We reduce suffering at scale and create safer communities through spay/neuter and on-the-ground care for Indian street dogs.
+      </p>
+
+      <div class="hero-cta" data-reveal>
+        <a href="#donate" class="btn btn-primary">Donate</a>
+        <a href="#adopt" class="btn btn-secondary">Meet the Dogs</a>
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN: photo -->
+    <div class="hero-photo" aria-hidden="true">
+      <img
+        src="/images/hero-beagle.jpg"
+        alt="Golden Retriever looking up — a street dog full of hope"
+        width="490"
+        height="552"
+        fetchpriority="high"
+      />
+    </div>
+
+  </div>
+
+  <!-- Parallax beagle illustration — absolutely positioned, animates via JS -->
+  <img
+    id="beagle-running"
+    src="/images/illus-beagle-running.png"
+    alt=""
+    aria-hidden="true"
+    width="197"
+    height="127"
+  />
+</section>
+
+<style>
+  /* --------------------------------------------------------
+     HERO SECTION
+     -------------------------------------------------------- */
+  #hero {
+    background-color: var(--color-cream-hero);
+    overflow: visible; /* allow parallax element to escape */
+    position: relative;
+  }
+
+  /* Full-bleed grid — each column is 50vw, photo extends to viewport edge */
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    min-height: 552px;
+  }
+
+  /* ── LEFT column ────────────────────────────────────────── */
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
+    padding: 60px 40px 100px 80px;
+    gap: var(--space-6); /* 24px between stacked elements */
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);    /* 15px */
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-text-mid);
+  }
+
+  /* H1 — large, multi-line heading */
+  #hero h1 {
+    font-size: var(--text-hero); /* 64px */
+    line-height: var(--lh-tight);
+    letter-spacing: var(--ls-hero);
+    color: var(--color-text);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 0 0.15em;
+  }
+
+  /* Inline paw SVG — sits at end of h1, gold-colored */
+  .paw-inline {
+    display: inline-block;
+    vertical-align: middle;
+    color: var(--color-gold);
+    margin-left: 4px;
+    flex-shrink: 0;
+    transform: rotate(25deg);
+  }
+
+  .hero-body {
+    font-family: var(--font-body);
+    font-size: var(--text-lg);   /* 18px */
+    line-height: var(--lh-relaxed);
+    color: var(--color-text);
+    max-width: 420px;
+  }
+
+  .hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4); /* 16px */
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: var(--space-2);
+  }
+
+  /* ── RIGHT column ───────────────────────────────────────── */
+  .hero-photo {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 50%;
+    display: block;
+  }
+
+  /* ── Parallax beagle ─────────────────────────────────────── */
+  #beagle-running {
+    position: absolute;
+    left: 28%;
+    bottom: -20px;
+    width: 197px;
+    height: 127px;
+    pointer-events: none;
+    will-change: transform;
+    z-index: 2;
+  }
+
+  /* ── Faint background paw prints ─────────────────────────── */
+  .hero-paw {
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
+  }
+  /* Large paw — upper-right of cream column */
+  .hero-paw--1 {
+    width: 130px;
+    height: 126px;
+    top: 17px;
+    left: 35%;
+    color: #E8C278;
+    opacity: 0.28;
+    transform: rotate(25deg);
+  }
+  /* Large paw — bottom-left */
+  .hero-paw--3 {
+    width: 104px;
+    height: 101px;
+    bottom: 30px;
+    left: 2%;
+    color: #E8C278;
+    opacity: 0.28;
+    transform: rotate(-29deg);
+  }
+</style>

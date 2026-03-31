@@ -1,0 +1,283 @@
+---
+// Contact section
+// Section background: var(--color-cream-contact) = #FFEFDA (warm cream)
+// Heading "Get in Touch!" with gold heart — dark text on cream bg
+// Dark inner card (bg: var(--color-dark-brown) = #382213) — border-radius: 10px
+// ALL elements centered
+// CRITICAL: Golden retriever photo removed per client direction.
+//   Use illus-dogs-group-contact.png illustration instead, centered at top of dark card
+// Email: rosiesheroes@gmail.com
+---
+
+<section id="contact">
+  <div class="section-inner">
+
+    <!-- Section header — centered on cream background -->
+    <div class="contact-header" data-reveal>
+      <h2 class="contact-title">Get in Touch! <svg width="24" height="24" viewBox="0 0 24 24" fill="#EEBE5A" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></h2>
+      <p class="contact-sub">
+        Have questions? Want to help? Ready to adopt, volunteer or foster?<br />
+        We'd love to hear from you!
+      </p>
+    </div>
+
+    <!-- Dark contact card — centered, all content inside centered -->
+    <div class="contact-card" data-reveal="card">
+
+      <!-- Dogs group illustration centered at top -->
+      <div class="contact-illus" aria-hidden="true">
+        <img
+          src="/images/logo-dogs.png"
+          alt=""
+          width="380"
+          height="260"
+        />
+      </div>
+
+      <!-- Org name + tagline -->
+      <h3 class="contact-org-name">Rosie's Heroes</h3>
+      <p class="contact-org-tagline">Indian street dog &amp; critically at risk dog rescue.</p>
+
+      <!-- Email contact block with golden retriever -->
+      <div class="contact-email-wrapper">
+        <div class="contact-email-block">
+          <div class="contact-email-label">
+            <span class="contact-email-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="43.5 62 112.999 76.001" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                <g>
+                  <path d="M137.983 101.74h-16.632a3.364 3.364 0 0 0-3.372 3.357v15.351a3.365 3.365 0 0 0 3.372 3.357h16.632a3.364 3.364 0 0 0 3.372-3.357v-15.351a3.363 3.363 0 0 0-3.372-3.357z" fill="#F6B33B"></path>
+                  <path d="M60.397 106.257h23.205c1.117 0 2.023-.901 2.023-2.014s-.906-2.014-2.023-2.014H60.397a2.018 2.018 0 0 0-2.023 2.014 2.017 2.017 0 0 0 2.023 2.014z" fill="currentColor"></path>
+                  <path d="M83.602 110.758H60.397c-1.117 0-2.023.901-2.023 2.014s.906 2.014 2.023 2.014h23.205a2.018 2.018 0 0 0 2.023-2.014 2.018 2.018 0 0 0-2.023-2.014z" fill="currentColor"></path>
+                  <path d="M83.602 119.286H60.397a2.018 2.018 0 0 0-2.023 2.014c0 1.112.906 2.014 2.023 2.014h23.205a2.018 2.018 0 0 0 2.023-2.014 2.018 2.018 0 0 0-2.023-2.014z" fill="currentColor"></path>
+                  <path d="M153.128 62H46.872a3.364 3.364 0 0 0-3.372 3.357v69.287a3.365 3.365 0 0 0 3.372 3.357h106.255a3.364 3.364 0 0 0 3.372-3.357V65.357A3.363 3.363 0 0 0 153.128 62zm-14.886 6.713l-38.241 21.411-38.242-21.411h76.483zm-87.997 62.574V69.968L98.347 96.9a3.377 3.377 0 0 0 3.306 0l48.101-26.932v61.319H50.245z" fill="currentColor"></path>
+                </g>
+              </svg>
+            </span>
+            <span class="contact-email-heading">Email Us</span>
+          </div>
+          <a
+            href="mailto:rosiesheroes@gmail.com?subject=Contact%20Us%20For%20More%20Info!"
+            class="contact-email-address"
+          >rosiesheroes@gmail.com</a>
+        </div>
+
+      </div>
+
+      <!-- Heart + response time -->
+      <p class="contact-heart-glyph" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="#EEBE5A" aria-hidden="true" focusable="false"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+      </p>
+      <p class="contact-response">
+        We typically respond within 24-48 hours. Thank you for your interest in helping keep our brave heroes safe!
+      </p>
+
+    </div><!-- /.contact-card -->
+
+  </div><!-- /.section-inner -->
+</section>
+
+<style>
+  /* --------------------------------------------------------
+     CONTACT SECTION — warm cream background
+     -------------------------------------------------------- */
+  #contact {
+    background-color: var(--color-cream-contact); /* #FFEFDA */
+    padding: var(--space-15) 0 var(--space-10);
+    position: relative;
+  }
+
+  .section-inner {
+    max-width: var(--site-width); /* 980px */
+    margin: 0 auto;
+    padding: 0 var(--space-5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* ── Section header ─────────────────────────────────────── */
+  .contact-header {
+    text-align: center;
+    margin-bottom: var(--space-10); /* 40px */
+    width: 100%;
+  }
+
+  .contact-title {
+    font-family: var(--font-heading);
+    font-size: var(--text-section); /* 38px */
+    font-weight: 600;
+    line-height: var(--lh-tight);
+    letter-spacing: var(--ls-tight);
+    color: var(--color-text); /* dark brown on cream */
+    margin: 0 0 var(--space-4);
+  }
+
+  .contact-heart {
+    color: var(--color-gold); /* #EEBE5A */
+  }
+
+  .contact-sub {
+    font-family: var(--font-body);
+    font-size: var(--text-lg); /* 18px */
+    line-height: var(--lh-relaxed);
+    color: var(--color-text);
+    margin: 0;
+    text-align: center;
+  }
+
+  /* ── Dark contact card ──────────────────────────────────── */
+  .contact-card {
+    background-color: var(--color-dark-brown); /* #382213 */
+    border-radius: var(--radius-contact-card); /* 10px */
+    padding: var(--space-10) var(--space-12) var(--space-12);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    max-width: 700px;
+    gap: var(--space-3);
+  }
+
+  /* ── Illustration ───────────────────────────────────────── */
+  .contact-illus {
+    margin-bottom: var(--space-2);
+  }
+
+  .contact-illus img {
+    width: 380px;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+  }
+
+  /* ── Org name & tagline ─────────────────────────────────── */
+  .contact-org-name {
+    font-family: var(--font-heading);
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 1.4em;
+    color: var(--color-text-on-dark); /* #FFF8F1 */
+    margin: 0;
+  }
+
+  .contact-org-tagline {
+    font-family: var(--font-body);
+    font-size: var(--text-base); /* 16px */
+    line-height: var(--lh-relaxed);
+    color: var(--color-text-on-dark);
+    margin: 0;
+  }
+
+  /* ── Email wrapper — positions golden retriever relative to email ── */
+  .contact-email-wrapper {
+    position: relative;
+    width: 100%;
+    margin-top: var(--space-5);
+  }
+
+  /* ── Email block ────────────────────────────────────────── */
+  .contact-email-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+    background-color: var(--color-cream-contact);
+    border-radius: 8px;
+    padding: var(--space-4) var(--space-6);
+    cursor: pointer;
+  }
+
+  .contact-email-label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--color-text);
+  }
+
+  .contact-email-icon {
+    display: flex;
+    align-items: center;
+    color: var(--color-text);
+    flex-shrink: 0;
+  }
+
+  .contact-email-heading {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg); /* 18px */
+    font-weight: 600;
+    color: var(--color-text);
+    letter-spacing: var(--ls-snug);
+  }
+
+  .contact-email-address {
+    font-family: var(--font-heading);
+    font-size: var(--text-base); /* 16px */
+    font-weight: 600;
+    color: var(--color-text);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.3s ease, opacity 0.3s ease, margin 0.3s ease;
+    margin-top: 0;
+  }
+
+  .contact-email-block:hover .contact-email-address {
+    max-height: 40px;
+    opacity: 1;
+    margin-top: var(--space-1);
+  }
+
+  .contact-email-address:hover {
+    color: var(--color-gold);
+  }
+
+
+  /* ── Heart glyph ────────────────────────────────────────── */
+  .contact-heart-glyph {
+    font-family: var(--font-heading);
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--color-text-on-dark);
+    margin: var(--space-2) 0 0;
+  }
+
+  /* ── Response time ──────────────────────────────────────── */
+  .contact-response {
+    font-family: var(--font-heading);
+    font-size: var(--text-base); /* 16px */
+    font-weight: 600;
+    line-height: var(--lh-normal);
+    color: var(--color-text-on-dark);
+    margin: 0;
+    text-align: center;
+    letter-spacing: var(--ls-snug);
+  }
+
+  /* ── Reveal animations ──────────────────────────────────── */
+  [data-reveal]:not([data-reveal="card"]) {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: var(--trans-reveal);
+  }
+
+  [data-reveal]:not([data-reveal="card"]).visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  [data-reveal="card"] {
+    opacity: 0;
+    transform: translateY(18px) scale(0.97);
+    transition: var(--trans-card);
+  }
+
+  [data-reveal="card"].visible {
+    opacity: 1;
+    transform: none;
+  }
+</style>

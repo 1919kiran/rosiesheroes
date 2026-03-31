@@ -1,0 +1,458 @@
+---
+// Volunteer section
+// Background: var(--color-dark-brown) = #382213 — DARK section
+// Text color: var(--color-text-on-dark) = #FFF8F1
+// Two info cards with var(--color-vol-card-bg) = #FFEFDA, border-radius: 50px
+// CTA "Flight Hero" dark card uses var(--color-dark-cta) = #624B40
+---
+
+<section id="volunteer">
+
+  <!-- Decorative background: plane outline on left -->
+  <svg class="vol-bg vol-bg--plane" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 16v-2l-8-5V3.5A1.5 1.5 0 0 0 11.5 2 1.5 1.5 0 0 0 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
+  </svg>
+
+  <!-- Decorative background: paw prints on right -->
+  <svg class="vol-bg vol-bg--paw1" viewBox="14.245 16.736 171.51 166.528" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <g>
+      <path d="M98.902 88.05c-21.698 0-59.447 52.147-61.533 66.037-2.393 15.935 11.019 29.177 27.133 29.177 10.137 0 30.913-11.779 34.4-11.779 3.367 0 23.912 11.779 34.017 11.779 16.114 0 30.472-13.299 27.725-29.177-2.294-13.264-40.009-66.037-61.742-66.037z" fill="currentColor"></path>
+      <path fill="currentColor" d="M91.411 45.161c0 15.699-8.055 28.425-17.991 28.425S55.429 60.86 55.429 45.161s8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"></path>
+      <path fill="currentColor" d="M50.227 93.365c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425S22.3 64.94 32.236 64.94s17.991 12.726 17.991 28.425z"></path>
+      <path fill="currentColor" d="M144.571 45.161c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"></path>
+      <path fill="currentColor" d="M185.755 89.042c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"></path>
+    </g>
+  </svg>
+  <svg class="vol-bg vol-bg--paw2" viewBox="14.245 16.736 171.51 166.528" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <g>
+      <path d="M98.902 88.05c-21.698 0-59.447 52.147-61.533 66.037-2.393 15.935 11.019 29.177 27.133 29.177 10.137 0 30.913-11.779 34.4-11.779 3.367 0 23.912 11.779 34.017 11.779 16.114 0 30.472-13.299 27.725-29.177-2.294-13.264-40.009-66.037-61.742-66.037z" fill="currentColor"></path>
+      <path fill="currentColor" d="M91.411 45.161c0 15.699-8.055 28.425-17.991 28.425S55.429 60.86 55.429 45.161s8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"></path>
+      <path fill="currentColor" d="M50.227 93.365c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425S22.3 64.94 32.236 64.94s17.991 12.726 17.991 28.425z"></path>
+      <path fill="currentColor" d="M144.571 45.161c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"></path>
+      <path fill="currentColor" d="M185.755 89.042c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"></path>
+    </g>
+  </svg>
+
+  <div class="section-inner">
+
+    <!-- Section header -->
+    <div class="vol-header" data-reveal>
+      <h2 class="vol-title">Volunteer</h2>
+      <p class="vol-intro">
+        Flying from India to California? You can be a hero by escorting a rescue dog to their new life! Flight volunteers make international rescue possible.
+      </p>
+    </div>
+
+    <!-- Two info cards -->
+    <div class="vol-cards">
+
+      <div class="vol-card" data-reveal="card">
+        <h3 class="vol-card-title">Why Flight Volunteers?</h3>
+        <ul class="vol-card-list">
+          <li>Save a life without changing your travel plans</li>
+          <li>We handle all paperwork and costs</li>
+          <li>No extra effort required on your part</li>
+          <li>Experience the joy of making a direct impact</li>
+          <li>Join a compassionate community of rescuers</li>
+        </ul>
+      </div>
+
+      <div class="vol-card" data-reveal="card">
+        <h3 class="vol-card-title vol-card-title--gold">How It Works</h3>
+        <div class="vol-steps">
+          <div class="vol-step">
+            <span class="vol-step-label">Contact Us</span>
+            <p class="vol-step-desc">Before you book your flight, let us know your travel plans from India to the United States.</p>
+          </div>
+          <div class="vol-step">
+            <span class="vol-step-label">Coordination</span>
+            <p class="vol-step-desc">We help arrange the flight, handle all paperwork and arrange for dog pickup and delivery.</p>
+          </div>
+          <div class="vol-step">
+            <span class="vol-step-label">Travel Day</span>
+            <p class="vol-step-desc">The dog travels as checked luggage (we cover all fees).</p>
+          </div>
+          <div class="vol-step">
+            <span class="vol-step-label">Arrival</span>
+            <p class="vol-step-desc">Our team meets you at the airport to receive and transport the dog to their safe foster home.</p>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.vol-cards -->
+
+    <!-- Flight Hero CTA card -->
+    <div class="vol-cta-card" data-reveal="card">
+      <div class="vol-cta-text">
+        <h3 class="vol-cta-title">Ready to be a Flight Hero?</h3>
+        <p class="vol-cta-desc">
+          If you're traveling from India to California in the coming months, you could change a dog's life forever.
+          <a href="#contact" class="vol-cta-link">Contact us</a> today to learn more about becoming a flight volunteer!
+        </p>
+        <div class="vol-cta-buttons">
+          <a
+            href="https://docs.google.com/document/d/1_OjKA_pXFduS6fT6bHTM847Z_ZacQ8TkX3lHj5gquv4/edit?tab=t.0#heading=h.x6nrrfeybvnj"
+            target="_blank"
+            rel="noreferrer noopener"
+            class="btn btn-primary"
+          >FAQs</a>
+          <a
+            href="https://docs.google.com/document/d/1Snhtc7qBQImEEP9yxCz3t1T4yll4nXSYuOa52NvxM3A/edit?tab=t.0#heading=h.x6nrrfeybvnj"
+            target="_blank"
+            rel="noreferrer noopener"
+            class="btn btn-secondary"
+          >The Process</a>
+        </div>
+      </div>
+    </div><!-- /.vol-cta-card -->
+
+  </div><!-- /.section-inner -->
+
+  <!-- Parallax airplane — starts top-right, JS animates along parabolic path to bottom-left -->
+  <img
+    id="vol-airplane"
+    src="/images/illus-airplane.png"
+    alt=""
+    aria-hidden="true"
+  />
+</section>
+
+<script>
+  (function () {
+    var plane = document.getElementById('vol-airplane');
+    var section = document.getElementById('volunteer');
+    if (!plane || !section) return;
+
+    var ticking = false;
+
+    function animate() {
+      var rect = section.getBoundingClientRect();
+      var vh = window.innerHeight;
+      var t = (vh - rect.top) / (vh + section.offsetHeight);
+      t = Math.max(0, Math.min(1, t));
+
+      // x: right side to left side
+      var x = (1 - t) * 700 - 100;
+      // y: parabolic arc peaking upward at t=0.5
+      var y = -600 * 4 * t * (1 - t) + 400;
+      // rotation: follows the arc tangent
+      var deg = -25 + t * 50;
+
+      plane.style.transform = 'translate(' + x + 'px,' + y + 'px) rotate(' + deg + 'deg)';
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        requestAnimationFrame(animate);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    animate();
+  })();
+</script>
+
+<style>
+  /* --------------------------------------------------------
+     VOLUNTEER SECTION — dark background
+     -------------------------------------------------------- */
+  #volunteer {
+    background-color: var(--color-dark-brown); /* #382213 */
+    padding: var(--space-25) 0 var(--space-20);
+    position: relative;
+    overflow: visible;
+  }
+
+  /* ── Background decorative elements ──────────────────────── */
+  .vol-bg {
+    position: absolute;
+    pointer-events: none;
+  }
+
+  /* Plane outline — left side */
+  .vol-bg--plane {
+    width: 240px;
+    height: 240px;
+    top: 12%;
+    left: 2%;
+    color: #6B4A35;
+    opacity: 0.45;
+    transform: rotate(-30deg);
+  }
+
+  /* Paw prints — right side */
+  .vol-bg--paw1 {
+    width: 220px;
+    height: 220px;
+    top: 38%;
+    right: 2%;
+    color: #6B4A35;
+    opacity: 0.40;
+    transform: rotate(10deg);
+  }
+
+  .vol-bg--paw2 {
+    width: 150px;
+    height: 150px;
+    bottom: 12%;
+    left: 3%;
+    color: #6B4A35;
+    opacity: 0.35;
+    transform: rotate(-15deg);
+  }
+
+  /* ── Parallax airplane — JS animates via transform ─────── */
+  #vol-airplane {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 280px;
+    height: auto;
+    pointer-events: none;
+    will-change: transform;
+    z-index: 2;
+  }
+
+  .section-inner {
+    max-width: var(--site-width); /* 980px */
+    margin: 0 auto;
+    padding: 0 var(--space-5);
+  }
+
+  /* ── Section header ─────────────────────────────────────── */
+  .vol-header {
+    text-align: center;
+    margin-bottom: var(--space-12); /* 48px */
+  }
+
+  .vol-title {
+    font-family: var(--font-heading);
+    font-size: var(--text-section); /* 38px */
+    font-weight: 600;
+    line-height: var(--lh-tight);
+    letter-spacing: var(--ls-tight);
+    color: var(--color-text-warm); /* #FFEFDA */
+    margin: 0 0 var(--space-6);
+  }
+
+  .vol-intro {
+    font-family: var(--font-body);
+    font-size: var(--text-lg); /* 18px */
+    line-height: var(--lh-relaxed);
+    color: var(--color-text-on-dark); /* #FFF8F1 */
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  /* ── Two info cards ─────────────────────────────────────── */
+  .vol-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6); /* 24px */
+    margin-bottom: var(--space-8); /* 32px */
+  }
+
+  .vol-card {
+    background-color: var(--color-vol-card-bg); /* #FFEFDA */
+    border-radius: var(--radius-vol-card); /* 50px */
+    padding: var(--space-10) var(--space-10); /* 40px */
+    box-shadow: var(--shadow-vol);
+  }
+
+  .vol-card-title {
+    font-family: var(--font-heading);
+    font-size: var(--text-label); /* 20px */
+    font-weight: 600;
+    line-height: var(--lh-snug);
+    color: var(--color-text); /* #382213 */
+    margin: 0 0 var(--space-6);
+  }
+
+  .vol-card-title--gold {
+    color: var(--color-gold); /* #EEBE5A */
+  }
+
+  /* ── Why Flight Volunteers list ─────────────────────────── */
+  .vol-card-list {
+    font-family: var(--font-body);
+    font-size: var(--text-base); /* 16px */
+    line-height: var(--lh-relaxed);
+    color: var(--color-text);
+    margin: 0;
+    padding-left: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2); /* 8px */
+  }
+
+  .vol-card-list li {
+    line-height: 1.5em;
+  }
+
+  /* ── How It Works steps ─────────────────────────────────── */
+  .vol-steps {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5); /* 20px */
+  }
+
+  .vol-step {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .vol-step-label {
+    font-family: var(--font-heading);
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.3em;
+    color: var(--color-gold); /* #EEBE5A */
+  }
+
+  .vol-step-desc {
+    font-family: var(--font-body);
+    font-size: var(--text-base); /* 16px */
+    line-height: 1.3em;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  /* ── Flight Hero CTA card ───────────────────────────────── */
+  .vol-cta-card {
+    background-color: var(--color-dark-cta); /* #624B40 */
+    border-radius: var(--radius-vol-card); /* 50px */
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: var(--space-8);
+    padding: var(--space-10) var(--space-12);
+    overflow: hidden;
+  }
+
+  .vol-cta-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .vol-cta-title {
+    font-family: var(--font-heading);
+    font-size: var(--text-section); /* 38px */
+    font-weight: 600;
+    line-height: var(--lh-snug);
+    color: var(--color-text-warm); /* #FFEFDA */
+    margin: 0;
+    text-align: center;
+    letter-spacing: var(--ls-tight);
+  }
+
+  .vol-cta-desc {
+    font-family: var(--font-body);
+    font-size: var(--text-base); /* 16px */
+    line-height: 1.3em;
+    color: var(--color-text-warm);
+    margin: 0;
+    text-align: center;
+  }
+
+  .vol-cta-link {
+    color: var(--color-text-warm);
+    text-decoration: underline;
+  }
+
+  .vol-cta-link:hover {
+    color: var(--color-gold);
+  }
+
+  /* ── CTA buttons ────────────────────────────────────────── */
+  .vol-cta-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    padding: 0 var(--space-8);
+    border-radius: var(--radius-pill);
+    font-family: var(--font-heading);
+    font-size: var(--text-base);
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: var(--trans-btn);
+    border: 2px solid transparent;
+  }
+
+  .btn-primary {
+    background-color: var(--color-gold);
+    color: var(--color-text);
+    border-color: var(--color-gold);
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-gold-hover);
+    border-color: var(--color-gold-hover);
+    color: var(--color-gold-dark-hover);
+  }
+
+  .btn-secondary {
+    background-color: transparent;
+    color: var(--color-text-warm);
+    border-color: var(--color-text-warm);
+  }
+
+  .btn-secondary:hover {
+    background-color: var(--color-gold);
+    border-color: var(--color-gold);
+    color: var(--color-text);
+  }
+
+  /* ── Illustration ───────────────────────────────────────── */
+  .vol-cta-illus {
+    flex-shrink: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .vol-cta-illus img {
+    width: 260px;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    /* nudge down slightly so illustration appears to sit on the card */
+    margin-bottom: calc(-1 * var(--space-10));
+  }
+
+  /* ── Reveal animations ──────────────────────────────────── */
+  [data-reveal]:not([data-reveal="card"]) {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: var(--trans-reveal);
+  }
+
+  [data-reveal]:not([data-reveal="card"]).visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  [data-reveal="card"] {
+    opacity: 0;
+    transform: translateY(18px) scale(0.97);
+    transition: var(--trans-card);
+  }
+
+  [data-reveal="card"].visible {
+    opacity: 1;
+    transform: none;
+  }
+</style>

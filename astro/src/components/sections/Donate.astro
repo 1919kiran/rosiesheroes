@@ -1,0 +1,228 @@
+---
+// Donate section
+// Background: var(--color-cream-donate) = #FFF5EA
+// Donation tiers laid out as a table-style card list
+// Cards use: border: 3px solid var(--color-card-border), border-radius: 0px
+// Tier amounts in bold left column, tier name + description in right column
+---
+
+<section id="donate">
+  <div class="section-inner">
+
+    <!-- Section header -->
+    <div class="donate-header" data-reveal>
+      <h2 class="donate-title">
+        Donate
+        <svg class="paw-decor paw-heading" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="currentColor">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+      </h2>
+      <p class="donate-subtitle">Be the Hero the World Needs.</p>
+      <p class="donate-meta">Rosie's Heroes is a 501c3 animal rescue (tax number 38-4382498).</p>
+    </div>
+
+    <!-- Donation tiers -->
+    <div class="donate-tiers">
+
+      <div class="donate-tier" data-reveal="card">
+        <div class="donate-tier-amount">$25</div>
+        <div class="donate-tier-content">
+          <p class="donate-tier-desc"><strong class="donate-tier-name">Ally</strong>: One complete spay/neuter + rabies vaccine, breaking the transmission chain for one dog.</p>
+          <p class="donate-tier-recognition">Recognition: Digital thank you.</p>
+        </div>
+      </div>
+
+      <div class="donate-tier" data-reveal="card">
+        <div class="donate-tier-amount">$100</div>
+        <div class="donate-tier-content">
+          <p class="donate-tier-desc"><strong class="donate-tier-name">Defender</strong>: Sterilizes and vaccinates 4 dogs, creating a protective barrier in a community.</p>
+          <p class="donate-tier-recognition">Recognition: All previous, plus mention on our social media.</p>
+        </div>
+      </div>
+
+      <div class="donate-tier" data-reveal="card">
+        <div class="donate-tier-amount">$500</div>
+        <div class="donate-tier-content">
+          <p class="donate-tier-desc"><strong class="donate-tier-name">Advocate</strong>: Protects a small village by vaccinating all at-risk dogs (approx. 20-25 animals).</p>
+          <p class="donate-tier-recognition">Recognition: All previous, plus a virtual meet-and-greet with a field team member.</p>
+        </div>
+      </div>
+
+      <div class="donate-tier" data-reveal="card">
+        <div class="donate-tier-amount">$2,500</div>
+        <div class="donate-tier-content">
+          <p class="donate-tier-desc"><strong class="donate-tier-name">Champion</strong>: Funds a full sterilization and vaccination campaign day for 100+ dogs, preventing dozens of potential rabies cases.</p>
+          <p class="donate-tier-recognition">Recognition: All previous, plus a named sponsorship of a campaign.</p>
+        </div>
+      </div>
+
+      <div class="donate-tier" data-reveal="card">
+        <div class="donate-tier-amount">$10,000</div>
+        <div class="donate-tier-content">
+          <p class="donate-tier-desc"><strong class="donate-tier-name">Hero</strong>: Supports a full mobile clinic for a month, reaching remote areas and saving hundreds of lives.</p>
+          <p class="donate-tier-recognition">Recognition: All previous, plus named feature in our annual report.</p>
+        </div>
+      </div>
+
+      <div class="donate-tier" data-reveal="card">
+        <div class="donate-tier-amount">$25,000+</div>
+        <div class="donate-tier-content">
+          <p class="donate-tier-desc"><strong class="donate-tier-name">Legend</strong>: Transforms a region, funding sustained programs for a year, moving towards rabies-free status.</p>
+          <p class="donate-tier-recognition">Recognition: All previous, plus recognition on major initiatives and invitation to a field visit.</p>
+        </div>
+      </div>
+
+    </div><!-- /.donate-tiers -->
+
+  </div><!-- /.section-inner -->
+</section>
+
+<style>
+  /* --------------------------------------------------------
+     DONATE SECTION
+     -------------------------------------------------------- */
+  #donate {
+    background-color: var(--color-cream-donate); /* #FFF5EA */
+    padding: var(--space-25) 0 var(--space-20);
+    position: relative;
+  }
+
+  .section-inner {
+    max-width: var(--site-width); /* 980px */
+    margin: 0 auto;
+    padding: 0 var(--space-5);
+  }
+
+  /* ── Section header ─────────────────────────────────────── */
+  .donate-header {
+    margin-bottom: var(--space-10); /* 40px */
+  }
+
+  .donate-title {
+    font-family: var(--font-heading);
+    font-size: var(--text-section); /* 38px */
+    font-weight: 600;
+    line-height: 1.3em;
+    letter-spacing: var(--ls-tight);
+    color: var(--color-text);
+    margin: 0 0 var(--space-2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .paw-heading {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    color: var(--color-gold);
+    vertical-align: middle;
+  }
+
+  .donate-subtitle {
+    font-family: var(--font-body);
+    font-size: var(--text-base); /* 16px */
+    line-height: var(--lh-normal);
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .donate-meta {
+    font-family: var(--font-body);
+    font-size: var(--text-base); /* 16px */
+    line-height: var(--lh-normal);
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  /* ── Tiers list — staircase layout ───────────────────────── */
+  .donate-tiers {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .donate-tier {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    align-items: start;
+    gap: var(--space-5);
+    padding: var(--space-5) var(--space-6);
+  }
+
+  /* Staircase: each tier indented progressively */
+  .donate-tier:nth-child(1) { margin-left: 0; }
+  .donate-tier:nth-child(2) { margin-left: 40px; }
+  .donate-tier:nth-child(3) { margin-left: 80px; }
+  .donate-tier:nth-child(4) { margin-left: 120px; }
+  .donate-tier:nth-child(5) { margin-left: 160px; }
+  .donate-tier:nth-child(6) { margin-left: 200px; }
+
+  /* ── Amount column — bordered card ───────────────────────── */
+  .donate-tier-amount {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg); /* 18px */
+    font-weight: 600;
+    line-height: 1;
+    color: var(--color-text);
+    white-space: nowrap;
+    border: 2px solid var(--color-card-border);
+    border-radius: 24px;
+    padding: var(--space-4) var(--space-5);
+    text-align: center;
+    background-color: #fff;
+  }
+
+  /* ── Content column ─────────────────────────────────────── */
+  .donate-tier-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .donate-tier-name {
+    font-family: var(--font-heading);
+    font-size: var(--text-base); /* 16px */
+    font-weight: 600;
+    color: var(--color-gold); /* #EEBE5A */
+  }
+
+  .donate-tier-desc {
+    font-family: var(--font-body);
+    font-size: var(--text-base); /* 16px */
+    line-height: var(--lh-normal);
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .donate-tier-recognition {
+    font-family: var(--font-body);
+    font-size: var(--text-base); /* 16px */
+    line-height: var(--lh-normal);
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  /* ── Reveal animations ──────────────────────────────────── */
+  [data-reveal]:not([data-reveal="card"]) {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: var(--trans-reveal);
+  }
+
+  [data-reveal]:not([data-reveal="card"]).visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  [data-reveal="card"] {
+    opacity: 0;
+    transform: translateY(18px) scale(0.97);
+    transition: var(--trans-card);
+  }
+
+  [data-reveal="card"].visible {
+    opacity: 1;
+    transform: none;
+  }
+</style>

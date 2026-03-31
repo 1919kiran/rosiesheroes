@@ -1,0 +1,29 @@
+/* ============================================================
+   ROSIE'S HEROES — FONTS
+   IMPORTANT: font-weight descriptors are required for correct
+   browser font selection. The original Wix export omitted them.
+   ============================================================ */
+
+@font-face {
+  font-family: 'font_heading';
+  src: url('/fonts/font_heading.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'font_body';
+  src: url('/fonts/font_body.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'din-next-w01-light';
+  src: url('/fonts/din-next-light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}

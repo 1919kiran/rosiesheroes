@@ -1,0 +1,336 @@
+---
+// ImpactMultiplier section
+// Background: var(--color-cream) — inherits page bg (#FFF8F1)
+// Layout: section header, stat cards row, then two-column: table | text block
+---
+
+<section id="impact-multiplier">
+  <div class="section-inner">
+
+    <!-- Section header -->
+    <div class="im-header" data-reveal>
+      <h2 class="im-title">
+        Impact Multiplier
+        <svg class="im-title-paw" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+          <polyline points="17 6 23 6 23 12"></polyline>
+        </svg>
+      </h2>
+      <p class="im-subtitle">Cost Efficiency</p>
+      <p class="im-intro">Real Costs in India: What We Actually Pay</p>
+    </div>
+
+    <!-- Stat cards row -->
+    <div class="im-cards">
+      <div class="im-card" data-reveal="card">
+        <span class="im-card-value">$3</span>
+        <span class="im-card-label">Rabies Vaccine</span>
+      </div>
+      <div class="im-card" data-reveal="card">
+        <span class="im-card-value">$7</span>
+        <span class="im-card-label">9-in-1 Vaccine</span>
+      </div>
+      <div class="im-card" data-reveal="card">
+        <span class="im-card-value">$25</span>
+        <span class="im-card-label">Spay / Neuter</span>
+      </div>
+      <div class="im-card" data-reveal="card">
+        <span class="im-card-value">$0.20</span>
+        <span class="im-card-label">Reflective Collar</span>
+      </div>
+      <div class="im-card" data-reveal="card">
+        <span class="im-card-value">$1</span>
+        <span class="im-card-label">Dog Food (per lb)</span>
+      </div>
+    </div>
+
+    <!-- Two-column: table + text block -->
+    <div class="im-body">
+
+      <!-- LEFT: comparison table -->
+      <div class="im-table-col" data-reveal>
+        <h3 class="im-table-heading">Side-by-Side Cost Comparison</h3>
+        <table class="im-table">
+          <thead>
+            <tr>
+              <th scope="col">Service</th>
+              <th scope="col">India</th>
+              <th scope="col">USA</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="im-row-alt">
+              <td>Spay / Neuter</td>
+              <td>$25</td>
+              <td>$200–$500</td>
+            </tr>
+            <tr>
+              <td>Rabies Vaccine</td>
+              <td>$3.33</td>
+              <td>$25–$50</td>
+            </tr>
+            <tr class="im-row-alt">
+              <td>9-in-1 Vaccine</td>
+              <td>$6.67</td>
+              <td>$40–$80</td>
+            </tr>
+            <tr>
+              <td>Reflective Collar</td>
+              <td>$0.17</td>
+              <td>$8–$15</td>
+            </tr>
+            <tr class="im-row-alt">
+              <td>Dog Food (per lb)</td>
+              <td>$1.00</td>
+              <td>$4–$15</td>
+            </tr>
+            <tr>
+              <td>Critical medicines</td>
+              <td>$27</td>
+              <td>$100–$6,000</td>
+            </tr>
+            <tr class="im-row-alt">
+              <td>Trauma care</td>
+              <td>$53</td>
+              <td>$1,000–$7,000</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- RIGHT: 10x impact text -->
+      <div class="im-text-col" data-reveal>
+        <h3 class="im-multiplier-heading">$1 USD = 10x Impact in India</h3>
+        <p class="im-text">
+          Every dollar donated to Rosie's Heroes has the equivalent programmatic purchasing power of $10.
+        </p>
+        <p class="im-text">
+          This means your donation works harder here than almost anywhere else in the world.
+        </p>
+        <p class="im-text">
+          $25 today prevents $600–$5,000+ in treatment costs tomorrow. That's a 25–200x return on every dollar invested.
+        </p>
+      </div>
+
+    </div><!-- /.im-body -->
+
+  </div><!-- /.section-inner -->
+</section>
+
+<style>
+  /* --------------------------------------------------------
+     IMPACT MULTIPLIER SECTION
+     -------------------------------------------------------- */
+  #impact-multiplier {
+    background-color: var(--color-cream);
+    padding: var(--space-1) 0 var(--space-1);
+    position: relative;
+  }
+
+  .section-inner {
+    max-width: var(--site-width); /* 980px */
+    margin: 0 auto;
+    padding: 0 var(--space-5);
+  }
+
+  /* ── Section header ─────────────────────────────────────── */
+  .im-header {
+    margin-bottom: var(--space-10); /* 40px */
+  }
+
+  .im-title {
+    font-family: var(--font-heading);
+    font-size: var(--text-section); /* 38px */
+    font-weight: 600;
+    line-height: var(--lh-tight);
+    letter-spacing: var(--ls-tight);
+    color: var(--color-text);
+    margin: 0 0 var(--space-8);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .im-title-paw {
+    width: 28px;
+    height: 28px;
+    color: var(--color-gold);
+    flex-shrink: 0;
+  }
+
+  .im-subtitle {
+    font-family: var(--font-heading);
+    font-size: 30px;
+    font-weight: 600;
+    line-height: var(--lh-snug);
+    color: var(--color-gold);
+    margin: 0 0 var(--space-3);
+  }
+
+  .im-intro {
+    font-family: var(--font-body);
+    font-size: var(--text-base); /* 16px */
+    line-height: var(--lh-normal);
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  /* ── Stat cards row ─────────────────────────────────────── */
+  .im-cards {
+    display: flex;
+    gap: var(--space-4); /* 16px */
+    margin-bottom: var(--space-12); /* 48px */
+    flex-wrap: wrap;
+  }
+
+  .im-card {
+    flex: 1 1 0;
+    min-width: 120px;
+    background-color: var(--color-card-bg);
+    border: 1px solid var(--color-gold);
+    border-radius: var(--radius-card);
+    padding: var(--space-6) var(--space-5);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+    /* Card reveal transition */
+    opacity: 1;
+    transition: var(--trans-card);
+  }
+
+  .im-card[data-reveal="card"] {
+    opacity: 0;
+    transform: translateY(18px) scale(0.97);
+  }
+
+  .im-card[data-reveal="card"].visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .im-card-value {
+    font-family: var(--font-heading);
+    font-size: var(--text-price); /* 40px */
+    font-weight: 600;
+    line-height: 1;
+    color: var(--color-text);
+    letter-spacing: var(--ls-snug);
+  }
+
+  .im-card-label {
+    font-family: var(--font-body);
+    font-size: var(--text-xs); /* 14px */
+    line-height: var(--lh-snug);
+    color: var(--color-text-mid);
+  }
+
+  /* ── Two-column body ────────────────────────────────────── */
+  .im-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-12); /* 48px */
+    align-items: start;
+  }
+
+  /* ── Table column ───────────────────────────────────────── */
+  .im-table-col {
+    /* reveal handled by data-reveal on the element */
+  }
+
+  .im-table-heading {
+    font-family: var(--font-heading);
+    font-size: var(--text-label); /* 20px */
+    font-weight: 600;
+    line-height: var(--lh-snug);
+    color: var(--color-text);
+    margin: 0 0 var(--space-5);
+  }
+
+  .im-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-body);
+    font-size: var(--text-base); /* 16px */
+    color: var(--color-text);
+  }
+
+  .im-table thead tr {
+    border-bottom: 2px solid var(--color-card-border);
+  }
+
+  .im-table th {
+    font-family: var(--font-heading);
+    font-size: var(--text-sm); /* 15px */
+    font-weight: 600;
+    text-align: left;
+    padding: var(--space-2) var(--space-4) var(--space-2) 0;
+    color: var(--color-text);
+    letter-spacing: var(--ls-snug);
+  }
+
+  .im-table th:not(:first-child) {
+    text-align: right;
+  }
+
+  .im-table td {
+    padding: var(--space-2) var(--space-4) var(--space-2) 0;
+    line-height: var(--lh-snug);
+    vertical-align: middle;
+  }
+
+  .im-table td:not(:first-child) {
+    text-align: right;
+  }
+
+  .im-table tbody tr {
+    border-bottom: 1px solid var(--color-card-border);
+  }
+
+  .im-table tbody tr:last-child {
+    border-bottom: none;
+  }
+
+  /* Alternating row bg */
+  .im-row-alt {
+    background-color: #FFEFDA;
+  }
+
+  /* ── Text column ────────────────────────────────────────── */
+  .im-text-col {
+    padding-top: var(--space-2);
+  }
+
+  .im-multiplier-heading {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg); /* 18px */
+    font-weight: 600;
+    line-height: var(--lh-snug);
+    color: var(--color-text);
+    margin: 0 0 var(--space-5);
+  }
+
+  .im-text {
+    font-family: var(--font-body);
+    font-size: var(--text-base); /* 16px */
+    line-height: var(--lh-relaxed);
+    color: var(--color-text);
+    margin: 0 0 var(--space-5);
+  }
+
+  .im-text:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Reveal animations ──────────────────────────────────── */
+  [data-reveal]:not([data-reveal="card"]) {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: var(--trans-reveal);
+  }
+
+  [data-reveal]:not([data-reveal="card"]).visible {
+    opacity: 1;
+    transform: none;
+  }
+</style>

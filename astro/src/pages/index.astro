@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/layout/Nav.astro';
+import Footer from '../components/layout/Footer.astro';
+import Hero from '../components/sections/Hero.astro';
+import WhyRosiesHeroes from '../components/sections/WhyRosiesHeroes.astro';
+import Vision from '../components/sections/Vision.astro';
+import Roadmap from '../components/sections/Roadmap.astro';
+import PilotSites from '../components/sections/PilotSites.astro';
+import ImpactMultiplier from '../components/sections/ImpactMultiplier.astro';
+import Adopt from '../components/sections/Adopt.astro';
+import Volunteer from '../components/sections/Volunteer.astro';
+import Donate from '../components/sections/Donate.astro';
+import Partner from '../components/sections/Partner.astro';
+import Contact from '../components/sections/Contact.astro';
+import WaveDivider from '../components/ui/WaveDivider.astro';
+---
+<BaseLayout>
+  <Nav />
+  <main>
+
+    <Hero />
+
+    <WhyRosiesHeroes />
+    <!-- WhyRosiesHeroes (#FFF9F1) → Vision (#FFF2E3): subtle arch -->
+    <WaveDivider shape="A" fill="#FFF2E3" bg="#FFF9F1" height={24} />
+
+    <Vision />
+    <!-- Vision (#FFF2E3) → Roadmap (#FFF1E3): minimal wave, creams are very close -->
+    <WaveDivider shape="A" fill="#FFEFDA" bg="#FFF2E3" height={50} />
+
+    <Roadmap />
+    <!-- Roadmap (#FFF1E3) → PilotSites (#FFF1E3): same colour — no visible wave needed -->
+
+    <PilotSites />
+    <!-- PilotSites (#FFF1E3) → ImpactMultiplier (#FFF8F1): asymmetric sweep -->
+    <WaveDivider shape="B" fill="#FFF8F1" bg="#FFF1E3" height={120} />
+
+    <ImpactMultiplier />
+    <!-- ImpactMultiplier (#FFF8F1) → Adopt (#FFF5EA): symmetric arch -->
+    <WaveDivider shape="A" fill="#FFF5EA" bg="#FFF8F1" height={80} />
+
+    <Adopt />
+
+    <Volunteer />
+
+    <Donate />
+    <!-- Donate (#FFF5EA) → Partner (#FFFCF9): subtle arch, creams are close -->
+    <WaveDivider shape="A" fill="#FFFCF9" bg="#FFF5EA" height={60} />
+
+    <Partner />
+    <!-- Partner (#FFFCF9) → Contact (#FFEFDA): subtle arch -->
+    <WaveDivider shape="A" fill="#FFEFDA" bg="#FFFCF9" height={60} />
+
+    <Contact />
+
+  </main>
+  <Footer />
+</BaseLayout>

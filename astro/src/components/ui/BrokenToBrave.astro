@@ -1,0 +1,61 @@
+---
+// BrokenToBrave.astro — Reusable "Broken to Brave" mission card
+// White card with warm-cream border, full-width within content area
+// Has decorative 𐂯 icon at top-right
+---
+
+<div class="b2b-card" data-reveal="card">
+  <!-- Decorative bone — rotated 45° on top-right corner -->
+  <span class="b2b-deco" aria-hidden="true">𐂯</span>
+
+  <h3 class="b2b-title">Broken to <span class="gold">Brave</span></h3>
+  <p class="b2b-body">
+    Our mission is to transform dogs who have faced hardship and trauma into brave heroes who bring joy,
+    love, and companionship to their adopted families. Every dog deserves care, love and safety.
+  </p>
+</div>
+
+<style>
+  .b2b-card {
+    position: relative;
+    background-color: rgb(255, 253, 251);
+    border: 3px solid rgb(255, 237, 214);
+    border-radius: 0;
+    padding: var(--space-10) var(--space-12);
+    width: 100%;
+    overflow: visible;
+  }
+
+  .b2b-deco {
+    position: absolute;
+    top: -16px;
+    right: -12px;
+    font-family: var(--font-heading);
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--color-text-mid);
+    line-height: 1;
+    transform: rotate(45deg);
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .b2b-title {
+    font-family: var(--font-heading);
+    font-size: var(--text-section); /* 38px */
+    font-weight: 600;
+    color: var(--color-text);
+    letter-spacing: var(--ls-snug);
+    line-height: var(--lh-tight);
+    margin-bottom: var(--space-5);
+    text-align: center;
+  }
+
+  .b2b-body {
+    font-family: var(--font-body);
+    font-size: var(--text-base); /* 16px */
+    color: var(--color-text);
+    line-height: var(--lh-relaxed);
+    text-align: center;
+  }
+</style>

@@ -1,0 +1,244 @@
+---
+// Roadmap section — 4-phase timeline
+---
+
+<section id="roadmap">
+  <div class="section-inner">
+
+    <!-- Section heading -->
+    <h2 class="roadmap-heading" data-reveal="fade">
+      Roadmap
+      <svg class="roadmap-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path>
+        <line x1="4" y1="22" x2="4" y2="15"></line>
+      </svg>
+    </h2>
+
+    <!-- Intro paragraph -->
+    <p class="roadmap-intro" data-reveal="fade">
+      Rosie's Heroes is developing a scalable, data-backed sterilization and vaccination program in
+      high-rabies countries, starting in India. The vision is simple but ambitious: drive sustained
+      70%+ coverage in targeted districts until rabies transmission collapses entirely.
+    </p>
+
+    <!-- Timeline: zigzag layout with centre vertical line -->
+    <div class="roadmap-timeline">
+
+      <!-- Top dot -->
+      <div class="timeline-dot" style="grid-column: 1 / -1;"></div>
+
+      <!-- Phase 1 — left side -->
+      <div class="phase phase--left-col" data-reveal="card">
+        <h4 class="phase-title">
+          <span class="gold">Phase 1:</span> Target Identification
+        </h4>
+        <p class="phase-body">
+          Map high-burden districts. Establish local partnerships and define coverage baselines.
+        </p>
+      </div>
+
+      <!-- Phase 2 — right side -->
+      <div class="phase phase--right-col" data-reveal="card">
+        <h4 class="phase-title">
+          <span class="gold">Phase 2:</span> High-Volume Operations
+        </h4>
+        <p class="phase-body">
+          Deploy mobile sterilization and vaccination units. Track sterilization progress.
+          Build community awareness and support networks.
+        </p>
+      </div>
+
+      <!-- Phase 3 — left side -->
+      <div class="phase phase--left-col" data-reveal="card">
+        <h4 class="phase-title">
+          <span class="gold">Phase 3:</span> Coverage Monitoring
+        </h4>
+        <p class="phase-body">
+          Maintain and verify 70%+ coverage rates. Identify and address gaps.
+        </p>
+      </div>
+
+      <!-- Phase 4 — right side -->
+      <div class="phase phase--right-col" data-reveal="card">
+        <h4 class="phase-title">
+          <span class="gold">Phase 4:</span> Transmission Collapse
+        </h4>
+        <p class="phase-body">
+          Sustained coverage drives rabies transmission to zero in targeted districts.
+          Replicate to additional high-burden zones and countries.
+        </p>
+      </div>
+
+      <!-- Bottom dot -->
+      <div class="timeline-dot" style="grid-column: 1 / -1;"></div>
+
+    </div><!-- /.roadmap-timeline -->
+
+  </div>
+
+  <!-- Golden retriever — absolutely positioned at bottom-left -->
+  <img
+    id="howling-golden"
+    src="/images/illus-golden-howling.png"
+    alt="Howling golden retriever"
+    loading="lazy"
+    width="265"
+    height="263"
+  />
+</section>
+
+<style>
+  #roadmap {
+    background-color: var(--color-cream-story);
+    padding: var(--space-20) 0 var(--space-25);
+    position: relative;
+    overflow: visible;
+  }
+
+  /* ---- Heading ---- */
+  .roadmap-heading {
+    font-family: var(--font-heading);
+    font-size: var(--text-section);
+    font-weight: 600;
+    color: var(--color-text);
+    letter-spacing: var(--ls-snug);
+    line-height: var(--lh-tight);
+    margin-bottom: var(--space-6);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .roadmap-icon {
+    width: 28px;
+    height: 28px;
+    color: var(--color-gold);
+    flex-shrink: 0;
+  }
+
+  /* ---- Intro ---- */
+  .roadmap-intro {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    color: var(--color-text);
+    line-height: var(--lh-relaxed);
+    max-width: 720px;
+    margin-bottom: var(--space-15);
+  }
+
+  /* ---- Timeline single-column layout ---- */
+  .roadmap-timeline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  /* Continuous vertical black line */
+  .roadmap-timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #1a1a1a;
+    transform: translateX(-50%);
+    z-index: 0;
+  }
+
+  /* ---- Dots ---- */
+  .timeline-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #1a1a1a;
+    z-index: 1;
+    flex-shrink: 0;
+  }
+
+  /* Animation is applied globally via #howling-golden in global.css */
+  #howling-golden {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 250px;
+    height: auto;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  @media (max-width: 900px) {
+    #howling-golden {
+      display: none;
+    }
+  }
+
+  /* ---- Individual phase blocks ---- */
+  .phase {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+    padding: var(--space-5) 0;
+  }
+
+  /* Left-column phases: text on left half, right-aligned, connector goes right to centre */
+  .phase--left-col {
+    align-items: flex-end;
+    text-align: right;
+    padding-right: calc(50% + 45px); /* text stays left of centre + gap */
+  }
+
+  .phase--left-col::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: calc(50% - 1px);
+    width: 30px;
+    height: 2px;
+    background: #1a1a1a;
+    transform: translateY(-50%);
+  }
+
+  /* Right-column phases: text on right half, left-aligned, connector goes left to centre */
+  .phase--right-col {
+    align-items: flex-start;
+    text-align: left;
+    padding-left: calc(50% + 45px); /* text stays right of centre + gap */
+  }
+
+  .phase--right-col::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: calc(50% - 1px);
+    width: 30px;
+    height: 2px;
+    background: #1a1a1a;
+    transform: translateY(-50%);
+  }
+
+  .phase-title {
+    font-family: var(--font-heading);
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--color-text);
+    line-height: var(--lh-snug);
+    margin-bottom: var(--space-2);
+  }
+
+  .phase-body {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    color: var(--color-text);
+    line-height: var(--lh-relaxed);
+  }
+
+  /* Gold phase label */
+  .gold {
+    color: var(--color-gold);
+  }
+</style>

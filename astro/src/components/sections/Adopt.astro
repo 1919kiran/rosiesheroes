@@ -1,0 +1,286 @@
+---
+// Adopt section
+// Background: var(--color-cream-adopt) = #FFF5EA
+// Layout: centered header, centered body text, then card with left text + right photo
+// Puppy-lying illustration is a parallax element positioned absolutely
+---
+
+<section id="adopt">
+
+  <!-- Parallax puppy illustration — absolutely positioned, animated via JS -->
+  <img
+    id="puppy-lying"
+    src="/images/illus-puppy-lying.png"
+    alt=""
+    aria-hidden="true"
+    width="160"
+    height="120"
+  />
+
+  <div class="section-inner">
+
+    <!-- Section header -->
+    <div class="adopt-header" data-reveal>
+      <h2 class="adopt-title">Adopt</h2>
+    </div>
+
+    <!-- Centered intro text -->
+    <p class="adopt-intro" data-reveal>
+      Your adoption creates impact at home and beyond. Part of your adoption fee provides urgent medical care for local dogs in need. The rest supports large-scale spay and vaccination efforts in high-rabies regions, preventing suffering before it begins. When one dog finds a home, entire communities move closer to safety.
+    </p>
+
+    <!-- Card: steps + photo -->
+    <div class="adopt-card" data-reveal="card">
+
+      <!-- LEFT: steps + CTA buttons -->
+      <div class="adopt-card-left">
+        <h3 class="adopt-card-title">Ready to start your adoption journey?</h3>
+
+        <div class="adopt-steps">
+          <div class="adopt-step">
+            <span class="adopt-step-label">Apply</span>
+            <p class="adopt-step-desc">Tell us about your home and lifestyle.</p>
+          </div>
+          <div class="adopt-step">
+            <span class="adopt-step-label">Meet</span>
+            <p class="adopt-step-desc">Video call + meet the dog through our foster network</p>
+          </div>
+          <div class="adopt-step">
+            <span class="adopt-step-label">Adopt</span>
+            <p class="adopt-step-desc">Sign, pay the adoption fee, and start your life together!</p>
+          </div>
+        </div>
+
+        <div class="adopt-cta">
+          <a href="#contact" class="btn btn-primary">Apply</a>
+          <a href="#happy-tails" class="btn btn-secondary">Meet The Dogs</a>
+        </div>
+      </div>
+
+      <!-- RIGHT: golden retriever photo -->
+      <div class="adopt-card-photo" aria-hidden="true">
+        <img
+          src="/images/photo-golden-retriever-adopt.jpg"
+          alt="A golden retriever looking up — waiting to be adopted"
+          width="280"
+          height="360"
+        />
+      </div>
+
+    </div><!-- /.adopt-card -->
+
+  </div><!-- /.section-inner -->
+</section>
+
+<style>
+  /* --------------------------------------------------------
+     ADOPT SECTION
+     -------------------------------------------------------- */
+  #adopt {
+    background-color: var(--color-cream-adopt); /* #FFF5EA */
+    padding: var(--space-8) 0 var(--space-20);
+    position: relative;
+    overflow: visible; /* allow parallax element to escape */
+  }
+
+  .section-inner {
+    max-width: var(--site-width); /* 980px */
+    margin: 0 auto;
+    padding: 0 var(--space-5);
+  }
+
+  /* ── Parallax puppy ─────────────────────────────────────── */
+  #puppy-lying {
+    position: absolute;
+    left: -20px;
+    bottom: 120px;
+    width: 160px;
+    height: auto;
+    pointer-events: none;
+    will-change: transform;
+    z-index: 2;
+  }
+
+  /* ── Section header ─────────────────────────────────────── */
+  .adopt-header {
+    text-align: center;
+    margin-bottom: var(--space-6);
+  }
+
+  .adopt-title {
+    font-family: var(--font-heading);
+    font-size: var(--text-section); /* 38px */
+    font-weight: 600;
+    line-height: var(--lh-tight);
+    letter-spacing: var(--ls-tight);
+    color: var(--color-text);
+    margin: 0 0 var(--space-3);
+  }
+
+  .adopt-subtitle {
+    font-family: var(--font-body);
+    font-size: var(--text-base); /* 16px */
+    font-weight: 400;
+    color: var(--color-gold);
+    margin: 0;
+  }
+
+  /* ── Centered intro body text ───────────────────────────── */
+  .adopt-intro {
+    font-family: var(--font-body);
+    font-size: var(--text-base); /* 16px */
+    line-height: var(--lh-relaxed);
+    color: var(--color-text);
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto var(--space-12); /* 48px below */
+  }
+
+  /* ── Adoption card ──────────────────────────────────────── */
+  .adopt-card {
+    background-color: #FFEFDA;
+    border: 1px solid var(--color-card-border);
+    border-radius: 8px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: stretch;
+    overflow: hidden;
+  }
+
+  /* ── Card left column ───────────────────────────────────── */
+  .adopt-card-left {
+    padding: var(--space-12) var(--space-10); /* 48px top/bottom, 40px sides */
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8); /* 32px between title, steps, cta */
+  }
+
+  .adopt-card-title {
+    font-family: var(--font-heading);
+    font-size: 25px;
+    font-weight: 600;
+    line-height: var(--lh-snug);
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  /* ── Steps list ─────────────────────────────────────────── */
+  .adopt-steps {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5); /* 20px between steps */
+  }
+
+  .adopt-step {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .adopt-step-label {
+    font-family: var(--font-heading);
+    font-size: var(--text-sm); /* 15px — approx 17px in source */
+    font-weight: 600;
+    color: var(--color-gold);
+    line-height: var(--lh-snug);
+  }
+
+  .adopt-step-desc {
+    font-family: var(--font-body);
+    font-size: var(--text-base); /* 16px */
+    line-height: var(--lh-relaxed);
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  /* ── CTA buttons ────────────────────────────────────────── */
+  .adopt-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    align-items: center;
+  }
+
+  /* Shared button base (matches site button styles) */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    padding: 0 var(--space-8);
+    border-radius: var(--radius-pill);
+    font-family: var(--font-heading);
+    font-size: var(--text-base);
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: var(--trans-btn);
+    border: 2px solid transparent;
+  }
+
+  .btn-primary {
+    background-color: var(--color-gold);
+    color: var(--color-text);
+    border-color: var(--color-gold);
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-gold-hover);
+    border-color: var(--color-gold-hover);
+    color: var(--color-gold-dark-hover);
+  }
+
+  .btn-secondary {
+    background-color: var(--color-outline-bg);
+    color: var(--color-text);
+    border-color: var(--color-card-border);
+  }
+
+  .btn-secondary:hover {
+    background-color: var(--color-gold);
+    border-color: var(--color-gold);
+    color: var(--color-text);
+  }
+
+  /* ── Card right column: photo ───────────────────────────── */
+  .adopt-card-photo {
+    width: 280px;
+    flex-shrink: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .adopt-card-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 20%; /* keep dog's face in frame */
+    display: block;
+  }
+
+  /* ── Reveal animations ──────────────────────────────────── */
+  [data-reveal]:not([data-reveal="card"]) {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: var(--trans-reveal);
+  }
+
+  [data-reveal]:not([data-reveal="card"]).visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  [data-reveal="card"] {
+    opacity: 0;
+    transform: translateY(18px) scale(0.97);
+    transition: var(--trans-card);
+  }
+
+  [data-reveal="card"].visible {
+    opacity: 1;
+    transform: none;
+  }
+</style>

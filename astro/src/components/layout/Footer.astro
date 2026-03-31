@@ -1,0 +1,222 @@
+---
+// Footer.astro — Rosie's Heroes footer
+// Dark brown bg (#382213), cream text, dogs-group illustration, footer nav links
+---
+
+<footer id="site-footer">
+
+  <!-- Decorative paw prints — large, faint, on sides -->
+  <svg class="footer-paw footer-paw--left" preserveAspectRatio="xMidYMid meet" viewBox="14.245 16.736 171.51 166.528" xmlns="http://www.w3.org/2000/svg" role="presentation" aria-hidden="true" focusable="false">
+    <g>
+      <path d="M98.902 88.05c-21.698 0-59.447 52.147-61.533 66.037-2.393 15.935 11.019 29.177 27.133 29.177 10.137 0 30.913-11.779 34.4-11.779 3.367 0 23.912 11.779 34.017 11.779 16.114 0 30.472-13.299 27.725-29.177-2.294-13.264-40.009-66.037-61.742-66.037z" fill="currentColor"/>
+      <path fill="currentColor" d="M91.411 45.161c0 15.699-8.055 28.425-17.991 28.425S55.429 60.86 55.429 45.161s8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/>
+      <path fill="currentColor" d="M50.227 93.365c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425S22.3 64.94 32.236 64.94s17.991 12.726 17.991 28.425z"/>
+      <path fill="currentColor" d="M144.571 45.161c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/>
+      <path fill="currentColor" d="M185.755 89.042c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/>
+    </g>
+  </svg>
+
+  <svg class="footer-paw footer-paw--right" preserveAspectRatio="xMidYMid meet" viewBox="14.245 16.736 171.51 166.528" xmlns="http://www.w3.org/2000/svg" role="presentation" aria-hidden="true" focusable="false">
+    <g>
+      <path d="M98.902 88.05c-21.698 0-59.447 52.147-61.533 66.037-2.393 15.935 11.019 29.177 27.133 29.177 10.137 0 30.913-11.779 34.4-11.779 3.367 0 23.912 11.779 34.017 11.779 16.114 0 30.472-13.299 27.725-29.177-2.294-13.264-40.009-66.037-61.742-66.037z" fill="currentColor"/>
+      <path fill="currentColor" d="M91.411 45.161c0 15.699-8.055 28.425-17.991 28.425S55.429 60.86 55.429 45.161s8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/>
+      <path fill="currentColor" d="M50.227 93.365c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425S22.3 64.94 32.236 64.94s17.991 12.726 17.991 28.425z"/>
+      <path fill="currentColor" d="M144.571 45.161c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/>
+      <path fill="currentColor" d="M185.755 89.042c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/>
+    </g>
+  </svg>
+
+  <!-- Watermark text -->
+  <div class="footer-watermark" aria-hidden="true">Rosie's<br/>Heroes</div>
+
+  <div class="footer-inner">
+
+    <!-- Dogs group illustration -->
+    <div class="footer-illus">
+      <img
+        src="/images/logo-dogs.png"
+        alt="Group of dogs illustration"
+        width="210"
+        height="140"
+        loading="lazy"
+      />
+    </div>
+
+    <!-- Tagline -->
+    <p class="footer-tagline">
+      Transforming communities through sustained welfare for street dogs.
+    </p>
+
+    <!-- Footer navigation links — 4 columns -->
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <ul class="footer-nav-col" role="list">
+        <li><a href="#vision"            class="footer-link">Vision</a></li>
+        <li><a href="#rosies-story"      class="footer-link">Rosie's Story</a></li>
+        <li><a href="#roadmap"           class="footer-link">Roadmap</a></li>
+        <li><a href="#impact-multiplier" class="footer-link">Impact Multiplier</a></li>
+      </ul>
+      <ul class="footer-nav-col" role="list">
+        <li><a href="#adopt"     class="footer-link">Adopt</a></li>
+        <li><a href="#volunteer" class="footer-link">Volunteer</a></li>
+        <li><a href="#donate"    class="footer-link">Donate</a></li>
+        <li><a href="#partner"   class="footer-link">Partner</a></li>
+      </ul>
+      <ul class="footer-nav-col" role="list">
+        <li><a href="#rosies-story" class="footer-link">Happy Tails</a></li>
+      </ul>
+      <ul class="footer-nav-col" role="list">
+        <li><a href="#contact"      class="footer-link">Contact Us</a></li>
+      </ul>
+    </nav>
+
+    <!-- Copyright -->
+    <div class="footer-legal">
+      <p>&copy; 2026 Rosie's Heroes. All rights reserved.</p>
+      <p>A 501c3 animal rescue dedicated to reducing suffering at scale for dogs and people.</p>
+      <p>Tax number 38-4382498</p>
+    </div>
+
+  </div>
+</footer>
+
+<style>
+  /* ============================================================
+     FOOTER — component-scoped styles
+     ============================================================ */
+
+  #site-footer {
+    position: relative;
+    background-color: var(--color-dark-brown);
+    color: var(--color-text-on-dark);
+    overflow: hidden;
+    padding: 56px 0 40px;
+  }
+
+  /* ---- WATERMARK TEXT ---- */
+  .footer-watermark {
+    position: absolute;
+    top: 35%;
+    left: 40px;
+    transform: translateY(-50%);
+    font-family: var(--font-heading);
+    font-size: 72px;
+    font-weight: 600;
+    line-height: 1.1;
+    color: rgba(255, 239, 218, 0.18);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ---- DECORATIVE PAWS ---- */
+  .footer-paw {
+    position: absolute;
+    color: #6B4A35;
+    opacity: 0.50;
+    pointer-events: none;
+  }
+
+  .footer-paw--left {
+    width: 200px;
+    height: 200px;
+    bottom: 20px;
+    left: -20px;
+    transform: rotate(-15deg);
+  }
+
+  .footer-paw--right {
+    width: 220px;
+    height: 220px;
+    top: 20px;
+    right: -30px;
+    transform: rotate(20deg);
+  }
+
+  /* ---- INNER CONTAINER ---- */
+  .footer-inner {
+    position: relative;
+    max-width: var(--site-width);
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    z-index: 1;
+  }
+
+  /* ---- ILLUSTRATION ---- */
+  .footer-illus {
+    margin-bottom: 20px;
+  }
+
+  .footer-illus img {
+    display: block;
+    width: auto;
+    max-width: 210px;
+    height: auto;
+  }
+
+  /* ---- TAGLINE ---- */
+  .footer-tagline {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg); /* 18px */
+    font-weight: 600;
+    color: var(--color-text-warm); /* #FFEFDA */
+    text-align: center;
+    margin-bottom: 32px;
+    line-height: var(--lh-snug);
+    max-width: 520px;
+  }
+
+  /* ---- FOOTER NAV ---- */
+  .footer-nav {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    gap: 48px;
+    margin-bottom: 40px;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .footer-nav-col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .footer-link {
+    font-family: var(--font-heading);
+    font-size: var(--text-sm); /* 15px */
+    font-weight: 500;
+    color: var(--color-text-on-dark);
+    text-decoration: none;
+    opacity: 0.85;
+    white-space: nowrap;
+    transition: opacity 0.2s ease, color 0.2s ease;
+  }
+
+  .footer-link:hover {
+    opacity: 1;
+    color: var(--color-gold);
+  }
+
+  /* ---- LEGAL ---- */
+  .footer-legal {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    text-align: center;
+  }
+
+  .footer-legal p {
+    font-family: var(--font-heading);
+    font-size: var(--text-xs); /* 14px */
+    color: var(--color-text-on-dark);
+    opacity: 0.6;
+    line-height: var(--lh-relaxed);
+    margin: 0;
+  }
+</style>

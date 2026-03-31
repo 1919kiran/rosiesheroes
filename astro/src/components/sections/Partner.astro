@@ -1,0 +1,216 @@
+---
+// Partner section
+// Background: var(--color-cream-partner) = #FFFCF9
+// Two-column layout: left = "Partner With Us" intro, right = "Mutual Benefits" with gold-titled items
+---
+
+<section id="partner">
+  <div class="section-inner">
+
+    <!-- Top: Partner With Us intro -->
+    <div class="partner-intro-block" data-reveal>
+      <h2 class="partner-title">
+        Partner With Us
+        <svg class="paw-decor paw-heading" viewBox="14.245 16.736 171.51 166.528" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+          <g>
+            <path d="M98.902 88.05c-21.698 0-59.447 52.147-61.533 66.037-2.393 15.935 11.019 29.177 27.133 29.177 10.137 0 30.913-11.779 34.4-11.779 3.367 0 23.912 11.779 34.017 11.779 16.114 0 30.472-13.299 27.725-29.177-2.294-13.264-40.009-66.037-61.742-66.037z" fill="currentColor"></path>
+            <path fill="currentColor" d="M91.411 45.161c0 15.699-8.055 28.425-17.991 28.425S55.429 60.86 55.429 45.161s8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"></path>
+            <path fill="currentColor" d="M50.227 93.365c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425S22.3 64.94 32.236 64.94s17.991 12.726 17.991 28.425z"></path>
+            <path fill="currentColor" d="M144.571 45.161c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"></path>
+            <path fill="currentColor" d="M185.755 89.042c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"></path>
+          </g>
+        </svg>
+      </h2>
+      <img
+        src="/images/illus-golden-sitting.png"
+        alt=""
+        aria-hidden="true"
+        class="partner-dog-illus"
+      />
+      <p class="partner-intro">
+        Addressing the complex challenges of canine overpopulation and the global rabies crisis demands more than just passion—it requires powerful partnerships. At Rosie's Heroes, we believe that by uniting with like-minded organizations, corporations, and institutions, we can amplify our impact, innovate solutions, and ultimately create a healthier, safer world for both humans and animals.
+      </p>
+    </div>
+
+    <!-- Bottom: Mutual Benefits -->
+    <div class="partner-benefits-block" data-reveal>
+      <h2 class="partner-benefits-heading">
+        Mutual <span class="partner-benefits-gold">Benefits</span> of Partnership
+      </h2>
+      <p class="partner-benefits-sub">
+        A partnership with Rosie's Heroes is a mutually beneficial endeavor, offering tangible returns alongside profound social impact:
+      </p>
+
+      <div class="partner-benefits-list">
+
+        <div class="partner-benefit" data-reveal="card">
+          <h3 class="partner-benefit-title">Measurable Global Impact</h3>
+          <p class="partner-benefit-desc">
+            Directly contribute to preventing rabies, improving public health, and saving animal lives, with clear reporting on your impact.
+          </p>
+        </div>
+
+        <div class="partner-benefit" data-reveal="card">
+          <h3 class="partner-benefit-title">Enhanced Brand Alignment &amp; Reputation</h3>
+          <p class="partner-benefit-desc">
+            Associate your brand with a compassionate, effective, and globally impactful cause, strengthening your public image and corporate values.
+          </p>
+        </div>
+
+        <div class="partner-benefit" data-reveal="card">
+          <h3 class="partner-benefit-title">Tax Benefits &amp; Recognition</h3>
+          <p class="partner-benefit-desc">
+            Benefit from tax deductions for charitable contributions and receive recognition across our platforms, events, and reports.
+          </p>
+        </div>
+
+      </div><!-- /.partner-benefits-list -->
+    </div><!-- /.partner-benefits-block -->
+
+  </div><!-- /.section-inner -->
+</section>
+
+<style>
+  /* --------------------------------------------------------
+     PARTNER SECTION
+     -------------------------------------------------------- */
+  #partner {
+    background-color: var(--color-cream-partner); /* #FFFCF9 */
+    padding: var(--space-25) 0 var(--space-20);
+    position: relative;
+  }
+
+  .section-inner {
+    max-width: var(--site-width); /* 980px */
+    margin: 0 auto;
+    padding: 0 var(--space-5);
+  }
+
+  /* ── Partner With Us intro ──────────────────────────────── */
+  .partner-intro-block {
+    margin-bottom: var(--space-15); /* 60px */
+  }
+
+  .partner-title {
+    font-family: var(--font-heading);
+    font-size: var(--text-section); /* 38px */
+    font-weight: 600;
+    line-height: var(--lh-tight);
+    letter-spacing: var(--ls-tight);
+    color: var(--color-text);
+    margin: 0 0 var(--space-5);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .paw-heading {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    color: var(--color-gold);
+    vertical-align: middle;
+  }
+
+  .partner-dog-illus {
+    position: absolute;
+    right: 0;
+    top: 40px;
+    width: 180px;
+    height: auto;
+    opacity: 0.9;
+    pointer-events: none;
+  }
+
+  .partner-intro {
+    font-family: var(--font-body);
+    font-size: var(--text-base); /* 16px */
+    line-height: var(--lh-normal);
+    color: var(--color-text);
+    max-width: 820px;
+    margin: 0;
+  }
+
+  /* ── Mutual Benefits block ──────────────────────────────── */
+  .partner-benefits-block {
+    /* no extra margin needed */
+  }
+
+  .partner-benefits-heading {
+    font-family: var(--font-heading);
+    font-size: var(--text-section); /* 38px */
+    font-weight: 600;
+    line-height: var(--lh-normal);
+    letter-spacing: var(--ls-tight);
+    color: var(--color-text);
+    margin: 0 0 var(--space-3);
+  }
+
+  .partner-benefits-gold {
+    color: var(--color-gold); /* #EEBE5A */
+  }
+
+  .partner-benefits-sub {
+    font-family: var(--font-body);
+    font-size: var(--text-base); /* 16px */
+    line-height: var(--lh-normal);
+    color: var(--color-text);
+    margin: 0 0 var(--space-10); /* 40px */
+    max-width: 820px;
+  }
+
+  /* ── Benefits list ──────────────────────────────────────── */
+  .partner-benefits-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8); /* 32px */
+  }
+
+  .partner-benefit {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2); /* 8px */
+  }
+
+  .partner-benefit-title {
+    font-family: var(--font-heading);
+    font-size: 17px;
+    font-weight: 600;
+    line-height: var(--lh-normal);
+    color: var(--color-gold); /* #EEBE5A */
+    margin: 0;
+    letter-spacing: var(--ls-snug);
+  }
+
+  .partner-benefit-desc {
+    font-family: var(--font-body);
+    font-size: var(--text-base); /* 16px */
+    line-height: var(--lh-normal);
+    color: var(--color-text);
+    margin: 0;
+    max-width: 820px;
+  }
+
+  /* ── Reveal animations ──────────────────────────────────── */
+  [data-reveal]:not([data-reveal="card"]) {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: var(--trans-reveal);
+  }
+
+  [data-reveal]:not([data-reveal="card"]).visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  [data-reveal="card"] {
+    opacity: 0;
+    transform: translateY(18px) scale(0.97);
+    transition: var(--trans-card);
+  }
+
+  [data-reveal="card"].visible {
+    opacity: 1;
+    transform: none;
+  }
+</style>

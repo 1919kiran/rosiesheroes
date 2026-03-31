@@ -1,0 +1,265 @@
+/* ============================================================
+   ROSIE'S HEROES — GLOBAL STYLES
+   Resets, base styles, typography utilities, animations
+   ============================================================ */
+
+/* ----------------------------------------------------------
+   RESET & BASE
+   ---------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-text);
+  background-color: var(--color-cream);
+  line-height: var(--lh-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ----------------------------------------------------------
+   TYPOGRAPHY UTILITIES
+   ---------------------------------------------------------- */
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: var(--lh-tight);
+}
+
+h1 { font-size: var(--text-hero); letter-spacing: var(--ls-hero); line-height: 1.1; }
+h2 { font-size: var(--text-section); letter-spacing: var(--ls-snug); }
+h3 { font-size: var(--text-sub); letter-spacing: var(--ls-tight); }
+h4 { font-size: var(--text-card); }
+
+p {
+  line-height: var(--lh-normal);
+}
+
+/* Gold accent — used on key words in headings */
+.gold {
+  color: var(--color-gold);
+}
+
+/* On dark background text */
+.on-dark {
+  color: var(--color-text-on-dark);
+}
+
+/* Italic emphasis (mission statement) */
+.italic {
+  font-style: italic;
+}
+
+/* ----------------------------------------------------------
+   LAYOUT UTILITIES
+   ---------------------------------------------------------- */
+
+/* Standard content container */
+.section-inner {
+  max-width: var(--site-width);
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* Centered content */
+.centered {
+  text-align: center;
+}
+
+/* Section vertical spacing */
+.section-pad {
+  padding: var(--space-20) 0;
+}
+
+/* ----------------------------------------------------------
+   SCROLL REVEAL ANIMATIONS
+   ---------------------------------------------------------- */
+
+/* Base hidden state */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: var(--trans-reveal);
+}
+
+.reveal-card {
+  opacity: 0;
+  transform: translateY(18px) scale(0.97);
+  transition: var(--trans-card);
+}
+
+.reveal-fade {
+  opacity: 0;
+  transition: var(--trans-fade);
+}
+
+/* Visible state — triggered by IntersectionObserver adding .visible */
+.reveal.visible,
+.reveal-card.visible,
+.reveal-fade.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ----------------------------------------------------------
+   GOLDEN RETRIEVER BOUNCE ANIMATION
+   Applied to #howling-golden in the Roadmap section
+   ---------------------------------------------------------- */
+
+@keyframes golden-excited {
+  0%   { transform: translateY(0)    rotate(0deg); }
+  15%  { transform: translateY(-8px) rotate(-1.5deg); }
+  30%  { transform: translateY(-18px) rotate(-3deg); }
+  45%  { transform: translateY(-8px) rotate(-1.5deg); }
+  60%  { transform: translateY(0)    rotate(0deg); }
+  75%  { transform: translateY(-6px) rotate(1.5deg); }
+  90%  { transform: translateY(-3px) rotate(1deg); }
+  100% { transform: translateY(0)    rotate(0deg); }
+}
+
+#howling-golden {
+  animation: golden-excited 0.75s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  transform-origin: bottom center;
+  will-change: transform;
+}
+
+/* ----------------------------------------------------------
+   PARALLAX ELEMENTS — overflow escape
+   These elements animate beyond their section bounds
+   ---------------------------------------------------------- */
+
+#beagle-running,
+#puppy-lying,
+#ball-tennis,
+#airplane {
+  will-change: transform;
+  pointer-events: none;
+}
+
+/* All parallax container sections must allow overflow */
+#hero,
+#vision,
+#roadmap,
+#volunteer {
+  overflow: visible;
+}
+
+/* ----------------------------------------------------------
+   BUTTONS (global base)
+   ---------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: var(--text-nav);
+  font-weight: 600;
+  border-radius: var(--radius-pill);
+  padding: 12px 28px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: var(--trans-btn);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background-color: var(--color-gold);
+  border-color: var(--color-gold);
+  color: var(--color-text-mid);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-gold-hover);
+  border-color: var(--color-gold-hover);
+  color: var(--color-gold-dark-hover);
+}
+
+.btn-secondary {
+  background-color: var(--color-outline-bg);
+  border-color: var(--color-text-mid);
+  color: var(--color-text-mid);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-text-mid);
+  color: var(--color-gold);
+}
+
+/* Nav donate button — full pill, slightly smaller padding */
+.btn-nav-donate {
+  background-color: var(--color-gold);
+  border-color: var(--color-gold);
+  color: var(--color-text-mid);
+  padding: 10px 24px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-heading);
+  font-size: 19px;
+  font-weight: 600;
+  border: 2px solid var(--color-gold);
+  cursor: pointer;
+  transition: var(--trans-btn);
+  text-decoration: none;
+}
+
+.btn-nav-donate:hover {
+  background-color: var(--color-dark-brown);
+  border-color: var(--color-dark-brown);
+  color: var(--color-text-on-dark);
+}
+
+/* ----------------------------------------------------------
+   CARDS (global base)
+   ---------------------------------------------------------- */
+
+.card {
+  background-color: var(--color-card-bg);
+  border: 3px solid var(--color-card-border);
+  border-radius: var(--radius-card);  /* 0px — SQUARE CORNERS */
+}
+
+/* ----------------------------------------------------------
+   WAVE DIVIDER
+   ---------------------------------------------------------- */
+
+.wave-divider {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.wave-divider svg {
+  display: block;
+  width: 100%;
+}

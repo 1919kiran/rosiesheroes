@@ -1,0 +1,89 @@
+---
+/**
+ * WaveDivider — full-width SVG wave transition between sections.
+ *
+ * Place this component BETWEEN two section components in index.astro.
+ *   fill = next section's background color (what the wave points into)
+ *   bg   = current section's background color (rendered behind the wave)
+ *
+ * Shape A — symmetric arch (default, matches original Wix site arch dividers)
+ *   Path derived from original: M1920 291C1656.8 169.2 1323.3 91 960 91S262.5 169.2 0 291
+ *
+ * Shape B — asymmetric sweep (matches original Wix asymmetric dividers)
+ *   Path derived from original: M1920 300v-4.067c-455.162 0-690.876-51.203-1082.65-129.288C490.044 97.423 0 100.013 0 100.013V300
+ */
+
+export interface Props {
+  /** Wave shape — A: symmetric arch, B: asymmetric sweep */
+  shape?: 'A' | 'B';
+  /** Fill color of the wave (= next section's bg color). Required. */
+  fill: string;
+  /** Background color behind the wave (= current section's bg). Default: transparent. */
+  bg?: string;
+  /** Wave height in px. Default: 80 */
+  height?: number;
+  /** Horizontally mirror the wave shape */
+  flip?: boolean;
+  /** Additional CSS classes for the wrapper element */
+  class?: string;
+}
+
+const {
+  shape = 'A',
+  fill,
+  bg = 'transparent',
+  height = 80,
+  flip = false,
+  class: className,
+} = Astro.props;
+
+// All paths use viewBox "0 0 1920 200" so we can scale uniformly.
+// The bottom edge is always at y=200, filling the rectangle from the wave trough to 200.
+//
+// Shape A — symmetric hill/arch:
+//   The arch rises from y=200 at both edges to y=0 at the centre.
+//   M0,200 means left edge at full height, curve up to peak at 960,0, back down to 1920,200.
+//   The rectangle L1920,200 L0,200 closes the filled region.
+const SHAPE_A = 'M0,200 C320,0 640,0 960,0 C1280,0 1600,0 1920,200 L1920,200 L0,200 Z';
+
+// Shape B — asymmetric sweep (left side high, right side dips low):
+//   Derived from original Wix path normalised to 0 0 1920 200.
+//   Original viewBox was 0 100 1920 200 (200px tall, offset by 100).
+//   We shift y by -100 so the path sits in 0 0 1920 200.
+const SHAPE_B = 'M1920,200 L1920,96 C1464.838,96 1229.124,44.797 837.35,0 C490.044,-2.577 0,0.013 0,0.013 L0,200 Z';
+
+const path = shape === 'B' ? SHAPE_B : SHAPE_A;
+
+// When flip=true we mirror horizontally via a CSS transform on the SVG element.
+const transformStyle = flip ? 'transform: scaleX(-1);' : '';
+---
+
+<div
+  class:list={['wave-divider', className]}
+  style={`background:${bg}; line-height:0; overflow:hidden;`}
+  aria-hidden="true"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 1920 200"
+    preserveAspectRatio="none"
+    width="100%"
+    height={height}
+    style={transformStyle}
+    focusable="false"
+  >
+    <path d={path} fill={fill} />
+  </svg>
+</div>
+
+<style>
+  .wave-divider {
+    display: block;
+    width: 100%;
+    /* Pull the divider up into the section above so the wave overlaps its bottom edge.
+       This prevents a colour gap between the section bg and the wave. */
+    margin-top: calc(var(--wave-overlap, 0px) * -1);
+    position: relative;
+    z-index: 1;
+  }
+</style>

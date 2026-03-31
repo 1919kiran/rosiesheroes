@@ -1,0 +1,237 @@
+---
+// Why Rosie's Heroes section — two-column: photo left, story text right
+// Background: var(--color-cream-story) = #FFF9F1
+// Section id: "rosies-story" (matches navigation anchor)
+---
+
+<section id="rosies-story">
+  <div class="section-inner story-inner">
+
+    <!-- HEADING — full width above both columns -->
+    <div class="story-heading" data-reveal>
+      <h2>
+        Why <span class="gold">"Rosie's Heroes"?</span>
+      </h2>
+    </div>
+
+    <!-- TWO-COLUMN BODY: photo + first story block -->
+    <div class="story-columns">
+
+      <!-- LEFT: Rosie's photo in heart shape -->
+      <div class="story-photo" data-reveal="card">
+        <div class="heart-clip">
+          <img
+            src="/images/rosie.png"
+            alt="Rosie — the Indian street dog whose loyalty inspired this organization"
+            width="286"
+            height="380"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      <!-- RIGHT: first story paragraphs -->
+      <div class="story-text" data-reveal>
+        <p>Rosie's Heroes began with a loving Indian street dog named Rosie.</p>
+
+        <p>Every day, she would come to check on a young child she had quietly chosen to protect and walk alongside to the local biscuit shop. The family moved away to the U.S. and Rosie stopped coming to that street. Neighbors assumed the worst.</p>
+
+        <p>A few years later, the family returned and the very next day, Rosie was back — still watching, still loyal, still remembering the child she chose to adopt. Without missing a beat, she walked her child to the same biscuit shop, remembering the path they would take and keeping them safe from other dogs and people in the street.</p>
+
+        <p>But Rosie had nothing. No medical care. No reliable food. No safety. No guarantee she would live to see the next day.</p>
+      </div>
+
+    </div>
+
+    <!-- "And she is not alone" highlight card (reuses b2b styling) -->
+    <div class="alone-card" data-reveal="card">
+      <span class="alone-deco" aria-hidden="true">𐂯</span>
+      <p class="alone-subtitle">And she is not alone...</p>
+      <h3 class="alone-title">Across India, <span class="gold">60–70 million</span> street dogs</h3>
+      <p class="alone-body">
+        live the same reality—offering love and trust in return for hunger, disease, and, too often, cruelty.
+        Many are run over by cars, beaten, abused, and left to suffer for no fault of their own.
+        A fear of dog bites fuels blanket misconceptions about street dogs and they are left to suffer their fate instead of being treated humanely as living beings.
+      </p>
+    </div>
+
+    <!-- FULL-WIDTH: second story block + closing italic -->
+    <div class="story-full" data-reveal>
+      <p>When we first started helping street dogs, we thought the answer was simple: rescue more, feed more, save more. But the reality on the ground was heavier. Puppies kept being born. Communities were afraid, leading to cruelty, abuse, and even mass culling. Bite incidents occurred due to overpopulation and the need to survive. And families were still losing children to rabies from unvaccinated dog bites.</p>
+
+      <p>If we truly care about dogs and people, we can't just treat symptoms. We have to stabilize populations through sterilization and vaccination at scale. Rosie's Heroes grew from that realization.</p>
+
+      <p class="story-closing-italic"><em>Rosie's Heroes exists to replace fear with care and suffering with safety.</em></p>
+    </div>
+
+  </div>
+
+  <!-- Decorative paw prints — positioned in section corners -->
+  <svg class="paw-decor paw-decor--br" aria-hidden="true" viewBox="14.245 16.736 171.51 166.528" xmlns="http://www.w3.org/2000/svg" width="60" height="60">
+    <path d="M98.902 88.05c-21.698 0-59.447 52.147-61.533 66.037-2.393 15.935 11.019 29.177 27.133 29.177 10.137 0 30.913-11.779 34.4-11.779 3.367 0 23.912 11.779 34.017 11.779 16.114 0 30.472-13.299 27.725-29.177-2.294-13.264-40.009-66.037-61.742-66.037z" fill="currentColor"/>
+    <path fill="currentColor" d="M91.411 45.161c0 15.699-8.055 28.425-17.991 28.425S55.429 60.86 55.429 45.161s8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/>
+    <path fill="currentColor" d="M50.227 93.365c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425S22.3 64.94 32.236 64.94s17.991 12.726 17.991 28.425z"/>
+    <path fill="currentColor" d="M144.571 45.161c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/>
+    <path fill="currentColor" d="M185.755 89.042c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/>
+  </svg>
+</section>
+
+<style>
+  /* --------------------------------------------------------
+     WHY ROSIE'S HEROES SECTION
+     -------------------------------------------------------- */
+  #rosies-story {
+    background-color: var(--color-cream-story);
+    position: relative;
+    overflow: visible;
+  }
+
+  /* Inner wrapper: max 980px, centered, with vertical padding */
+  .story-inner {
+    padding-top: var(--space-12);     /* 48px */
+    padding-bottom: var(--space-10);  /* 40px */
+  }
+
+  /* ── Section heading (full width, centered) ────────────── */
+  .story-heading {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-8); /* 32px */
+  }
+
+  .story-heading h2 {
+    font-size: var(--text-section); /* 38px */
+    letter-spacing: var(--ls-snug);
+    line-height: var(--lh-tight);
+    color: var(--color-text);
+  }
+
+  /* ── Two-column body ────────────────────────────────────── */
+  .story-columns {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    column-gap: var(--space-8); /* 32px */
+    align-items: start;
+    margin-bottom: var(--space-8);
+  }
+
+  /* Photo column */
+  .story-photo {
+    grid-column: 1;
+  }
+
+  /* Heart-shaped image clip */
+  .heart-clip {
+    width: 320px;
+    height: 320px;
+    clip-path: path('M160,310 C160,310 0,210 0,120 C0,50 35,0 85,0 C120,0 145,25 160,50 C175,25 200,0 235,0 C285,0 320,50 320,120 C320,210 160,310 160,310 Z');
+    overflow: hidden;
+  }
+
+  .heart-clip img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  /* Text column — stacked paragraphs */
+  .story-text {
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4); /* 16px between paragraphs */
+  }
+
+  .story-text p,
+  .story-full p {
+    font-family: var(--font-body);
+    font-size: var(--text-base); /* 16px */
+    line-height: var(--lh-normal);
+    color: var(--color-text);
+  }
+
+  /* ── Full-width second block ────────────────────────────── */
+  .story-full {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .story-closing-italic em {
+    font-style: italic;
+    color: var(--color-text);
+  }
+
+  /* ── Decorative paw prints ──────────────────────────────── */
+  /* Paw icon beside the heading */
+  .paw-decor--heading {
+    color: var(--color-gold-paw-light);
+    flex-shrink: 0;
+  }
+
+  /* ── "And she is not alone" highlight card ──────────────── */
+  .alone-card {
+    position: relative;
+    background-color: rgb(255, 253, 251);
+    border: 3px solid rgb(255, 237, 214);
+    border-radius: 0;
+    padding: var(--space-6) var(--space-8);
+    width: 100%;
+    margin-top: var(--space-8);
+    margin-bottom: var(--space-8);
+    overflow: visible;
+  }
+
+  .alone-deco {
+    position: absolute;
+    top: -16px;
+    right: -12px;
+    font-family: var(--font-heading);
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--color-text-mid);
+    line-height: 1;
+    transform: rotate(45deg);
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .alone-subtitle {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    color: var(--color-text);
+    text-align: center;
+    margin-bottom: var(--space-2);
+  }
+
+  .alone-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 2vw + 0.5rem, 1.75rem);
+    font-weight: 500;
+    color: var(--color-text);
+    letter-spacing: var(--ls-snug);
+    line-height: var(--lh-tight);
+    text-align: center;
+    margin-bottom: var(--space-5);
+  }
+
+  .alone-body {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    color: var(--color-text);
+    line-height: var(--lh-relaxed);
+    text-align: justify;
+  }
+
+  /* Bottom-right paw — absolute, decorative */
+  .paw-decor--br {
+    position: absolute;
+    bottom: 32px;
+    right: 24px;
+    color: var(--color-gold-paw-light);
+    pointer-events: none;
+  }
+</style>

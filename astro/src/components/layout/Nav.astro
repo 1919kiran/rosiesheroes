@@ -1,0 +1,283 @@
+---
+// Nav.astro — Rosie's Heroes sticky navigation
+// Always cream (#FFF8F1), height 97px, site width 980px
+---
+
+<header id="site-header" role="banner">
+  <div class="nav-inner">
+
+    <!-- LOGO GROUP: dogs image + site name -->
+    <a href="/" class="nav-brand" aria-label="Rosie's Heroes — home">
+      <img
+        src="/images/logo-dogs.png"
+        alt="Rosie's Heroes logo — group of dogs"
+        class="nav-logo-img"
+      />
+      <span class="nav-brand-name">Rosie's Heroes</span>
+    </a>
+
+    <!-- SPACER — pushes right group to the far right -->
+    <div class="nav-spacer"></div>
+
+    <!-- RIGHT GROUP: dropdowns + plain links + Donate + paw -->
+    <div class="nav-right">
+      <nav class="nav-menu" aria-label="Site navigation">
+        <ul class="nav-list" role="list">
+
+          <!-- About Us dropdown (no visible chevron, matches original) -->
+          <li class="nav-item nav-item--dropdown">
+            <button class="nav-trigger" aria-haspopup="true" aria-expanded="false" type="button">
+              About Us
+            </button>
+            <div class="nav-dropdown" role="menu" aria-label="About Us">
+              <a href="#vision"            class="nav-dropdown-item" role="menuitem">Vision</a>
+              <a href="#rosies-story"      class="nav-dropdown-item" role="menuitem">Rosie's Story</a>
+              <a href="#roadmap"           class="nav-dropdown-item" role="menuitem">Our Roadmap</a>
+              <a href="#impact-multiplier" class="nav-dropdown-item" role="menuitem">Impact Multiplier</a>
+            </div>
+          </li>
+
+          <!-- Ways To Help dropdown (no visible chevron) -->
+          <li class="nav-item nav-item--dropdown">
+            <button class="nav-trigger" aria-haspopup="true" aria-expanded="false" type="button">
+              Ways To Help
+            </button>
+            <div class="nav-dropdown" role="menu" aria-label="Ways To Help">
+              <a href="#adopt"      class="nav-dropdown-item" role="menuitem">Adopt</a>
+              <a href="#volunteer"  class="nav-dropdown-item" role="menuitem">Volunteering</a>
+              <a href="#donate"     class="nav-dropdown-item" role="menuitem">Donate</a>
+              <a href="#partner"    class="nav-dropdown-item" role="menuitem">Partner</a>
+            </div>
+          </li>
+
+        </ul>
+      </nav>
+
+      <!-- Plain text links -->
+      <a href="#rosies-story" class="nav-text-link">Happy Tails</a>
+      <a href="#contact"      class="nav-text-link">Contact Us</a>
+
+      <!-- Donate CTA pill -->
+      <a href="#donate" class="btn btn-nav-donate">Donate</a>
+
+    </div>
+
+  </div>
+</header>
+
+<style>
+  /* ============================================================
+     NAV — component-scoped styles
+     ============================================================ */
+
+  #site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    min-height: var(--header-height); /* 97px */
+    background-color: var(--color-cream);
+    border-bottom: 1px solid rgba(91, 77, 67, 0.08);
+    display: flex;
+    align-items: center;
+  }
+
+  /* Inner container — FULL WIDTH, brand at left edge, links at right edge */
+  .nav-inner {
+    width: 100%;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  /* ---- BRAND ---- */
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .nav-logo-img {
+    width: 140px;
+    height: auto;
+  }
+
+  .nav-brand-name {
+    font-family: var(--font-heading);
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--color-text);
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  /* ---- SPACER — fills the gap between brand (left) and right group ---- */
+  .nav-spacer {
+    flex: 1;
+  }
+
+  /* ---- RIGHT GROUP — all nav items + actions together ---- */
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  /* ---- NAV MENU (inside right group) ---- */
+  .nav-menu {
+    display: flex;
+  }
+
+  .nav-list {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* ---- NAV ITEMS ---- */
+  .nav-item {
+    position: relative;
+  }
+
+  /* Trigger button (looks like a link) */
+  .nav-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--font-heading);
+    font-size: var(--text-nav); /* 19px */
+    font-weight: 600;
+    color: var(--color-text-mid);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px 14px;
+    border-radius: 4px;
+    line-height: 1;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+  }
+
+  .nav-trigger:hover,
+  .nav-item--dropdown:hover .nav-trigger {
+    color: var(--color-text);
+  }
+
+  /* Chevron icon */
+  .nav-chevron {
+    width: 10px;
+    height: 7px;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+  }
+
+  .nav-item--dropdown:hover .nav-chevron {
+    transform: rotate(180deg);
+  }
+
+  /* ---- DROPDOWN PANEL ---- */
+  .nav-dropdown {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 200px;
+    background-color: var(--color-dropdown-bg);
+    border-radius: var(--radius-dropdown); /* 5px */
+    box-shadow: 0 4px 16px rgba(56, 34, 19, 0.12), 0 1px 4px rgba(56, 34, 19, 0.08);
+    padding: 8px 0;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.18s ease, visibility 0.18s ease, transform 0.18s ease;
+    transform: translateX(-50%) translateY(-4px);
+    z-index: 200;
+  }
+
+  /* Show dropdown on hover */
+  .nav-item--dropdown:hover .nav-dropdown,
+  .nav-item--dropdown:focus-within .nav-dropdown {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* Dropdown items */
+  .nav-dropdown-item {
+    display: block;
+    padding: 10px 20px;
+    font-family: var(--font-heading);
+    font-size: var(--text-sm); /* 15px */
+    font-weight: 500;
+    color: var(--color-text-mid);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+
+  .nav-dropdown-item:hover {
+    background-color: rgba(238, 190, 90, 0.12);
+    color: var(--color-text);
+  }
+
+  /* Decorative 𐂯 icon after Donate button */
+  .nav-deco-icon {
+    font-size: 22px;
+    color: var(--color-text-mid);
+    margin-left: 6px;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
+  /* Plain text links (Happy Tails, Contact Us) — match dropdown trigger style */
+  .nav-text-link {
+    font-family: var(--font-heading);
+    font-size: 19px;
+    color: var(--color-text-mid);
+    text-decoration: none;
+    padding: 8px 12px;
+    background: none;
+    border: none;
+  }
+
+  .nav-text-link:hover {
+    color: var(--color-text);
+  }
+</style>
+
+<script>
+  // Toggle aria-expanded on dropdown triggers for accessibility
+  // No scroll behavior — dropdowns are pure CSS hover
+  document.querySelectorAll<HTMLButtonElement>('.nav-trigger').forEach((trigger) => {
+    const item = trigger.closest('.nav-item--dropdown');
+    if (!item) return;
+
+    item.addEventListener('mouseenter', () => {
+      trigger.setAttribute('aria-expanded', 'true');
+    });
+    item.addEventListener('mouseleave', () => {
+      trigger.setAttribute('aria-expanded', 'false');
+    });
+
+    // Keyboard: toggle on Enter/Space, close on Escape
+    trigger.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        const expanded = trigger.getAttribute('aria-expanded') === 'true';
+        trigger.setAttribute('aria-expanded', String(!expanded));
+      }
+      if (e.key === 'Escape') {
+        trigger.setAttribute('aria-expanded', 'false');
+        trigger.blur();
+      }
+    });
+  });
+</script>
