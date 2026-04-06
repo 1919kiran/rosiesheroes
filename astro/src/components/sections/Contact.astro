@@ -179,14 +179,15 @@
 
   /* ── Email block ────────────────────────────────────────── */
   .contact-email-block {
+    position: relative;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: var(--space-2);
+    justify-content: center;
     background-color: var(--color-cream-contact);
     border-radius: 8px;
     padding: var(--space-4) var(--space-6);
     cursor: pointer;
+    min-height: 56px;
   }
 
   .contact-email-label {
@@ -194,6 +195,7 @@
     align-items: center;
     gap: var(--space-2);
     color: var(--color-text);
+    transition: opacity 0.3s ease;
   }
 
   .contact-email-icon {
@@ -212,23 +214,23 @@
   }
 
   .contact-email-address {
+    position: absolute;
     font-family: var(--font-heading);
     font-size: var(--text-base); /* 16px */
     font-weight: 600;
     color: var(--color-text);
     text-decoration: underline;
     text-underline-offset: 2px;
-    max-height: 0;
-    overflow: hidden;
     opacity: 0;
-    transition: max-height 0.3s ease, opacity 0.3s ease, margin 0.3s ease;
-    margin-top: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .contact-email-block:hover .contact-email-label {
+    opacity: 0;
   }
 
   .contact-email-block:hover .contact-email-address {
-    max-height: 40px;
     opacity: 1;
-    margin-top: var(--space-1);
   }
 
   .contact-email-address:hover {

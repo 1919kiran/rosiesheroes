@@ -131,25 +131,11 @@ p {
 }
 
 /* ----------------------------------------------------------
-   GOLDEN RETRIEVER BOUNCE ANIMATION
-   Applied to #howling-golden in the Roadmap section
+   GOLDEN RETRIEVER — Roadmap section
    ---------------------------------------------------------- */
 
-@keyframes golden-excited {
-  0%   { transform: translateY(0)    rotate(0deg); }
-  15%  { transform: translateY(-8px) rotate(-1.5deg); }
-  30%  { transform: translateY(-18px) rotate(-3deg); }
-  45%  { transform: translateY(-8px) rotate(-1.5deg); }
-  60%  { transform: translateY(0)    rotate(0deg); }
-  75%  { transform: translateY(-6px) rotate(1.5deg); }
-  90%  { transform: translateY(-3px) rotate(1deg); }
-  100% { transform: translateY(0)    rotate(0deg); }
-}
-
 #howling-golden {
-  animation: golden-excited 0.75s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   transform-origin: bottom center;
-  will-change: transform;
 }
 
 /* ----------------------------------------------------------
@@ -269,7 +255,29 @@ p {
    ---------------------------------------------------------- */
 
 @media (max-width: 768px) {
+  body {
+    padding-bottom: 64px;
+  }
+
   .section-inner {
     padding: 0 20px;
+  }
+
+  #hero,
+  #vision,
+  #roadmap,
+  #volunteer,
+  #adopt,
+  #rosies-story {
+    overflow: hidden;
+  }
+
+  /* Hide decorative background overlays on mobile */
+  .hero-paw,
+  .paw-decor:not(.paw-heading):not(.paw-inline),
+  .vol-bg,
+  .footer-paw,
+  .footer-watermark {
+    display: none;
   }
 }

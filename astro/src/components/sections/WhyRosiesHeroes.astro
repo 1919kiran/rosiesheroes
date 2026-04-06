@@ -236,6 +236,10 @@
   }
 
   @media (max-width: 768px) {
+    #rosies-story {
+      overflow: hidden;
+    }
+
     .story-inner {
       padding-top: var(--space-8);
       padding-bottom: var(--space-8);
@@ -245,9 +249,18 @@
       grid-template-columns: 1fr;
     }
 
+    .story-columns {
+      grid-template-columns: 1fr;
+    }
+
     .story-photo {
+      grid-column: 1;
       display: flex;
       justify-content: center;
+    }
+
+    .story-text {
+      grid-column: 1;
     }
 
     .heart-clip {
@@ -258,7 +271,11 @@
 
     .story-heading {
       justify-content: center;
-      font-size: 28px;
+    }
+
+    .story-heading h2 {
+      font-size: 24px;
+      white-space: nowrap;
     }
 
     .story-body {
