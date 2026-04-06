@@ -455,4 +455,55 @@
     opacity: 1;
     transform: none;
   }
+
+  @media (max-width: 768px) {
+    #volunteer {
+      padding: var(--space-12) 0 var(--space-10);
+    }
+
+    .vol-title {
+      font-size: 28px;
+    }
+
+    .vol-cards {
+      grid-template-columns: 1fr;
+    }
+
+    .vol-card {
+      padding: var(--space-6);
+      border-radius: 24px;
+    }
+
+    .vol-cta-card {
+      grid-template-columns: 1fr;
+      padding: var(--space-6) var(--space-6);
+      border-radius: 24px;
+    }
+
+    .vol-cta-title {
+      font-size: 24px;
+    }
+
+    #vol-airplane {
+      display: none;
+    }
+
+    .vol-bg--plane {
+      width: 140px;
+      height: 140px;
+      opacity: 0.18;
+    }
+
+    .vol-bg--paw1 {
+      width: 130px;
+      height: 130px;
+      opacity: 0.18;
+    }
+
+    .vol-bg--paw2 {
+      width: 90px;
+      height: 90px;
+      opacity: 0.15;
+    }
+  }
 </style>

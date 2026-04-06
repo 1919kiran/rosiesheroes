@@ -225,4 +225,27 @@
     opacity: 1;
     transform: none;
   }
+
+  /* ── Mobile responsive ─────────────────────────────────── */
+  @media (max-width: 768px) {
+    #donate {
+      padding: var(--space-15) 0 var(--space-10);
+    }
+
+    .donate-title {
+      font-size: 28px;
+    }
+
+    .donate-tier {
+      margin-left: 0 !important;
+      grid-template-columns: 1fr;
+      gap: var(--space-3);
+      padding: var(--space-4);
+    }
+
+    .donate-tier-amount {
+      width: 100%;
+      text-align: center;
+    }
+  }
 </style>

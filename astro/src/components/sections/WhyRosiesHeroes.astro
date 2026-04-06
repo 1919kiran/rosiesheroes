@@ -234,4 +234,35 @@
     color: var(--color-gold-paw-light);
     pointer-events: none;
   }
+
+  @media (max-width: 768px) {
+    .story-inner {
+      padding-top: var(--space-8);
+      padding-bottom: var(--space-8);
+    }
+
+    .story-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .story-photo {
+      display: flex;
+      justify-content: center;
+    }
+
+    .heart-clip {
+      width: 220px;
+      height: 220px;
+      clip-path: path('M110,213 C110,213 0,145 0,82 C0,35 24,0 59,0 C82,0 100,17 110,35 C120,17 138,0 161,0 C196,0 220,35 220,82 C220,145 110,213 110,213 Z');
+    }
+
+    .story-heading {
+      justify-content: center;
+      font-size: 28px;
+    }
+
+    .story-body {
+      font-size: 15px;
+    }
+  }
 </style>

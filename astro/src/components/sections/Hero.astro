@@ -190,4 +190,48 @@
     opacity: 0.28;
     transform: rotate(-29deg);
   }
+
+  @media (max-width: 768px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-text {
+      align-items: center;
+      text-align: center;
+      padding: 40px 20px 30px;
+    }
+
+    #hero h1 {
+      font-size: 36px;
+      justify-content: center;
+    }
+
+    .hero-body {
+      text-align: center;
+    }
+
+    .hero-cta {
+      justify-content: center;
+    }
+
+    .hero-photo img {
+      max-height: 350px;
+    }
+
+    #beagle-running {
+      width: 140px;
+      left: 10%;
+    }
+
+    .hero-paw--1 {
+      width: 80px;
+      height: 78px;
+    }
+
+    .hero-paw--3 {
+      width: 65px;
+      height: 63px;
+    }
+  }
 </style>
