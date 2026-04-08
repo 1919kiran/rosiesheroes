@@ -1,0 +1,291 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/layout/Nav.astro';
+import Footer from '../../components/layout/Footer.astro';
+import MobileBottomNav from '../../components/layout/MobileBottomNav.astro';
+import { dogs } from '../../data/dogs';
+import type { Dog } from '../../data/dogs';
+
+export function getStaticPaths() {
+  return dogs.map(dog => ({
+    params: { slug: dog.slug },
+    props: { dog },
+  }));
+}
+
+const { dog } = Astro.props as { dog: Dog };
+---
+
+<BaseLayout title={`${dog.name} | Rosie's Heroes`}>
+  <Nav />
+  <main class="dog-profile">
+    <div class="profile-inner">
+
+      <a href="/meet-the-dogs" class="back-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+        Back to all dogs
+      </a>
+
+      <div class="profile-grid">
+
+        <div class="profile-text">
+          <h1 class="dog-name">{dog.name} <span class="dog-emoji">{dog.emoji}</span></h1>
+          <div class="dog-description">
+            {dog.fullDesc.map(paragraph => (
+              <p>{paragraph}</p>
+            ))}
+          </div>
+        </div>
+
+        <div class="profile-sidebar">
+          <div class="photo-frame">
+            <img
+              src={dog.photos[0]}
+              alt={dog.name}
+              class="dog-photo"
+              loading="eager"
+            />
+          </div>
+
+          <div class="bio-card">
+            <div class="bio-row">
+              <span class="bio-label">Name</span>
+              <span class="bio-value">{dog.name}</span>
+            </div>
+            <div class="bio-row">
+              <span class="bio-label">Age</span>
+              <span class="bio-value">{dog.age}</span>
+            </div>
+            <div class="bio-row">
+              <span class="bio-label">Weight</span>
+              <span class="bio-value">{dog.weight}</span>
+            </div>
+            <div class="bio-row">
+              <span class="bio-label">Location</span>
+              <span class="bio-value">{dog.location}</span>
+            </div>
+            <div class="bio-row">
+              <span class="bio-label">Good with Dogs?</span>
+              <span class="bio-value">{dog.goodWithDogs}</span>
+            </div>
+            <div class="bio-row">
+              <span class="bio-label">Good with Cats?</span>
+              <span class="bio-value">{dog.goodWithCats}</span>
+            </div>
+            {dog.crateTrained && (
+              <div class="bio-row">
+                <span class="bio-label">Crate Trained?</span>
+                <span class="bio-value">{dog.crateTrained}</span>
+              </div>
+            )}
+          </div>
+        </div>
+
+      </div>
+
+      <div class="cta-section">
+        <h2 class="cta-heading">Ready to meet {dog.name}?</h2>
+        <a href="/#contact" class="cta-button">Apply to Adopt</a>
+      </div>
+
+    </div>
+  </main>
+  <Footer />
+  <MobileBottomNav />
+</BaseLayout>
+
+<style>
+  .dog-profile {
+    background-color: var(--color-cream);
+    min-height: 100vh;
+    padding: var(--space-10) 0 var(--space-25);
+  }
+
+  .profile-inner {
+    max-width: var(--site-width);
+    margin: 0 auto;
+    padding: 0 var(--space-5);
+  }
+
+  /* ── Back link ─────────────────────────────────────────── */
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    margin-bottom: var(--space-8);
+    transition: color 0.2s ease;
+  }
+
+  .back-link:hover {
+    color: var(--color-text);
+  }
+
+  .back-link svg {
+    flex-shrink: 0;
+  }
+
+  /* ── Two-column grid ───────────────────────────────────── */
+  .profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: var(--space-10);
+    align-items: start;
+  }
+
+  /* ── Left column: name + description ───────────────────── */
+  .dog-name {
+    font-family: var(--font-heading);
+    font-size: var(--text-section);
+    font-weight: 600;
+    line-height: var(--lh-snug);
+    letter-spacing: var(--ls-tight);
+    color: var(--color-text);
+    margin: 0 0 var(--space-6);
+  }
+
+  .dog-emoji {
+    font-size: 0.8em;
+  }
+
+  .dog-description p {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: var(--lh-relaxed);
+    color: var(--color-text-mid);
+    margin: 0 0 var(--space-4);
+  }
+
+  .dog-description p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Right column: photo + bio card ────────────────────── */
+  .profile-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .photo-frame {
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+  }
+
+  .dog-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ── Bio data card ─────────────────────────────────────── */
+  .bio-card {
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-card-border);
+    border-radius: 12px;
+    padding: var(--space-4) var(--space-5);
+  }
+
+  .bio-row {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: var(--space-3) 0;
+  }
+
+  .bio-row + .bio-row {
+    border-top: 1px solid var(--color-card-border);
+  }
+
+  .bio-label {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    line-height: var(--lh-normal);
+  }
+
+  .bio-value {
+    font-family: var(--font-heading);
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--color-text);
+    line-height: var(--lh-normal);
+  }
+
+  /* ── CTA section ───────────────────────────────────────── */
+  .cta-section {
+    text-align: center;
+    margin-top: var(--space-20);
+    padding: var(--space-12) var(--space-5);
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-card-border);
+    border-radius: 12px;
+  }
+
+  .cta-heading {
+    font-family: var(--font-heading);
+    font-size: var(--text-card);
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0 0 var(--space-6);
+  }
+
+  .cta-button {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--color-text);
+    background-color: var(--color-gold);
+    border: 2px solid var(--color-gold);
+    border-radius: var(--radius-pill);
+    padding: var(--space-3) var(--space-8);
+    text-decoration: none;
+    transition: var(--trans-btn);
+    cursor: pointer;
+  }
+
+  .cta-button:hover {
+    background-color: var(--color-gold-hover);
+    border-color: var(--color-gold-hover);
+    color: var(--color-gold-dark-hover);
+  }
+
+  /* ── Mobile layout ─────────────────────────────────────── */
+  @media (max-width: 768px) {
+    .dog-profile {
+      padding: var(--space-6) 0 var(--space-15);
+    }
+
+    .profile-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+
+    .profile-sidebar {
+      order: -1;
+    }
+
+    .photo-frame {
+      aspect-ratio: 4 / 3;
+    }
+
+    .dog-name {
+      font-size: 28px;
+    }
+
+    .cta-section {
+      margin-top: var(--space-12);
+      padding: var(--space-8) var(--space-5);
+    }
+
+    .cta-heading {
+      font-size: var(--text-label);
+    }
+  }
+</style>

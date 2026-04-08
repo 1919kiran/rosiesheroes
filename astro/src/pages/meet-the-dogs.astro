@@ -1,0 +1,297 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/layout/Nav.astro';
+import Footer from '../components/layout/Footer.astro';
+import MobileBottomNav from '../components/layout/MobileBottomNav.astro';
+import { dogs, locations } from '../data/dogs';
+---
+
+<BaseLayout title="Meet the Dogs | Rosie's Heroes">
+  <Nav />
+
+  <main class="meet-the-dogs">
+    <div class="page-inner">
+
+      <div class="page-header">
+        <h1 class="page-title">
+          Meet the Dogs
+          <svg class="heart-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="currentColor">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        </h1>
+        <p class="page-subtitle">Each dog has a past. You can be their future!</p>
+      </div>
+
+      <div class="filter-section">
+        <p class="filter-label">Find each dog by their location!</p>
+        <div class="filter-buttons">
+          <button class="filter-btn active" data-filter="all">All</button>
+          {locations.map((loc) => (
+            <button class="filter-btn" data-filter={loc}>{loc}</button>
+          ))}
+        </div>
+      </div>
+
+      <div class="dogs-grid">
+        {dogs.map((dog) => (
+          <article class="dog-card" data-location={dog.location}>
+            <div class="dog-card-image">
+              <img
+                src={dog.photos[0]}
+                alt={`Photo of ${dog.name}`}
+                loading="lazy"
+              />
+            </div>
+            <div class="dog-card-body">
+              <h2 class="dog-card-name">{dog.name} {dog.emoji}</h2>
+              <p class="dog-card-desc">{dog.shortDesc}</p>
+              <a href={`/dogs/${dog.slug}`} class="dog-card-link">
+                Read More 🐾
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+    </div>
+  </main>
+
+  <Footer />
+  <MobileBottomNav />
+</BaseLayout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.dog-card');
+
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        buttons.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.getAttribute('data-filter');
+
+        cards.forEach((card) => {
+          if (filter === 'all' || card.getAttribute('data-location') === filter) {
+            (card as HTMLElement).style.display = '';
+          } else {
+            (card as HTMLElement).style.display = 'none';
+          }
+        });
+      });
+    });
+  });
+</script>
+
+<style>
+  .meet-the-dogs {
+    background-color: var(--color-cream);
+    min-height: 100vh;
+    padding: var(--space-25) 0 var(--space-20);
+  }
+
+  .page-inner {
+    max-width: var(--site-width);
+    margin: 0 auto;
+    padding: 0 var(--space-5);
+  }
+
+  /* ── Page header ──────────────────────────────────────── */
+  .page-header {
+    text-align: center;
+    margin-bottom: var(--space-10);
+  }
+
+  .page-title {
+    font-family: var(--font-heading);
+    font-size: var(--text-section);
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: var(--ls-tight);
+    color: var(--color-text);
+    margin: 0 0 var(--space-2);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .heart-icon {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    color: var(--color-gold);
+  }
+
+  .page-subtitle {
+    font-family: var(--font-body);
+    font-size: var(--text-lg);
+    line-height: var(--lh-normal);
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  /* ── Filter section ───────────────────────────────────── */
+  .filter-section {
+    text-align: center;
+    margin-bottom: var(--space-10);
+  }
+
+  .filter-label {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    color: var(--color-text);
+    margin: 0 0 var(--space-4);
+    font-weight: 500;
+  }
+
+  .filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+  }
+
+  .filter-btn {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    padding: var(--space-2) var(--space-6);
+    border-radius: var(--radius-pill);
+    border: 1.5px solid var(--color-gold);
+    background: var(--color-card-bg);
+    color: var(--color-text);
+    cursor: pointer;
+    transition: var(--trans-btn);
+  }
+
+  .filter-btn:hover {
+    background: var(--color-gold);
+    color: var(--color-text);
+  }
+
+  .filter-btn.active {
+    background: var(--color-gold);
+    color: var(--color-text);
+    font-weight: 600;
+  }
+
+  /* ── Dogs grid ────────────────────────────────────────── */
+  .dogs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+
+  /* ── Dog card ─────────────────────────────────────────── */
+  .dog-card {
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-card-border);
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .dog-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(56, 34, 19, 0.08);
+  }
+
+  .dog-card-image {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+
+  .dog-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .dog-card-body {
+    padding: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .dog-card-name {
+    font-family: var(--font-heading);
+    font-size: var(--text-card);
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0 0 var(--space-2);
+    line-height: var(--lh-snug);
+  }
+
+  .dog-card-desc {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    line-height: var(--lh-relaxed);
+    color: var(--color-text-mid);
+    margin: 0 0 var(--space-4);
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .dog-card-link {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-gold);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .dog-card-link:hover {
+    color: var(--color-gold-hover);
+  }
+
+  /* ── Tablet: 2 columns ────────────────────────────────── */
+  @media (max-width: 820px) {
+    .meet-the-dogs {
+      padding: var(--space-15) 0 var(--space-15);
+    }
+
+    .dogs-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-5);
+    }
+  }
+
+  /* ── Mobile: 1 column ─────────────────────────────────── */
+  @media (max-width: 520px) {
+    .meet-the-dogs {
+      padding: var(--space-10) 0 var(--space-15);
+    }
+
+    .page-title {
+      font-size: 28px;
+    }
+
+    .page-subtitle {
+      font-size: var(--text-base);
+    }
+
+    .dogs-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-5);
+    }
+
+    .filter-buttons {
+      gap: var(--space-2);
+    }
+
+    .filter-btn {
+      padding: var(--space-2) var(--space-5);
+      font-size: var(--text-xs);
+    }
+  }
+</style>
