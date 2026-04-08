@@ -11,6 +11,7 @@ import PilotSites from '../components/sections/PilotSites.astro';
 import ImpactMultiplier from '../components/sections/ImpactMultiplier.astro';
 import Adopt from '../components/sections/Adopt.astro';
 import Volunteer from '../components/sections/Volunteer.astro';
+import HappyTails from '../components/sections/HappyTails.astro';
 import Donate from '../components/sections/Donate.astro';
 import Partner from '../components/sections/Partner.astro';
 import Contact from '../components/sections/Contact.astro';
@@ -23,12 +24,12 @@ import WaveDivider from '../components/ui/WaveDivider.astro';
     <Hero />
 
     <WhyRosiesHeroes />
-    <!-- WhyRosiesHeroes (#FFF9F1) → Vision (#FFF2E3): subtle arch -->
-    <WaveDivider shape="A" fill="#FFF2E3" bg="#FFF9F1" height={24} />
+    <!-- WhyRosiesHeroes (#FFF9F1) → Vision (#FFF2E3): sweep -->
+    <WaveDivider shape="B" fill="#FFF2E3" bg="#FFF9F1" height={24} />
 
     <Vision />
-    <!-- Vision (#FFF2E3) → Roadmap (#FFF1E3): minimal wave, creams are very close -->
-    <WaveDivider shape="A" fill="#FFEFDA" bg="#FFF2E3" height={50} />
+    <!-- Vision (#FFF2E3) → Roadmap (#FFF1E3): sweep -->
+    <WaveDivider shape="B" fill="#FFEFDA" bg="#FFF2E3" height={50} />
 
     <Roadmap />
     <!-- Roadmap (#FFF1E3) → PilotSites (#FFF1E3): same colour — no visible wave needed -->
@@ -38,20 +39,24 @@ import WaveDivider from '../components/ui/WaveDivider.astro';
     <WaveDivider shape="B" fill="#FFF8F1" bg="#FFF1E3" height={120} />
 
     <ImpactMultiplier />
-    <!-- ImpactMultiplier (#FFF8F1) → Adopt (#FFF5EA): symmetric arch -->
-    <WaveDivider shape="A" fill="#FFF5EA" bg="#FFF8F1" height={80} />
+    <!-- ImpactMultiplier (#FFF8F1) → Adopt (#FFF5EA): sweep -->
+    <WaveDivider shape="B" fill="#FFF5EA" bg="#FFF8F1" height={80} />
 
     <Adopt />
+    <!-- Adopt (#FFF5EA) → HappyTails (#FFF8F1): asymmetric sweep -->
+    <WaveDivider shape="B" fill="#FFF8F1" bg="#FFF5EA" height={50} />
+
+    <HappyTails />
 
     <Volunteer />
 
     <Donate />
-    <!-- Donate (#FFF5EA) → Partner (#FFFCF9): subtle arch, creams are close -->
-    <WaveDivider shape="A" fill="#FFFCF9" bg="#FFF5EA" height={60} />
+    <!-- Donate (#FFF5EA) → Partner (#FFFCF9): sweep -->
+    <WaveDivider shape="B" fill="#FFFCF9" bg="#FFF5EA" height={60} />
 
     <Partner />
-    <!-- Partner (#FFFCF9) → Contact (#FFEFDA): subtle arch -->
-    <WaveDivider shape="A" fill="#FFEFDA" bg="#FFFCF9" height={60} />
+    <!-- Partner (#FFFCF9) → Contact (#FFEFDA): sweep -->
+    <WaveDivider shape="B" fill="#FFEFDA" bg="#FFFCF9" height={60} />
 
     <Contact />
 

@@ -1,0 +1,283 @@
+---
+// Happy Tails section — Adoption success stories
+// Background: var(--color-cream) = #FFF8F1 (alternates with Adopt's #FFF5EA)
+// Layout: bordered cards with photo carousel left, testimonial text right
+---
+
+<section id="happy-tails">
+  <div class="section-inner">
+
+    <div class="ht-header" data-reveal>
+      <h2 class="ht-title">
+        Happy <span class="ht-title-accent">Tails</span>
+        <svg class="paw-heading" viewBox="14.245 16.736 171.51 166.528" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="currentColor">
+          <g>
+            <path d="M98.902 88.05c-21.698 0-59.447 52.147-61.533 66.037-2.393 15.935 11.019 29.177 27.133 29.177 10.137 0 30.913-11.779 34.4-11.779 3.367 0 23.912 11.779 34.017 11.779 16.114 0 30.472-13.299 27.725-29.177-2.294-13.264-40.009-66.037-61.742-66.037z"></path>
+            <path d="M91.411 45.161c0 15.699-8.055 28.425-17.991 28.425S55.429 60.86 55.429 45.161s8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"></path>
+            <path d="M50.227 93.365c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425S22.3 64.94 32.236 64.94s17.991 12.726 17.991 28.425z"></path>
+            <path d="M144.571 45.161c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"></path>
+            <path d="M185.755 89.042c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"></path>
+          </g>
+        </svg>
+      </h2>
+    </div>
+
+    <div class="ht-list">
+
+      <div class="ht-card" data-reveal="card">
+        <div class="ht-carousel" data-carousel>
+          <div class="ht-carousel-track">
+            <img src="/images/prince-1.png" alt="Prince" loading="lazy" />
+            <img src="/images/prince-2.png" alt="Prince with family at the beach" loading="lazy" />
+          </div>
+          <button class="ht-carousel-btn ht-carousel-next" aria-label="Next photo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+        <div class="ht-card-body">
+          <p class="ht-card-text">We fostered Prince, and he ended up adopting us. He is gentle, loving, and full of life, and every single day with him feels like a gift we didn't earn but are endlessly grateful for. <span class="ht-paw">🐾</span></p>
+          <p class="ht-card-author">- Krithika P.</p>
+        </div>
+      </div>
+
+      <div class="ht-card" data-reveal="card">
+        <div class="ht-carousel" data-carousel>
+          <div class="ht-carousel-track">
+            <img src="/images/goldie-1.png" alt="Goldie" loading="lazy" />
+            <img src="/images/goldie-2.png" alt="Goldie outside" loading="lazy" />
+          </div>
+          <button class="ht-carousel-btn ht-carousel-next" aria-label="Next photo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+        <div class="ht-card-body">
+          <p class="ht-card-text">Goldie grew up on the streets of Mussoorie and now runs the house on her own terms. She has very selective hearing—except when it comes to food—and somehow always vanishes the moment she hears the word "bath." <span class="ht-paw">🐾</span></p>
+          <p class="ht-card-author">- Vani S.</p>
+        </div>
+      </div>
+
+      <div class="ht-card" data-reveal="card">
+        <div class="ht-carousel" data-carousel>
+          <div class="ht-carousel-track">
+            <img src="/images/brownie-1.png" alt="Brownie" loading="lazy" />
+            <img src="/images/brownie-2.png" alt="Brownie resting" loading="lazy" />
+          </div>
+          <button class="ht-carousel-btn ht-carousel-next" aria-label="Next photo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+        <div class="ht-card-body">
+          <p class="ht-card-text">Brownie came to us as a confused, scared stray, but with kindness and love, he became our greatest friend. He never needed a leash to stay close—his love for our family kept him by our side through swimming classes, morning walks, and everyday moments. His playful spirit, bold personality, and boundless loyalty showed us that the best dogs are often the ones waiting on our streets. When you adopt a dog like Brownie, you don't just save a life, you gain a companion whose devotion will touch your heart forever. <span class="ht-paw">🐾</span></p>
+          <p class="ht-card-author">- Rakesh S.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  #happy-tails {
+    background-color: var(--color-cream);
+    padding: var(--space-4) 0 var(--space-25);
+    position: relative;
+  }
+
+  .section-inner {
+    max-width: var(--site-width);
+    margin: 0 auto;
+    padding: 0 var(--space-5);
+  }
+
+  .ht-header {
+    margin-bottom: var(--space-10);
+  }
+
+  .ht-title {
+    font-family: var(--font-heading);
+    font-size: var(--text-section);
+    font-weight: 600;
+    line-height: 1.3em;
+    letter-spacing: var(--ls-tight);
+    color: var(--color-text);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ht-title-accent {
+    color: var(--color-gold);
+  }
+
+  .paw-heading {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    color: var(--color-gold);
+  }
+
+  .ht-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .ht-card {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    align-items: center;
+    border: 1px solid var(--color-card-border);
+    border-radius: 4px;
+    background-color: var(--color-card-bg);
+    overflow: hidden;
+  }
+
+  /* ── Photo carousel ─────────────────────────────────────── */
+  .ht-carousel {
+    position: relative;
+    width: 240px;
+    height: 100%;
+    min-height: 200px;
+    overflow: hidden;
+  }
+
+  .ht-carousel-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .ht-carousel-track img {
+    width: 240px;
+    min-width: 240px;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .ht-carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.8);
+    color: var(--color-text-mid);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    padding: 0;
+    transition: opacity 0.2s, background 0.2s;
+  }
+
+  .ht-carousel-btn:hover {
+    background: #fff;
+  }
+
+  .ht-carousel-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .ht-carousel-next {
+    right: 8px;
+  }
+
+  /* ── Card body ──────────────────────────────────────────── */
+  .ht-card-body {
+    padding: var(--space-6) var(--space-8) var(--space-6) var(--space-6);
+  }
+
+  .ht-card-text {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: var(--lh-relaxed);
+    color: var(--color-text);
+    margin: 0 0 var(--space-4);
+  }
+
+  .ht-paw {
+    font-size: 14px;
+  }
+
+  .ht-card-author {
+    font-family: var(--font-heading);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  /* ── Reveal animations ──────────────────────────────────── */
+  [data-reveal]:not([data-reveal="card"]) {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: var(--trans-reveal);
+  }
+
+  [data-reveal]:not([data-reveal="card"]).visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  [data-reveal="card"] {
+    opacity: 0;
+    transform: translateY(18px) scale(0.97);
+    transition: var(--trans-card);
+  }
+
+  [data-reveal="card"].visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ── Mobile ─────────────────────────────────────────────── */
+  @media (max-width: 768px) {
+    #happy-tails {
+      padding: var(--space-8) 0 var(--space-15);
+    }
+
+    .ht-title {
+      font-size: 28px;
+    }
+
+    .ht-card {
+      grid-template-columns: 1fr;
+    }
+
+    .ht-carousel {
+      width: 100%;
+      height: 220px;
+    }
+
+    .ht-carousel-track img {
+      width: 100%;
+      min-width: 100%;
+    }
+
+    .ht-card-body {
+      padding: var(--space-5);
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll('[data-carousel]').forEach(carousel => {
+    const track = carousel.querySelector('.ht-carousel-track');
+    const imgs = track.querySelectorAll('img');
+    const btn = carousel.querySelector('.ht-carousel-next');
+    let current = 0;
+
+    btn.addEventListener('click', () => {
+      current = (current + 1) % imgs.length;
+      track.style.transform = `translateX(-${current * 100}%)`;
+    });
+  });
+</script>
