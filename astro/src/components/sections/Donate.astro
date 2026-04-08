@@ -80,8 +80,67 @@
 
     </div><!-- /.donate-tiers -->
 
+    <!-- Donate methods -->
+    <div class="donate-cards" data-reveal>
+      <div class="donate-card">
+        <span class="donate-card-badge">Preferred</span>
+        <div class="donate-card-top">
+          <h3 class="donate-card-title">Zelle</h3>
+          <p class="donate-card-sub">Zero fees — 100% goes to the dogs</p>
+        </div>
+        <div class="donate-card-action">
+          <p class="donate-card-label">Send to</p>
+          <button class="donate-card-id" id="zelle-qr-toggle" type="button">rosiesheroes</button>
+          <p class="donate-card-tap-hint">Tap to show QR code</p>
+        </div>
+        <div class="zelle-qr-panel" id="zelle-qr-panel">
+          <img src="/images/zelle.png" alt="Scan to donate via Zelle" class="donate-card-qr-large" width="280" height="280" loading="lazy" />
+          <p class="donate-card-scan-hint">Scan with your banking app</p>
+        </div>
+      </div>
+      <div class="donate-card">
+        <div class="donate-card-top">
+          <h3 class="donate-card-title">PayPal</h3>
+          <p class="donate-card-sub">Credit card, debit, or Venmo accepted</p>
+        </div>
+        <div class="donate-card-action">
+          <button class="donate-card-id" id="paypal-form-toggle" type="button">Donate Now</button>
+          <p class="donate-card-tap-hint">Tap to open donation form</p>
+        </div>
+        <div class="paypal-form-panel" id="paypal-form-panel">
+          <div id="paypal-container-LJ6RFXLPK2ML8"></div>
+        </div>
+      </div>
+    </div>
+
   </div><!-- /.section-inner -->
 </section>
+
+<script is:inline src="https://www.paypal.com/sdk/js?client-id=BAAn2t0F7jpy6SyZ6NZV4VBR3axQFaZX7pnIhgWueptAPfDzy5Wp750lQP9fX41qXyhOaBmoayL130eB-U&components=hosted-buttons&enable-funding=venmo&currency=USD"></script>
+<script is:inline>
+  if (typeof paypal !== 'undefined') {
+    paypal.HostedButtons({
+      hostedButtonId: "LJ6RFXLPK2ML8",
+    }).render("#paypal-container-LJ6RFXLPK2ML8");
+  }
+</script>
+
+<script is:inline>
+  (function() {
+    function setupToggle(btnId, panelId) {
+      var btn = document.getElementById(btnId);
+      var panel = document.getElementById(panelId);
+      if (btn && panel) {
+        btn.addEventListener('click', function() {
+          var isOpen = panel.classList.toggle('open');
+          btn.classList.toggle('active', isOpen);
+        });
+      }
+    }
+    setupToggle('zelle-qr-toggle', 'zelle-qr-panel');
+    setupToggle('paypal-form-toggle', 'paypal-form-panel');
+  })();
+</script>
 
 <style>
   /* --------------------------------------------------------
@@ -211,6 +270,164 @@
     margin: 0;
   }
 
+  /* ── Donate method cards ──────────────────────────────────── */
+  .donate-cards {
+    margin-top: var(--space-12);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-5);
+  }
+
+  .donate-card {
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-card-border);
+    border-radius: 10px;
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-3);
+    position: relative;
+  }
+
+  .donate-card-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-family: var(--font-heading);
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--color-text);
+    background: var(--color-gold);
+    padding: 2px 10px;
+    border-radius: var(--radius-pill);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .donate-card-top { text-align: center; }
+
+  .donate-card-title {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .donate-card-sub {
+    font-family: var(--font-body);
+    font-size: var(--text-2xs);
+    color: var(--color-text-muted);
+    margin: 2px 0 0;
+  }
+
+  .donate-card-action { text-align: center; }
+
+  .donate-card-label {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    margin: 0 0 4px;
+  }
+
+  .donate-card-id {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--color-gold);
+    margin: 0;
+    padding: 6px 24px;
+    border: 1.5px solid var(--color-gold);
+    border-radius: var(--radius-pill);
+    display: inline-block;
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .donate-card-id:hover {
+    background: var(--color-gold);
+    color: var(--color-text);
+  }
+
+  .donate-card-tap-hint {
+    font-family: var(--font-body);
+    font-size: var(--text-2xs);
+    color: var(--color-text-muted);
+    margin: 6px 0 0;
+  }
+
+  .zelle-qr-panel,
+  .paypal-form-panel {
+    display: none;
+    text-align: center;
+    animation: fadeSlideIn 0.3s ease;
+  }
+
+  .zelle-qr-panel.open,
+  .paypal-form-panel.open {
+    display: block;
+  }
+
+  @keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .donate-card-qr-large {
+    border-radius: 10px;
+    border: 1px solid var(--color-card-border);
+  }
+
+  .donate-card-scan-hint {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    margin: var(--space-2) 0 0;
+  }
+
+  .donate-card-btn {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-text);
+    background: var(--color-gold);
+    border: 2px solid var(--color-gold);
+    border-radius: var(--radius-pill);
+    padding: 6px 28px;
+    text-decoration: none;
+    transition: var(--trans-btn);
+  }
+
+  .donate-card-btn:hover {
+    background: var(--color-gold-hover);
+    border-color: var(--color-gold-hover);
+    color: var(--color-gold-dark-hover);
+  }
+
+  #paypal-container-LJ6RFXLPK2ML8 {
+    width: 100%;
+    min-width: 340px;
+  }
+
+  .paypal-form-panel {
+    width: 100%;
+  }
+
+  .donate-card-qr {
+    border-radius: 6px;
+    border: 1px solid var(--color-card-border);
+    opacity: 0.85;
+  }
+
+  .donate-card-id.active {
+    background: var(--color-gold);
+    color: var(--color-text);
+  }
+
   /* ── Reveal animations ──────────────────────────────────── */
   [data-reveal]:not([data-reveal="card"]) {
     opacity: 0;
@@ -254,6 +471,10 @@
       width: 100%;
       min-width: 0 !important;
       text-align: center;
+    }
+
+    .donate-cards {
+      grid-template-columns: 1fr;
     }
   }
 </style>
