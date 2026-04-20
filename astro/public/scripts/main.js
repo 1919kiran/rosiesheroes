@@ -161,7 +161,7 @@
     function animate() {
       if (beagle) {
         var t = getProgress(beagle);
-        beagle.style.transform = 'translateX(' + (-t * 300) + 'px)';
+        beagle.style.transform = 'translateX(' + (-t * 300) + 'px) rotate(15deg)';
       }
 
       if (puppy) {

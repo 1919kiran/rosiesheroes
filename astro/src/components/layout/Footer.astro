@@ -65,6 +65,12 @@
       </ul>
     </nav>
 
+    <!-- Credits -->
+    <p class="footer-credits">
+      <span class="footer-credits-line">Designed and developed with <span class="footer-credits-heart" aria-hidden="true">♥</span><span class="sr-only">love</span></span>
+      <span class="footer-credits-line">by Avani&nbsp;Ashok &amp; Sai&nbsp;Kiran</span>
+    </p>
+
     <!-- Copyright -->
     <div class="footer-legal">
       <p>&copy; 2026 Rosie's Heroes. All rights reserved.</p>
@@ -201,6 +207,7 @@
 
   /* ---- LEGAL ---- */
   .footer-legal {
+    padding: 25px;
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -214,6 +221,43 @@
     opacity: 0.6;
     line-height: var(--lh-relaxed);
     margin: 0;
+  }
+
+  /* ---- CREDITS ---- */
+  .footer-credits {
+    margin: 20px 0 0;
+    font-family: var(--font-heading);
+    font-size: var(--text-xs); /* 14px */
+    color: var(--color-text-on-dark);
+    opacity: 0.55;
+    text-align: center;
+    line-height: var(--lh-relaxed);
+  }
+
+  .footer-credits-line {
+    display: inline;
+  }
+
+  .footer-credits-line + .footer-credits-line {
+    margin-left: 0.35em;
+  }
+
+  .footer-credits-heart {
+    color: var(--color-gold);
+    opacity: 0.9;
+    margin: 0 2px;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 
   /* ── Mobile responsive ─────────────────────────────────── */
@@ -244,6 +288,15 @@
 
     .footer-tagline {
       font-size: 16px;
+    }
+
+    .footer-credits-line {
+      display: block;
+    }
+
+    .footer-credits-line + .footer-credits-line {
+      margin-left: 0;
+      margin-top: 4px;
     }
   }
 </style>
