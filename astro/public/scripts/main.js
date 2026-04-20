@@ -174,38 +174,6 @@
         ball.style.transform = 'translateX(' + (-t * 530) + 'px)';
       }
 
-      if (plane) {
-        /* Airplane uses section-relative t so it flies in briefly as
-           #vision enters the viewport, then disappears — matching the
-           original one-shot motion effect.
-           t=0: vision top at viewport bottom (section just entering)
-           t=1: vision bottom at viewport top (section fully scrolled past) */
-        var vision = document.getElementById('vision');
-        if (vision) {
-          var vRect = vision.getBoundingClientRect();
-          var vH    = vision.offsetHeight;
-          var vh    = window.innerHeight;
-          var raw   = (vh - vRect.top) / (vh + vH);
-          var t     = Math.max(0, Math.min(1, raw));
-
-          /* Visible window: t 0.02 → 0.38 — fly-through before Vision
-             content is fully readable at top of viewport */
-          var visStart = 0.02, visEnd = 0.38;
-          if (t < visStart || t > visEnd) {
-            plane.style.opacity = '0';
-          } else {
-            var lt  = (t - visStart) / (visEnd - visStart); /* local 0→1 */
-            var x   = 100 - lt * 1500;
-            var y   = 200 * lt * (lt - 1);
-            var deg = (lt - 0.5) * 12;
-            plane.style.opacity   = '1';
-            plane.style.transform =
-              'translateX(' + x + 'px) translateY(' + y + 'px) rotate(' + deg + 'deg)';
-          }
-        }
-      }
-
-
       ticking = false;
     }
 

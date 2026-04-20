@@ -1,10 +1,14 @@
 ---
 // Happy Tails section — Adoption success stories
-// Background: var(--color-cream) = #FFF8F1 (alternates with Adopt's #FFF5EA)
-// Layout: bordered cards with photo carousel left, testimonial text right
+// Layout: bordered cards with photo carousel left, testimonial text + chips right,
+// plus a soft gold paw watermark in the bottom-right corner of each card.
 ---
 
 <section id="happy-tails">
+
+  <svg class="ht-bg ht-bg--tl" viewBox="14.245 16.736 171.51 166.528" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><g><path d="M98.902 88.05c-21.698 0-59.447 52.147-61.533 66.037-2.393 15.935 11.019 29.177 27.133 29.177 10.137 0 30.913-11.779 34.4-11.779 3.367 0 23.912 11.779 34.017 11.779 16.114 0 30.472-13.299 27.725-29.177-2.294-13.264-40.009-66.037-61.742-66.037z" fill="currentColor"/><path fill="currentColor" d="M91.411 45.161c0 15.699-8.055 28.425-17.991 28.425S55.429 60.86 55.429 45.161s8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/><path fill="currentColor" d="M50.227 93.365c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425S22.3 64.94 32.236 64.94s17.991 12.726 17.991 28.425z"/><path fill="currentColor" d="M144.571 45.161c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/><path fill="currentColor" d="M185.755 89.042c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/></g></svg>
+  <svg class="ht-bg ht-bg--rm" viewBox="14.245 16.736 171.51 166.528" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><g><path d="M98.902 88.05c-21.698 0-59.447 52.147-61.533 66.037-2.393 15.935 11.019 29.177 27.133 29.177 10.137 0 30.913-11.779 34.4-11.779 3.367 0 23.912 11.779 34.017 11.779 16.114 0 30.472-13.299 27.725-29.177-2.294-13.264-40.009-66.037-61.742-66.037z" fill="currentColor"/><path fill="currentColor" d="M91.411 45.161c0 15.699-8.055 28.425-17.991 28.425S55.429 60.86 55.429 45.161s8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/><path fill="currentColor" d="M50.227 93.365c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425S22.3 64.94 32.236 64.94s17.991 12.726 17.991 28.425z"/><path fill="currentColor" d="M144.571 45.161c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/><path fill="currentColor" d="M185.755 89.042c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/></g></svg>
+
   <div class="section-inner">
 
     <div class="ht-header" data-reveal>
@@ -27,16 +31,30 @@
       <div class="ht-card" data-reveal="card">
         <div class="ht-carousel" data-carousel>
           <div class="ht-carousel-track">
-            <img src="/images/prince-1.png" alt="Prince" loading="lazy" />
             <img src="/images/prince-2.png" alt="Prince with family at the beach" loading="lazy" />
+            <img src="/images/prince-1.png" alt="Prince" loading="lazy" />
+            <img src="/images/prince-3.jpg" alt="Prince-3" loading="lazy" />
           </div>
           <button class="ht-carousel-btn ht-carousel-next" aria-label="Next photo">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
           </button>
         </div>
         <div class="ht-card-body">
+          <svg class="ht-watermark" viewBox="14.245 16.736 171.51 166.528" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="currentColor">
+            <path d="M98.902 88.05c-21.698 0-59.447 52.147-61.533 66.037-2.393 15.935 11.019 29.177 27.133 29.177 10.137 0 30.913-11.779 34.4-11.779 3.367 0 23.912 11.779 34.017 11.779 16.114 0 30.472-13.299 27.725-29.177-2.294-13.264-40.009-66.037-61.742-66.037z"/>
+            <path d="M91.411 45.161c0 15.699-8.055 28.425-17.991 28.425S55.429 60.86 55.429 45.161s8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/>
+            <path d="M50.227 93.365c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425S22.3 64.94 32.236 64.94s17.991 12.726 17.991 28.425z"/>
+            <path d="M144.571 45.161c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/>
+            <path d="M185.755 89.042c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/>
+          </svg>
+          <h3 class="ht-card-name">Prince</h3>
           <p class="ht-card-text">We fostered Prince, and he ended up adopting us. He is gentle, loving, and full of life, and every single day with him feels like a gift we didn't earn but are endlessly grateful for. <span class="ht-paw">🐾</span></p>
-          <p class="ht-card-author">- Krithika P.</p>
+          <div class="ht-chips">
+            <span class="ht-chip"><span class="ht-chip-icon">💛</span>Foster Fail</span>
+            <span class="ht-chip"><span class="ht-chip-icon">🤗</span>Gentle Soul</span>
+            <span class="ht-chip"><span class="ht-chip-icon">✨</span>Full of Life</span>
+          </div>
+          <p class="ht-card-author">— Krithika P.</p>
         </div>
       </div>
 
@@ -51,14 +69,28 @@
           </button>
         </div>
         <div class="ht-card-body">
+          <svg class="ht-watermark" viewBox="14.245 16.736 171.51 166.528" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="currentColor">
+            <path d="M98.902 88.05c-21.698 0-59.447 52.147-61.533 66.037-2.393 15.935 11.019 29.177 27.133 29.177 10.137 0 30.913-11.779 34.4-11.779 3.367 0 23.912 11.779 34.017 11.779 16.114 0 30.472-13.299 27.725-29.177-2.294-13.264-40.009-66.037-61.742-66.037z"/>
+            <path d="M91.411 45.161c0 15.699-8.055 28.425-17.991 28.425S55.429 60.86 55.429 45.161s8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/>
+            <path d="M50.227 93.365c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425S22.3 64.94 32.236 64.94s17.991 12.726 17.991 28.425z"/>
+            <path d="M144.571 45.161c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/>
+            <path d="M185.755 89.042c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/>
+          </svg>
+          <h3 class="ht-card-name">Goldie</h3>
           <p class="ht-card-text">Goldie grew up on the streets of Mussoorie and now runs the house on her own terms. She has very selective hearing—except when it comes to food—and somehow always vanishes the moment she hears the word "bath." <span class="ht-paw">🐾</span></p>
-          <p class="ht-card-author">- Vani S.</p>
+          <div class="ht-chips">
+            <span class="ht-chip"><span class="ht-chip-icon">📍</span>From Mussoorie</span>
+            <span class="ht-chip"><span class="ht-chip-icon">✨</span>Sassy &amp; Selective</span>
+            <span class="ht-chip"><span class="ht-chip-icon">🍖</span>Loves Snacks</span>
+          </div>
+          <p class="ht-card-author">— Vani S.</p>
         </div>
       </div>
 
       <div class="ht-card" data-reveal="card">
         <div class="ht-carousel" data-carousel>
           <div class="ht-carousel-track">
+            <img src="/images/brownie-3.jpg" alt="Brownie cute" loading="lazy" />
             <img src="/images/brownie-1.png" alt="Brownie" loading="lazy" />
             <img src="/images/brownie-2.png" alt="Brownie resting" loading="lazy" />
           </div>
@@ -67,8 +99,21 @@
           </button>
         </div>
         <div class="ht-card-body">
+          <svg class="ht-watermark" viewBox="14.245 16.736 171.51 166.528" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="currentColor">
+            <path d="M98.902 88.05c-21.698 0-59.447 52.147-61.533 66.037-2.393 15.935 11.019 29.177 27.133 29.177 10.137 0 30.913-11.779 34.4-11.779 3.367 0 23.912 11.779 34.017 11.779 16.114 0 30.472-13.299 27.725-29.177-2.294-13.264-40.009-66.037-61.742-66.037z"/>
+            <path d="M91.411 45.161c0 15.699-8.055 28.425-17.991 28.425S55.429 60.86 55.429 45.161s8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/>
+            <path d="M50.227 93.365c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425S22.3 64.94 32.236 64.94s17.991 12.726 17.991 28.425z"/>
+            <path d="M144.571 45.161c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/>
+            <path d="M185.755 89.042c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/>
+          </svg>
+          <h3 class="ht-card-name">Brownie</h3>
           <p class="ht-card-text">Brownie came to us as a confused, scared stray, but with kindness and love, he became our greatest friend. He never needed a leash to stay close—his love for our family kept him by our side through swimming classes, morning walks, and everyday moments. His playful spirit, bold personality, and boundless loyalty showed us that the best dogs are often the ones waiting on our streets. When you adopt a dog like Brownie, you don't just save a life, you gain a companion whose devotion will touch your heart forever. <span class="ht-paw">🐾</span></p>
-          <p class="ht-card-author">- Rakesh S.</p>
+          <div class="ht-chips">
+            <span class="ht-chip"><span class="ht-chip-icon">🐾</span>Street Rescue</span>
+            <span class="ht-chip"><span class="ht-chip-icon">💪</span>Bold &amp; Loyal</span>
+            <span class="ht-chip"><span class="ht-chip-icon">🌊</span>Swim Buddy</span>
+          </div>
+          <p class="ht-card-author">— Rakesh S.</p>
         </div>
       </div>
 
@@ -80,7 +125,7 @@
 <style>
   #happy-tails {
     background-color: var(--color-cream);
-    padding: var(--space-4) 0 var(--space-25);
+    padding: var(--space-20) 0 var(--space-25);
     position: relative;
   }
 
@@ -127,7 +172,7 @@
   .ht-card {
     display: grid;
     grid-template-columns: 240px 1fr;
-    align-items: center;
+    align-items: stretch;
     border: 1px solid var(--color-card-border);
     border-radius: 4px;
     background-color: var(--color-card-bg);
@@ -192,15 +237,34 @@
 
   /* ── Card body ──────────────────────────────────────────── */
   .ht-card-body {
-    padding: var(--space-6) var(--space-8) var(--space-6) var(--space-6);
+    position: relative;
+    padding: var(--space-6) var(--space-8);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .ht-card-body > *:not(.ht-watermark) {
+    position: relative;
+    z-index: 1;
+  }
+
+  .ht-card-name {
+    font-family: var(--font-heading);
+    font-size: var(--text-card);
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0 0 var(--space-5);
+    line-height: 1.2;
   }
 
   .ht-card-text {
     font-family: var(--font-body);
     font-size: var(--text-base);
-    line-height: var(--lh-relaxed);
+    line-height: 1.85;
     color: var(--color-text);
-    margin: 0 0 var(--space-4);
+    margin: 0 0 var(--space-6);
   }
 
   .ht-paw {
@@ -211,9 +275,51 @@
     font-family: var(--font-heading);
     font-size: var(--text-sm);
     font-weight: 600;
-    color: var(--color-text);
+    color: var(--color-text-mid);
     margin: 0;
   }
+
+  /* ── Decorative paw watermark ──────────────────────────── */
+  .ht-watermark {
+    position: absolute;
+    right: -25px;
+    bottom: -25px;
+    width: 160px;
+    height: 160px;
+    color: var(--color-gold);
+    opacity: 0.07;
+    transform: rotate(-15deg);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── Personality chips ─────────────────────────────────── */
+  .ht-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: 0 0 var(--space-6);
+  }
+
+  .ht-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-body);
+    font-size: var(--text-2xs);
+    font-weight: 500;
+    color: var(--color-text-mid);
+    background: var(--color-cream);
+    border: 1px solid var(--color-card-border);
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+  }
+
+  .ht-chip-icon {
+    font-size: 13px;
+    line-height: 1;
+  }
+
 
   /* ── Reveal animations ──────────────────────────────────── */
   [data-reveal]:not([data-reveal="card"]) {
@@ -238,10 +344,16 @@
     transform: none;
   }
 
+  .ht-bg { position: absolute; pointer-events: none; color: #E8C278; opacity: 0.15; }
+  .ht-bg--tl { width: 200px; height: 200px; top: 3%; left: 2%; transform: rotate(-25deg); }
+  .ht-bg--rm { width: 180px; height: 180px; top: 45%; right: 2%; transform: rotate(18deg); }
+
   /* ── Mobile ─────────────────────────────────────────────── */
   @media (max-width: 768px) {
+    .ht-bg { display: none; }
+
     #happy-tails {
-      padding: var(--space-8) 0 var(--space-15);
+      padding: var(--space-15) 0 var(--space-15);
     }
 
     .ht-title {
@@ -265,7 +377,27 @@
     }
 
     .ht-card-body {
-      padding: var(--space-5);
+      padding: var(--space-6) var(--space-5);
+    }
+
+    .ht-card-name {
+      font-size: 22px;
+      margin-bottom: var(--space-4);
+    }
+
+    .ht-card-text {
+      margin-bottom: var(--space-5);
+    }
+
+    .ht-chips {
+      margin-bottom: var(--space-5);
+    }
+
+    .ht-watermark {
+      width: 140px;
+      height: 140px;
+      right: -20px;
+      bottom: -20px;
     }
   }
 </style>

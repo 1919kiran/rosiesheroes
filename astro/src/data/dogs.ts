@@ -212,4 +212,42 @@ export const dogs: Dog[] = [
       "✨ First vaccination done. 🤍 Gentle, calm, quietly loving.",
     ],
   },
+  {
+    slug: "potato",
+    name: "Potato",
+    emoji: "🥔",
+    gender: "Male",
+    age: "~4 months",
+    weight: "Puppy, medium-size expected",
+    location: "Chennai",
+    goodWithDogs: "Yes",
+    goodWithCats: "Unknown",
+    photos: ["/images/potato-1.jpeg","/images/potato-2.jpeg","/images/potato-3.jpeg"],
+    shortDesc:
+      "Potato is an adorable little sunshine pup with a playful spirit and the sweetest smile. He's curious, affectionate, and full of that happy puppy energy that makes every moment feel lighter.",
+    fullDesc: [
+      "Potato is an adorable little sunshine pup with a playful spirit and the sweetest smile. He's curious, affectionate, and full of that happy puppy energy that makes every moment feel lighter. Whether he's trotting around, striking a pose, or soaking up attention, Potato brings joy wherever he goes.",
+      "He's still young, so he'll need guidance with all the puppy basics like leash walking, routines, and continued training. But he seems eager, social, and ready to bond with his people.",
+      "Potato would do wonderfully in a home that can give him structure, love, and lots of fun as he grows into the best companion.",
+    ],
+  },
+  {
+    slug: "tomato",
+    name: "Tomato",
+    emoji: "🍅",
+    gender: "Female",
+    age: "~4 months",
+    weight: "Puppy, medium-size expected",
+    location: "Chennai",
+    goodWithDogs: "Yes",
+    goodWithCats: "Unknown",
+    photos: ["/images/tomato-1.jpeg","/images/tomato-2.jpeg","/images/tomato-3.jpeg"],
+    shortDesc:
+      "Tomato is a bright, happy little girl with a playful heart and a face that's impossible not to love. She has a cheerful, affectionate energy and seems to enjoy being around people.",
+    fullDesc: [
+      "Tomato is a bright, happy little girl with a playful heart and a face that's impossible not to love. She has a cheerful, affectionate energy and seems to enjoy being around people, taking in the world with curiosity and excitement. Sweet, expressive, and full of puppy charm, Tomato is the kind of pup who makes everyone smile.",
+      "As a young puppy, she'll benefit from patience, gentle training, and a home ready to help her learn all the basics. With love, consistency, and plenty of positive experiences, Tomato is sure to grow into a wonderful loyal companion.",
+      "She's ready to find a family to grow up with and adore.",
+    ],
+  },
 ];

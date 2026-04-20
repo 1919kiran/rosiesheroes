@@ -7,16 +7,16 @@
 <section id="hero">
   <!-- Faint decorative paw prints on the cream left half -->
   <svg class="hero-paw hero-paw--1" viewBox="14.245 16.736 171.51 166.528" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><g><path d="M98.902 88.05c-21.698 0-59.447 52.147-61.533 66.037-2.393 15.935 11.019 29.177 27.133 29.177 10.137 0 30.913-11.779 34.4-11.779 3.367 0 23.912 11.779 34.017 11.779 16.114 0 30.472-13.299 27.725-29.177-2.294-13.264-40.009-66.037-61.742-66.037z" fill="currentColor"/><path fill="currentColor" d="M91.411 45.161c0 15.699-8.055 28.425-17.991 28.425S55.429 60.86 55.429 45.161s8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/><path fill="currentColor" d="M50.227 93.365c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425S22.3 64.94 32.236 64.94s17.991 12.726 17.991 28.425z"/><path fill="currentColor" d="M144.571 45.161c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/><path fill="currentColor" d="M185.755 89.042c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/></g></svg>
-  <svg class="hero-paw hero-paw--3" viewBox="14.245 16.736 171.51 166.528" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><g><path d="M98.902 88.05c-21.698 0-59.447 52.147-61.533 66.037-2.393 15.935 11.019 29.177 27.133 29.177 10.137 0 30.913-11.779 34.4-11.779 3.367 0 23.912 11.779 34.017 11.779 16.114 0 30.472-13.299 27.725-29.177-2.294-13.264-40.009-66.037-61.742-66.037z" fill="currentColor"/><path fill="currentColor" d="M91.411 45.161c0 15.699-8.055 28.425-17.991 28.425S55.429 60.86 55.429 45.161s8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/><path fill="currentColor" d="M50.227 93.365c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425S22.3 64.94 32.236 64.94s17.991 12.726 17.991 28.425z"/><path fill="currentColor" d="M144.571 45.161c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/><path fill="currentColor" d="M185.755 89.042c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/></g></svg>
 
 
   <div class="hero-grid">
 
     <!-- LEFT COLUMN: text content -->
     <div class="hero-text">
-      <h1 data-reveal>
-        From survival to <span class="gold">safety.</span>
-        <svg class="paw-inline" aria-hidden="true" viewBox="14.245 16.736 171.51 166.528" xmlns="http://www.w3.org/2000/svg" width="48" height="48">
+      <h1 class="hero-headline">
+        <span class="hero-line hero-line1">From survival</span>
+        <span class="hero-line hero-line2 gold">to safety</span>
+        <svg class="paw-inline hero-line hero-line3" aria-hidden="true" viewBox="14.245 16.736 171.51 166.528" xmlns="http://www.w3.org/2000/svg" width="48" height="48">
           <path d="M98.902 88.05c-21.698 0-59.447 52.147-61.533 66.037-2.393 15.935 11.019 29.177 27.133 29.177 10.137 0 30.913-11.779 34.4-11.779 3.367 0 23.912 11.779 34.017 11.779 16.114 0 30.472-13.299 27.725-29.177-2.294-13.264-40.009-66.037-61.742-66.037z" fill="currentColor"/>
           <path fill="currentColor" d="M91.411 45.161c0 15.699-8.055 28.425-17.991 28.425S55.429 60.86 55.429 45.161s8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/>
           <path fill="currentColor" d="M50.227 93.365c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425S22.3 64.94 32.236 64.94s17.991 12.726 17.991 28.425z"/>
@@ -25,11 +25,11 @@
         </svg>
       </h1>
 
-      <p class="hero-body" data-reveal>
+      <p class="hero-body hero-delayed">
         We reduce suffering at scale and create safer communities through spay/neuter and on-the-ground care for Indian street dogs.
       </p>
 
-      <div class="hero-cta" data-reveal>
+      <div class="hero-cta hero-delayed">
         <a href="#donate" class="btn btn-primary">Donate</a>
         <a href="/meet-the-dogs" class="btn btn-secondary">Meet the Dogs</a>
       </div>
@@ -100,7 +100,7 @@
   }
 
   /* H1 — large, multi-line heading */
-  #hero h1 {
+  .hero-headline {
     font-size: var(--text-hero); /* 64px */
     line-height: var(--lh-tight);
     letter-spacing: var(--ls-hero);
@@ -109,6 +109,56 @@
     flex-wrap: wrap;
     align-items: flex-end;
     gap: 0 0.15em;
+  }
+
+  /* Two-line staggered entrance */
+  .hero-line {
+    display: block;
+    opacity: 0;
+    transform: translateY(12px);
+    animation: hero-fade-in 1.2s ease-out forwards;
+  }
+
+  .hero-line1 { animation-delay: 0.3s; }
+  .hero-line2 { animation-delay: 1.4s; }
+  .hero-line3 { animation-delay: 1.4s; }
+
+  @keyframes hero-fade-in {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Body text and CTA fade in after headline */
+  .hero-delayed {
+    opacity: 0;
+    transform: translateY(12px);
+    animation: hero-fade-in 1.2s ease-out 2.8s forwards;
+  }
+
+  /* Soft gold glow on "to safety" line */
+  .hero-line2 {
+    text-shadow: 0 0 0 transparent;
+    animation: hero-fade-in 1.2s ease-out 1.4s forwards,
+               hero-glow 2s ease-out 2.4s forwards;
+  }
+
+  @keyframes hero-glow {
+    0% { text-shadow: 0 0 0 transparent; }
+    50% { text-shadow: 0 0 24px rgba(238, 190, 90, 0.4); }
+    100% { text-shadow: 0 0 10px rgba(238, 190, 90, 0.2); }
+  }
+
+  /* Paw gently floats in */
+  .hero-line3 {
+    display: inline-block;
+    animation: hero-paw-in 1.2s ease-out 1.4s forwards;
+  }
+
+  @keyframes hero-paw-in {
+    0% { opacity: 0; transform: translateY(8px) rotate(25deg) scale(0.8); }
+    100% { opacity: 1; transform: translateY(0) rotate(25deg) scale(1); }
   }
 
   /* Inline paw SVG — sits at end of h1, gold-colored */
@@ -144,12 +194,35 @@
     overflow: hidden;
   }
 
+  /* Warm vignette overlay — draws focus toward the dogs */
+  .hero-photo::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse at center,
+      transparent 40%,
+      rgba(56, 34, 19, 0.18) 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
   .hero-photo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: 50% 50%;
     display: block;
+    opacity: 0;
+    transform: scale(1.15);
+    animation: hero-photo-in 6s ease-out forwards;
+  }
+
+  @keyframes hero-photo-in {
+    0%   { opacity: 0; transform: scale(1.15); }
+    20%  { opacity: 1; }
+    100% { opacity: 1; transform: scale(1); }
   }
 
   /* ── Parallax beagle ─────────────────────────────────────── */
@@ -162,6 +235,12 @@
     pointer-events: none;
     will-change: transform;
     z-index: 2;
+    opacity: 0;
+    animation: hero-opacity-in 1.2s ease-out 2.8s forwards;
+  }
+
+  @keyframes hero-opacity-in {
+    to { opacity: 1; }
   }
 
   /* ── Faint background paw prints ─────────────────────────── */
@@ -170,25 +249,20 @@
     pointer-events: none;
     z-index: 0;
   }
-  /* Large paw — upper-right of cream column */
+  /* Large paw — middle of cream column */
   .hero-paw--1 {
-    width: 130px;
-    height: 126px;
-    top: 35%;
-    left: 40%;
+    width: 160px;
+    height: 155px;
+    top: 30%;
+    left: 37%;
     color: #E8C278;
-    opacity: 0.28;
-    transform: rotate(25deg);
+    opacity: 0;
+    transform: rotate(-25deg);
+    animation: hero-paw-fade 1.2s ease-out 2.8s forwards;
   }
-  /* Large paw — bottom-left */
-  .hero-paw--3 {
-    width: 104px;
-    height: 101px;
-    bottom: 30px;
-    left: 2%;
-    color: #E8C278;
-    opacity: 0.28;
-    transform: rotate(-29deg);
+
+  @keyframes hero-paw-fade {
+    to { opacity: 0.28; }
   }
 
   @media (max-width: 768px) {
@@ -199,20 +273,23 @@
     .hero-text {
       align-items: center;
       text-align: center;
-      padding: 40px 20px 30px;
+      padding: 48px 20px 40px;
+      gap: var(--space-8);
     }
 
-    #hero h1 {
-      font-size: 36px;
+    .hero-headline {
+      font-size: 42px;
       justify-content: center;
     }
 
     .hero-body {
       text-align: center;
+      font-size: var(--text-lg);
     }
 
     .hero-cta {
       justify-content: center;
+      margin-top: var(--space-2);
     }
 
     .hero-photo img {
@@ -220,18 +297,12 @@
     }
 
     #beagle-running {
-      width: 140px;
-      left: 10%;
+      display: none;
     }
 
     .hero-paw--1 {
-      width: 80px;
-      height: 78px;
-    }
-
-    .hero-paw--3 {
-      width: 65px;
-      height: 63px;
+      width: 100px;
+      height: 97px;
     }
   }
 </style>

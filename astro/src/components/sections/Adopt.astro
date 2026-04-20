@@ -7,12 +7,17 @@
 
 <section id="adopt">
 
+  <svg class="adopt-bg adopt-bg--tl" viewBox="14.245 16.736 171.51 166.528" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><g><path d="M98.902 88.05c-21.698 0-59.447 52.147-61.533 66.037-2.393 15.935 11.019 29.177 27.133 29.177 10.137 0 30.913-11.779 34.4-11.779 3.367 0 23.912 11.779 34.017 11.779 16.114 0 30.472-13.299 27.725-29.177-2.294-13.264-40.009-66.037-61.742-66.037z" fill="currentColor"/><path fill="currentColor" d="M91.411 45.161c0 15.699-8.055 28.425-17.991 28.425S55.429 60.86 55.429 45.161s8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/><path fill="currentColor" d="M50.227 93.365c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425S22.3 64.94 32.236 64.94s17.991 12.726 17.991 28.425z"/><path fill="currentColor" d="M144.571 45.161c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/><path fill="currentColor" d="M185.755 89.042c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/></g></svg>
+  <svg class="adopt-bg adopt-bg--br" viewBox="14.245 16.736 171.51 166.528" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><g><path d="M98.902 88.05c-21.698 0-59.447 52.147-61.533 66.037-2.393 15.935 11.019 29.177 27.133 29.177 10.137 0 30.913-11.779 34.4-11.779 3.367 0 23.912 11.779 34.017 11.779 16.114 0 30.472-13.299 27.725-29.177-2.294-13.264-40.009-66.037-61.742-66.037z" fill="currentColor"/><path fill="currentColor" d="M91.411 45.161c0 15.699-8.055 28.425-17.991 28.425S55.429 60.86 55.429 45.161s8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/><path fill="currentColor" d="M50.227 93.365c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425S22.3 64.94 32.236 64.94s17.991 12.726 17.991 28.425z"/><path fill="currentColor" d="M144.571 45.161c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/><path fill="currentColor" d="M185.755 89.042c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/></g></svg>
 
   <div class="section-inner">
 
     <!-- Section header -->
     <div class="adopt-header" data-reveal>
-      <h2 class="adopt-title">Adopt</h2>
+      <h2 class="adopt-title">
+        Adopt
+        <svg class="adopt-title-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </h2>
     </div>
 
     <!-- Centered intro text -->
@@ -51,7 +56,7 @@
       <!-- RIGHT: golden retriever photo -->
       <div class="adopt-card-photo" aria-hidden="true">
         <img
-          src="/images/adopt-puppy.jpg"
+          src="/images/adopt.jpg"
           width="380"
           height="360"
         />
@@ -67,10 +72,10 @@
      ADOPT SECTION
      -------------------------------------------------------- */
   #adopt {
-    background-color: var(--color-cream-adopt); /* #FFF5EA */
-    padding: var(--space-8) 0 var(--space-20);
+    background-color: var(--color-dark-brown); /* #382213 */
+    padding: var(--space-20) 0 var(--space-20);
     position: relative;
-    overflow: visible; /* allow parallax element to escape */
+    overflow: visible;
   }
 
   .section-inner {
@@ -103,8 +108,19 @@
     font-weight: 600;
     line-height: var(--lh-tight);
     letter-spacing: var(--ls-tight);
-    color: var(--color-text);
+    color: var(--color-text-warm); /* #FFEFDA */
     margin: 0 0 var(--space-3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .adopt-title-icon {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    color: var(--color-gold);
   }
 
   .adopt-subtitle {
@@ -120,7 +136,7 @@
     font-family: var(--font-body);
     font-size: var(--text-base); /* 16px */
     line-height: var(--lh-relaxed);
-    color: var(--color-text);
+    color: var(--color-text-on-dark); /* #FFF8F1 */
     text-align: center;
     max-width: 700px;
     margin: 0 auto var(--space-12); /* 48px below */
@@ -139,10 +155,11 @@
 
   /* ── Card left column ───────────────────────────────────── */
   .adopt-card-left {
-    padding: var(--space-12) var(--space-10); /* 48px top/bottom, 40px sides */
+    padding: var(--space-8) var(--space-10);
     display: flex;
     flex-direction: column;
-    gap: var(--space-8); /* 32px between title, steps, cta */
+    justify-content: center;
+    gap: var(--space-5);
   }
 
   .adopt-card-title {
@@ -235,19 +252,16 @@
 
   /* ── Card right column: photo ───────────────────────────── */
   .adopt-card-photo {
-    width: 380px;
+    width: 340px;
     flex-shrink: 0;
     overflow: hidden;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
   }
 
   .adopt-card-photo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 50% 20%; /* keep dog's face in frame */
+    object-position: center center;
     display: block;
   }
 
@@ -274,7 +288,13 @@
     transform: none;
   }
 
+  .adopt-bg { position: absolute; pointer-events: none; color: #6B4A35; opacity: 0.4; }
+  .adopt-bg--tl { width: 210px; height: 210px; top: 6%; left: 2%; transform: rotate(-18deg); }
+  .adopt-bg--br { width: 190px; height: 190px; bottom: 8%; right: 2%; transform: rotate(22deg); }
+
   @media (max-width: 768px) {
+    .adopt-bg { display: none; }
+
     #adopt {
       padding: var(--space-6) 0 var(--space-10);
     }
@@ -289,12 +309,26 @@
 
     .adopt-card-photo {
       width: 100%;
-      height: 200px;
+      height: 300px;
+    }
+
+    .adopt-card-photo img {
+      object-position: center 30%;
     }
 
     #puppy-lying,
     #ball-tennis {
       display: none;
+    }
+
+    .adopt-cta {
+      flex-wrap: nowrap;
+    }
+
+    .adopt-cta .btn {
+      flex: 1;
+      padding: 0 var(--space-4);
+      font-size: var(--text-sm);
     }
   }
 </style>

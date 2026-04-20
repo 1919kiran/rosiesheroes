@@ -66,8 +66,13 @@
         </svg>
       </a>
 
-      <!-- Donate CTA pill -->
-      <a href="/#donate" class="btn btn-nav-donate">Donate</a>
+      <!-- Donate CTA pill with decorative bone -->
+      <span class="nav-donate-wrap">
+        <a href="/#donate" class="btn btn-nav-donate">Donate</a>
+        <svg class="nav-deco-bone" viewBox="0 0 100 50" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M 5 15 A 10 10 0 0 1 25 15 L 75 15 A 10 10 0 0 1 95 15 A 10 10 0 0 0 95 35 A 10 10 0 0 1 75 35 L 25 35 A 10 10 0 0 1 5 35 A 10 10 0 0 0 5 15 Z"/>
+        </svg>
+      </span>
 
     </div>
 
@@ -249,12 +254,24 @@
   }
 
   /* Decorative 𐂯 icon after Donate button */
-  .nav-deco-icon {
-    font-size: 22px;
-    color: var(--color-text-mid);
-    margin-left: 6px;
+  .nav-donate-wrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
     flex-shrink: 0;
-    line-height: 1;
+  }
+
+  .nav-deco-bone {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 36px;
+    height: 18px;
+    color: var(--color-text-mid);
+    opacity: 0.55;
+    transform: rotate(35deg);
+    transform-origin: center;
+    pointer-events: none;
   }
 
   /* Plain text links (Happy Tails, Contact Us) — match dropdown trigger style */
@@ -316,7 +333,8 @@
 
     .nav-menu,
     .nav-text-link,
-    .btn-nav-donate {
+    .btn-nav-donate,
+    .nav-donate-wrap {
       display: none;
     }
 

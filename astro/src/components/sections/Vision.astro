@@ -22,16 +22,6 @@ import BrokenToBrave from '../ui/BrokenToBrave.astro';
 
   </div>
 
-  <!-- Decorative paw prints — left and right sides -->
-  <svg class="paw-decor paw-decor--tl" viewBox="14.245 16.736 171.51 166.528" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-    <g><path d="M98.902 88.05c-21.698 0-59.447 52.147-61.533 66.037-2.393 15.935 11.019 29.177 27.133 29.177 10.137 0 30.913-11.779 34.4-11.779 3.367 0 23.912 11.779 34.017 11.779 16.114 0 30.472-13.299 27.725-29.177-2.294-13.264-40.009-66.037-61.742-66.037z" fill="currentColor"/><path fill="currentColor" d="M91.411 45.161c0 15.699-8.055 28.425-17.991 28.425S55.429 60.86 55.429 45.161s8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/><path fill="currentColor" d="M50.227 93.365c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425S22.3 64.94 32.236 64.94s17.991 12.726 17.991 28.425z"/><path fill="currentColor" d="M144.571 45.161c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/><path fill="currentColor" d="M185.755 89.042c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/></g>
-  </svg>
-  <svg class="paw-decor paw-decor--bl" viewBox="14.245 16.736 171.51 166.528" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-    <g><path d="M98.902 88.05c-21.698 0-59.447 52.147-61.533 66.037-2.393 15.935 11.019 29.177 27.133 29.177 10.137 0 30.913-11.779 34.4-11.779 3.367 0 23.912 11.779 34.017 11.779 16.114 0 30.472-13.299 27.725-29.177-2.294-13.264-40.009-66.037-61.742-66.037z" fill="currentColor"/><path fill="currentColor" d="M91.411 45.161c0 15.699-8.055 28.425-17.991 28.425S55.429 60.86 55.429 45.161s8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/><path fill="currentColor" d="M50.227 93.365c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425S22.3 64.94 32.236 64.94s17.991 12.726 17.991 28.425z"/><path fill="currentColor" d="M144.571 45.161c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/><path fill="currentColor" d="M185.755 89.042c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/></g>
-  </svg>
-  <svg class="paw-decor paw-decor--br" viewBox="14.245 16.736 171.51 166.528" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-    <g><path d="M98.902 88.05c-21.698 0-59.447 52.147-61.533 66.037-2.393 15.935 11.019 29.177 27.133 29.177 10.137 0 30.913-11.779 34.4-11.779 3.367 0 23.912 11.779 34.017 11.779 16.114 0 30.472-13.299 27.725-29.177-2.294-13.264-40.009-66.037-61.742-66.037z" fill="currentColor"/><path fill="currentColor" d="M91.411 45.161c0 15.699-8.055 28.425-17.991 28.425S55.429 60.86 55.429 45.161s8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/><path fill="currentColor" d="M50.227 93.365c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425S22.3 64.94 32.236 64.94s17.991 12.726 17.991 28.425z"/><path fill="currentColor" d="M144.571 45.161c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/><path fill="currentColor" d="M185.755 89.042c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/></g>
-  </svg>
 
   <!-- Dog + tennis ball illustrations -->
   <img
@@ -93,45 +83,11 @@ import BrokenToBrave from '../ui/BrokenToBrave.astro';
     opacity: 0; /* hidden by default; JS controls opacity */
   }
 
-  /* ---- Decorative paw prints ---- */
-  .paw-decor {
-    position: absolute;
-    color: #E8C278;
-    opacity: 0.28;
-    pointer-events: none;
-  }
-
-  /* Top-left cluster */
-  .paw-decor--tl {
-    width: 80px;
-    height: 80px;
-    top: 80px;
-    left: 28px;
-  }
-
-  /* Bottom-left cluster */
-  .paw-decor--bl {
-    width: 65px;
-    height: 65px;
-    bottom: 100px;
-    left: 50px;
-    opacity: 0.22;
-  }
-
-  /* Bottom-right */
-  .paw-decor--br {
-    width: 70px;
-    height: 70px;
-    bottom: 200px;
-    right: 40px;
-    opacity: 0.22;
-  }
-
   /* ---- Labrador + tennis ball illustrations ---- */
   #vision-labrador {
     position: absolute;
-    bottom: -20px;
-    left: 40px;
+    bottom: 0;
+    left: 30px;
     width: 300px;
     height: auto;
     pointer-events: none;
