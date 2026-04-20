@@ -462,15 +462,27 @@
     }
 
     .donate-tier {
-      grid-template-columns: 1fr;
+      grid-template-columns: 80px 1fr;
       gap: var(--space-3);
       padding: var(--space-3) 0;
     }
 
     .donate-tier-amount {
-      width: 100%;
       min-width: 0 !important;
-      text-align: center;
+      font-size: var(--text-sm);
+      padding: var(--space-2) var(--space-2);
+    }
+
+    .donate-tier-name {
+      font-size: var(--text-sm);
+    }
+
+    .donate-tier-desc {
+      font-size: var(--text-xs);
+    }
+
+    .donate-tier-recognition {
+      font-size: var(--text-2xs);
     }
 
     .donate-cards {

@@ -123,8 +123,6 @@
 
      #beagle-running  → horizontal slide   translateX(-t * 300px)
      #puppy-lying     → horizontal slide   translateX(-t * 380px)
-     #ball-tennis     → horizontal slide   translateX(-t * 530px)
-                        (runs ahead of the puppy)
      #airplane        → parabolic arc
                         x   = 100 − t * 1400
                         y   = 404 * t * (t − 1)

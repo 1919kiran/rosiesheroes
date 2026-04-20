@@ -30,10 +30,10 @@
               About Us
             </button>
             <div class="nav-dropdown" role="menu" aria-label="About Us">
-              <a href="#vision"            class="nav-dropdown-item" role="menuitem">Vision</a>
-              <a href="#rosies-story"      class="nav-dropdown-item" role="menuitem">Rosie's Story</a>
-              <a href="#roadmap"           class="nav-dropdown-item" role="menuitem">Our Roadmap</a>
-              <a href="#impact-multiplier" class="nav-dropdown-item" role="menuitem">Impact Multiplier</a>
+              <a href="/#vision"            class="nav-dropdown-item" role="menuitem">Vision</a>
+              <a href="/#rosies-story"      class="nav-dropdown-item" role="menuitem">Rosie's Story</a>
+              <a href="/#roadmap"           class="nav-dropdown-item" role="menuitem">Our Roadmap</a>
+              <a href="/#impact-multiplier" class="nav-dropdown-item" role="menuitem">Impact Multiplier</a>
             </div>
           </li>
 
@@ -43,11 +43,10 @@
               Ways To Help
             </button>
             <div class="nav-dropdown" role="menu" aria-label="Ways To Help">
-              <a href="#adopt"      class="nav-dropdown-item" role="menuitem">Adopt</a>
-              <a href="/meet-the-dogs" class="nav-dropdown-item" role="menuitem">Meet the Dogs</a>
-              <a href="#volunteer"  class="nav-dropdown-item" role="menuitem">Volunteering</a>
-              <a href="#donate"     class="nav-dropdown-item" role="menuitem">Donate</a>
-              <a href="#partner"    class="nav-dropdown-item" role="menuitem">Partner</a>
+              <a href="/#adopt"      class="nav-dropdown-item" role="menuitem">Adopt</a>
+              <a href="/#volunteer"  class="nav-dropdown-item" role="menuitem">Volunteer</a>
+              <a href="/#donate"     class="nav-dropdown-item" role="menuitem">Donate</a>
+              <a href="/#partner"    class="nav-dropdown-item" role="menuitem">Partner</a>
             </div>
           </li>
 
@@ -55,11 +54,20 @@
       </nav>
 
       <!-- Plain text links -->
-      <a href="#happy-tails" class="nav-text-link">Happy Tails</a>
-      <a href="#contact"      class="nav-text-link">Contact Us</a>
+      <a href="/#happy-tails" class="nav-text-link">Happy Tails</a>
+      <a href="/#contact"     class="nav-text-link">Contact Us</a>
+
+      <!-- Instagram -->
+      <a href="https://www.instagram.com/rosiesheroes/" target="_blank" rel="noopener" class="nav-social" aria-label="Rosie's Heroes on Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </svg>
+      </a>
 
       <!-- Donate CTA pill -->
-      <a href="#donate" class="btn btn-nav-donate">Donate</a>
+      <a href="/#donate" class="btn btn-nav-donate">Donate</a>
 
     </div>
 
@@ -186,7 +194,7 @@
   /* ---- DROPDOWN PANEL ---- */
   .nav-dropdown {
     position: absolute;
-    top: calc(100% + 4px);
+    top: 100%;
     left: 50%;
     transform: translateX(-50%);
     min-width: 200px;
@@ -194,12 +202,23 @@
     border-radius: var(--radius-dropdown); /* 5px */
     box-shadow: 0 4px 16px rgba(56, 34, 19, 0.12), 0 1px 4px rgba(56, 34, 19, 0.08);
     padding: 8px 0;
+    margin-top: 8px;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
     transition: opacity 0.18s ease, visibility 0.18s ease, transform 0.18s ease;
     transform: translateX(-50%) translateY(-4px);
     z-index: 200;
+  }
+
+  /* Invisible hover bridge between trigger and dropdown so cursor stays in hover zone */
+  .nav-dropdown::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 0;
+    right: 0;
+    height: 12px;
   }
 
   /* Show dropdown on hover */
@@ -253,6 +272,30 @@
     color: var(--color-text);
   }
 
+  /* Instagram icon link */
+  .nav-social {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    margin: 0 4px 0 8px;
+    color: var(--color-text-mid);
+    text-decoration: none;
+    border-radius: 50%;
+    transition: color 0.2s ease, background-color 0.2s ease;
+  }
+
+  .nav-social:hover {
+    color: var(--color-gold);
+    background-color: rgba(238, 190, 90, 0.12);
+  }
+
+  .nav-social svg {
+    width: 20px;
+    height: 20px;
+  }
+
   /* ---- MOBILE RESPONSIVE ---- */
   @media (max-width: 768px) {
     #site-header {
@@ -275,6 +318,10 @@
     .nav-text-link,
     .btn-nav-donate {
       display: none;
+    }
+
+    .nav-social {
+      margin: 0;
     }
   }
 </style>

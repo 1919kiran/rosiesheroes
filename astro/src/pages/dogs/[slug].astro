@@ -38,13 +38,32 @@ const { dog } = Astro.props as { dog: Dog };
         </div>
 
         <div class="profile-sidebar">
-          <div class="photo-frame">
-            <img
-              src={dog.photos[0]}
-              alt={dog.name}
-              class="dog-photo"
-              loading="eager"
-            />
+          <div class="photo-frame" data-dog-carousel>
+            <div class="dog-carousel-track">
+              {dog.photos.map((photo, i) => (
+                <img
+                  src={photo}
+                  alt={`${dog.name} photo ${i + 1}`}
+                  class="dog-photo"
+                  loading={i === 0 ? "eager" : "lazy"}
+                />
+              ))}
+            </div>
+            {dog.photos.length > 1 && (
+              <>
+                <button class="dog-carousel-btn dog-carousel-prev" aria-label="Previous photo">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <button class="dog-carousel-btn dog-carousel-next" aria-label="Next photo">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+                <div class="dog-carousel-dots">
+                  {dog.photos.map((_, i) => (
+                    <button class={`dog-carousel-dot ${i === 0 ? 'active' : ''}`} data-index={i} aria-label={`Go to photo ${i + 1}`}></button>
+                  ))}
+                </div>
+              </>
+            )}
           </div>
 
           <div class="bio-card">
@@ -52,6 +71,12 @@ const { dog } = Astro.props as { dog: Dog };
               <span class="bio-label">Name</span>
               <span class="bio-value">{dog.name}</span>
             </div>
+            {dog.gender && (
+              <div class="bio-row">
+                <span class="bio-label">Gender</span>
+                <span class="bio-value">{dog.gender}</span>
+              </div>
+            )}
             <div class="bio-row">
               <span class="bio-label">Age</span>
               <span class="bio-value">{dog.age}</span>
@@ -76,6 +101,18 @@ const { dog } = Astro.props as { dog: Dog };
               <div class="bio-row">
                 <span class="bio-label">Crate Trained?</span>
                 <span class="bio-value">{dog.crateTrained}</span>
+              </div>
+            )}
+            {dog.quirks && (
+              <div class="bio-row">
+                <span class="bio-label">Quirks</span>
+                <span class="bio-value">{dog.quirks}</span>
+              </div>
+            )}
+            {dog.vaccinations && (
+              <div class="bio-row">
+                <span class="bio-label">Vaccinations</span>
+                <span class="bio-value">{dog.vaccinations}</span>
               </div>
             )}
           </div>
@@ -171,16 +208,88 @@ const { dog } = Astro.props as { dog: Dog };
   }
 
   .photo-frame {
+    position: relative;
     border-radius: 12px;
     overflow: hidden;
     aspect-ratio: 4 / 5;
+    background: var(--color-card-bg);
+  }
+
+  .dog-carousel-track {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .dog-photo {
     width: 100%;
     height: 100%;
+    flex: 0 0 100%;
     object-fit: cover;
     display: block;
+  }
+
+  .dog-carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.85);
+    color: var(--color-text);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+    padding: 0;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .dog-carousel-btn:hover {
+    background: #fff;
+  }
+
+  .dog-carousel-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .dog-carousel-prev { left: 10px; }
+  .dog-carousel-next { right: 10px; }
+
+  .dog-carousel-dots {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+    z-index: 2;
+  }
+
+  .dog-carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .dog-carousel-dot:hover {
+    background: rgba(255, 255, 255, 0.9);
+  }
+
+  .dog-carousel-dot.active {
+    background: #fff;
+    transform: scale(1.25);
   }
 
   /* ── Bio data card ─────────────────────────────────────── */
@@ -289,3 +398,26 @@ const { dog } = Astro.props as { dog: Dog };
     }
   }
 </style>
+
+<script>
+  document.querySelectorAll('[data-dog-carousel]').forEach(carousel => {
+    const track = carousel.querySelector('.dog-carousel-track') as HTMLElement | null;
+    const imgs = carousel.querySelectorAll('.dog-photo');
+    const prevBtn = carousel.querySelector('.dog-carousel-prev');
+    const nextBtn = carousel.querySelector('.dog-carousel-next');
+    const dots = carousel.querySelectorAll('.dog-carousel-dot');
+    if (!track || imgs.length <= 1) return;
+
+    let current = 0;
+
+    function goTo(i: number) {
+      current = (i + imgs.length) % imgs.length;
+      track!.style.transform = `translateX(-${current * 100}%)`;
+      dots.forEach((d, idx) => d.classList.toggle('active', idx === current));
+    }
+
+    prevBtn?.addEventListener('click', () => goTo(current - 1));
+    nextBtn?.addEventListener('click', () => goTo(current + 1));
+    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+  });
+</script>

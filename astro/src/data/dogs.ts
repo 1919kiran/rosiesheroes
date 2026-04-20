@@ -2,18 +2,21 @@ export interface Dog {
   slug: string;
   name: string;
   emoji: string;
+  gender?: string;
   age: string;
   weight: string;
   location: string;
   goodWithDogs: string;
   goodWithCats: string;
   crateTrained?: string;
+  quirks?: string;
+  vaccinations?: string;
   photos: string[];
   shortDesc: string;
   fullDesc: string[];
 }
 
-export const locations = ["Chennai", "Hyderabad", "Bay Area"] as const;
+export const locations = ["Chennai", "Bangalore", "Hyderabad", "Bay Area"] as const;
 
 export const dogs: Dog[] = [
   {
@@ -90,6 +93,123 @@ export const dogs: Dog[] = [
       "Sandy is a big, lovable, happy boy with a playful spirit and a heart to match. He's friendly with everyone he meets and brings a fun, goofy energy wherever he goes.",
       "He loves food (including vegetables!) and would be a great candidate for training using positive reinforcement. Sandy will do best with an adopter who can give him structure, daily exercise, and lots of engagement—he's still young and full of life.",
       "If you're looking for a loyal, playful companion who will keep you smiling, Sandy is ready to be your best friend.",
+    ],
+  },
+  {
+    slug: "cooper",
+    name: "Cooper",
+    emoji: "💛",
+    gender: "Male",
+    age: "2 months",
+    weight: "4 lbs",
+    location: "Bangalore",
+    goodWithDogs: "Yes",
+    goodWithCats: "Not socialized yet",
+    crateTrained: "No",
+    quirks: "None",
+    vaccinations: "First vaccination done",
+    photos: ["/images/Cooper.jpeg"],
+    shortDesc:
+      "Meet Cooper, a tiny bundle of joy with a heart that runs faster than his paws. At just 2 months old, this 1.8 kg sweetheart is all sunshine and wiggles.",
+    fullDesc: [
+      "Meet Cooper, a tiny bundle of joy with a heart that runs faster than his paws. At just 2 months old, this 1.8 kg sweetheart is all sunshine and wiggles, always ready to turn an ordinary day into a play-filled adventure.",
+      "Rescued and already thriving, Cooper absolutely adores human company and will happily be your little shadow, following you from room to room like a loyal sidekick in training. He's great with other dogs and brings an infectious energy wherever he goes.",
+      "Still learning the ropes (no crate training yet!), but with his eagerness and love for people, he's the perfect pup to grow with.",
+      "✨ First vaccination done. 💛 High-energy, playful, and full of love.",
+    ],
+  },
+  {
+    slug: "brownie-blr",
+    name: "Brownie",
+    emoji: "🐾",
+    gender: "Male",
+    age: "2 months",
+    weight: "4 lbs",
+    location: "Bangalore",
+    goodWithDogs: "Yes",
+    goodWithCats: "Not socialized yet",
+    crateTrained: "No",
+    quirks: "Stealing other dogs' toys",
+    vaccinations: "First vaccination done",
+    photos: ["/images/Brownie.jpeg"],
+    shortDesc:
+      "If joy had a face, it might look a lot like Brownie. This 2-month-old, 2 kg charmer is equal parts cuddle bug and cheeky mischief-maker.",
+    fullDesc: [
+      "If joy had a face, it might look a lot like Brownie. This 2-month-old, 2 kg charmer is equal parts cuddle bug and cheeky mischief-maker.",
+      "Well-socialized with both humans and other dogs, Brownie is the life of the puppy party. His favorite hobby? Sneaking off with toys that technically belong to other dogs… but he insists sharing is overrated.",
+      "Rescued and ready for a forever home, Brownie will fill your life with laughter, chaos, and a whole lot of love.",
+      "✨ First vaccination done. 🐾 Social, playful, and delightfully naughty.",
+    ],
+  },
+  {
+    slug: "coco",
+    name: "Coco",
+    emoji: "💫",
+    gender: "Male",
+    age: "2 months",
+    weight: "5 lbs",
+    location: "Bangalore",
+    goodWithDogs: "Yes",
+    goodWithCats: "Not socialized yet",
+    crateTrained: "No",
+    quirks: "Hyper active",
+    vaccinations: "First vaccination done",
+    photos: ["/images/Coco.jpeg"],
+    shortDesc:
+      "Coco is a little spark wrapped in fur. At 2.2 kg and just 2 months old, he's a beautiful mix of zoomies and snuggles.",
+    fullDesc: [
+      "Coco is a little spark wrapped in fur. At 2.2 kg and just 2 months old, he's a beautiful mix of zoomies and snuggles.",
+      "This rescued boy is full of energy when it's playtime, but the moment you sit down, he transforms into the gentlest cuddle companion, melting into your arms like he's always belonged there.",
+      "Great with other dogs and deeply affectionate with humans, Coco is the kind of pup who gives you both excitement and comfort in equal measure.",
+      "✨ First vaccination done. 💫 Playful, affectionate, and irresistibly cuddly.",
+    ],
+  },
+  {
+    slug: "hazel",
+    name: "Hazel",
+    emoji: "🌿",
+    gender: "Female",
+    age: "2.5 months",
+    weight: "6 lbs",
+    location: "Bangalore",
+    goodWithDogs: "Yes",
+    goodWithCats: "Not socialized yet",
+    crateTrained: "No",
+    quirks: "Very sober",
+    vaccinations: "Second vaccination done",
+    photos: ["/images/Hazel.jpeg"],
+    shortDesc:
+      "Hazel is quiet strength in the smallest, softest form. This 2.5-month-old, 2.5 kg girl may have three legs, but she carries herself with a grace that feels almost magical.",
+    fullDesc: [
+      "Hazel is quiet strength in the smallest, softest form. This 2.5-month-old, 2.5 kg girl may have three legs, but she carries herself with a grace that feels almost magical.",
+      "Rescued and incredibly calm, Hazel has a gentle, soulful presence. She loves human hugs and will happily sit beside you, offering a kind of peace that only special dogs seem to bring.",
+      "She gets along well with other dogs and asks for nothing more than a loving home where she can continue to blossom at her own serene pace.",
+      "✨ Second vaccination done. 🌿 Calm, loving, and beautifully resilient.",
+    ],
+  },
+  {
+    slug: "bolt",
+    name: "Bolt",
+    emoji: "🤍",
+    gender: "Male",
+    age: "50 days",
+    weight: "3 lbs",
+    location: "Bangalore",
+    goodWithDogs: "Yes",
+    goodWithCats: "Not socialized yet",
+    crateTrained: "No",
+    quirks: "Very sober",
+    vaccinations: "First vaccination done",
+    photos: ["/images/Bolt.jpeg"],
+    shortDesc:
+      "Don't let the name fool you, Bolt isn't a streak of lightning. He's the quiet glow that stays. A tiny 3.3 lb rescued pup with a softness that feels rare.",
+    fullDesc: [
+      "Don't let the name fool you, Bolt isn't a streak of lightning. He's the quiet glow that stays.",
+      "At just 50 days old, this tiny 3.3 lb rescued pup carries a softness that feels rare. While other puppies tumble through chaos, Bolt moves gently through the world, taking it all in with calm curiosity. He's incredibly sweet, great with other dogs, and naturally drawn to human comfort, often choosing to sit close, soaking in love rather than demanding it.",
+      "There's something deeply peaceful about him. The kind of presence that makes a home feel warmer, quieter, steadier.",
+      "Bolt hasn't been crate trained yet and hasn't met cats, but his gentle nature suggests he'll take new experiences in stride with a little patience and care.",
+      "If you're looking for a companion who brings calm instead of chaos, softness instead of noise, Bolt might just be your little heart dog.",
+      "✨ First vaccination done. 🤍 Gentle, calm, quietly loving.",
     ],
   },
 ];

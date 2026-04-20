@@ -53,8 +53,31 @@ import { dogs, locations } from '../data/dogs';
         ))}
       </div>
 
+      <div class="dogs-empty" id="dogs-empty" hidden>
+        <span class="dogs-empty-paw">🐾</span>
+        <h3 class="dogs-empty-title">No adoptable dogs here yet</h3>
+        <p class="dogs-empty-text">Check back later — we regularly post adoptable dogs in different locations!</p>
+      </div>
+
+      <div class="shelterluv-section" id="shelterluv-section" hidden>
+        <p class="shelterluv-intro">Adoptable dogs from our partner shelter in Hyderabad:</p>
+        <div id="shelterluv_wrap_1775580826"></div>
+        <p class="shelterluv-credit">Powered by <a href="https://www.shelterluv.com/" target="_blank" rel="noopener">Shelterluv</a></p>
+      </div>
+
     </div>
   </main>
+
+  <script is:inline src="https://new.shelterluv.com/misc/shelterluv_embed.js"></script>
+  <script is:inline defer>
+    var sourceDomain = "https://new.shelterluv.com";
+    var base_path = "";
+    var GID = 41079;
+    var filters = { saved_query: 4729 };
+    if (typeof EmbedAvailablePets === 'function') {
+      EmbedAvailablePets("shelterluv_wrap_1775580826", GID, filters, 1, sourceDomain, base_path, 2);
+    }
+  </script>
 
   <Footer />
   <MobileBottomNav />
@@ -64,6 +87,9 @@ import { dogs, locations } from '../data/dogs';
   document.addEventListener('DOMContentLoaded', () => {
     const buttons = document.querySelectorAll('.filter-btn');
     const cards = document.querySelectorAll('.dog-card');
+    const grid = document.querySelector('.dogs-grid') as HTMLElement | null;
+    const emptyState = document.getElementById('dogs-empty');
+    const shelterluvSection = document.getElementById('shelterluv-section');
 
     buttons.forEach((btn) => {
       btn.addEventListener('click', () => {
@@ -71,14 +97,27 @@ import { dogs, locations } from '../data/dogs';
         btn.classList.add('active');
 
         const filter = btn.getAttribute('data-filter');
+        let visibleCount = 0;
 
         cards.forEach((card) => {
           if (filter === 'all' || card.getAttribute('data-location') === filter) {
             (card as HTMLElement).style.display = '';
+            visibleCount++;
           } else {
             (card as HTMLElement).style.display = 'none';
           }
         });
+
+        const showShelterluv = filter === 'Hyderabad';
+        if (shelterluvSection) shelterluvSection.hidden = !showShelterluv;
+
+        if (showShelterluv) {
+          if (grid) grid.style.display = 'none';
+          if (emptyState) emptyState.hidden = true;
+        } else {
+          if (emptyState) emptyState.hidden = visibleCount > 0;
+          if (grid) grid.style.display = visibleCount === 0 ? 'none' : '';
+        }
       });
     });
   });
@@ -181,6 +220,139 @@ import { dogs, locations } from '../data/dogs';
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: var(--space-6);
+  }
+
+  /* ── Shelterluv embed ─────────────────────────────────── */
+  .shelterluv-section {
+    padding: 0;
+  }
+
+  .shelterluv-intro {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    color: var(--color-text-mid);
+    margin: 0 0 var(--space-6);
+    text-align: center;
+  }
+
+  .shelterluv-credit {
+    font-family: var(--font-body);
+    font-size: var(--text-2xs);
+    color: var(--color-text-muted);
+    margin: var(--space-8) 0 0;
+    text-align: center;
+  }
+
+  .shelterluv-credit a {
+    color: var(--color-text-muted);
+    text-decoration: underline;
+  }
+
+  /* ── Override Shelterluv embed styles to match site theme ── */
+  :global(#shelterluv_wrap_1775580826) {
+    font-family: var(--font-body) !important;
+    color: var(--color-text) !important;
+  }
+
+  :global(#shelterluv_wrap_1775580826 *) {
+    font-family: inherit !important;
+  }
+
+  /* Filter inputs / select boxes / search */
+  :global(#shelterluv_wrap_1775580826 input),
+  :global(#shelterluv_wrap_1775580826 select),
+  :global(#shelterluv_wrap_1775580826 button) {
+    font-family: var(--font-body) !important;
+    font-size: var(--text-sm) !important;
+    border-radius: var(--radius-pill) !important;
+    border: 1.5px solid var(--color-card-border) !important;
+    background: var(--color-card-bg) !important;
+    color: var(--color-text) !important;
+    padding: 8px 18px !important;
+    transition: var(--trans-btn) !important;
+  }
+
+  :global(#shelterluv_wrap_1775580826 input:focus),
+  :global(#shelterluv_wrap_1775580826 select:focus) {
+    outline: none !important;
+    border-color: var(--color-gold) !important;
+  }
+
+  :global(#shelterluv_wrap_1775580826 button:hover) {
+    background: var(--color-gold) !important;
+    border-color: var(--color-gold) !important;
+    color: var(--color-text) !important;
+  }
+
+  /* Pet cards / images */
+  :global(#shelterluv_wrap_1775580826 img) {
+    border-radius: 8px !important;
+    border: 1px solid var(--color-card-border) !important;
+    object-fit: cover !important;
+    background: var(--color-card-bg) !important;
+  }
+
+  /* Pet names (typically <a> or heading under image) */
+  :global(#shelterluv_wrap_1775580826 a) {
+    font-family: var(--font-heading) !important;
+    font-weight: 600 !important;
+    color: var(--color-text) !important;
+    text-decoration: none !important;
+    transition: color 0.2s ease !important;
+  }
+
+  :global(#shelterluv_wrap_1775580826 a:hover) {
+    color: var(--color-gold) !important;
+  }
+
+  /* Pet name labels under photos */
+  :global(#shelterluv_wrap_1775580826) :global(.pet_name),
+  :global(#shelterluv_wrap_1775580826) :global([class*="pet_name"]),
+  :global(#shelterluv_wrap_1775580826) :global([class*="name"]) {
+    font-family: var(--font-heading) !important;
+    font-size: var(--text-base) !important;
+    font-weight: 600 !important;
+    color: var(--color-text) !important;
+    margin-top: 8px !important;
+  }
+
+  /* Pagination / page number controls */
+  :global(#shelterluv_wrap_1775580826) :global([class*="pag"]) {
+    font-family: var(--font-body) !important;
+  }
+
+  /* ── Empty state ──────────────────────────────────────── */
+  .dogs-empty {
+    text-align: center;
+    padding: var(--space-15) var(--space-5);
+    background: var(--color-card-bg);
+    border: 1px dashed var(--color-card-border);
+    border-radius: 12px;
+  }
+
+  .dogs-empty-paw {
+    font-size: 48px;
+    display: block;
+    margin-bottom: var(--space-3);
+  }
+
+  .dogs-empty-title {
+    font-family: var(--font-heading);
+    font-size: var(--text-card);
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0 0 var(--space-2);
+  }
+
+  .dogs-empty-text {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: var(--lh-relaxed);
+    color: var(--color-text-muted);
+    margin: 0;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   /* ── Dog card ─────────────────────────────────────────── */
