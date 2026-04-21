@@ -53,6 +53,12 @@ import { dogs, locations } from '../data/dogs';
         ))}
       </div>
 
+      <nav class="pagination" id="pagination" aria-label="Dogs pagination" hidden>
+        <button class="pagination-btn pagination-arrow" id="pagination-prev" type="button" aria-label="Previous page">‹</button>
+        <ul class="pagination-pages" id="pagination-pages" role="list"></ul>
+        <button class="pagination-btn pagination-arrow" id="pagination-next" type="button" aria-label="Next page">›</button>
+      </nav>
+
       <div class="dogs-empty" id="dogs-empty" hidden>
         <span class="dogs-empty-paw">🐾</span>
         <h3 class="dogs-empty-title">No adoptable dogs here yet</h3>
@@ -85,41 +91,130 @@ import { dogs, locations } from '../data/dogs';
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const buttons = document.querySelectorAll('.filter-btn');
-    const cards = document.querySelectorAll('.dog-card');
-    const grid = document.querySelector('.dogs-grid') as HTMLElement | null;
+    const PAGE_SIZE = 6;
+
+    const buttons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+    const cards = Array.from(document.querySelectorAll<HTMLElement>('.dog-card'));
+    const grid = document.querySelector<HTMLElement>('.dogs-grid');
     const emptyState = document.getElementById('dogs-empty');
     const shelterluvSection = document.getElementById('shelterluv-section');
+
+    const pagination = document.getElementById('pagination');
+    const pagesList = document.getElementById('pagination-pages');
+    const prevBtn = document.getElementById('pagination-prev') as HTMLButtonElement | null;
+    const nextBtn = document.getElementById('pagination-next') as HTMLButtonElement | null;
+
+    let currentFilter = 'all';
+    let currentPage = 1;
+
+    function scrollToGridTop() {
+      if (!grid) return;
+      const headerOffset = 90;
+      const top = grid.getBoundingClientRect().top + window.scrollY - headerOffset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+
+    function getFilteredCards(): HTMLElement[] {
+      return cards.filter(
+        (c) => currentFilter === 'all' || c.getAttribute('data-location') === currentFilter,
+      );
+    }
+
+    function renderPaginationControls(totalPages: number) {
+      if (!pagination || !pagesList || !prevBtn || !nextBtn) return;
+
+      pagesList.innerHTML = '';
+
+      if (totalPages <= 1) {
+        pagination.hidden = true;
+        return;
+      }
+      pagination.hidden = false;
+      for (let i = 1; i <= totalPages; i++) {
+        const li = document.createElement('li');
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'pagination-page' + (i === currentPage ? ' active' : '');
+        btn.textContent = String(i);
+        btn.setAttribute('aria-label', `Go to page ${i}`);
+        if (i === currentPage) btn.setAttribute('aria-current', 'page');
+        btn.addEventListener('click', () => {
+          if (i === currentPage) return;
+          currentPage = i;
+          applyView();
+          scrollToGridTop();
+        });
+        li.appendChild(btn);
+        pagesList.appendChild(li);
+      }
+
+      prevBtn.disabled = currentPage === 1;
+      nextBtn.disabled = currentPage === totalPages;
+    }
+
+    function applyView() {
+      const showShelterluv = currentFilter === 'Hyderabad';
+
+      if (shelterluvSection) shelterluvSection.hidden = !showShelterluv;
+
+      if (showShelterluv) {
+        cards.forEach((c) => (c.style.display = 'none'));
+        if (grid) grid.style.display = 'none';
+        if (emptyState) emptyState.hidden = true;
+        if (pagination) pagination.hidden = true;
+        return;
+      }
+
+      const filtered = getFilteredCards();
+      const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+      if (currentPage > totalPages) currentPage = totalPages;
+
+      const start = (currentPage - 1) * PAGE_SIZE;
+      const end = start + PAGE_SIZE;
+      const visibleSet = new Set(filtered.slice(start, end));
+
+      cards.forEach((c) => {
+        c.style.display = visibleSet.has(c) ? '' : 'none';
+      });
+
+      if (grid) grid.style.display = filtered.length === 0 ? 'none' : '';
+      if (emptyState) emptyState.hidden = filtered.length > 0;
+
+      renderPaginationControls(totalPages);
+    }
 
     buttons.forEach((btn) => {
       btn.addEventListener('click', () => {
         buttons.forEach((b) => b.classList.remove('active'));
         btn.classList.add('active');
-
-        const filter = btn.getAttribute('data-filter');
-        let visibleCount = 0;
-
-        cards.forEach((card) => {
-          if (filter === 'all' || card.getAttribute('data-location') === filter) {
-            (card as HTMLElement).style.display = '';
-            visibleCount++;
-          } else {
-            (card as HTMLElement).style.display = 'none';
-          }
-        });
-
-        const showShelterluv = filter === 'Hyderabad';
-        if (shelterluvSection) shelterluvSection.hidden = !showShelterluv;
-
-        if (showShelterluv) {
-          if (grid) grid.style.display = 'none';
-          if (emptyState) emptyState.hidden = true;
-        } else {
-          if (emptyState) emptyState.hidden = visibleCount > 0;
-          if (grid) grid.style.display = visibleCount === 0 ? 'none' : '';
-        }
+        currentFilter = btn.getAttribute('data-filter') || 'all';
+        currentPage = 1;
+        applyView();
       });
     });
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        if (currentPage > 1) {
+          currentPage--;
+          applyView();
+          scrollToGridTop();
+        }
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        const totalPages = Math.max(1, Math.ceil(getFilteredCards().length / PAGE_SIZE));
+        if (currentPage < totalPages) {
+          currentPage++;
+          applyView();
+          scrollToGridTop();
+        }
+      });
+    }
+
+    applyView();
   });
 </script>
 
@@ -319,6 +414,83 @@ import { dogs, locations } from '../data/dogs';
   /* Pagination / page number controls */
   :global(#shelterluv_wrap_1775580826) :global([class*="pag"]) {
     font-family: var(--font-body) !important;
+  }
+
+  /* ── Pagination ───────────────────────────────────────── */
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: var(--space-12) 0 0;
+  }
+
+  .pagination[hidden] {
+    display: none;
+  }
+
+  .pagination-pages {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .pagination-btn,
+  :global(.pagination-page) {
+    font-family: var(--font-heading);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    color: var(--color-text-mid);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.18s ease, color 0.18s ease;
+    padding: 0;
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+    line-height: 1;
+  }
+
+  .pagination-btn:focus-visible,
+  :global(.pagination-page:focus-visible) {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+  }
+
+  :global(.pagination-page:hover),
+  .pagination-btn:hover:not(:disabled) {
+    background: rgba(238, 190, 90, 0.22);
+    color: var(--color-text);
+  }
+
+  :global(.pagination-page.active),
+  :global(.pagination-page.active:hover) {
+    background: var(--color-gold);
+    color: var(--color-text);
+    cursor: default;
+  }
+
+  .pagination-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  .pagination-arrow {
+    font-size: 20px;
+    line-height: 1;
   }
 
   /* ── Empty state ──────────────────────────────────────── */

@@ -69,9 +69,7 @@
       <!-- Donate CTA pill with decorative bone -->
       <span class="nav-donate-wrap">
         <a href="/#donate" class="btn btn-nav-donate">Donate</a>
-        <svg class="nav-deco-bone" viewBox="0 0 100 50" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M 5 15 A 10 10 0 0 1 25 15 L 75 15 A 10 10 0 0 1 95 15 A 10 10 0 0 0 95 35 A 10 10 0 0 1 75 35 L 25 35 A 10 10 0 0 1 5 35 A 10 10 0 0 0 5 15 Z"/>
-        </svg>
+        <span class="nav-deco-bone" aria-hidden="true">𐂯</span>
       </span>
 
     </div>
@@ -263,15 +261,18 @@
 
   .nav-deco-bone {
     position: absolute;
-    top: -8px;
-    right: -8px;
-    width: 36px;
-    height: 18px;
-    color: var(--color-text-mid);
-    opacity: 0.55;
+    top: -10px;
+    right: -6px;
+    font-family: var(--font-heading);
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--color-text);
+    opacity: 0.9;
     transform: rotate(35deg);
     transform-origin: center;
     pointer-events: none;
+    user-select: none;
   }
 
   /* Plain text links (Happy Tails, Contact Us) — match dropdown trigger style */
