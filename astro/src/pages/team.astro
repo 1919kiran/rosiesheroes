@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/layout/Nav.astro';
+import Footer from '../components/layout/Footer.astro';
+import MobileBottomNav from '../components/layout/MobileBottomNav.astro';
+import TeamHero from '../components/team/TeamHero.astro';
+import FoundingPack from '../components/team/FoundingPack.astro';
+import WaveDivider from '../components/ui/WaveDivider.astro';
+---
+
+<BaseLayout title="Meet the Team | Rosie's Heroes" description="Meet the Founding Pack behind Rosie's Heroes — the humans and the dogs who inspire our 501(c)(3) mission to save and rehabilitate street dogs.">
+  <Nav />
+  
+  <main class="team-page">
+    <TeamHero />
+
+    <!-- Wave divider transition from hero cream to main cream -->
+    <WaveDivider shape="B" fill="#FFF8F1" bg="#FFEFDA" height={40} />
+
+    <FoundingPack />
+
+    <!-- Closing Call-To-Action Banner -->
+    <section class="team-cta-section">
+      <div class="team-cta-inner">
+        <h2 class="team-cta-title">Want to Join Our Mission?</h2>
+        <p class="team-cta-text">
+          We are always looking for passionate volunteers, foster heroes, and partners to help us make a lasting difference in dogs' lives.
+        </p>
+        <div class="team-cta-buttons">
+          <a href="/#volunteer" class="cta-btn cta-btn--primary">Volunteer With Us</a>
+          <a href="/#donate" class="cta-btn cta-btn--secondary">Support Our Work</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+  <MobileBottomNav />
+</BaseLayout>
+
+<style>
+  .team-page {
+    background-color: var(--color-cream, #FFF8F1);
+    min-height: calc(100vh - var(--header-height, 97px));
+  }
+
+  .team-cta-section {
+    background-color: #FFEFDA;
+    border-top: 1px solid #FFEDD6;
+    padding: 70px 20px;
+    text-align: center;
+  }
+
+  .team-cta-inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .team-cta-title {
+    font-family: var(--font-heading, sans-serif);
+    font-size: clamp(28px, 4vw, 36px);
+    color: var(--color-text, #382213);
+    margin: 0 0 14px;
+  }
+
+  .team-cta-text {
+    font-family: var(--font-body, sans-serif);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--color-text-mid, #5B4D43);
+    margin: 0 0 28px;
+  }
+
+  .team-cta-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    padding: 12px 28px;
+    border-radius: var(--radius-pill, 100px);
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.25s ease;
+  }
+
+  .cta-btn--primary {
+    background-color: var(--color-gold, #EEBE5A);
+    color: var(--color-dark-brown, #382213);
+  }
+
+  .cta-btn--primary:hover {
+    background-color: var(--color-gold-hover, #775F2D);
+    color: #FFF8F1;
+  }
+
+  .cta-btn--secondary {
+    background-color: #FFFDFB;
+    border: 1.5px solid #E6C8A4;
+    color: var(--color-text, #382213);
+  }
+
+  .cta-btn--secondary:hover {
+    background-color: #FFEFDA;
+  }
+</style>
