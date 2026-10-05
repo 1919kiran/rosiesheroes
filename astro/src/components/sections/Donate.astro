@@ -5,16 +5,13 @@
 // Cards use: border: 3px solid var(--color-card-border), border-radius: 0px
 // Tier amounts in bold left column, tier name + description in right column
 
-const zeffyModal = (slug: string) =>
-  `https://www.zeffy.com/embed/donation-form/${slug}?modal=true`;
-
-const mainCampaignSlug = 'from-survival-to-safety-2';
-
-const campaigns = [
-  { title: 'A Safe ICU for Dogs',           slug: 'a-safe-icu-for-dogs' },
-  { title: 'Dog Shed for Surgery Recovery', slug: 'dog-shed-for-surgery-recovery' },
-  { title: 'Critical Care Ambulance',       slug: 'critical-care-ambulance' },
-];
+import {
+  zeffyModalUrl,
+  zeffyEmbedUrl,
+  zeffyThermometerUrl,
+  mainCampaignSlug,
+  campaigns,
+} from '../../data/donate';
 ---
 
 <section id="donate">
@@ -28,73 +25,60 @@ const campaigns = [
     <!-- Section header -->
     <div class="donate-header" data-reveal>
       <h2 class="donate-title">
-        Donate
+        Be the Hero the World Needs
         <svg class="paw-decor paw-heading" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="currentColor">
           <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
         </svg>
       </h2>
-      <p class="donate-subtitle">Be the Hero the World Needs.</p>
-      <p class="donate-meta">Rosie's Heroes is a 501c3 animal rescue (tax number 38-4382498).</p>
+      <p class="donate-meta">Rosie’s Broken to Brave Heroes is a 501(c)(3) nonprofit animal rescue with EIN 38-4382498. Donations are tax-deductible and 100% of donations are used towards animal rescue.</p>
     </div>
 
-    <!-- Primary: Zeffy main campaign -->
-    <div class="donate-primary" data-reveal>
-      <span class="donate-card-badge">Preferred</span>
-      <div class="donate-primary-body">
-        <h3 class="donate-primary-title">Donate with Zeffy</h3>
-        <p class="donate-primary-campaign">From Survival to Safety</p>
-        <p class="donate-primary-text">Card or digital wallet. Your tax receipt is emailed instantly.</p>
-        <button type="button" class="btn btn-primary donate-primary-btn" zeffy-form-link={zeffyModal(mainCampaignSlug)}>Donate Now</button>
+    <!-- Ways to give -->
+    <div class="donate-cards" id="donate-cards" data-reveal>
+      <div class="donate-card">
+        <span class="donate-card-badge">Preferred</span>
+        <div class="donate-card-top">
+          <h3 class="donate-card-title">Zeffy</h3>
+          <p class="donate-card-sub">Card or digital wallet. Your tax receipt is emailed instantly.</p>
+        </div>
+        <figure class="donate-card-qr">
+          <img src="/images/zeffy.png" alt="Scan to donate via Zeffy" width="180" height="180" loading="lazy" />
+          <figcaption class="donate-card-hint">Scan with your phone camera</figcaption>
+        </figure>
+        <button type="button" class="donate-card-btn" zeffy-form-link={zeffyModalUrl(mainCampaignSlug)}>Donate</button>
       </div>
-      <figure class="donate-primary-qr">
-        <img src="/images/zeffy.png" alt="Scan to donate via Zeffy" width="180" height="180" loading="lazy" />
-        <figcaption class="donate-card-scan-hint">Or scan with your phone camera</figcaption>
-      </figure>
-    </div>
 
-    <!-- Other ways to give: Zelle, PayPal, Every.org -->
-    <details class="donate-other" id="donate-other" data-reveal>
-      <summary class="donate-other-summary">
-        <span class="donate-other-label">Other ways to give</span>
-        <span class="donate-other-hint">Zelle, PayPal, stock &amp; crypto</span>
-      </summary>
-      <ul class="donate-methods">
-        <li class="donate-method">
-          <div class="donate-method-row">
-            <div class="donate-method-info">
-              <h3 class="donate-method-title">Zelle</h3>
-              <p class="donate-method-sub">Zero fees — 100% goes to the dogs. Send to <strong>rosiesheroes</strong></p>
-            </div>
-            <button class="donate-card-id donate-method-btn" id="zelle-qr-toggle" type="button">Show QR code</button>
-          </div>
-          <div class="zelle-qr-panel" id="zelle-qr-panel">
-            <img src="/images/zelle.png" alt="Scan to donate via Zelle" class="donate-card-qr-large" width="240" height="240" loading="lazy" />
-            <p class="donate-card-scan-hint">Scan with your banking app</p>
-          </div>
-        </li>
-        <li class="donate-method">
-          <div class="donate-method-row">
-            <div class="donate-method-info">
-              <h3 class="donate-method-title">PayPal</h3>
-              <p class="donate-method-sub">Credit card, debit, or Venmo accepted</p>
-            </div>
-            <button class="donate-card-id donate-method-btn" id="paypal-form-toggle" type="button">Open form</button>
-          </div>
-          <div class="paypal-form-panel" id="paypal-form-panel">
-            <div id="paypal-container-LJ6RFXLPK2ML8"></div>
-          </div>
-        </li>
-        <li class="donate-method">
-          <div class="donate-method-row">
-            <div class="donate-method-info">
-              <h3 class="donate-method-title">Stock, crypto &amp; DAF</h3>
-              <p class="donate-method-sub">Give appreciated stock, cryptocurrency, or from a donor-advised fund via Every.org</p>
-            </div>
-            <button class="donate-card-id donate-method-btn" id="every-donate-btn" type="button">Give via Every.org</button>
-          </div>
-        </li>
-      </ul>
-    </details>
+      <div class="donate-card">
+        <div class="donate-card-top">
+          <h3 class="donate-card-title">Zelle</h3>
+          <p class="donate-card-sub">Zero fees — 100% goes to the dogs</p>
+        </div>
+        <figure class="donate-card-qr">
+          <img src="/images/zelle.png" alt="Scan to donate via Zelle" width="180" height="180" loading="lazy" />
+          <figcaption class="donate-card-hint">Scan with your banking app</figcaption>
+        </figure>
+        <p class="donate-card-send">Send to <strong>rosiesheroes</strong></p>
+      </div>
+
+      <div class="donate-card">
+        <div class="donate-card-top">
+          <h3 class="donate-card-title">PayPal</h3>
+          <p class="donate-card-sub">Credit card, debit, or Venmo accepted</p>
+        </div>
+        <button type="button" class="donate-card-btn" id="paypal-form-toggle">Donate</button>
+        <div class="paypal-form-panel" id="paypal-form-panel">
+          <div id="paypal-container-LJ6RFXLPK2ML8"></div>
+        </div>
+      </div>
+
+      <div class="donate-card">
+        <div class="donate-card-top">
+          <h3 class="donate-card-title">Stock, crypto &amp; DAF</h3>
+          <p class="donate-card-sub">Give stock, cryptocurrency, or from a donor-advised fund</p>
+        </div>
+        <button type="button" class="donate-card-btn" id="every-donate-btn">Donate</button>
+      </div>
+    </div>
 
     <!-- Employer matching -->
     <div class="donate-match" data-reveal>
@@ -103,30 +87,30 @@ const campaigns = [
       <p><strong>Already donated?</strong> You may still be able to request a match. Check with your employer to help your generosity go further, funding critical trauma care and spay/neuter for dogs who need us most.</p>
     </div>
 
-    <!-- Campaigns with live progress -->
+    <!-- Campaigns: live thermometer + embedded Zeffy form -->
     <div class="donate-campaigns-header" data-reveal>
-      <h3 class="donate-subheading">Current Campaigns</h3>
-      <p class="donate-subheading-text">Give to a specific project and watch its progress.</p>
+      <h3 class="donate-subheading">Help Bring These Projects to Life</h3>
+      <p class="donate-subheading-text">Support a project close to your heart and give more dogs a chance at safety and healing.</p>
     </div>
     <div class="donate-campaigns">
       {campaigns.map((c) => (
         <article class="donate-campaign" data-reveal="card">
           <h4 class="donate-campaign-title">{c.title}</h4>
+          <div style="position:relative;overflow:hidden;width:100%;padding-top:120px;"><iframe title='Donation form powered by Zeffy' style='position: absolute; border: 0; top:0;left:0;bottom:0;right:0;width:100%;height:120px' src={zeffyThermometerUrl(c.slug)} allowtransparency="true"></iframe></div>
           <iframe
-            class="donate-campaign-thermo"
-            title={`${c.title} fundraising progress`}
-            src={`https://www.zeffy.com/embed/thermometer/${c.slug}`}
+            class="donate-campaign-form"
+            title={`Donate to ${c.title} (powered by Zeffy)`}
+            src={zeffyEmbedUrl(c.slug)}
             loading="lazy"
+            allow="payment"
             allowtransparency="true"
           ></iframe>
-          <button type="button" class="donate-card-id donate-campaign-btn" zeffy-form-link={zeffyModal(c.slug)}>
-            Give to this campaign
-          </button>
         </article>
       ))}
     </div>
 
     <!-- Donation tiers -->
+    <h3 class="donate-subheading donate-tiers-heading" data-reveal>The Power of your Action</h3>
     <div class="donate-tiers">
 
       <div class="donate-tier" data-reveal="card">
@@ -160,7 +144,7 @@ const campaigns = [
         <div class="donate-tier-amount">$2,500</div>
         <div class="donate-tier-content">
           <span class="donate-tier-name">Champion:</span>
-          <p class="donate-tier-desc">Funds a full sterilization and vaccination campaign day for 100+ dogs, preventing dozens of potential rabies cases.</p>
+          <p class="donate-tier-desc">Help bring a transformative project to life—like a rescue ambulance or covered shelter—building lasting infrastructure that empowers communities to help hundreds of dogs per year.</p>
           <p class="donate-tier-recognition">Recognition: All previous, plus a named sponsorship of a campaign.</p>
         </div>
       </div>
@@ -188,9 +172,6 @@ const campaigns = [
   </div><!-- /.section-inner -->
 </section>
 
-<!-- Binds [zeffy-form-link] buttons on DOMContentLoaded, so it must not be loaded lazily -->
-<script is:inline defer src="https://zeffy-scripts.s3.ca-central-1.amazonaws.com/embed-form-script.min.js"></script>
-
 <script is:inline>
   (function() {
     function loadScript(src, onload) {
@@ -200,8 +181,20 @@ const campaigns = [
       document.head.appendChild(s);
     }
 
-    var everyReady = false;
+    var paypalState = 'idle';
+    var everyState = 'idle';
     var everyPendingOpen = false;
+
+    function loadPaypal() {
+      if (paypalState !== 'idle') return;
+      paypalState = 'loading';
+      loadScript('https://www.paypal.com/sdk/js?client-id=BAAn2t0F7jpy6SyZ6NZV4VBR3axQFaZX7pnIhgWueptAPfDzy5Wp750lQP9fX41qXyhOaBmoayL130eB-U&components=hosted-buttons&disable-funding=venmo&currency=USD', function() {
+        paypalState = 'ready';
+        paypal.HostedButtons({
+          hostedButtonId: "LJ6RFXLPK2ML8",
+        }).render("#paypal-container-LJ6RFXLPK2ML8");
+      });
+    }
 
     function openEvery() {
       everyDotOrgDonateButton.setOptions({
@@ -214,47 +207,48 @@ const campaigns = [
       everyDotOrgDonateButton.showWidget();
     }
 
-    var other = document.getElementById('donate-other');
-    if (other) {
-      other.addEventListener('toggle', function onToggle() {
-        if (!other.open) return;
-        other.removeEventListener('toggle', onToggle);
-        loadScript('https://www.paypal.com/sdk/js?client-id=BAAn2t0F7jpy6SyZ6NZV4VBR3axQFaZX7pnIhgWueptAPfDzy5Wp750lQP9fX41qXyhOaBmoayL130eB-U&components=hosted-buttons&disable-funding=venmo&currency=USD', function() {
-          paypal.HostedButtons({
-            hostedButtonId: "LJ6RFXLPK2ML8",
-          }).render("#paypal-container-LJ6RFXLPK2ML8");
-        });
-        loadScript('https://embeds.every.org/0.4/button.js?explicit=1', function() {
-          everyReady = true;
-          if (everyPendingOpen) openEvery();
-        });
+    function loadEvery() {
+      if (everyState !== 'idle') return;
+      everyState = 'loading';
+      loadScript('https://embeds.every.org/0.4/button.js?explicit=1', function() {
+        everyState = 'ready';
+        if (everyPendingOpen) openEvery();
+      });
+    }
+
+    var cards = document.getElementById('donate-cards');
+    if (cards && 'IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function(entries) {
+        if (entries.some(function(e) { return e.isIntersecting; })) {
+          io.disconnect();
+          loadPaypal();
+          loadEvery();
+        }
+      }, { rootMargin: '300px 0px' });
+      io.observe(cards);
+    }
+
+    var paypalBtn = document.getElementById('paypal-form-toggle');
+    var paypalPanel = document.getElementById('paypal-form-panel');
+    if (paypalBtn && paypalPanel) {
+      paypalBtn.addEventListener('click', function() {
+        loadPaypal();
+        var isOpen = paypalPanel.classList.toggle('open');
+        paypalBtn.classList.toggle('active', isOpen);
       });
     }
 
     var everyBtn = document.getElementById('every-donate-btn');
     if (everyBtn) {
       everyBtn.addEventListener('click', function() {
-        if (everyReady) openEvery();
-        else everyPendingOpen = true;
+        if (everyState === 'ready') {
+          openEvery();
+        } else {
+          everyPendingOpen = true;
+          loadEvery();
+        }
       });
     }
-  })();
-</script>
-
-<script is:inline>
-  (function() {
-    function setupToggle(btnId, panelId) {
-      var btn = document.getElementById(btnId);
-      var panel = document.getElementById(panelId);
-      if (btn && panel) {
-        btn.addEventListener('click', function() {
-          var isOpen = panel.classList.toggle('open');
-          btn.classList.toggle('active', isOpen);
-        });
-      }
-    }
-    setupToggle('zelle-qr-toggle', 'zelle-qr-panel');
-    setupToggle('paypal-form-toggle', 'paypal-form-panel');
   })();
 </script>
 
@@ -298,14 +292,6 @@ const campaigns = [
     flex-shrink: 0;
     color: var(--color-gold);
     vertical-align: middle;
-  }
-
-  .donate-subtitle {
-    font-family: var(--font-body);
-    font-size: var(--text-base); /* 16px */
-    line-height: var(--lh-normal);
-    color: var(--color-text);
-    margin: 0;
   }
 
   .donate-meta {
@@ -386,55 +372,137 @@ const campaigns = [
     margin: 0;
   }
 
-  /* ── Primary Zeffy card ─────────────────────────────────── */
-  .donate-primary {
-    position: relative;
+  /* ── Ways-to-give cards ─────────────────────────────────── */
+  .donate-cards {
     display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: center;
-    gap: var(--space-8);
-    background: var(--color-card-bg);
-    border: 2px solid var(--color-gold);
-    border-radius: 10px;
-    padding: var(--space-10) var(--space-10) var(--space-8);
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-5);
   }
 
-  .donate-primary-title {
+  .donate-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+    text-align: center;
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-card-border);
+    border-radius: 10px;
+    padding: var(--space-6);
+  }
+
+  /* Shadow instead of a thicker border keeps the QR codes level across the row */
+  .donate-card:first-child {
+    border-color: var(--color-gold);
+    box-shadow: 0 0 0 1px var(--color-gold);
+  }
+
+  .donate-card-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
     font-family: var(--font-heading);
-    font-size: var(--text-card); /* 24px */
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--color-text);
+    background: var(--color-gold);
+    padding: 2px 10px;
+    border-radius: var(--radius-pill);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .donate-card-title {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
     font-weight: 600;
-    line-height: var(--lh-snug);
     color: var(--color-text);
     margin: 0;
   }
 
-  .donate-primary-campaign {
+  .donate-card-sub {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    line-height: var(--lh-normal);
+    color: var(--color-text-muted);
+    margin: 2px 0 0;
+  }
+
+  .donate-card-qr {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .donate-card-qr img {
+    display: block;
+    width: 180px;
+    height: 180px;
+    padding: var(--space-2);
+    background: #fff;
+    border: 1px solid var(--color-card-border);
+    border-radius: 6px;
+  }
+
+  .donate-card-hint {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    margin-top: var(--space-2);
+  }
+
+  .donate-card-send {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .donate-card-send strong {
+    color: var(--color-gold-hover);
+  }
+
+  .donate-card-btn {
     font-family: var(--font-heading);
     font-size: var(--text-base);
     font-weight: 600;
     color: var(--color-gold);
-    margin: var(--space-1) 0 var(--space-3);
-  }
-
-  .donate-primary-text {
-    font-family: var(--font-body);
-    font-size: var(--text-sm);
-    line-height: var(--lh-normal);
-    color: var(--color-text-mid);
-    margin: 0 0 var(--space-5);
-  }
-
-  .donate-primary-qr {
     margin: 0;
-    text-align: center;
+    padding: 6px 32px;
+    border: 1.5px solid var(--color-gold);
+    border-radius: var(--radius-pill);
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
   }
 
-  .donate-primary-qr img {
+  .donate-card-btn:hover,
+  .donate-card-btn.active {
+    background: var(--color-gold);
+    color: var(--color-text);
+  }
+
+  .paypal-form-panel {
+    display: none;
+    width: 100%;
+    animation: fadeSlideIn 0.3s ease;
+  }
+
+  .paypal-form-panel.open {
     display: block;
-    border-radius: 6px;
-    border: 1px solid var(--color-card-border);
-    background: #fff;
-    padding: var(--space-2);
+  }
+
+  #paypal-container-LJ6RFXLPK2ML8 {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  @keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   /* ── Employer matching ──────────────────────────────────── */
@@ -466,94 +534,6 @@ const campaigns = [
   }
 
   .donate-match p:last-child { margin-bottom: 0; }
-
-  /* ── Other ways to give (Zelle / PayPal / Every.org) ────── */
-  .donate-other {
-    margin-top: var(--space-5);
-    background: var(--color-card-bg);
-    border: 1px solid var(--color-card-border);
-    border-radius: 10px;
-  }
-
-  .donate-other-summary {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: var(--space-1) var(--space-3);
-    padding: var(--space-4) var(--space-6);
-    cursor: pointer;
-    list-style: none;
-  }
-
-  .donate-other-summary::-webkit-details-marker { display: none; }
-
-  .donate-other-label {
-    font-family: var(--font-heading);
-    font-size: var(--text-lg);
-    font-weight: 600;
-    color: var(--color-text);
-  }
-
-  .donate-other-hint {
-    font-family: var(--font-body);
-    font-size: var(--text-sm);
-    color: var(--color-text-muted);
-  }
-
-  .donate-other-summary::after {
-    content: '';
-    margin-left: auto;
-    width: 9px;
-    height: 9px;
-    border-right: 2px solid var(--color-gold);
-    border-bottom: 2px solid var(--color-gold);
-    transform: rotate(45deg) translateY(-3px);
-    transition: transform 0.2s ease;
-  }
-
-  .donate-other[open] .donate-other-summary::after {
-    transform: rotate(-135deg) translateY(-3px);
-  }
-
-  .donate-methods {
-    list-style: none;
-    margin: 0;
-    padding: 0 var(--space-6) var(--space-2);
-  }
-
-  .donate-method {
-    border-top: 1px solid var(--color-card-border);
-    padding: var(--space-4) 0;
-  }
-
-  .donate-method-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-5);
-  }
-
-  .donate-method-title {
-    font-family: var(--font-heading);
-    font-size: var(--text-base);
-    font-weight: 600;
-    color: var(--color-text);
-    margin: 0;
-  }
-
-  .donate-method-sub {
-    font-family: var(--font-body);
-    font-size: var(--text-xs);
-    line-height: var(--lh-normal);
-    color: var(--color-text-mid);
-    margin: 2px 0 0;
-  }
-
-  .donate-method-btn {
-    flex-shrink: 0;
-    font-size: var(--text-sm);
-    padding: 6px 20px;
-  }
 
   /* ── Campaigns ──────────────────────────────────────────── */
   .donate-campaigns-header {
@@ -604,91 +584,21 @@ const campaigns = [
     margin: 0;
   }
 
-  /* Zeffy's thermometer is 62px tall, 86px when its amount line wraps (frames under ~250px wide) */
-  .donate-campaign-thermo {
+  .donate-campaign-form {
     display: block;
     width: 100%;
-    height: 90px;
     border: 0;
   }
 
-  .donate-campaign-btn {
-    margin-top: auto;
-    align-self: center;
-    font-size: var(--text-sm);
-    padding: 6px 20px;
+  /* First form step is ~470px wide, ~610px at 260px wide; later steps scroll inside the frame */
+  .donate-campaign-form {
+    height: 640px;
+    border-radius: 8px;
   }
 
-  .donate-card-badge {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    font-family: var(--font-heading);
-    font-size: 10px;
-    font-weight: 700;
-    color: var(--color-text);
-    background: var(--color-gold);
-    padding: 2px 10px;
-    border-radius: var(--radius-pill);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .donate-card-id {
-    font-family: var(--font-heading);
-    font-size: var(--text-lg);
-    font-weight: 600;
-    color: var(--color-gold);
-    margin: 0;
-    padding: 6px 24px;
-    border: 1.5px solid var(--color-gold);
-    border-radius: var(--radius-pill);
-    display: inline-block;
-    background: transparent;
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s;
-  }
-
-  .donate-card-id:hover,
-  .donate-card-id.active {
-    background: var(--color-gold);
-    color: var(--color-text);
-  }
-
-  .zelle-qr-panel,
-  .paypal-form-panel {
-    display: none;
-    text-align: center;
-    padding-top: var(--space-4);
-    animation: fadeSlideIn 0.3s ease;
-  }
-
-  .zelle-qr-panel.open,
-  .paypal-form-panel.open {
-    display: block;
-  }
-
-  @keyframes fadeSlideIn {
-    from { opacity: 0; transform: translateY(-8px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .donate-card-qr-large {
-    border-radius: 10px;
-    border: 1px solid var(--color-card-border);
-  }
-
-  .donate-card-scan-hint {
-    font-family: var(--font-body);
-    font-size: var(--text-xs);
-    color: var(--color-text-muted);
-    margin: var(--space-2) 0 0;
-  }
-
-  #paypal-container-LJ6RFXLPK2ML8 {
-    width: 100%;
-    max-width: 480px;
-    margin: 0 auto;
+  /* ── Tiers heading ──────────────────────────────────────── */
+  .donate-tiers-heading {
+    margin-bottom: var(--space-5);
   }
 
   /* ── Reveal animations ──────────────────────────────────── */
@@ -782,15 +692,11 @@ const campaigns = [
     .donate-tier:nth-child(5) { border-left-width: 7px; }
     .donate-tier:nth-child(6) { border-left-width: 8px; }
 
-    .donate-primary {
+    .donate-cards {
       grid-template-columns: 1fr;
-      text-align: center;
-      padding: var(--space-10) var(--space-5) var(--space-6);
-      gap: var(--space-5);
     }
 
-    .donate-primary-qr img {
-      margin: 0 auto;
+    .donate-card-qr img {
       width: 160px;
       height: 160px;
     }
@@ -805,18 +711,6 @@ const campaigns = [
 
     .donate-match {
       padding: var(--space-4) var(--space-5);
-    }
-
-    .donate-other-summary,
-    .donate-methods {
-      padding-left: var(--space-4);
-      padding-right: var(--space-4);
-    }
-
-    .donate-method-row {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: var(--space-3);
     }
   }
 </style>

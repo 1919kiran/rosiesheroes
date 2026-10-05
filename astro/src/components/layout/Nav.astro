@@ -1,6 +1,7 @@
 ---
 // Nav.astro — Rosie's Heroes sticky navigation
 // Always cream (#FFF8F1), height 97px, site width 980px
+import { zeffyModalUrl, mainCampaignSlug } from '../../data/donate';
 ---
 
 <header id="site-header" role="banner">
@@ -69,7 +70,7 @@
 
       <!-- Donate CTA pill with decorative bone -->
       <span class="nav-donate-wrap">
-        <a href="/#donate" class="btn btn-nav-donate">Donate</a>
+        <button type="button" class="btn btn-nav-donate" zeffy-form-link={zeffyModalUrl(mainCampaignSlug)}>Donate</button>
         <span class="nav-deco-bone" aria-hidden="true">𐂯</span>
       </span>
 
