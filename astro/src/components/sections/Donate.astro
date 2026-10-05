@@ -52,40 +52,56 @@ const campaigns = [
       </figure>
     </div>
 
-    <!-- Secondary: Zelle + PayPal -->
+    <!-- Other ways to give: Zelle, PayPal, Every.org -->
     <details class="donate-other" id="donate-other" data-reveal>
-      <summary class="donate-other-summary">Prefer Zelle or PayPal?</summary>
-      <div class="donate-cards">
-        <div class="donate-card">
-          <div class="donate-card-top">
-            <h3 class="donate-card-title">Zelle</h3>
-            <p class="donate-card-sub">Zero fees — 100% goes to the dogs</p>
-          </div>
-          <div class="donate-card-action">
-            <p class="donate-card-label">Send to</p>
-            <button class="donate-card-id" id="zelle-qr-toggle" type="button">rosiesheroes</button>
-            <p class="donate-card-tap-hint">Tap to show QR code</p>
+      <summary class="donate-other-summary">
+        <span class="donate-other-label">Other ways to give</span>
+        <span class="donate-other-hint">Zelle, PayPal, stock &amp; crypto</span>
+      </summary>
+      <ul class="donate-methods">
+        <li class="donate-method">
+          <div class="donate-method-row">
+            <div class="donate-method-info">
+              <h3 class="donate-method-title">Zelle</h3>
+              <p class="donate-method-sub">Zero fees — 100% goes to the dogs. Send to <strong>rosiesheroes</strong></p>
+            </div>
+            <button class="donate-card-id donate-method-btn" id="zelle-qr-toggle" type="button">Show QR code</button>
           </div>
           <div class="zelle-qr-panel" id="zelle-qr-panel">
-            <img src="/images/zelle.png" alt="Scan to donate via Zelle" class="donate-card-qr-large" width="280" height="280" loading="lazy" />
+            <img src="/images/zelle.png" alt="Scan to donate via Zelle" class="donate-card-qr-large" width="240" height="240" loading="lazy" />
             <p class="donate-card-scan-hint">Scan with your banking app</p>
           </div>
-        </div>
-        <div class="donate-card">
-          <div class="donate-card-top">
-            <h3 class="donate-card-title">PayPal</h3>
-            <p class="donate-card-sub">Credit card, debit, or Venmo accepted</p>
-          </div>
-          <div class="donate-card-action">
-            <button class="donate-card-id" id="paypal-form-toggle" type="button">Donate Now</button>
-            <p class="donate-card-tap-hint">Tap to open donation form</p>
+        </li>
+        <li class="donate-method">
+          <div class="donate-method-row">
+            <div class="donate-method-info">
+              <h3 class="donate-method-title">PayPal</h3>
+              <p class="donate-method-sub">Credit card, debit, or Venmo accepted</p>
+            </div>
+            <button class="donate-card-id donate-method-btn" id="paypal-form-toggle" type="button">Open form</button>
           </div>
           <div class="paypal-form-panel" id="paypal-form-panel">
             <div id="paypal-container-LJ6RFXLPK2ML8"></div>
           </div>
-        </div>
-      </div>
+        </li>
+        <li class="donate-method">
+          <div class="donate-method-row">
+            <div class="donate-method-info">
+              <h3 class="donate-method-title">Stock, crypto &amp; DAF</h3>
+              <p class="donate-method-sub">Give appreciated stock, cryptocurrency, or from a donor-advised fund via Every.org</p>
+            </div>
+            <button class="donate-card-id donate-method-btn" id="every-donate-btn" type="button">Give via Every.org</button>
+          </div>
+        </li>
+      </ul>
     </details>
+
+    <!-- Employer matching -->
+    <div class="donate-match" data-reveal>
+      <h3 class="donate-match-title"><span aria-hidden="true">💚</span> Your Gift Could Go Twice as Far</h3>
+      <p>Your kindness could help even more dogs get the care they deserve. Many employers match charitable donations, which means your gift to Rosie’s Heroes could provide twice the lifesaving impact—at no extra cost to you.</p>
+      <p><strong>Already donated?</strong> You may still be able to request a match. Check with your employer to help your generosity go further, funding critical trauma care and spay/neuter for dogs who need us most.</p>
+    </div>
 
     <!-- Campaigns with live progress -->
     <div class="donate-campaigns-header" data-reveal>
@@ -108,13 +124,6 @@ const campaigns = [
           </button>
         </article>
       ))}
-    </div>
-
-    <!-- Employer matching -->
-    <div class="donate-matching" data-reveal>
-      <h3 class="donate-matching-title"><span aria-hidden="true">💚</span> Your Gift Could Go Twice as Far</h3>
-      <p class="donate-matching-text">Your kindness could help even more dogs get the care they deserve. Many employers match charitable donations, which means your gift to Rosie’s Heroes could provide twice the lifesaving impact—at no extra cost to you.</p>
-      <p class="donate-matching-text"><strong>Already donated?</strong> You may still be able to request a match. Check with your employer to help your generosity go further, funding critical trauma care and spay/neuter for dogs who need us most.</p>
     </div>
 
     <!-- Donation tiers -->
@@ -184,19 +193,49 @@ const campaigns = [
 
 <script is:inline>
   (function() {
+    function loadScript(src, onload) {
+      var s = document.createElement('script');
+      s.src = src;
+      s.onload = onload;
+      document.head.appendChild(s);
+    }
+
+    var everyReady = false;
+    var everyPendingOpen = false;
+
+    function openEvery() {
+      everyDotOrgDonateButton.setOptions({
+        nonprofitSlug: 'rosies-broken-to-brave-heroes',
+        methods: ['stocks', 'crypto', 'daf'],
+        // Default anchor is "donate", which would auto-open the widget on /#donate
+        openAt: 'every-org-donate',
+        primaryColor: '#775F2D',
+      });
+      everyDotOrgDonateButton.showWidget();
+    }
+
     var other = document.getElementById('donate-other');
     if (other) {
       other.addEventListener('toggle', function onToggle() {
         if (!other.open) return;
         other.removeEventListener('toggle', onToggle);
-        var s = document.createElement('script');
-        s.src = 'https://www.paypal.com/sdk/js?client-id=BAAn2t0F7jpy6SyZ6NZV4VBR3axQFaZX7pnIhgWueptAPfDzy5Wp750lQP9fX41qXyhOaBmoayL130eB-U&components=hosted-buttons&disable-funding=venmo&currency=USD';
-        s.onload = function() {
+        loadScript('https://www.paypal.com/sdk/js?client-id=BAAn2t0F7jpy6SyZ6NZV4VBR3axQFaZX7pnIhgWueptAPfDzy5Wp750lQP9fX41qXyhOaBmoayL130eB-U&components=hosted-buttons&disable-funding=venmo&currency=USD', function() {
           paypal.HostedButtons({
             hostedButtonId: "LJ6RFXLPK2ML8",
           }).render("#paypal-container-LJ6RFXLPK2ML8");
-        };
-        document.head.appendChild(s);
+        });
+        loadScript('https://embeds.every.org/0.4/button.js?explicit=1', function() {
+          everyReady = true;
+          if (everyPendingOpen) openEvery();
+        });
+      });
+    }
+
+    var everyBtn = document.getElementById('every-donate-btn');
+    if (everyBtn) {
+      everyBtn.addEventListener('click', function() {
+        if (everyReady) openEvery();
+        else everyPendingOpen = true;
       });
     }
   })();
@@ -398,30 +437,74 @@ const campaigns = [
     padding: var(--space-2);
   }
 
-  /* ── Other ways to give (Zelle / PayPal) ────────────────── */
+  /* ── Employer matching ──────────────────────────────────── */
+  .donate-match {
+    margin-top: var(--space-5);
+    padding: var(--space-5) var(--space-6);
+    background: var(--color-card-bg);
+    border-left: 3px solid var(--color-gold);
+    border-radius: 6px;
+  }
+
+  .donate-match-title {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    line-height: var(--lh-snug);
+    color: var(--color-text);
+    margin: 0 0 var(--space-2);
+  }
+
+  .donate-match-title span { margin-right: var(--space-1); }
+
+  .donate-match p {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    line-height: var(--lh-normal);
+    color: var(--color-text);
+    margin: 0 0 var(--space-2);
+  }
+
+  .donate-match p:last-child { margin-bottom: 0; }
+
+  /* ── Other ways to give (Zelle / PayPal / Every.org) ────── */
   .donate-other {
     margin-top: var(--space-5);
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-card-border);
+    border-radius: 10px;
   }
 
   .donate-other-summary {
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    gap: var(--space-2);
-    font-family: var(--font-heading);
-    font-size: var(--text-base);
-    font-weight: 600;
-    color: var(--color-text-mid);
+    flex-wrap: wrap;
+    gap: var(--space-1) var(--space-3);
+    padding: var(--space-4) var(--space-6);
     cursor: pointer;
     list-style: none;
-    padding: var(--space-2) 0;
   }
 
   .donate-other-summary::-webkit-details-marker { display: none; }
 
+  .donate-other-label {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .donate-other-hint {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
   .donate-other-summary::after {
     content: '';
-    width: 8px;
-    height: 8px;
+    margin-left: auto;
+    width: 9px;
+    height: 9px;
     border-right: 2px solid var(--color-gold);
     border-bottom: 2px solid var(--color-gold);
     transform: rotate(45deg) translateY(-3px);
@@ -432,7 +515,45 @@ const campaigns = [
     transform: rotate(-135deg) translateY(-3px);
   }
 
-  .donate-other-summary:hover { color: var(--color-text); }
+  .donate-methods {
+    list-style: none;
+    margin: 0;
+    padding: 0 var(--space-6) var(--space-2);
+  }
+
+  .donate-method {
+    border-top: 1px solid var(--color-card-border);
+    padding: var(--space-4) 0;
+  }
+
+  .donate-method-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-5);
+  }
+
+  .donate-method-title {
+    font-family: var(--font-heading);
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .donate-method-sub {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    line-height: var(--lh-normal);
+    color: var(--color-text-mid);
+    margin: 2px 0 0;
+  }
+
+  .donate-method-btn {
+    flex-shrink: 0;
+    font-size: var(--text-sm);
+    padding: 6px 20px;
+  }
 
   /* ── Campaigns ──────────────────────────────────────────── */
   .donate-campaigns-header {
@@ -461,6 +582,7 @@ const campaigns = [
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: var(--space-5);
+    margin-bottom: var(--space-15);
   }
 
   .donate-campaign {
@@ -497,58 +619,6 @@ const campaigns = [
     padding: 6px 20px;
   }
 
-  /* ── Employer matching ──────────────────────────────────── */
-  .donate-matching {
-    margin: var(--space-15) 0;
-    padding: var(--space-6) var(--space-8);
-    background: var(--color-card-bg);
-    border: 1px solid var(--color-card-border);
-    border-left: 4px solid var(--color-gold);
-    border-radius: 10px;
-  }
-
-  .donate-matching-title {
-    font-family: var(--font-heading);
-    font-size: var(--text-label); /* 20px */
-    font-weight: 600;
-    line-height: var(--lh-snug);
-    color: var(--color-text);
-    margin: 0 0 var(--space-3);
-  }
-
-  .donate-matching-title span { margin-right: var(--space-1); }
-
-  .donate-matching-text {
-    font-family: var(--font-body);
-    font-size: var(--text-base);
-    line-height: var(--lh-normal);
-    color: var(--color-text);
-    margin: 0 0 var(--space-3);
-  }
-
-  .donate-matching-text:last-child { margin-bottom: 0; }
-
-  /* ── Donate method cards ──────────────────────────────────── */
-  .donate-cards {
-    margin-top: var(--space-3);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-5);
-  }
-
-  .donate-card {
-    background: var(--color-card-bg);
-    border: 1px solid var(--color-card-border);
-    border-radius: 10px;
-    padding: var(--space-6);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: var(--space-3);
-    position: relative;
-  }
-
   .donate-card-badge {
     position: absolute;
     top: 12px;
@@ -562,32 +632,6 @@ const campaigns = [
     border-radius: var(--radius-pill);
     text-transform: uppercase;
     letter-spacing: 0.05em;
-  }
-
-  .donate-card-top { text-align: center; }
-
-  .donate-card-title {
-    font-family: var(--font-heading);
-    font-size: var(--text-lg);
-    font-weight: 600;
-    color: var(--color-text);
-    margin: 0;
-  }
-
-  .donate-card-sub {
-    font-family: var(--font-body);
-    font-size: var(--text-2xs);
-    color: var(--color-text-muted);
-    margin: 2px 0 0;
-  }
-
-  .donate-card-action { text-align: center; }
-
-  .donate-card-label {
-    font-family: var(--font-body);
-    font-size: var(--text-xs);
-    color: var(--color-text-muted);
-    margin: 0 0 4px;
   }
 
   .donate-card-id {
@@ -605,22 +649,17 @@ const campaigns = [
     transition: background 0.2s, color 0.2s;
   }
 
-  .donate-card-id:hover {
+  .donate-card-id:hover,
+  .donate-card-id.active {
     background: var(--color-gold);
     color: var(--color-text);
-  }
-
-  .donate-card-tap-hint {
-    font-family: var(--font-body);
-    font-size: var(--text-2xs);
-    color: var(--color-text-muted);
-    margin: 6px 0 0;
   }
 
   .zelle-qr-panel,
   .paypal-form-panel {
     display: none;
     text-align: center;
+    padding-top: var(--space-4);
     animation: fadeSlideIn 0.3s ease;
   }
 
@@ -646,44 +685,10 @@ const campaigns = [
     margin: var(--space-2) 0 0;
   }
 
-  .donate-card-btn {
-    display: inline-block;
-    font-family: var(--font-heading);
-    font-size: var(--text-sm);
-    font-weight: 600;
-    color: var(--color-text);
-    background: var(--color-gold);
-    border: 2px solid var(--color-gold);
-    border-radius: var(--radius-pill);
-    padding: 6px 28px;
-    text-decoration: none;
-    transition: var(--trans-btn);
-  }
-
-  .donate-card-btn:hover {
-    background: var(--color-gold-hover);
-    border-color: var(--color-gold-hover);
-    color: var(--color-gold-dark-hover);
-  }
-
   #paypal-container-LJ6RFXLPK2ML8 {
     width: 100%;
-    min-width: 340px;
-  }
-
-  .paypal-form-panel {
-    width: 100%;
-  }
-
-  .donate-card-qr {
-    border-radius: 6px;
-    border: 1px solid var(--color-card-border);
-    opacity: 0.85;
-  }
-
-  .donate-card-id.active {
-    background: var(--color-gold);
-    color: var(--color-text);
+    max-width: 480px;
+    margin: 0 auto;
   }
 
   /* ── Reveal animations ──────────────────────────────────── */
@@ -777,10 +782,6 @@ const campaigns = [
     .donate-tier:nth-child(5) { border-left-width: 7px; }
     .donate-tier:nth-child(6) { border-left-width: 8px; }
 
-    .donate-cards {
-      grid-template-columns: 1fr;
-    }
-
     .donate-primary {
       grid-template-columns: 1fr;
       text-align: center;
@@ -794,14 +795,28 @@ const campaigns = [
       height: 160px;
     }
 
-    .donate-campaigns-header,
-    .donate-matching {
+    .donate-campaigns-header {
       margin-top: var(--space-10);
     }
 
-    .donate-matching {
+    .donate-campaigns {
       margin-bottom: var(--space-10);
-      padding: var(--space-5);
+    }
+
+    .donate-match {
+      padding: var(--space-4) var(--space-5);
+    }
+
+    .donate-other-summary,
+    .donate-methods {
+      padding-left: var(--space-4);
+      padding-right: var(--space-4);
+    }
+
+    .donate-method-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-3);
     }
   }
 </style>
