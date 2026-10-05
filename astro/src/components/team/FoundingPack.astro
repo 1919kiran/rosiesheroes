@@ -1,0 +1,154 @@
+---
+import TeamMemberCard from './TeamMemberCard.astro';
+import { foundingPack } from '../../data/team';
+---
+
+<section class="founding-pack-section" id="founding-pack">
+  <div class="section-container">
+    <div class="pack-header">
+      <div class="pack-badge">
+        <span class="paw-accent">🐾</span>
+        <span>The Heart of Rosie's Heroes</span>
+      </div>
+      <h2 class="pack-title">The Founding Pack</h2>
+      <p class="pack-subtitle">
+        Rosie’s Heroes may be run by humans, but it was inspired by the dogs who taught us that every life is worth fighting for. Meet the dogs who left their pawprints on our board members, and the humans carrying that inspiration forward.
+      </p>
+    </div>
+
+    <div class="pack-grid">
+      {foundingPack.map((member) => (
+        <TeamMemberCard member={member} />
+      ))}
+    </div>
+
+    <!-- Governance & Transparency Statement Box -->
+    <div class="trust-banner">
+      <div class="trust-banner-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          <path d="M9 12l2 2 4-4"/>
+        </svg>
+      </div>
+      <div class="trust-banner-content">
+        <h3 class="trust-banner-title">Our Commitment to 100% Transparency</h3>
+        <p class="trust-banner-text">
+          As a registered 501(c)(3) non-profit organization (EIN / Charity ID registered in California), our board serves entirely voluntarily with zero administrative overhead waste. 100% of your contributions go straight to ground operations, trauma surgeries, and sterilizations across India.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .founding-pack-section {
+    padding: 60px 20px 80px;
+    background-color: var(--color-cream, #FFF8F1);
+  }
+
+  .section-container {
+    max-width: var(--site-width, 980px);
+    margin: 0 auto;
+  }
+
+  .pack-header {
+    text-align: center;
+    max-width: 740px;
+    margin: 0 auto 52px;
+  }
+
+  .pack-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #FFEDD6;
+    color: #8C5517;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 6px 16px;
+    border-radius: var(--radius-pill, 100px);
+    margin-bottom: 16px;
+  }
+
+  .pack-title {
+    font-family: var(--font-heading, sans-serif);
+    font-size: clamp(32px, 5vw, 44px);
+    color: var(--color-text, #382213);
+    line-height: var(--lh-tight, 1.1);
+    letter-spacing: var(--ls-tight, -0.02em);
+    margin: 0 0 16px;
+  }
+
+  .pack-subtitle {
+    font-family: var(--font-body, sans-serif);
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--color-text-mid, #5B4D43);
+    margin: 0;
+  }
+
+  .pack-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 28px;
+    margin-bottom: 48px;
+  }
+
+  /* Trust & Transparency Banner */
+  .trust-banner {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    background: #FFFCF9;
+    border: 1.5px dashed #F2DCBF;
+    border-radius: 14px;
+    padding: 24px 28px;
+  }
+
+  .trust-banner-icon {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #FFEDD6;
+    color: #8C5517;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .trust-banner-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .trust-banner-content {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .trust-banner-title {
+    font-family: var(--font-heading, sans-serif);
+    font-size: 18px;
+    color: var(--color-text, #382213);
+    margin: 0;
+  }
+
+  .trust-banner-text {
+    font-family: var(--font-body, sans-serif);
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--color-text-mid, #5B4D43);
+    margin: 0;
+  }
+
+  @media (max-width: 680px) {
+    .trust-banner {
+      flex-direction: column;
+      padding: 20px;
+    }
+  }
+</style>

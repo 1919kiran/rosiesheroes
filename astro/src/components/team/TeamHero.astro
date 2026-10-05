@@ -1,0 +1,200 @@
+---
+// TeamHero.astro — Hero banner for Meet the Team page
+---
+
+<section class="team-hero">
+  <div class="team-hero-inner">
+    <!-- Navigation Back Link -->
+    <div class="back-nav-row">
+      <a href="/" class="back-home-link" aria-label="Return to Rosie's Heroes homepage">
+        <svg class="back-arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>Back to Home</span>
+      </a>
+      <span class="crumb-separator">/</span>
+      <span class="crumb-current">About Us</span>
+      <span class="crumb-separator">/</span>
+      <span class="crumb-current">Meet the Team</span>
+    </div>
+
+    <div class="team-hero-badge">
+      <span class="badge-dot"></span>
+      <span>Our Leadership & Governance</span>
+    </div>
+    
+    <h1 class="team-hero-title">Meet Our Team</h1>
+    
+    <p class="team-hero-lead">
+      We believe donors and supporters deserve to know who leads our organization. Meet the board members guiding Rosie's Heroes and the dogs who inspired our mission.
+    </p>
+
+    <div class="team-hero-stats">
+      <div class="stat-pill">
+        <span class="stat-number">100%</span>
+        <span class="stat-label">Volunteer Board</span>
+      </div>
+      <div class="stat-pill-divider"></div>
+      <div class="stat-pill">
+        <span class="stat-number">501(c)(3)</span>
+        <span class="stat-label">Tax-Deductible Non-Profit</span>
+      </div>
+      <div class="stat-pill-divider"></div>
+      <div class="stat-pill">
+        <span class="stat-number">0%</span>
+        <span class="stat-label">Admin Overhead Waste</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .team-hero {
+    background: linear-gradient(180deg, #FFF8F1 0%, #FFEFDA 100%);
+    padding: 70px 20px 50px;
+    border-bottom: 1px solid #FFEDD6;
+    text-align: center;
+  }
+
+  .team-hero-inner {
+    max-width: 820px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .back-nav-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+    font-size: 13.5px;
+    font-family: var(--font-body, sans-serif);
+  }
+
+  .back-home-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--color-text, #382213);
+    font-weight: 700;
+    text-decoration: none;
+    background: #FFFDFB;
+    border: 1px solid #FFEDD6;
+    padding: 6px 14px;
+    border-radius: var(--radius-pill, 100px);
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 4px rgba(56, 34, 19, 0.04);
+  }
+
+  .back-home-link:hover {
+    background: var(--color-gold, #EEBE5A);
+    border-color: #D9A842;
+    transform: translateX(-2px);
+  }
+
+  .back-arrow-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  .crumb-separator {
+    color: #C4B0A1;
+    font-size: 12px;
+  }
+
+  .crumb-current {
+    color: var(--color-text-muted, #8C756D);
+    font-weight: 500;
+  }
+
+  .team-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #FFFDFB;
+    border: 1px solid #FFEDD6;
+    padding: 6px 14px;
+    border-radius: var(--radius-pill, 100px);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-text-mid, #5B4D43);
+    margin-bottom: 20px;
+  }
+
+  .badge-dot {
+    width: 8px;
+    height: 8px;
+    background: #4EA365;
+    border-radius: 50%;
+  }
+
+  .team-hero-title {
+    font-family: var(--font-heading, sans-serif);
+    font-size: clamp(38px, 6vw, 56px);
+    color: var(--color-text, #382213);
+    line-height: var(--lh-tight, 1.1);
+    letter-spacing: var(--ls-hero, -0.03em);
+    margin: 0 0 18px;
+  }
+
+  .team-hero-lead {
+    font-family: var(--font-body, sans-serif);
+    font-size: clamp(16px, 2.5vw, 19px);
+    line-height: 1.6;
+    color: var(--color-text-mid, #5B4D43);
+    margin: 0 0 32px;
+  }
+
+  .team-hero-stats {
+    display: inline-flex;
+    align-items: center;
+    background: #FFFDFB;
+    border: 1.5px solid #FFEDD6;
+    border-radius: var(--radius-pill, 100px);
+    padding: 10px 24px;
+    gap: 20px;
+    box-shadow: 0 2px 10px rgba(56, 34, 19, 0.04);
+  }
+
+  .stat-pill {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .stat-number {
+    font-family: var(--font-heading, sans-serif);
+    font-size: 17px;
+    font-weight: 700;
+    color: #382213;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--color-text-muted, #8C756D);
+    font-weight: 500;
+  }
+
+  .stat-pill-divider {
+    width: 1px;
+    height: 24px;
+    background: #FFEDD6;
+  }
+
+  @media (max-width: 600px) {
+    .team-hero-stats {
+      flex-direction: column;
+      border-radius: 16px;
+      gap: 12px;
+      width: 100%;
+      padding: 16px;
+    }
+    .stat-pill-divider {
+      width: 60%;
+      height: 1px;
+    }
+  }
+</style>
