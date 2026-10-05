@@ -212,7 +212,6 @@ p {
   font-family: var(--font-heading);
   font-size: 19px;
   font-weight: 600;
-  line-height: inherit;
   border: 2px solid var(--color-gold);
   cursor: pointer;
   transition: var(--trans-btn);
