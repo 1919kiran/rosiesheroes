@@ -23,7 +23,8 @@ const reverse = index % 2 === 1;
           alt={`${member.fullName} with ${member.dogName}`}
           loading="lazy"
           width="480"
-          height="285"
+          height="360"
+          style={member.photoPosition ? `object-position: ${member.photoPosition}` : undefined}
         />
       ) : (
         <div class="pack-photo pack-photo--placeholder" role="img" aria-label={`Placeholder for ${member.fullName} with ${member.dogName}`}>
@@ -116,7 +117,7 @@ const reverse = index % 2 === 1;
   }
 
   .pack-photo {
-    height: 285px;
+    height: 360px;
     width: 100%;
     object-fit: cover;
     object-position: center 18%;
@@ -247,7 +248,7 @@ const reverse = index % 2 === 1;
     }
 
     .pack-photo {
-      height: 240px;
+      height: 300px;
     }
   }
 </style>

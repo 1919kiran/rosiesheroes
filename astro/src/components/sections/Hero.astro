@@ -228,17 +228,17 @@ import { spayNeuters, traumaSurgeries, infraProjects } from '../../data/impact';
     transform: rotate(25deg);
   }
 
-  /* 501(c)(3) note — same line as the paw, under the headline */
+  /* 501(c)(3) note — own line beneath the headline, flowing horizontally */
   .hero-org-note {
-    display: inline-block;
+    flex-basis: 100%;
+    max-width: 440px;
+    margin: 12px 0 0;
     font-family: var(--font-body);
     font-size: 16px;
     font-weight: 500;
     line-height: 1.45;
     letter-spacing: 0.01em;
     color: var(--color-text-mid);
-    max-width: 340px;
-    margin-left: 12px;
     opacity: 0;
     transform: translateY(12px);
     animation: hero-fade-in 1.2s ease-out 1.4s forwards;
@@ -413,11 +413,9 @@ import { spayNeuters, traumaSurgeries, infraProjects } from '../../data/impact';
     }
 
     .hero-org-note {
-      max-width: 100%;
-      margin-left: 0;
-      margin-top: 8px;
-      flex-basis: 100%;
       text-align: center;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .hero-stat {

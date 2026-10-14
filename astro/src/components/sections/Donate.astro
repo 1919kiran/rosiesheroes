@@ -96,18 +96,63 @@ import {
       {campaigns.map((c) => (
         <article class="donate-campaign" data-reveal="card">
           <h4 class="donate-campaign-title">{c.title}</h4>
-          <div style="position:relative;overflow:hidden;width:100%;padding-top:120px;"><iframe title='Donation form powered by Zeffy' style='position: absolute; border: 0; top:0;left:0;bottom:0;right:0;width:100%;height:120px' src={zeffyThermometerUrl(c.slug)} allowtransparency="true"></iframe></div>
-          <iframe
-            class="donate-campaign-form"
-            title={`Donate to ${c.title} (powered by Zeffy)`}
-            src={zeffyEmbedUrl(c.slug)}
-            loading="lazy"
-            allow="payment"
-            allowtransparency="true"
-          ></iframe>
+          <div class="donate-thermo-slot" data-thermo-src={zeffyThermometerUrl(c.slug)}></div>
+          <div class="donate-form-slot" data-form-src={zeffyEmbedUrl(c.slug)} data-form-title={`Donate to ${c.title} (powered by Zeffy)`}></div>
+          <button type="button" class="btn btn-primary donate-campaign-btn" zeffy-form-link={zeffyModalUrl(c.slug)}>
+            Donate to {c.title}
+          </button>
         </article>
       ))}
     </div>
+    <script is:inline>
+      // Lazy-load Zeffy embeds: thermometers load when near the viewport;
+      // the full donation forms only load on desktop — embedding several of
+      // them crashes mobile browsers. On mobile each campaign gets a button
+      // that opens the Zeffy modal instead (bound by the Zeffy embed script).
+      (function () {
+        var DESKTOP_MQ = '(min-width: 769px)';
+        function makeIframe(attrs, cssText) {
+          var f = document.createElement('iframe');
+          for (var k in attrs) f.setAttribute(k, attrs[k]);
+          if (cssText) f.style.cssText = cssText;
+          return f;
+        }
+        function loadThermo(slot) {
+          if (slot.dataset.loaded) return;
+          slot.dataset.loaded = '1';
+          slot.appendChild(makeIframe(
+            { title: 'Donation progress powered by Zeffy', src: slot.getAttribute('data-thermo-src'), allowtransparency: 'true' },
+            'position:absolute;border:0;top:0;left:0;width:100%;height:120px'
+          ));
+        }
+        function loadForm(slot) {
+          if (!window.matchMedia(DESKTOP_MQ).matches) return;
+          if (slot.dataset.loaded) return;
+          slot.dataset.loaded = '1';
+          slot.appendChild(makeIframe(
+            { class: 'donate-campaign-form', title: slot.getAttribute('data-form-title'), src: slot.getAttribute('data-form-src'), allow: 'payment', allowtransparency: 'true' },
+            ''
+          ));
+        }
+        function loadCard(card) {
+          var t = card.querySelector('[data-thermo-src]');
+          var f = card.querySelector('[data-form-src]');
+          if (t) loadThermo(t);
+          if (f) loadForm(f);
+        }
+        var cards = document.querySelectorAll('.donate-campaign');
+        if ('IntersectionObserver' in window) {
+          var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (en) {
+              if (en.isIntersecting) { loadCard(en.target); io.unobserve(en.target); }
+            });
+          }, { rootMargin: '500px' });
+          cards.forEach(function (c) { io.observe(c); });
+        } else {
+          cards.forEach(loadCard);
+        }
+      })();
+    </script>
 
     <!-- Donation tiers -->
     <h3 class="donate-subheading donate-tiers-heading" data-reveal>The Power of your Action</h3>
@@ -590,6 +635,23 @@ import {
     border: 0;
   }
 
+  /* Lazy-load slots for the Zeffy embeds (filled by the inline script) */
+  .donate-thermo-slot {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 120px;
+  }
+
+  .donate-form-slot:empty {
+    display: none;
+  }
+
+  .donate-campaign-btn {
+    display: none;
+    align-self: stretch;
+  }
+
   /* First form step is ~470px wide, ~610px at 260px wide; later steps scroll inside the frame */
   .donate-campaign-form {
     height: 640px;
@@ -638,6 +700,10 @@ import {
   /* ── Mobile responsive ─────────────────────────────────── */
   @media (max-width: 768px) {
     .donate-bg { display: none; }
+
+    /* Mobile: no embedded Zeffy forms (they crash mobile browsers) —
+       each campaign shows a button that opens the Zeffy modal instead. */
+    .donate-campaign-btn { display: inline-block; }
 
     #donate {
       padding: var(--space-15) 0 var(--space-10);

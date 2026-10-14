@@ -13,6 +13,7 @@ export interface FoundingPackMember {
   dogAvatarColor: string;
   initials: string;
   photo?: string;
+  photoPosition?: string;
 }
 
 export const foundingPack: FoundingPackMember[] = [
@@ -31,6 +32,7 @@ export const foundingPack: FoundingPackMember[] = [
     dogAvatarColor: '#E09A52',
     initials: 'PR',
     photo: '/images/team/priyanka.jpg',
+    photoPosition: 'center 10%',
   },
   {
     id: 'ladoo-archana',
@@ -44,6 +46,7 @@ export const foundingPack: FoundingPackMember[] = [
     dogFunFact:
       'With amazing hearing and a need to lead every walk, Ladoo stays at the front of the pack\u2014exactly where this boss lady belongs.',
     photo: '/images/team/archana.jpg',
+    photoPosition: 'center 20%',
     avatarColor: '#7D5265',
     dogAvatarColor: '#E6A15C',
     initials: 'AR',
