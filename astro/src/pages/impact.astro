@@ -1,0 +1,550 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/layout/Nav.astro';
+import Footer from '../components/layout/Footer.astro';
+import MobileBottomNav from '../components/layout/MobileBottomNav.astro';
+import { impactMetrics, impactReportedAsOf } from '../data/impact';
+import { rescueProjects, projectDonateUrl, traumaStoriesByMonth } from '../data/impact-page';
+import IndiaMap from '../components/impact/IndiaMap.astro';
+---
+
+<BaseLayout title="Our Impact | Rosie's Heroes" description="Life-changing care: trauma surgeries, spay/neuters, rescue infrastructure projects, and monthly trauma recovery stories from Rosie's Heroes.">
+  <Nav />
+  <main class="impact-page">
+
+    <!-- Hero -->
+    <section class="impact-hero">
+      <div class="impact-hero-inner">
+        <h1 class="impact-title">Our Impact</h1>
+        <h2 class="impact-subtitle">Life-Changing Care</h2>
+        <p class="impact-lead">
+          Every dog matters. Together, we&rsquo;re helping injured dogs heal,
+          preventing future suffering, and giving local rescuers the resources
+          to save more lives.
+        </p>
+        <div class="impact-counters">
+          {impactMetrics.map((m) => (
+            <div class="impact-counter">
+              <span class="impact-counter-number">{m.value}</span>
+              <span class="impact-counter-label">{m.label}</span>
+            </div>
+          ))}
+        </div>
+        <p class="impact-asof">Impact reported as of {impactReportedAsOf}</p>
+      </div>
+    </section>
+
+    <!-- Where we work -->
+    <section class="impact-map">
+      <div class="section-container">
+        <h2 class="section-title">Where We Work</h2>
+        <p class="section-lead">
+          From emergency trauma care to spay/neuter programs and rescue
+          infrastructure, our work spans India &mdash; with more sites on the way.
+        </p>
+        <IndiaMap />
+      </div>
+    </section>
+
+    <!-- Trauma recovery stories -->
+    <section class="impact-stories">
+      <div class="section-container">
+        <h2 class="section-title">Trauma Recovery Stories</h2>
+        <p class="section-lead">
+          Follow our trauma care cases month by month. Each monthly report shares
+          the dogs we treated, their progress, and the recovery your support
+          makes possible.
+        </p>
+
+        <div class="month-tabs" role="tablist" aria-label="Trauma stories by month">
+          {traumaStoriesByMonth.map((tm, i) => (
+            <button
+              type="button"
+              role="tab"
+              class="month-tab"
+              class:list={[{ active: i === 0 }]}
+              aria-selected={i === 0 ? 'true' : 'false'}
+              data-month-index={i}
+            >
+              {tm.month}
+            </button>
+          ))}
+        </div>
+
+        <div class="month-panels">
+          {traumaStoriesByMonth.map((tm, i) => (
+            <div
+              role="tabpanel"
+              class="month-panel"
+              class:list={[{ active: i === 0 }]}
+              data-month-index={i}
+              hidden={i !== 0}
+            >
+              {tm.reportUrl ? (
+                <a
+                  href={tm.reportUrl}
+                  target="_blank"
+                  rel="noopener"
+                  class="month-report-link"
+                >
+                  <span class="month-report-text">
+                    <span class="month-report-month">{tm.month}</span>
+                    {tm.stories.length > 0 && (
+                      <span class="month-report-dogs">
+                        Featuring {tm.stories.map((s) => s.dogName).join(' & ')}
+                      </span>
+                    )}
+                  </span>
+                  <span class="month-report-cta">Read the report &rarr;</span>
+                </a>
+              ) : (
+                <p class="stories-coming">
+                  The {tm.month} report is being compiled &mdash; check back soon.
+                </p>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Rescue network / projects -->
+    <section class="impact-projects">
+      <div class="section-container">
+        <h2 class="section-title">Sustainable Community Infrastructure</h2>
+        <p class="section-lead">
+          We empower local communities by providing critical infrastructure so they
+          can independently and sustainably rescue dogs and save more lives.
+        </p>
+        <div class="projects-grid">
+          {rescueProjects.map((p) => (
+            <article class="project-card">
+              <span class="project-status">{p.status}</span>
+              <h3 class="project-title">{p.title}</h3>
+              <p class="project-location">{p.location}</p>
+              <p class="project-impact">Impact: {p.impact}</p>
+              <p class="project-desc">{p.description}</p>
+              <a
+                href={projectDonateUrl(p.zeffySlug)}
+                target="_blank"
+                rel="noopener"
+                class="project-link"
+              >
+                Support this project &rarr;
+              </a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Closing -->
+    <section class="impact-closing">
+      <div class="section-container">
+        <h2 class="section-title">Made possible by you</h2>
+        <p class="section-lead">
+          Behind every number is a dog whose life matters. Thank you for helping
+          turn pain into healing and compassion into action. Every donation is
+          part of the care we make possible together.
+        </p>
+        <a href="/#donate" class="btn-donate">Donate</a>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+  <MobileBottomNav />
+</BaseLayout>
+
+<script>
+  // Month tab switching for trauma stories
+  (function () {
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('.month-tab'));
+    var panels = Array.prototype.slice.call(document.querySelectorAll('.month-panel'));
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        var idx = tab.getAttribute('data-month-index');
+        tabs.forEach(function (t) {
+          var on = t.getAttribute('data-month-index') === idx;
+          t.classList.toggle('active', on);
+          t.setAttribute('aria-selected', on ? 'true' : 'false');
+        });
+        panels.forEach(function (p) {
+          var on = p.getAttribute('data-month-index') === idx;
+          p.classList.toggle('active', on);
+          if (on) { p.removeAttribute('hidden'); } else { p.setAttribute('hidden', ''); }
+        });
+      });
+    });
+  })();
+</script>
+
+<style>
+  .impact-page {
+    background-color: var(--color-cream, #FFF8F1);
+    min-height: calc(100vh - var(--header-height, 97px));
+  }
+
+  .section-container {
+    max-width: var(--site-width, 980px);
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .section-title {
+    font-family: var(--font-heading, sans-serif);
+    font-size: clamp(30px, 4.5vw, 40px);
+    color: var(--color-text, #382213);
+    margin: 0 0 14px;
+    text-align: center;
+  }
+
+  .section-lead {
+    font-family: var(--font-body, sans-serif);
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--color-text-mid, #5B4D43);
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  /* ── Hero ── */
+  .impact-hero {
+    background: linear-gradient(180deg, #FFF8F1 0%, #FFEFDA 100%);
+    padding: 70px 20px 60px;
+    border-bottom: 1px solid #FFEDD6;
+    text-align: center;
+  }
+
+  .impact-hero-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .impact-title {
+    font-family: var(--font-heading, sans-serif);
+    font-size: clamp(38px, 6vw, 56px);
+    color: var(--color-text, #382213);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin: 0 0 8px;
+  }
+
+  .impact-subtitle {
+    font-family: var(--font-heading, sans-serif);
+    font-size: clamp(22px, 3.5vw, 30px);
+    font-weight: 600;
+    color: var(--color-gold-hover, #775F2D);
+    margin: 0 0 16px;
+  }
+
+  .impact-lead {
+    font-family: var(--font-body, sans-serif);
+    font-size: clamp(16px, 2.5vw, 19px);
+    line-height: 1.6;
+    color: var(--color-text-mid, #5B4D43);
+    margin: 0 0 36px;
+  }
+
+  .impact-counters {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .impact-counter {
+    background: #FFFDFB;
+    border: 1px solid #FFEDD6;
+    border-radius: 16px;
+    padding: 22px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .impact-counter-number {
+    font-family: var(--font-heading, sans-serif);
+    font-size: clamp(30px, 4vw, 42px);
+    font-weight: 700;
+    color: var(--color-text, #382213);
+    line-height: 1;
+  }
+
+  .impact-counter-label {
+    font-family: var(--font-body, sans-serif);
+    font-size: 13.5px;
+    color: var(--color-text-mid, #5B4D43);
+    line-height: 1.35;
+  }
+
+  .impact-asof {
+    font-family: var(--font-body, sans-serif);
+    font-size: 13px;
+    font-style: italic;
+    color: var(--color-text-muted, #8C756D);
+    margin: 0;
+  }
+
+  /* ── Map ── */
+  .impact-map {
+    padding: 72px 0 8px;
+  }
+
+  .impact-map .section-lead {
+    margin-bottom: 36px;
+  }
+
+  /* ── Stories ── */
+  .impact-stories {
+    padding: 72px 0;
+  }
+
+  .impact-stories .section-lead {
+    margin-bottom: 32px;
+  }
+
+  .month-report-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    max-width: 560px;
+    margin: 0 auto;
+    background: #FFFDFB;
+    border: 1px solid #FFEDD6;
+    border-radius: 16px;
+    padding: 22px 26px;
+    text-decoration: none;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .month-report-link:hover {
+    border-color: var(--color-gold, #EEBE5A);
+    transform: translateY(-2px);
+  }
+
+  .month-report-month {
+    font-family: var(--font-heading, sans-serif);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-text, #382213);
+    display: block;
+  }
+
+  .month-report-dogs {
+    font-family: var(--font-body, sans-serif);
+    font-size: 14px;
+    color: var(--color-text-mid, #5B4D43);
+    display: block;
+    margin-top: 4px;
+  }
+
+  .month-report-cta {
+    font-family: var(--font-heading, sans-serif);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-gold-hover, #775F2D);
+    white-space: nowrap;
+  }
+
+  .month-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+
+  .month-tab {
+    font-family: var(--font-heading, sans-serif);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-text-mid, #5B4D43);
+    background: #FFFDFB;
+    border: 1.5px solid #FFEDD6;
+    border-radius: 100px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .month-tab:hover {
+    border-color: var(--color-gold, #EEBE5A);
+  }
+
+  .month-tab.active {
+    background: var(--color-gold, #EEBE5A);
+    border-color: var(--color-gold, #EEBE5A);
+    color: var(--color-text, #382213);
+  }
+
+  .stories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+  }
+
+  .story-card {
+    background: #FFFDFB;
+    border: 1px solid #FFEDD6;
+    border-radius: 16px;
+    padding: 28px 26px;
+  }
+
+  .story-name {
+    font-family: var(--font-heading, sans-serif);
+    font-size: 22px;
+    color: var(--color-text, #382213);
+    margin: 0 0 12px;
+  }
+
+  .story-text {
+    font-family: var(--font-body, sans-serif);
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--color-text-mid, #5B4D43);
+    margin: 0 0 12px;
+  }
+
+  .story-text:last-child {
+    margin-bottom: 0;
+  }
+
+  .stories-coming {
+    text-align: center;
+    font-family: var(--font-body, sans-serif);
+    font-size: 16px;
+    font-style: italic;
+    color: var(--color-text-muted, #8C756D);
+    padding: 32px 0;
+    margin: 0;
+  }
+
+  /* ── Projects ── */
+  .impact-projects {
+    padding: 72px 0;
+    background: #FFEFDA;
+    border-top: 1px solid #FFEDD6;
+    border-bottom: 1px solid #FFEDD6;
+  }
+
+  .impact-projects .section-lead {
+    margin-bottom: 36px;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .project-card {
+    background: #FFFDFB;
+    border: 1px solid #FFEDD6;
+    border-radius: 16px;
+    padding: 28px 26px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-status {
+    align-self: flex-start;
+    font-family: var(--font-heading, sans-serif);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text, #382213);
+    background: var(--color-gold, #EEBE5A);
+    border-radius: 100px;
+    padding: 4px 12px;
+    margin-bottom: 14px;
+  }
+
+  .project-title {
+    font-family: var(--font-heading, sans-serif);
+    font-size: 20px;
+    color: var(--color-text, #382213);
+    margin: 0 0 4px;
+  }
+
+  .project-location {
+    font-family: var(--font-body, sans-serif);
+    font-size: 14px;
+    color: var(--color-text-muted, #8C756D);
+    margin: 0 0 4px;
+  }
+
+  .project-impact {
+    font-family: var(--font-heading, sans-serif);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-gold-hover, #775F2D);
+    margin: 0 0 12px;
+  }
+
+  .project-desc {
+    font-family: var(--font-body, sans-serif);
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--color-text-mid, #5B4D43);
+    margin: 0 0 16px;
+    flex-grow: 1;
+  }
+
+  .project-link {
+    font-family: var(--font-heading, sans-serif);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-gold-hover, #775F2D);
+    text-decoration: none;
+  }
+
+  .project-link:hover {
+    text-decoration: underline;
+  }
+
+  /* ── Closing ── */
+  .impact-closing {
+    padding: 72px 0 88px;
+    text-align: center;
+  }
+
+  .impact-closing .section-lead {
+    margin-bottom: 28px;
+  }
+
+  .btn-donate {
+    display: inline-block;
+    font-family: var(--font-heading, sans-serif);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-text, #382213);
+    background: var(--color-gold, #EEBE5A);
+    border-radius: 100px;
+    padding: 14px 44px;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+
+  .btn-donate:hover {
+    background: var(--color-gold-hover, #775F2D);
+    color: #FFF8F1;
+  }
+
+  @media (max-width: 860px) {
+    .impact-counters {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .section-container {
+      padding: 0 20px;
+    }
+  }
+</style>

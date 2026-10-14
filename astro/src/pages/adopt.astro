@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/layout/Nav.astro';
+import Footer from '../components/layout/Footer.astro';
+import MobileBottomNav from '../components/layout/MobileBottomNav.astro';
+import Adopt from '../components/sections/Adopt.astro';
+---
+
+<BaseLayout title="Adopt | Rosie's Heroes" description="Adoption is a small piece of what we do — but for one dog, it transforms everything. Start your adoption journey with Rosie's Heroes.">
+  <Nav />
+  <main>
+    <Adopt />
+  </main>
+  <Footer />
+  <MobileBottomNav />
+</BaseLayout>

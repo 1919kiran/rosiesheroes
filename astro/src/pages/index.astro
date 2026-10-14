@@ -6,10 +6,9 @@ import MobileBottomNav from '../components/layout/MobileBottomNav.astro';
 import Hero from '../components/sections/Hero.astro';
 import WhyRosiesHeroes from '../components/sections/WhyRosiesHeroes.astro';
 import Vision from '../components/sections/Vision.astro';
-import Roadmap from '../components/sections/Roadmap.astro';
-import PilotSites from '../components/sections/PilotSites.astro';
-import ImpactMultiplier from '../components/sections/ImpactMultiplier.astro';
-import Adopt from '../components/sections/Adopt.astro';
+import Mission from '../components/sections/Mission.astro';
+import ImpactPreview from '../components/sections/ImpactPreview.astro';
+import GivingPower from '../components/sections/GivingPower.astro';
 import Volunteer from '../components/sections/Volunteer.astro';
 import HappyTails from '../components/sections/HappyTails.astro';
 import Donate from '../components/sections/Donate.astro';
@@ -28,18 +27,18 @@ import WaveDivider from '../components/ui/WaveDivider.astro';
     <WaveDivider shape="B" fill="#FFF2E3" bg="#FFF9F1" height={24} />
 
     <Vision />
-    <!-- Vision (#FFF2E3) → Roadmap (#FFF1E3): sweep -->
+    <!-- Vision (#FFF2E3) → Mission (#FFF1E3): sweep -->
     <WaveDivider shape="B" fill="#FFEFDA" bg="#FFF2E3" height={50} />
 
-    <Roadmap />
-    <!-- Roadmap (#FFF1E3) → PilotSites (#FFF1E3): same colour — no visible wave needed -->
+    <Mission />
+    <!-- Mission (#FFF1E3) → ImpactPreview (#FFFDFB): sweep -->
+    <WaveDivider shape="B" fill="#FFFDFB" bg="#FFF1E3" height={60} />
 
-    <PilotSites />
-    <!-- PilotSites (#FFF1E3) → ImpactMultiplier (#FFF8F1): asymmetric sweep -->
-    <WaveDivider shape="B" fill="#FFF8F1" bg="#FFF1E3" height={80} />
+    <ImpactPreview />
+    <!-- ImpactPreview (#FFFDFB) → GivingPower (#FFF8F1): sweep -->
+    <WaveDivider shape="B" fill="#FFF8F1" bg="#FFFDFB" height={60} />
 
-    <ImpactMultiplier />
-    <Adopt />
+    <GivingPower />
 
     <HappyTails />
 
