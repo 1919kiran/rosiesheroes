@@ -13,6 +13,11 @@ on:
         options:
           - staging
           - live
+      ref:
+        description: Optional git commit/branch/tag to deploy (leave blank for latest main)
+        required: false
+        default: ''
+        type: string
 
 permissions:
   contents: read
@@ -32,6 +37,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || github.ref }}
 
       - name: Setup Node
         uses: actions/setup-node@v4
