@@ -77,9 +77,38 @@ import { zeffyModalUrl, mainCampaignSlug } from '../../data/donate';
         <span class="nav-deco-bone" aria-hidden="true">𐂯</span>
       </span>
 
+      <!-- Mobile hamburger (visible ≤768px only) -->
+      <button type="button" class="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-mobile-panel">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </button>
+
     </div>
 
   </div>
+
+  <!-- Mobile slide-down menu panel -->
+  <nav class="nav-mobile-panel" id="nav-mobile-panel" aria-label="Mobile navigation">
+    <p class="nav-mobile-group-title">About Us</p>
+    <a href="/#rosies-story">Rosie's Story</a>
+    <a href="/#vision">Vision</a>
+    <a href="/#mission">Mission</a>
+    <a href="/impact">Impact</a>
+    <a href="/#giving-power">Giving Power</a>
+    <a href="/team">Meet the Team</a>
+    <a href="/faq">FAQ</a>
+    <p class="nav-mobile-group-title">Ways to Help</p>
+    <a href="/adopt">Adopt</a>
+    <a href="/foster">Foster</a>
+    <a href="/#volunteer">Volunteer</a>
+    <a href="/#donate">Donate</a>
+    <a href="/#partner">Partner</a>
+    <p class="nav-mobile-group-title">More</p>
+    <a href="/#happy-tails">Happy Tails</a>
+    <a href="/#contact">Contact Us</a>
+    <button type="button" class="btn btn-primary nav-mobile-donate" zeffy-form-link={zeffyModalUrl(mainCampaignSlug)}>Donate</button>
+  </nav>
 </header>
 
 <style>
@@ -320,6 +349,12 @@ import { zeffyModalUrl, mainCampaignSlug } from '../../data/donate';
   }
 
   /* ---- MOBILE RESPONSIVE ---- */
+  /* Hamburger + panel are mobile-only (base: hidden) */
+  .nav-hamburger,
+  .nav-mobile-panel {
+    display: none;
+  }
+
   @media (max-width: 768px) {
     #site-header {
       min-height: 70px;
@@ -346,6 +381,91 @@ import { zeffyModalUrl, mainCampaignSlug } from '../../data/donate';
 
     .nav-social {
       margin: 0;
+    }
+
+    /* Hamburger button (top right) */
+    .nav-hamburger {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      width: 44px;
+      height: 44px;
+      margin-left: 4px;
+      background: none;
+      border: 0;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2.5px;
+      border-radius: 2px;
+      background-color: var(--color-text);
+      transition: transform 0.25s ease, opacity 0.2s ease;
+    }
+
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+    /* Slide-down menu panel */
+    .nav-mobile-panel {
+      display: block;
+      position: fixed;
+      top: 70px;
+      left: 0;
+      right: 0;
+      max-height: calc(100dvh - 70px);
+      overflow-y: auto;
+      background-color: var(--color-cream);
+      border-bottom: 1px solid rgba(91, 77, 67, 0.12);
+      box-shadow: 0 18px 32px rgba(56, 34, 19, 0.10);
+      padding: 6px 22px 26px;
+      z-index: 99;
+      transform: translateY(-10px);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+    }
+
+    .nav-mobile-panel.open {
+      transform: none;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .nav-mobile-group-title {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-text-mid);
+      margin: 18px 0 4px;
+    }
+
+    .nav-mobile-panel > a {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--color-text);
+      text-decoration: none;
+      padding: 9px 0;
+      border-bottom: 1px solid rgba(91, 77, 67, 0.08);
+    }
+
+    .nav-mobile-panel > a:active {
+      color: var(--color-gold-hover);
+    }
+
+    .nav-mobile-donate {
+      width: 100%;
+      margin-top: 18px;
     }
   }
 </style>
@@ -377,4 +497,28 @@ import { zeffyModalUrl, mainCampaignSlug } from '../../data/donate';
       }
     });
   });
+
+  // Mobile hamburger menu toggle
+  const hamburger = document.querySelector<HTMLButtonElement>('.nav-hamburger');
+  const mobilePanel = document.querySelector<HTMLElement>('#nav-mobile-panel');
+  if (hamburger && mobilePanel) {
+    const setOpen = (open: boolean) => {
+      hamburger.classList.toggle('open', open);
+      mobilePanel.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', String(open));
+      hamburger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    };
+    hamburger.addEventListener('click', () => {
+      setOpen(!mobilePanel.classList.contains('open'));
+    });
+    mobilePanel.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).closest('a, button')) setOpen(false);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobilePanel.classList.contains('open')) {
+        setOpen(false);
+        hamburger.focus();
+      }
+    });
+  }
 </script>

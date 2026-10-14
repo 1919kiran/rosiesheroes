@@ -1,6 +1,6 @@
 ---
 // MobileBottomNav — fixed bottom bar visible only on mobile
-// Icons: Home, Adopt (paw), Donate ($), Volunteer (plane), Contact (heart)
+// Icons: Home, Impact (chart), Donate ($), Volunteer (plane), Contact (heart)
 import { zeffyModalUrl, mainCampaignSlug } from '../../data/donate';
 ---
 
@@ -9,9 +9,9 @@ import { zeffyModalUrl, mainCampaignSlug } from '../../data/donate';
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
     <span>Home</span>
   </a>
-  <a href="/adopt" class="mobile-nav-item">
-    <svg viewBox="14.245 16.736 171.51 166.528" fill="currentColor"><path d="M98.902 88.05c-21.698 0-59.447 52.147-61.533 66.037-2.393 15.935 11.019 29.177 27.133 29.177 10.137 0 30.913-11.779 34.4-11.779 3.367 0 23.912 11.779 34.017 11.779 16.114 0 30.472-13.299 27.725-29.177-2.294-13.264-40.009-66.037-61.742-66.037z"/><ellipse cx="73.42" cy="45.16" rx="17.99" ry="28.43"/><ellipse cx="32.24" cy="93.37" rx="17.99" ry="28.43"/><ellipse cx="126.58" cy="45.16" rx="17.99" ry="28.43"/><ellipse cx="167.76" cy="89.04" rx="17.99" ry="28.43"/></svg>
-    <span>Adopt</span>
+  <a href="/#impact-preview" class="mobile-nav-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+    <span>Impact</span>
   </a>
   <button type="button" class="mobile-nav-item mobile-nav-item--donate" zeffy-form-link={zeffyModalUrl(mainCampaignSlug)}>
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
