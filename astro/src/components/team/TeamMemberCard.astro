@@ -1,375 +1,253 @@
 ---
-import type { TeamMember } from '../../data/team';
+// TeamMemberCard.astro — Founding Pack editorial row, per the team page mock.
+// Portrait (person with dog photo, or placeholder) + dog line on one side,
+// name / role / bio / "Why Rosie's Heroes" on the other. Alternates sides.
+import type { FoundingPackMember } from '../../data/team';
 
 interface Props {
-  member: TeamMember;
+  member: FoundingPackMember;
+  index: number;
 }
 
-const { member } = Astro.props;
+const { member, index } = Astro.props;
+const reverse = index % 2 === 1;
 ---
 
-<div class="flip-card-wrapper" id={member.id}>
-  <div class="flip-card" role="region" aria-label={`Card for ${member.dogName} and ${member.fullName}`}>
-    
-    <!-- FRONT SIDE: Dog-led / Meet [Dog] -->
-    <div class="card-side card-front">
-      <!-- Top banner: Clean, no flip hint text -->
-      <div class="side-badge-row">
-        <span class="dog-badge">🐾 {member.dogTitle}</span>
-      </div>
-
-      <!-- Dog Avatar / Portrait -->
-      <div class="dog-avatar-container">
-        <div class="dog-circle" style={`background-color: ${member.dogAvatarColor};`}>
-          <span class="dog-emoji-large">{member.dogEmoji}</span>
-          <span class="dog-paw-badge">🐾</span>
+<article class:list={['pack-row', { reverse }]}>
+  <figure class="pack-portrait">
+    <div class="pack-photo-wrap">
+      {member.photo ? (
+        <img
+          class="pack-photo"
+          src={member.photo}
+          alt={`${member.fullName} with ${member.dogName}`}
+          loading="lazy"
+          width="480"
+          height="285"
+        />
+      ) : (
+        <div class="pack-photo pack-photo--placeholder" role="img" aria-label={`Placeholder for ${member.fullName} with ${member.dogName}`}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 5v2M12 17v2M5 12h2M17 12h2"/></svg>
         </div>
-        <h3 class="dog-name">{member.dogName}</h3>
-        <span class="dog-subtext">The Inspiration</span>
-      </div>
-
-      <!-- Dog Story -->
-      <div class="story-container">
-        <p class="dog-quote">"{member.dogStory}"</p>
-      </div>
-
-      <!-- Flip action button at bottom -->
-      <button class="flip-btn" type="button" aria-label={`View ${member.dogName}'s companion ${member.name}`}>
-        <span>View {member.dogName}'s Companion {member.name}</span>
-      </button>
+      )}
+      <svg class="pack-paw-decor pack-paw-decor--tl" viewBox="14.245 16.736 171.51 166.528" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><g><path d="M98.902 88.05c-21.698 0-59.447 52.147-61.533 66.037-2.393 15.935 11.019 29.177 27.133 29.177 10.137 0 30.913-11.779 34.4-11.779 3.367 0 23.912 11.779 34.017 11.779 16.114 0 30.472-13.299 27.725-29.177-2.294-13.264-40.009-66.037-61.742-66.037z" fill="currentColor"/><path fill="currentColor" d="M91.411 45.161c0 15.699-8.055 28.425-17.991 28.425S55.429 60.86 55.429 45.161s8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/><path fill="currentColor" d="M50.227 93.365c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425S22.3 64.94 32.236 64.94s17.991 12.726 17.991 28.425z"/><path fill="currentColor" d="M144.571 45.161c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/><path fill="currentColor" d="M185.755 89.042c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/></g></svg>
+      <svg class="pack-paw-decor pack-paw-decor--br" viewBox="14.245 16.736 171.51 166.528" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><g><path d="M98.902 88.05c-21.698 0-59.447 52.147-61.533 66.037-2.393 15.935 11.019 29.177 27.133 29.177 10.137 0 30.913-11.779 34.4-11.779 3.367 0 23.912 11.779 34.017 11.779 16.114 0 30.472-13.299 27.725-29.177-2.294-13.264-40.009-66.037-61.742-66.037z" fill="currentColor"/><path fill="currentColor" d="M91.411 45.161c0 15.699-8.055 28.425-17.991 28.425S55.429 60.86 55.429 45.161s8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/><path fill="currentColor" d="M50.227 93.365c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425S22.3 64.94 32.236 64.94s17.991 12.726 17.991 28.425z"/><path fill="currentColor" d="M144.571 45.161c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/><path fill="currentColor" d="M185.755 89.042c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/></g></svg>
     </div>
+    <figcaption class="pack-dogline">
+      <svg class="pack-dogline-paw" viewBox="14.245 16.736 171.51 166.528" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><g><path d="M98.902 88.05c-21.698 0-59.447 52.147-61.533 66.037-2.393 15.935 11.019 29.177 27.133 29.177 10.137 0 30.913-11.779 34.4-11.779 3.367 0 23.912 11.779 34.017 11.779 16.114 0 30.472-13.299 27.725-29.177-2.294-13.264-40.009-66.037-61.742-66.037z" fill="currentColor"/><path fill="currentColor" d="M91.411 45.161c0 15.699-8.055 28.425-17.991 28.425S55.429 60.86 55.429 45.161s8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/><path fill="currentColor" d="M50.227 93.365c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425S22.3 64.94 32.236 64.94s17.991 12.726 17.991 28.425z"/><path fill="currentColor" d="M144.571 45.161c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/><path fill="currentColor" d="M185.755 89.042c0 15.699-8.055 28.425-17.991 28.425s-17.991-12.726-17.991-28.425 8.055-28.425 17.991-28.425 17.991 12.726 17.991 28.425z"/></g></svg>
+      <span>
+        <strong>{member.dogName}</strong>
+        <span class="pack-dog-fact-label">Fun fact</span>
+        <span class="pack-dog-fact-text">{member.dogFunFact}</span>
+      </span>
+    </figcaption>
+  </figure>
 
-    <!-- BACK SIDE: Human Companion & Board Leadership -->
-    <div class="card-side card-back">
-      <!-- Top banner -->
-      <div class="side-badge-row">
-        <span class="human-badge">Board Leadership</span>
-      </div>
-
-      <!-- Human Avatar / Portrait -->
-      <div class="human-avatar-container">
-        <div class="human-circle" style={`background-color: ${member.avatarColor};`}>
-          <span class="human-initial">{member.initials}</span>
-          <span class="human-star-badge">★</span>
-        </div>
-        <h3 class="human-name">{member.fullName}</h3>
-        <span class="human-role">{member.role} · Board of Directors</span>
-        <span class="human-career">{member.professionalRole}</span>
-      </div>
-
-      <!-- Human Leadership Bio -->
-      <div class="story-container">
-        <div class="bio-label-pill">Background & Leadership</div>
-        <p class="human-bio-text">{member.bio}</p>
-      </div>
-
-      <!-- Flip back button at bottom -->
-      <button class="flip-btn flip-btn--back" type="button" aria-label={`View Inspiration: ${member.dogName}`}>
-        <span>View Inspiration: {member.dogName}</span>
-      </button>
+  <div class="pack-text">
+    <h3 class="pack-name">{member.fullName}</h3>
+    <div class="pack-role">{member.role}</div>
+    <p class="pack-bio">{member.bio}</p>
+    <div class="pack-why">
+      <h4>Why Rosie&rsquo;s Heroes</h4>
+      <p>{member.whyRosiesHeroes}</p>
     </div>
-
   </div>
-</div>
+</article>
 
 <style>
-  .flip-card-wrapper {
-    perspective: 1200px;
-    height: 720px;
+  .pack-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+    padding: 46px 0;
+    border-bottom: 1px solid #fde9cc;
   }
 
-  .flip-card {
+  .pack-row:last-child {
+    border-bottom: none;
+  }
+
+  .pack-row.reverse .pack-portrait {
+    order: 2;
+  }
+
+  .pack-portrait {
+    margin: 0;
+    min-width: 0;
+  }
+
+  /* Tilted photo frame with paw-print decor */
+  .pack-photo-wrap {
     position: relative;
-    width: 100%;
-    height: 100%;
-    transform-style: preserve-3d;
-    transition: transform 0.65s cubic-bezier(0.4, 0.2, 0.2, 1);
-    cursor: pointer;
+    transform: rotate(-1.6deg);
+    transition: transform 0.3s ease;
   }
 
-  .flip-card.is-flipped {
-    transform: rotateY(180deg);
+  .pack-row.reverse .pack-photo-wrap {
+    transform: rotate(1.6deg);
   }
 
-  /* Card Faces */
-  .card-side {
+  .pack-photo-wrap:hover {
+    transform: rotate(0deg);
+  }
+
+  .pack-paw-decor {
     position: absolute;
-    top: 0;
-    left: 0;
+    width: 44px;
+    height: 44px;
+    color: var(--color-gold, #EEBE5A);
+    opacity: 0.9;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .pack-paw-decor--tl {
+    top: -18px;
+    left: -14px;
+    transform: rotate(-18deg);
+  }
+
+  .pack-paw-decor--br {
+    bottom: -16px;
+    right: -12px;
+    transform: rotate(14deg);
+  }
+
+  .pack-photo {
+    height: 285px;
     width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    border-radius: 20px;
-    border: 1.5px solid var(--color-card-border, #FFEDD6);
-    box-shadow: 0 6px 20px rgba(56, 34, 19, 0.06);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 24px 20px;
-    transition: box-shadow 0.25s ease, border-color 0.25s ease;
-    box-sizing: border-box;
+    object-fit: cover;
+    object-position: center 18%;
+    display: block;
+    border: 3px solid #ffedd6;
+    border-radius: 18px;
+    box-shadow: 0 10px 28px rgba(56, 34, 19, 0.10);
   }
 
-  .card-side:hover {
-    box-shadow: 0 10px 28px rgba(56, 34, 19, 0.1);
-    border-color: #E6C8A4;
-  }
-
-  /* Front styling (Dog-led) */
-  .card-front {
-    background: linear-gradient(180deg, #FFFDFB 0%, #FFF8EE 100%);
-  }
-
-  /* Back styling (Human companion) */
-  .card-back {
-    background: linear-gradient(180deg, #FFFDFB 0%, #FBF4EA 100%);
-    transform: rotateY(180deg);
-  }
-
-  /* Header badges row */
-  .side-badge-row {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-    margin-bottom: 12px;
-  }
-
-  .dog-badge {
-    background: #FFEDD6;
-    color: #8C5517;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    padding: 4px 14px;
-    border-radius: 100px;
-  }
-
-  .human-badge {
-    background: #EAE3D9;
-    color: #382213;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    padding: 4px 14px;
-    border-radius: 100px;
-  }
-
-  /* Avatar Area */
-  .dog-avatar-container, .human-avatar-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    margin-bottom: 12px;
-    min-height: 180px;
-    justify-content: flex-start;
-  }
-
-  .dog-circle {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
+  .pack-photo--placeholder {
+    background: #ffefda;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
-    border: 4px solid #FFFFFF;
-    margin-bottom: 8px;
+    gap: 13px;
+    color: #8c756d;
   }
 
-  .dog-emoji-large {
-    font-size: 44px;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+  .pack-photo--placeholder svg {
+    width: 85px;
+    height: 85px;
+    opacity: 0.6;
   }
 
-  .dog-paw-badge {
-    position: absolute;
-    bottom: -2px;
-    right: -2px;
-    background: #382213;
-    color: #EEBE5A;
-    font-size: 12px;
+  .pack-photo--placeholder svg:last-child {
+    width: 60px;
+    height: 60px;
+    margin-top: 45px;
+  }
+
+  .pack-dogline {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 14px 4px 0;
+    font-family: var(--font-body, sans-serif);
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--color-text-mid, #5B4D43);
+  }
+
+  .pack-dogline-paw {
+    flex-shrink: 0;
     width: 26px;
     height: 26px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid #FFFFFF;
+    color: var(--color-gold, #EEBE5A);
+    margin-top: 2px;
   }
 
-  .dog-name {
+  .pack-dogline strong {
     font-family: var(--font-heading, sans-serif);
-    font-size: 22px;
-    font-weight: 700;
+    font-size: 17px;
     color: var(--color-text, #382213);
-    margin: 0;
+    margin-right: 10px;
   }
 
-  .dog-subtext {
-    font-size: 13px;
-    color: #8C5517;
-    font-weight: 600;
-    font-style: italic;
-  }
-
-  .human-circle {
-    width: 84px;
-    height: 84px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
-    border: 4px solid #FFFFFF;
-    color: #FFFFFF;
-    margin-bottom: 8px;
-  }
-
-  .human-initial {
-    font-family: var(--font-heading, sans-serif);
-    font-size: 28px;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-  }
-
-  .human-star-badge {
-    position: absolute;
-    bottom: -2px;
-    right: -2px;
-    background: #382213;
-    color: #EEBE5A;
+  .pack-dog-fact-label {
     font-size: 11px;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid #FFFFFF;
-  }
-
-  .human-name {
-    font-family: var(--font-heading, sans-serif);
-    font-size: 21px;
-    font-weight: 700;
-    color: var(--color-text, #382213);
-    margin: 0;
-  }
-
-  .human-role {
-    font-size: 13px;
-    color: #5B4D43;
-    font-weight: 700;
-    margin-top: 2px;
-  }
-
-  .human-career {
-    font-size: 11.5px;
-    color: #8C5517;
-    font-weight: 600;
-    margin-top: 2px;
-    max-width: 260px;
-    line-height: 1.35;
-  }
-
-  /* Story / Bio container */
-  .story-container {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    background: #FFFDFB;
-    border: 1px solid #FFEDD6;
-    border-radius: 12px;
-    padding: 16px;
-    margin-bottom: 16px;
-    overflow: visible;
-  }
-
-  .dog-quote {
-    font-size: 14.5px;
-    line-height: 1.6;
-    color: #4C3C32;
-    font-style: italic;
-    margin: 0;
-  }
-
-  .bio-label-pill {
-    display: inline-block;
-    align-self: flex-start;
-    font-size: 10.5px;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #382213;
-    background: #FFEFDA;
-    padding: 2px 8px;
-    border-radius: 4px;
-    margin-bottom: 8px;
+    letter-spacing: 0.06em;
+    color: var(--color-gold-hover, #775F2D);
+    margin-right: 8px;
   }
 
-  .human-bio-text {
-    font-size: 13.5px;
-    line-height: 1.55;
+  .pack-dog-fact-text {
+    display: block;
+    margin-top: 4px;
+  }
+
+  .pack-name {
+    font-family: var(--font-heading, sans-serif);
+    font-size: 32px;
+    line-height: 1.2;
+    letter-spacing: -0.7px;
+    color: var(--color-text, #382213);
+    margin: 0 0 12px;
+  }
+
+  .pack-role {
+    font-family: var(--font-heading, sans-serif);
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #624b40;
+    margin-bottom: 20px;
+  }
+
+  .pack-bio {
+    font-family: var(--font-body, sans-serif);
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--color-text-mid, #5B4D43);
+    margin: 0 0 20px;
+  }
+
+  .pack-why {
+    border-top: 2px solid #eebe5a;
+    padding-top: 17px;
+    margin-top: 22px;
+  }
+
+  .pack-why h4 {
+    font-family: var(--font-heading, sans-serif);
+    font-size: 19px;
+    color: var(--color-text, #382213);
+    margin: 0 0 10px;
+  }
+
+  .pack-why p {
+    font-family: var(--font-body, sans-serif);
+    font-size: 15px;
+    line-height: 1.65;
     color: var(--color-text-mid, #5B4D43);
     margin: 0;
   }
 
-  /* Flip button */
-  .flip-btn {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #FFF2E0;
-    border: 1px solid #E6C8A4;
-    color: #382213;
-    padding: 12px 14px;
-    border-radius: 100px;
-    font-size: 13px;
-    font-weight: 700;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    letter-spacing: -0.01em;
-  }
+  @media (max-width: 860px) {
+    .pack-row {
+      grid-template-columns: 1fr;
+      gap: 24px;
+      padding: 36px 0;
+    }
 
-  .flip-btn span {
-    white-space: nowrap;
-  }
+    .pack-row.reverse .pack-portrait {
+      order: 0;
+    }
 
-  .flip-btn:hover {
-    background-color: var(--color-gold, #EEBE5A);
-    border-color: #D9A842;
-  }
-
-  .flip-btn--back {
-    background-color: #EFE8DE;
-    border-color: #D4C7B8;
-  }
-
-  .flip-btn--back:hover {
-    background-color: #382213;
-    color: #FFF8F1;
-    border-color: #382213;
-  }
-
-  .flip-icon {
-    font-size: 15px;
-    font-weight: bold;
+    .pack-photo {
+      height: 240px;
+    }
   }
 </style>
-
-<script>
-  document.querySelectorAll('.flip-card').forEach((card) => {
-    card.addEventListener('click', (e) => {
-      card.classList.toggle('is-flipped');
-    });
-  });
-</script>
