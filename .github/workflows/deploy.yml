@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy Website
 
 on:
   push:
@@ -20,7 +20,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
+  group: pages-${{ github.event_name == 'workflow_dispatch' && inputs.target || 'staging' }}
   cancel-in-progress: false
 
 jobs:
@@ -50,22 +50,47 @@ jobs:
             echo "SITE_URL=https://staging.rosiesheroes.org" >> "$GITHUB_ENV"
             printf 'staging.rosiesheroes.org\n' > public/CNAME
           fi
+          touch public/.nojekyll
 
       - name: Build Astro site
         run: npm run build
 
-      - name: Upload artifact
+      - name: Upload Pages artifact for live deploy
+        if: github.event_name == 'workflow_dispatch' && inputs.target == 'live'
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./astro/dist
 
-  deploy:
+      - name: Deploy to staging (staging.rosiesheroes.org)
+        if: github.event_name != 'workflow_dispatch' || inputs.target == 'staging'
+        env:
+          STAGING_DEPLOY_KEY: ${{ secrets.STAGING_DEPLOY_KEY }}
+        run: |
+          if [ -z "$STAGING_DEPLOY_KEY" ]; then
+            echo "::error::Missing STAGING_DEPLOY_KEY secret. Add the SSH private key in Settings -> Secrets and variables -> Actions."
+            exit 1
+          fi
+          mkdir -p ~/.ssh
+          printf '%s\n' "$STAGING_DEPLOY_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -t ed25519,rsa github.com >> ~/.ssh/known_hosts 2>/dev/null
+
+          cd dist
+          git init -b main
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Deploy staging from ${GITHUB_SHA::7}"
+          git push -f git@github.com:1919kiran/rosiesheroes-staging.git main
+
+  deploy-live:
+    if: github.event_name == 'workflow_dispatch' && inputs.target == 'live'
     needs: build
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Deploy to GitHub Pages
+      - name: Deploy to Live GitHub Pages (rosiesheroes.org)
         id: deployment
         uses: actions/deploy-pages@v4

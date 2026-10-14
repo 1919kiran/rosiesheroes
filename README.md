@@ -2,6 +2,7 @@
 
 Website for Rosie's Heroes — a 501c3 nonprofit reducing suffering at scale through spay/neuter and on-the-ground care for Indian street dogs.
 
+**Live site:** [rosiesheroes.org](https://rosiesheroes.org)  
 **Staging site:** [staging.rosiesheroes.org](https://staging.rosiesheroes.org)
 
 ## Tech Stack
