@@ -11,20 +11,36 @@ Website for Rosie's Heroes — a 501c3 nonprofit reducing suffering at scale thr
 - Vanilla JS — scroll reveal, parallax animations
 - GitHub Pages — hosting with custom domain
 
-## Development
+## Development & Deployment Workflow
 
-```bash
-cd astro
-npm install
-npm run dev        # localhost:4321
-npm run build      # outputs to dist/
-```
+All code and changes happen in this repository (`1919kiran/rosiesheroes`).
 
-## Deployment
+### 1. Making Changes
+1. Create a new branch from `main`:
+   ```bash
+   git checkout main
+   git pull
+   git checkout -b my-change
+   ```
+2. Run locally to preview your changes:
+   ```bash
+   cd astro
+   npm install
+   npm run dev        # http://localhost:4321
+   npm run build      # outputs static build to astro/dist/
+   ```
+3. Open a Pull Request into `main` and merge once reviewed.
 
-Pushes to `main` automatically build and deploy to the staging site via GitHub Actions (`.github/workflows/deploy.yml`).
+### 2. Automatic Staging Deployment (`staging.rosiesheroes.org`)
+- Every merge or push to `main` automatically builds and deploys to **[staging.rosiesheroes.org](https://staging.rosiesheroes.org)** via GitHub Actions (`.github/workflows/deploy.yml`).
+- The live production website (`rosiesheroes.org`) is **not** modified when changes land on `main`.
 
-To deploy the hardened version to production, run the workflow manually from GitHub Actions and choose `live` as the deployment target. The default manual target is `staging`.
+### 3. Promoting to the Live Website (`rosiesheroes.org`)
+Once changes have been verified on `staging.rosiesheroes.org`:
+1. Go to **[Actions → Deploy Website](https://github.com/1919kiran/rosiesheroes/actions/workflows/deploy.yml)**.
+2. Click **Run workflow** on the right.
+3. Under **Deployment target**, select **`live`**.
+4. Click **Run workflow** to publish `main` to **[rosiesheroes.org](https://rosiesheroes.org)**.
 
 ## Project Structure
 
