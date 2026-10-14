@@ -2,7 +2,7 @@
 // Hero section — two-column layout, left text + right image
 // Background: var(--color-cream-hero) = #FFEFDA
 // Parallax beagle illustration positioned absolutely over section
-import { spayNeuters, traumaSurgeries, infraProjects } from '../../data/impact';
+import { spayNeuters, traumaSurgeries } from '../../data/impact';
 ---
 
 <section id="hero">
@@ -33,7 +33,6 @@ import { spayNeuters, traumaSurgeries, infraProjects } from '../../data/impact';
 
       <div class="hero-cta hero-delayed">
         <a href="#donate" class="btn btn-primary">Donate</a>
-        <a href="/meet-the-dogs" class="btn btn-secondary">Meet the Dogs</a>
       </div>
 
       <div class="hero-stats hero-delayed" data-countup>
@@ -45,11 +44,6 @@ import { spayNeuters, traumaSurgeries, infraProjects } from '../../data/impact';
         <div class="hero-stat">
           <span class="hero-stat-number" data-target={traumaSurgeries}>0</span>
           <span class="hero-stat-label">Trauma Surgeries</span>
-        </div>
-        <div class="hero-stat-divider" aria-hidden="true"></div>
-        <div class="hero-stat">
-          <span class="hero-stat-number" data-target={infraProjects}>0</span>
-          <span class="hero-stat-label">Infrastructure Projects</span>
         </div>
       </div>
     </div>
@@ -231,7 +225,7 @@ import { spayNeuters, traumaSurgeries, infraProjects } from '../../data/impact';
   /* 501(c)(3) note — own line beneath the headline, flowing horizontally */
   .hero-org-note {
     flex-basis: 100%;
-    max-width: 440px;
+    max-width: none;
     margin: 12px 0 0;
     font-family: var(--font-body);
     font-size: 16px;

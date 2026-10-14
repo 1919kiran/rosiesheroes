@@ -21,7 +21,7 @@ export const foundingPack: FoundingPackMember[] = [
     id: 'priyanka-hero',
     name: 'Priyanka',
     fullName: 'Priyanka Rao',
-    role: 'Founder and President',
+    role: 'President',
     bio: 'After a decade of volunteering and fostering dogs, Priyanka founded Rosie\u2019s Heroes to give more dogs a chance at safety, healing, and love.',
     whyRosiesHeroes:
       'As a child, Priyanka loved Rosie but couldn\u2019t give her the safety and care she deserved. Rosie\u2019s Heroes is her promise to do for dogs like Rosie what she couldn\u2019t do then. After fostering 30+ dogs, she saw that rescue alone could never keep pace with the suffering. She remains committed to every individual dog while tackling the root causes through spay/neuter and empowering communities with the resources to help dogs themselves\u2014creating lasting change beyond a single rescue.',
@@ -38,7 +38,7 @@ export const foundingPack: FoundingPackMember[] = [
     id: 'ladoo-archana',
     name: 'Archana',
     fullName: 'Archana Ramamoorthy',
-    role: 'Founding Member and Treasurer',
+    role: 'Treasurer',
     bio: 'Archana brings her leadership experience and a lifelong connection to India\u2019s street dogs to her role as Treasurer. She helps guide the financial stewardship of Rosie\u2019s Heroes, keeping resources focused on the dogs and communities they serve.',
     whyRosiesHeroes:
       'Growing up in Chennai, Archana knew street dogs as familiar neighborhood guardians. Seeing dogs like them face hunger, injury, and overpopulation today makes this mission deeply personal. Through Rosie\u2019s Heroes, she wants to help give those neighborhood companions the care and safety they deserve.',
@@ -55,7 +55,7 @@ export const foundingPack: FoundingPackMember[] = [
     id: 'soleil-sonia',
     name: 'Sonia',
     fullName: 'Sonia Dong',
-    role: 'Founding Member and Secretary',
+    role: 'Secretary',
     bio: 'As Secretary, Sonia helps keep the work of Rosie\u2019s Heroes organized and moving forward\u2014from documenting board decisions and maintaining records to helping the team follow through on its commitments. She brings that same care to a mission inspired by Soleil, a beloved source of comfort and companionship for her family.',
     whyRosiesHeroes:
       'Soleil has brought so much comfort and companionship to Sonia and her family. Sonia wants more dogs to know the life Soleil has: loved, safe, and surrounded by people who cherish them. Rosie\u2019s Heroes gives her a way to help make that possible.',
