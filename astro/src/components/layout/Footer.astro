@@ -47,22 +47,32 @@
       Transforming communities through sustained welfare for street dogs.
     </p>
 
-    <!-- Footer navigation links — 4 columns -->
+    <!-- Footer navigation links — 3 columns -->
     <nav class="footer-nav" aria-label="Footer navigation">
       <ul class="footer-nav-col" role="list">
+        <li class="footer-nav-heading">About Us</li>
         <li><a href="/#vision"            class="footer-link">Vision</a></li>
         <li><a href="/#rosies-story"      class="footer-link">Rosie's Story</a></li>
-        <li><a href="/#roadmap"           class="footer-link">Roadmap</a></li>
-        <li><a href="/#impact-multiplier" class="footer-link">Impact Multiplier</a></li>
+        <li><a href="/#mission"           class="footer-link">Our Mission</a></li>
+        <li><a href="/impact"             class="footer-link">Impact</a></li>
+        <li><a href="/#giving-power"      class="footer-link">Giving Power</a></li>
         <li><a href="/team"               class="footer-link">Meet the Team</a></li>
-        <li><a href="/#happy-tails"       class="footer-link">Happy Tails</a></li>
       </ul>
       <ul class="footer-nav-col" role="list">
-        <li><a href="/#adopt"     class="footer-link">Adopt</a></li>
-        <li><a href="/#volunteer" class="footer-link">Volunteer</a></li>
-        <li><a href="/#donate"    class="footer-link">Donate</a></li>
-        <li><a href="/#partner"   class="footer-link">Partner</a></li>
-        <li><a href="/#contact"   class="footer-link">Contact Us</a></li>
+        <li class="footer-nav-heading">Ways to Help</li>
+        <li><a href="/impact"             class="footer-link">Impact</a></li>
+        <li><a href="/#giving-power"      class="footer-link">Giving Power</a></li>
+        <li><a href="/adopt"              class="footer-link">Adopt</a></li>
+        <li><a href="/foster"             class="footer-link">Foster</a></li>
+        <li><a href="/#volunteer"         class="footer-link">Volunteer</a></li>
+        <li><a href="/#donate"            class="footer-link">Donate</a></li>
+        <li><a href="/#partner"           class="footer-link">Partner</a></li>
+      </ul>
+      <ul class="footer-nav-col" role="list">
+        <li class="footer-nav-heading">Resources</li>
+        <li><a href="/faq"                class="footer-link">FAQ</a></li>
+        <li><a href="/#happy-tails"       class="footer-link">Happy Tails</a></li>
+        <li><a href="/#contact"           class="footer-link">Contact Us</a></li>
       </ul>
     </nav>
 
@@ -174,8 +184,8 @@
   /* ---- FOOTER NAV ---- */
   .footer-nav {
     display: grid;
-    grid-template-columns: repeat(2, auto);
-    gap: 48px;
+    grid-template-columns: repeat(3, auto);
+    gap: 56px;
     margin-bottom: 40px;
     align-items: flex-start;
     justify-content: center;
@@ -188,6 +198,17 @@
     list-style: none;
     margin: 0;
     padding: 0;
+  }
+
+  .footer-nav-heading {
+    font-family: var(--font-heading);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--color-gold);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    white-space: nowrap;
   }
 
   .footer-link {

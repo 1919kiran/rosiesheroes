@@ -1,0 +1,369 @@
+---
+// Mission.astro — "Our Mission" section.
+// Design follows the ChatGPT mockup (2026-10-14): cream section, eyebrow,
+// heart-badge title, three pillar cards with tinted icon tiles, numbered,
+// colored top edges, paw-print decor, closing tagline.
+---
+
+<section class="mission" id="mission" aria-labelledby="mission-title">
+  <div class="mission-paw mission-paw--one" aria-hidden="true">
+    <svg viewBox="0 0 100 100"><circle cx="20" cy="31" r="10"/><circle cx="43" cy="17" r="10"/><circle cx="68" cy="21" r="10"/><circle cx="85" cy="43" r="9"/><path d="M21 70C21 54 36 41 50 42c16 0 30 17 30 31 0 15-12 18-27 11-11-5-18 4-26 0-5-3-6-8-6-14Z"/></svg>
+  </div>
+  <div class="mission-paw mission-paw--two" aria-hidden="true">
+    <svg viewBox="0 0 100 100"><circle cx="20" cy="31" r="10"/><circle cx="43" cy="17" r="10"/><circle cx="68" cy="21" r="10"/><circle cx="85" cy="43" r="9"/><path d="M21 70C21 54 36 41 50 42c16 0 30 17 30 31 0 15-12 18-27 11-11-5-18 4-26 0-5-3-6-8-6-14Z"/></svg>
+  </div>
+  <div class="mission-paw mission-paw--three" aria-hidden="true">
+    <svg viewBox="0 0 100 100"><circle cx="20" cy="31" r="10"/><circle cx="43" cy="17" r="10"/><circle cx="68" cy="21" r="10"/><circle cx="85" cy="43" r="9"/><path d="M21 70C21 54 36 41 50 42c16 0 30 17 30 31 0 15-12 18-27 11-11-5-18 4-26 0-5-3-6-8-6-14Z"/></svg>
+  </div>
+
+  <div class="mission-wrap">
+    <header class="mission-heading" data-reveal="fade">
+      <div class="mission-eyebrow">Compassion into action</div>
+      <h2 class="mission-title" id="mission-title">
+        Our Mission
+        <span class="mission-heart" aria-hidden="true">
+          <svg viewBox="0 0 40 40"><path d="M20 35S4 25 4 14C4 4 16 2 20 11 25 2 37 4 37 14c0 11-17 21-17 21Z"/></svg>
+        </span>
+      </h2>
+      <p class="mission-intro">
+        Millions of street dogs suffer every day &mdash; not because people
+        don&rsquo;t care, but because the scale of the crisis overwhelms
+        individual rescuers. We focus our energy where it creates the most
+        lasting change: preventing suffering at its source and giving local
+        communities the tools to help themselves.
+      </p>
+      <div class="mission-ornament" aria-hidden="true"><span></span>&#10022;<span></span></div>
+    </header>
+
+    <div class="mission-cards">
+      <article class="mission-card mission-card--gold" data-reveal="card">
+        <div class="mission-card-top">
+          <div class="mission-icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40"><path d="M20 34S6 26 6 16C6 8 16 6 20 13c4-7 14-5 14 3 0 10-14 18-14 18Z"/><path d="M20 17v11M14.5 22.5h11"/></svg>
+          </div>
+          <div class="mission-number" aria-hidden="true">01</div>
+        </div>
+        <h3 class="mission-card-title">Trauma Care</h3>
+        <p class="mission-card-body">
+          Prevention takes time, and dogs are suffering right now. We fund
+          urgent surgeries and medical treatment for injured and critically
+          ill street dogs &mdash; because every life in front of us matters as
+          much as the thousands we aim to protect tomorrow.
+        </p>
+        <div class="mission-card-bottom" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="8" r="2"/><circle cx="10" cy="4" r="2"/><circle cx="16" cy="5" r="2"/><circle cx="20" cy="10" r="2"/><path d="M5 18c0-4 4-8 7-8s7 4 7 8c0 4-4 4-7 3-3-1-7 1-7-3Z"/></svg>
+        </div>
+      </article>
+
+      <article class="mission-card mission-card--rust" data-reveal="card">
+        <div class="mission-card-top">
+          <div class="mission-icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="12"/><path d="M20 12v16M12 20h16"/><path d="M9 9l-3-3M31 31l3 3"/></svg>
+          </div>
+          <div class="mission-number" aria-hidden="true">02</div>
+        </div>
+        <h3 class="mission-card-title">Spay &amp; Neuter</h3>
+        <p class="mission-card-body">
+          One surgery prevents countless future puppies from being born into
+          hunger, disease, and danger. Sterilization is the single most humane
+          and effective way to shrink street-dog populations &mdash; and
+          sustained coverage is what finally collapses rabies transmission in
+          a community.
+        </p>
+        <div class="mission-card-bottom" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="8" r="2"/><circle cx="10" cy="4" r="2"/><circle cx="16" cy="5" r="2"/><circle cx="20" cy="10" r="2"/><path d="M5 18c0-4 4-8 7-8s7 4 7 8c0 4-4 4-7 3-3-1-7 1-7-3Z"/></svg>
+        </div>
+      </article>
+
+      <article class="mission-card mission-card--sage" data-reveal="card">
+        <div class="mission-card-top">
+          <div class="mission-icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40"><path d="M7 33V16l13-9 13 9v17H7Z"/><path d="M15 33V23h10v10M13 17h3M24 17h3"/></svg>
+          </div>
+          <div class="mission-number" aria-hidden="true">03</div>
+        </div>
+        <h3 class="mission-card-title">Infrastructure</h3>
+        <p class="mission-card-body">
+          A rescue can only do what its tools allow. We fund ambulances, ICUs,
+          X-ray machines, and shelter sheds so local teams can treat more
+          animals, faster, for years to come. Infrastructure turns one-time
+          donations into permanent capacity &mdash; empowering communities to
+          help themselves.
+        </p>
+        <div class="mission-card-bottom" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="8" r="2"/><circle cx="10" cy="4" r="2"/><circle cx="16" cy="5" r="2"/><circle cx="20" cy="10" r="2"/><path d="M5 18c0-4 4-8 7-8s7 4 7 8c0 4-4 4-7 3-3-1-7 1-7-3Z"/></svg>
+        </div>
+      </article>
+    </div>
+
+    <div class="mission-closing" data-reveal="fade"><span></span>Small acts. Lasting change.<span></span></div>
+  </div>
+</section>
+
+<style>
+  .mission {
+    position: relative;
+    overflow: hidden;
+    padding: 100px 28px 112px;
+    background:
+      radial-gradient(circle at 7% 15%, #FFF9F0 0, transparent 30%),
+      radial-gradient(circle at 95% 90%, #F9DFBD 0, transparent 30%),
+      #FFF1E3;
+  }
+
+  .mission-wrap {
+    max-width: 1170px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Decorative paw prints */
+  .mission-paw {
+    position: absolute;
+    color: #D7A97C;
+    opacity: 0.21;
+    pointer-events: none;
+  }
+
+  .mission-paw svg {
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
+  }
+
+  .mission-paw--one   { width: 120px; top: 80px;  left: -28px; transform: rotate(-26deg); }
+  .mission-paw--two   { width: 86px;  right: 28px; top: 165px; transform: rotate(26deg); }
+  .mission-paw--three { width: 110px; bottom: 35px; left: 45px; transform: rotate(17deg); }
+
+  /* Header */
+  .mission-heading {
+    text-align: center;
+    max-width: 860px;
+    margin: 0 auto 57px;
+  }
+
+  .mission-eyebrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-body, sans-serif);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #B85F3F;
+  }
+
+  .mission-eyebrow::before,
+  .mission-eyebrow::after {
+    content: '';
+    width: 38px;
+    height: 1px;
+    background: #C98B65;
+  }
+
+  .mission-title {
+    font-family: var(--font-heading, sans-serif);
+    font-size: clamp(40px, 6vw, 64px);
+    letter-spacing: -0.02em;
+    line-height: 1.12;
+    margin: 19px 0 22px;
+    color: var(--color-text, #382213);
+  }
+
+  .mission-heart {
+    display: inline-flex;
+    vertical-align: middle;
+    transform: translateY(-5px) rotate(-12deg);
+    margin-left: 6px;
+  }
+
+  .mission-heart svg {
+    width: 37px;
+    height: 37px;
+    fill: #E6A28B;
+    stroke: #A84F38;
+    stroke-width: 1.7;
+  }
+
+  .mission-intro {
+    font-family: var(--font-body, sans-serif);
+    font-size: clamp(16px, 1.5vw, 19px);
+    line-height: 1.85;
+    color: #665143;
+    margin: 0 auto;
+    max-width: 820px;
+  }
+
+  .mission-ornament {
+    margin: 31px auto 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    color: #C9895B;
+  }
+
+  .mission-ornament span {
+    width: 45px;
+    height: 1px;
+    background: #D9B38D;
+  }
+
+  /* Cards */
+  .mission-cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+  }
+
+  .mission-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 425px;
+    background: rgba(255, 253, 249, 0.95);
+    border: 1px solid #ECD9C4;
+    border-radius: 26px;
+    padding: 35px 32px 34px;
+    box-shadow: 0 17px 40px rgba(85, 47, 21, 0.07), 0 2px 5px rgba(85, 47, 21, 0.025);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .mission-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 24px 50px rgba(85, 47, 21, 0.13);
+  }
+
+  .mission-card::before {
+    content: '';
+    position: absolute;
+    left: 32px;
+    right: 32px;
+    top: 0;
+    height: 4px;
+    border-radius: 0 0 9px 9px;
+  }
+
+  .mission-card--gold::before  { background: var(--color-gold, #EEBE5A); }
+  .mission-card--rust::before  { background: #CF947B; }
+  .mission-card--sage::before  { background: #A7AE80; }
+
+  .mission-card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
+
+  .mission-icon {
+    width: 69px;
+    height: 69px;
+    border-radius: 22px;
+    display: grid;
+    place-items: center;
+    background: #FFF0D5;
+    color: #A95A3C;
+  }
+
+  .mission-card--rust .mission-icon { background: #F8E5DC; color: #B56D53; }
+  .mission-card--sage .mission-icon { background: #E9E9D8; color: #73805A; }
+
+  .mission-icon svg {
+    width: 34px;
+    height: 34px;
+    stroke: currentColor;
+    stroke-width: 1.65;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .mission-number {
+    font-family: var(--font-heading, sans-serif);
+    font-size: 44px;
+    line-height: 1;
+    color: #E6CDA9;
+    letter-spacing: -0.02em;
+  }
+
+  .mission-card-title {
+    font-family: var(--font-heading, sans-serif);
+    font-size: 31px;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    margin: 0 0 17px;
+    color: var(--color-text, #382213);
+  }
+
+  .mission-card-body {
+    font-family: var(--font-body, sans-serif);
+    font-size: 15px;
+    line-height: 1.85;
+    color: #665548;
+    margin: 0;
+  }
+
+  .mission-card-bottom {
+    margin-top: auto;
+    padding-top: 27px;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    color: #BC8D58;
+  }
+
+  .mission-card-bottom::before {
+    content: '';
+    height: 1px;
+    flex: 1;
+    background: #EBDDCD;
+  }
+
+  .mission-card-bottom svg {
+    width: 22px;
+    height: 22px;
+    opacity: 0.8;
+  }
+
+  /* Closing tagline */
+  .mission-closing {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 13px;
+    margin-top: 42px;
+    font-family: var(--font-body, sans-serif);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #A66A49;
+  }
+
+  .mission-closing span {
+    width: 35px;
+    height: 1px;
+    background: #D7AA78;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .mission { padding: 75px 22px; }
+    .mission-cards { grid-template-columns: 1fr; max-width: 620px; margin: 0 auto; }
+    .mission-card { min-height: 0; }
+    .mission-heading { margin-bottom: 43px; }
+  }
+
+  @media (max-width: 520px) {
+    .mission { padding: 60px 18px 75px; }
+    .mission-title { font-size: 40px; }
+    .mission-heart svg { width: 28px; height: 28px; }
+    .mission-intro { font-size: 15px; line-height: 1.8; }
+    .mission-card { padding: 29px 26px; }
+    .mission-card-title { font-size: 28px; }
+    .mission-paw { display: none; }
+  }
+</style>
