@@ -703,7 +703,12 @@ import {
 
     /* Mobile: no embedded Zeffy forms (they crash mobile browsers) —
        each campaign shows a button that opens the Zeffy modal instead. */
-    .donate-campaign-btn { display: inline-block; }
+    .donate-campaign-btn {
+      display: block;
+      width: 100%;
+      white-space: normal;
+      line-height: 1.4;
+    }
 
     #donate {
       padding: var(--space-15) 0 var(--space-10);
