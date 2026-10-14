@@ -1,0 +1,117 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/layout/Nav.astro';
+import Footer from '../components/layout/Footer.astro';
+import MobileBottomNav from '../components/layout/MobileBottomNav.astro';
+
+// Foster form — public viewform URL derived from the form ID in the Phase 2 notes.
+const fosterFormUrl = 'https://docs.google.com/forms/d/1zZlG81wGp20wpUrLphjxeYEpnThokXwIryIXLJPluC8/viewform';
+---
+
+<BaseLayout title="Foster | Rosie's Heroes" description="Open your home, change a life. Foster homes are the bridge between rescue and forever — fill out our foster form to get started.">
+  <Nav />
+  <main class="foster-page">
+    <section class="foster-hero">
+      <div class="foster-hero-inner">
+        <h1 class="foster-title">Foster</h1>
+        <h2 class="foster-subtitle">Open Your Home. Change a Life.</h2>
+        <div class="foster-body">
+          <p>
+            Foster homes are the bridge between rescue and forever. When you foster,
+            you give a dog a safe place to heal, learn, and be loved while they wait
+            for their forever family.
+          </p>
+          <p class="foster-note">
+            <strong>Please note:</strong> Rosie&rsquo;s Heroes doesn&rsquo;t run a
+            foster program of our own &mdash; but if you&rsquo;d like to foster,
+            fill out the form below and we&rsquo;ll connect you with foster
+            opportunities through our rescue partners.
+          </p>
+        </div>
+        <a href={fosterFormUrl} target="_blank" rel="noopener" class="btn-foster">
+          Fill out our foster form &rarr;
+        </a>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <MobileBottomNav />
+</BaseLayout>
+
+<style>
+  .foster-page {
+    background-color: var(--color-cream, #FFF8F1);
+    min-height: calc(100vh - var(--header-height, 97px));
+  }
+
+  .foster-hero {
+    background: linear-gradient(180deg, #FFF8F1 0%, #FFEFDA 100%);
+    padding: 70px 20px 88px;
+    text-align: center;
+  }
+
+  .foster-hero-inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .foster-title {
+    font-family: var(--font-heading, sans-serif);
+    font-size: clamp(38px, 6vw, 56px);
+    color: var(--color-text, #382213);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin: 0 0 8px;
+  }
+
+  .foster-subtitle {
+    font-family: var(--font-heading, sans-serif);
+    font-size: clamp(22px, 3.5vw, 30px);
+    font-weight: 600;
+    color: var(--color-gold-hover, #775F2D);
+    margin: 0 0 28px;
+  }
+
+  .foster-body {
+    text-align: left;
+    margin-bottom: 36px;
+  }
+
+  .foster-body p {
+    font-family: var(--font-body, sans-serif);
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--color-text-mid, #5B4D43);
+    margin: 0 0 18px;
+  }
+
+  .foster-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  .foster-note {
+    background: #FFFDFB;
+    border: 1px solid #FFEDD6;
+    border-radius: 14px;
+    padding: 16px 20px !important;
+    font-size: 15.5px !important;
+  }
+
+  .btn-foster {
+    display: inline-block;
+    font-family: var(--font-heading, sans-serif);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-text, #382213);
+    background: var(--color-gold, #EEBE5A);
+    border-radius: 100px;
+    padding: 14px 44px;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+
+  .btn-foster:hover {
+    background: var(--color-gold-hover, #775F2D);
+    color: #FFF8F1;
+  }
+</style>

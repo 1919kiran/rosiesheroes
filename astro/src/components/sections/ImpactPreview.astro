@@ -1,0 +1,99 @@
+---
+// ImpactPreview.astro — landing-page impact teaser.
+// Reuses the IndiaMap from the impact page, with a button to /impact.
+import IndiaMap from '../impact/IndiaMap.astro';
+---
+
+<section class="impact-preview" id="impact-preview" aria-labelledby="impact-preview-title">
+  <div class="impact-preview-inner">
+    <header class="impact-preview-header" data-reveal="fade">
+      <div class="impact-preview-eyebrow">Where we work</div>
+      <h2 class="impact-preview-title" id="impact-preview-title">Our Impact Across India</h2>
+      <p class="impact-preview-intro">
+        From spay/neuter camps to trauma care and rescue infrastructure &mdash;
+        this is where your support is saving lives.
+      </p>
+    </header>
+
+    <div class="impact-preview-map" data-reveal="card">
+      <IndiaMap />
+    </div>
+
+    <div class="impact-preview-cta" data-reveal="fade">
+      <a href="/impact" class="btn btn-primary">Deep dive into our impact</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .impact-preview {
+    background: #FFFDFB;
+    padding: 88px 24px 96px;
+  }
+
+  .impact-preview-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .impact-preview-eyebrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-body, sans-serif);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #B85F3F;
+    margin-bottom: 14px;
+  }
+
+  .impact-preview-eyebrow::before,
+  .impact-preview-eyebrow::after {
+    content: '';
+    width: 38px;
+    height: 1px;
+    background: #C98B65;
+  }
+
+  .impact-preview-title {
+    font-family: var(--font-heading, sans-serif);
+    font-size: clamp(32px, 4.5vw, 48px);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin: 0 0 16px;
+    color: var(--color-text, #382213);
+  }
+
+  .impact-preview-intro {
+    font-family: var(--font-body, sans-serif);
+    font-size: 17px;
+    line-height: 1.75;
+    color: #665143;
+    margin: 0 auto 40px;
+    max-width: 640px;
+  }
+
+  .impact-preview-map {
+    max-width: 520px;
+    margin: 0 auto 36px;
+  }
+
+  .impact-preview-cta .btn {
+    display: inline-block;
+  }
+
+  @media (max-width: 520px) {
+    .impact-preview {
+      padding: 64px 20px 72px;
+    }
+
+    .impact-preview-intro {
+      font-size: 15.5px;
+      margin-bottom: 32px;
+    }
+  }
+</style>
