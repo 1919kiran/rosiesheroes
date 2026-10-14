@@ -1,0 +1,27 @@
+{
+  "source": "fallback-defaults",
+  "fetchedAt": "2026-10-14T22:40:00.000Z",
+  "sheetId": "10UvQAq6x8yvrXynjiYCbJ1yro1YQmKl0C4nEm-K_PTQ",
+  "metrics": [
+    {
+      "key": "trauma_surgeries",
+      "label": "Trauma Surgeries",
+      "value": 10
+    },
+    {
+      "key": "spay_neuters",
+      "label": "Spay/Neuters",
+      "value": 25
+    },
+    {
+      "key": "projects",
+      "label": "Community Infrastructure Projects",
+      "value": 1
+    },
+    {
+      "key": "dogs_helped",
+      "label": "Dogs Helped",
+      "value": 235
+    }
+  ]
+}
