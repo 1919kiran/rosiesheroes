@@ -1,6 +1,6 @@
 {
-  "source": "fallback-defaults",
-  "fetchedAt": "2026-10-14T22:40:00.000Z",
+  "source": "google-sheet",
+  "fetchedAt": "2026-10-14T22:44:56.289Z",
   "sheetId": "10UvQAq6x8yvrXynjiYCbJ1yro1YQmKl0C4nEm-K_PTQ",
   "metrics": [
     {
