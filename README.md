@@ -2,7 +2,7 @@
 
 Website for Rosie's Heroes — a 501c3 nonprofit reducing suffering at scale through spay/neuter and on-the-ground care for Indian street dogs.
 
-**Live site:** [rosiesheroes.org](https://rosiesheroes.org)
+**Staging site:** [staging.rosiesheroes.org](https://staging.rosiesheroes.org)
 
 ## Tech Stack
 
@@ -21,7 +21,9 @@ npm run build      # outputs to dist/
 
 ## Deployment
 
-Pushes to `main` automatically build and deploy via GitHub Actions (`.github/workflows/deploy.yml`).
+Pushes to `main` automatically build and deploy to the staging site via GitHub Actions (`.github/workflows/deploy.yml`).
+
+To deploy the hardened version to production, run the workflow manually from GitHub Actions and choose `live` as the deployment target. The default manual target is `staging`.
 
 ## Project Structure
 

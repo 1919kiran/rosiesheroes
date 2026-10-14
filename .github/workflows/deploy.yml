@@ -4,6 +4,15 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      target:
+        description: Deployment target
+        required: true
+        default: staging
+        type: choice
+        options:
+          - staging
+          - live
 
 permissions:
   contents: read
@@ -31,6 +40,16 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Configure deployment target
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.target }}" = "live" ]; then
+            echo "SITE_URL=https://rosiesheroes.org" >> "$GITHUB_ENV"
+            printf 'rosiesheroes.org\n' > public/CNAME
+          else
+            echo "SITE_URL=https://staging.rosiesheroes.org" >> "$GITHUB_ENV"
+            printf 'staging.rosiesheroes.org\n' > public/CNAME
+          fi
 
       - name: Build Astro site
         run: npm run build
