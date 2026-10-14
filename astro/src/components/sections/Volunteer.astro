@@ -8,11 +8,6 @@
 
 <section id="volunteer">
 
-  <!-- Decorative background: plane outline on left -->
-  <svg class="vol-bg vol-bg--plane" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M21 16v-2l-8-5V3.5A1.5 1.5 0 0 0 11.5 2 1.5 1.5 0 0 0 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
-  </svg>
-
   <!-- Decorative background: paw prints on right -->
   <svg class="vol-bg vol-bg--paw1" viewBox="14.245 16.736 171.51 166.528" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
     <g>
@@ -39,69 +34,35 @@
     <div class="vol-header" data-reveal>
       <h2 class="vol-title">Volunteer</h2>
       <p class="vol-intro">
-        Flying from India to California? You can be a hero by escorting a rescue dog to their new life! Flight volunteers make international rescue possible.
+        There are so many ways to help dogs &mdash; near and far. Whether you can
+        give an hour a week or a weekend a month, your time and talents can save lives.
       </p>
     </div>
 
-    <!-- Two info cards -->
+    <!-- Ways to volunteer card -->
     <div class="vol-cards">
 
-      <div class="vol-card" data-reveal="card">
-        <h3 class="vol-card-title">Why Flight Volunteers?</h3>
-        <ul class="vol-card-list">
-          <li>Save a life without changing your travel plans</li>
-          <li>We handle all paperwork and costs</li>
-          <li>No extra effort required on your part</li>
-          <li>Experience the joy of making a direct impact</li>
-          <li>Join a compassionate community of rescuers</li>
+      <div class="vol-card vol-card--full" data-reveal="card">
+        <h3 class="vol-card-title">Ways to Volunteer</h3>
+        <ul class="vol-card-list vol-card-list--cols">
+          <li><strong>Social media</strong> &mdash; help share stories that find dogs homes</li>
+          <li><strong>Grant writing</strong> &mdash; unlock funding for lifesaving programs</li>
+          <li><strong>Fundraising</strong> &mdash; turn compassion into resources</li>
+          <li><strong>Events</strong> &mdash; help plan and run community gatherings</li>
+          <li><strong>Flight volunteering</strong> &mdash; escort a rescue dog on your India&ndash;US trip <a href="https://docs.google.com/document/d/1_OjKA_pXFduS6fT6bHTM847Z_ZacQ8TkX3lHj5gquv4/edit?tab=t.0#heading=h.x6nrrfeybvnj" target="_blank" rel="noreferrer noopener" class="vol-inline-link">(FAQs)</a></li>
+          <li><strong>And more</strong> &mdash; tell us your skills and we&rsquo;ll find a fit</li>
         </ul>
-      </div>
-
-      <div class="vol-card" data-reveal="card">
-        <h3 class="vol-card-title vol-card-title--gold">How It Works</h3>
-        <div class="vol-steps">
-          <div class="vol-step">
-            <span class="vol-step-label">Contact Us</span>
-            <p class="vol-step-desc">Before you book your flight, let us know your travel plans from India to the United States.</p>
-          </div>
-          <div class="vol-step">
-            <span class="vol-step-label">Coordination</span>
-            <p class="vol-step-desc">We help arrange the flight, handle all paperwork and arrange for dog pickup and delivery.</p>
-          </div>
-          <div class="vol-step">
-            <span class="vol-step-label">Travel Day</span>
-            <p class="vol-step-desc">The dog travels as checked luggage (we cover all fees).</p>
-          </div>
-          <div class="vol-step">
-            <span class="vol-step-label">Arrival</span>
-            <p class="vol-step-desc">Our team meets you at the airport to receive and transport the dog to their safe foster home.</p>
-          </div>
-        </div>
       </div>
 
     </div><!-- /.vol-cards -->
 
-    <!-- Flight Hero CTA card -->
+    <!-- Volunteer CTA card -->
     <div class="vol-cta-card" data-reveal="card">
       <div class="vol-cta-text">
-        <h3 class="vol-cta-title">Ready to be a Flight Hero?</h3>
-        <p class="vol-cta-desc">
-          If you're traveling from India to California in the coming months, you could change a dog's life forever.
-          <a href="#contact" class="vol-cta-link">Contact us</a> today to learn more about becoming a flight volunteer!
-        </p>
+        <h3 class="vol-cta-title">Ready to Lend a Paw?</h3>
+        <p class="vol-cta-desc">Tell us how you&rsquo;d like to help &mdash; social media, fundraising, events, grant writing, flight volunteering, or something else entirely. <a href="#contact" class="vol-cta-link">Contact us</a> today and we&rsquo;ll find the perfect fit!</p>
         <div class="vol-cta-buttons">
-          <a
-            href="https://docs.google.com/document/d/1_OjKA_pXFduS6fT6bHTM847Z_ZacQ8TkX3lHj5gquv4/edit?tab=t.0#heading=h.x6nrrfeybvnj"
-            target="_blank"
-            rel="noreferrer noopener"
-            class="btn btn-primary"
-          >FAQs</a>
-          <a
-            href="https://docs.google.com/document/d/1Snhtc7qBQImEEP9yxCz3t1T4yll4nXSYuOa52NvxM3A/edit?tab=t.0#heading=h.x6nrrfeybvnj"
-            target="_blank"
-            rel="noreferrer noopener"
-            class="btn btn-secondary"
-          >The Process</a>
+          <a href="#contact" class="btn btn-primary">Volunteer</a>
         </div>
       </div>
     </div><!-- /.vol-cta-card -->
@@ -126,17 +87,6 @@
   .vol-bg {
     position: absolute;
     pointer-events: none;
-  }
-
-  /* Plane outline — left side */
-  .vol-bg--plane {
-    width: 240px;
-    height: 240px;
-    top: 12%;
-    left: 2%;
-    color: #6B4A35;
-    opacity: 0.45;
-    transform: rotate(-30deg);
   }
 
   /* Paw prints — right side */
@@ -192,11 +142,10 @@
     margin: 0 auto;
   }
 
-  /* ── Two info cards ─────────────────────────────────────── */
+  /* ── Ways to volunteer card ─────────────────────────────── */
   .vol-cards {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-6); /* 24px */
+    grid-template-columns: 1fr;
     margin-bottom: var(--space-8); /* 32px */
   }
 
@@ -205,6 +154,12 @@
     border-radius: var(--radius-vol-card); /* 50px */
     padding: var(--space-10) var(--space-10); /* 40px */
     box-shadow: var(--shadow-vol);
+  }
+
+  .vol-card--full {
+    max-width: 860px;
+    margin: 0 auto;
+    width: 100%;
   }
 
   .vol-card-title {
@@ -220,7 +175,7 @@
     color: var(--color-gold); /* #EEBE5A */
   }
 
-  /* ── Why Flight Volunteers list ─────────────────────────── */
+  /* ── Ways to volunteer list ─────────────────────────────── */
   .vol-card-list {
     font-family: var(--font-body);
     font-size: var(--text-base); /* 16px */
@@ -232,6 +187,12 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-3); /* 12px */
+  }
+
+  .vol-card-list--cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3) var(--space-8);
   }
 
   .vol-card-list li {
@@ -250,36 +211,7 @@
     line-height: 1.2;
   }
 
-  /* ── How It Works steps ─────────────────────────────────── */
-  .vol-steps {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-5); /* 20px */
-  }
-
-  .vol-step {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .vol-step-label {
-    font-family: var(--font-heading);
-    font-size: 17px;
-    font-weight: 600;
-    line-height: 1.3em;
-    color: var(--color-gold); /* #EEBE5A */
-  }
-
-  .vol-step-desc {
-    font-family: var(--font-body);
-    font-size: var(--text-base); /* 16px */
-    line-height: 1.3em;
-    color: var(--color-text);
-    margin: 0;
-  }
-
-  /* ── Flight Hero CTA card ───────────────────────────────── */
+  /* ── Volunteer CTA card ─────────────────────────────────── */
   .vol-cta-card {
     background-color: var(--color-dark-cta); /* #624B40 */
     border-radius: var(--radius-vol-card); /* 50px */
@@ -319,11 +251,25 @@
 
   .vol-cta-link {
     color: var(--color-text-warm);
-    text-decoration: underline;
+    text-decoration: none;
+    font-weight: 600;
   }
 
   .vol-cta-link:hover {
     color: var(--color-gold);
+    text-decoration: underline;
+  }
+
+  /* Inline FAQs link next to the flight-volunteer bullet */
+  .vol-inline-link {
+    color: var(--color-gold);
+    text-decoration: none;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .vol-inline-link:hover {
+    text-decoration: underline;
   }
 
   /* ── CTA buttons ────────────────────────────────────────── */
@@ -425,13 +371,13 @@
       font-size: 28px;
     }
 
-    .vol-cards {
-      grid-template-columns: 1fr;
-    }
-
     .vol-card {
       padding: var(--space-6);
       border-radius: 24px;
+    }
+
+    .vol-card-list--cols {
+      grid-template-columns: 1fr;
     }
 
     .vol-cta-card {
@@ -442,12 +388,6 @@
 
     .vol-cta-title {
       font-size: 24px;
-    }
-
-    .vol-bg--plane {
-      width: 140px;
-      height: 140px;
-      opacity: 0.18;
     }
 
     .vol-bg--paw1 {
