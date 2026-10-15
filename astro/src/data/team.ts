@@ -14,6 +14,7 @@ export interface FoundingPackMember {
   initials: string;
   photo?: string;
   photoPosition?: string;
+  photoZoom?: string;
 }
 
 export const foundingPack: FoundingPackMember[] = [
@@ -66,6 +67,8 @@ export const foundingPack: FoundingPackMember[] = [
     dogAvatarColor: '#F4C430',
     initials: 'SD',
     photo: '/images/team/Sonia.jpg',
+    photoPosition: '45% 21%',
+    photoZoom: '1.8',
   },
 ];
 
@@ -74,6 +77,7 @@ export interface Volunteer {
   whyICare: string;
   photo?: string;
   photoPosition?: string;
+  photoZoom?: string;
 }
 
 export const volunteersWithHeart: Volunteer[] = [
@@ -94,7 +98,8 @@ export const volunteersWithHeart: Volunteer[] = [
   {
     name: 'Avani Ashok',
     photo: '/images/team/Avani.jpg',
-    photoPosition: 'center 22%',
+    photoPosition: '48% 41%',
+    photoZoom: '1.7',
     whyICare:
       'From walking dogs at the shelter to helping with the Rosie\u2019s Heroes website, I love finding different ways to help. Time spent with the dogs makes the mission feel personal, and the website helps bring more people into it.',
   },

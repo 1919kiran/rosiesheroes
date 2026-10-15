@@ -1,6 +1,14 @@
 ---
 // VolunteersWithHeart.astro — volunteer spotlights per the team mock.
 import { volunteersWithHeart } from '../../data/team';
+
+// Per-volunteer photo framing: optional zoom scales around the photoPosition focal point.
+const photoStyle = (v: { photoPosition?: string; photoZoom?: string }) =>
+  v.photoPosition
+    ? v.photoZoom
+      ? `object-position: ${v.photoPosition}; transform: scale(${v.photoZoom}); transform-origin: ${v.photoPosition};`
+      : `object-position: ${v.photoPosition};`
+    : undefined;
 ---
 
 <section class="volunteers-section">
@@ -19,13 +27,15 @@ import { volunteersWithHeart } from '../../data/team';
           <h3 class="volunteer-name">{v.name}</h3>
           {v.photo && (
             <div class="volunteer-photo-wrap">
-              <img
-                src={v.photo}
-                alt={`Photo of ${v.name}`}
-                class="volunteer-photo"
-                loading="lazy"
-                style={v.photoPosition ? `object-position: ${v.photoPosition}` : undefined}
-              />
+              <div class="volunteer-photo-clip">
+                <img
+                  src={v.photo}
+                  alt={`Photo of ${v.name}`}
+                  class="volunteer-photo"
+                  loading="lazy"
+                  style={photoStyle(v)}
+                />
+              </div>
               <svg class="volunteer-paw" viewBox="14.245 16.736 171.51 166.528" fill="currentColor" aria-hidden="true"><path d="M98.902 88.05c-21.698 0-59.447 52.147-61.533 66.037-2.393 15.935 11.019 29.177 27.133 29.177 10.137 0 30.913-11.779 34.4-11.779 3.367 0 23.912 11.779 34.017 11.779 16.114 0 30.472-13.299 27.725-29.177-2.294-13.264-40.009-66.037-61.742-66.037z"/><ellipse cx="73.42" cy="45.16" rx="17.99" ry="28.43"/><ellipse cx="32.24" cy="93.37" rx="17.99" ry="28.43"/><ellipse cx="126.58" cy="45.16" rx="17.99" ry="28.43"/><ellipse cx="167.76" cy="89.04" rx="17.99" ry="28.43"/></svg>
             </div>
           )}
@@ -111,9 +121,17 @@ import { volunteersWithHeart } from '../../data/team';
 
   .volunteer-photo {
     width: 100%;
-    aspect-ratio: 1 / 1;
+    height: 100%;
     object-fit: cover;
     display: block;
+  }
+
+  /* Clipping frame for zoomed photos: carries the border and shadow so the
+     inner img can scale around its focal point without spilling out. */
+  .volunteer-photo-clip {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
     border: 3px solid #FFEDD6;
     border-radius: 18px;
     box-shadow: 0 10px 24px rgba(56, 34, 19, 0.10);
