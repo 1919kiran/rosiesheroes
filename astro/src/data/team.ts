@@ -93,7 +93,7 @@ export const volunteersWithHeart: Volunteer[] = [
   },
   {
     name: 'Avani Ashok',
-    photo: '/images/team/avani.jpg',
+    photo: '/images/team/Avani.jpg',
     photoPosition: 'center 22%',
     whyICare:
       'From walking dogs at the shelter to helping with the Rosie\u2019s Heroes website, I love finding different ways to help. Time spent with the dogs makes the mission feel personal, and the website helps bring more people into it.',

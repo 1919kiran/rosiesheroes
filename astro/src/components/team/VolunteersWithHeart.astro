@@ -16,8 +16,9 @@ import { volunteersWithHeart } from '../../data/team';
     <div class="volunteers-grid">
       {volunteersWithHeart.map((v) => (
         <article class="volunteer-card">
-          <div class="volunteer-top">
-            {v.photo && (
+          <h3 class="volunteer-name">{v.name}</h3>
+          {v.photo && (
+            <div class="volunteer-photo-wrap">
               <img
                 src={v.photo}
                 alt={`Photo of ${v.name}`}
@@ -25,9 +26,9 @@ import { volunteersWithHeart } from '../../data/team';
                 loading="lazy"
                 style={v.photoPosition ? `object-position: ${v.photoPosition}` : undefined}
               />
-            )}
-            <h3 class="volunteer-name">{v.name}</h3>
-          </div>
+              <svg class="volunteer-paw" viewBox="14.245 16.736 171.51 166.528" fill="currentColor" aria-hidden="true"><path d="M98.902 88.05c-21.698 0-59.447 52.147-61.533 66.037-2.393 15.935 11.019 29.177 27.133 29.177 10.137 0 30.913-11.779 34.4-11.779 3.367 0 23.912 11.779 34.017 11.779 16.114 0 30.472-13.299 27.725-29.177-2.294-13.264-40.009-66.037-61.742-66.037z"/><ellipse cx="73.42" cy="45.16" rx="17.99" ry="28.43"/><ellipse cx="32.24" cy="93.37" rx="17.99" ry="28.43"/><ellipse cx="126.58" cy="45.16" rx="17.99" ry="28.43"/><ellipse cx="167.76" cy="89.04" rx="17.99" ry="28.43"/></svg>
+            </div>
+          )}
           <p class="volunteer-why"><strong>Why I care:</strong> {v.whyICare}</p>
         </article>
       ))}
@@ -79,32 +80,64 @@ import { volunteersWithHeart } from '../../data/team';
     background: #FFFDFB;
     border: 1px solid #FFEDD6;
     border-radius: 16px;
-    padding: 24px 22px;
+    padding: 26px 22px 24px;
     box-shadow: 0 2px 10px rgba(56, 34, 19, 0.04);
-  }
-
-  .volunteer-top {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 10px;
-  }
-
-  .volunteer-photo {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    object-fit: cover;
-    object-position: center 22%;
-    flex-shrink: 0;
-    border: 2px solid #FFEDD6;
+    text-align: center;
   }
 
   .volunteer-name {
     font-family: var(--font-heading, sans-serif);
-    font-size: 18px;
+    font-size: 19px;
     color: var(--color-text, #382213);
+    margin: 0 0 16px;
+  }
+
+  /* Cute slightly-rotated square photo */
+  .volunteer-photo-wrap {
+    position: relative;
+    width: 190px;
+    margin: 0 auto 18px;
+    transform: rotate(-3deg);
+    transition: transform 0.3s ease;
+  }
+
+  .volunteer-card:nth-child(even) .volunteer-photo-wrap {
+    transform: rotate(3deg);
+  }
+
+  .volunteer-photo-wrap:hover {
+    transform: rotate(0deg);
+  }
+
+  .volunteer-photo {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+    border: 3px solid #FFEDD6;
+    border-radius: 18px;
+    box-shadow: 0 10px 24px rgba(56, 34, 19, 0.10);
+  }
+
+  .volunteer-paw {
+    position: absolute;
+    width: 34px;
+    height: 34px;
+    color: var(--color-gold, #EEBE5A);
+    opacity: 0.9;
+    pointer-events: none;
+    bottom: -12px;
+    right: -10px;
+    transform: rotate(14deg);
+  }
+
+  .volunteer-why {
+    font-family: var(--font-body, sans-serif);
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--color-text-mid, #5B4D43);
     margin: 0;
+    text-align: left;
   }
 
   .volunteer-why {
