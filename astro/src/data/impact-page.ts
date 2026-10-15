@@ -80,4 +80,27 @@ export const traumaStoriesByMonth: TraumaMonth[] = [
       },
     ],
   },
+  {
+    month: 'Jul 2026',
+    reportUrl:
+      'https://drive.google.com/file/d/1gAW9QoT8MAw_HrL3sxSqyHeUkNPg4daD/view?usp=sharing',
+    stories: [
+      {
+        dogName: 'Baloo',
+        story: [
+          'Baloo was having an ordinary day when a pack of neighborhood dogs suddenly attacked and chased him. Desperate to escape, he squeezed through a barbed-wire fence \u2014 tearing the skin across his back away and leaving a large, gaping wound.',
+          'In pain and frightened, Baloo hid himself for several days, suffering in silence. When he was finally found, he needed urgent and intensive care: his wound cleaned twice a day with saline, intravenous fluids to restore his strength, constant attention and careful wound management.',
+          'Thankfully, Baloo responded well to treatment and made a remarkable recovery. Today he is back in his old territory, reunited with his familiar surroundings and friends.',
+        ],
+      },
+      {
+        dogName: 'Brian',
+        story: [
+          'Brian came to CARE with a massive, pendulous tumour hanging from his chest \u2014 so large it struck his front legs every time he tried to walk, making even the simplest movements difficult. To make matters worse, the tumour was infected.',
+          'Before surgery, Brian was started on supportive tonics and supplements to stabilise his condition and prepare him for the procedure. Once he was ready, the tumour was surgically removed.',
+          'His recovery required intensive post-operative care, close monitoring and dedicated attention from the medical team. Slowly but surely, Brian healed \u2014 a reminder of what timely medical intervention, skilled veterinary care and compassion can achieve.',
+        ],
+      },
+    ],
+  },
 ];
