@@ -11,10 +11,12 @@ interface Props {
 
 const { member, index } = Astro.props;
 const reverse = index % 2 === 1;
-// Per-member photo framing: optional zoom scales around the photoPosition focal point.
+// Per-member photo framing: optional zoom scales around the focal point
+// (photoZoomOrigin, defaulting to photoPosition).
+const zoomOrigin = member.photoZoomOrigin ?? member.photoPosition ?? 'center';
 const photoStyle = member.photoPosition
   ? member.photoZoom
-    ? `object-position: ${member.photoPosition}; transform: scale(${member.photoZoom}); transform-origin: ${member.photoPosition};`
+    ? `object-position: ${member.photoPosition}; transform: scale(${member.photoZoom}); transform-origin: ${zoomOrigin};`
     : `object-position: ${member.photoPosition};`
   : undefined;
 ---
