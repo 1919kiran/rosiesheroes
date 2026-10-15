@@ -15,7 +15,6 @@ export interface FoundingPackMember {
   photo?: string;
   photoPosition?: string;
   photoZoom?: string;
-  photoZoomOrigin?: string;
 }
 
 export const foundingPack: FoundingPackMember[] = [
@@ -49,8 +48,6 @@ export const foundingPack: FoundingPackMember[] = [
       'With amazing hearing and a need to lead every walk, Ladoo stays at the front of the pack\u2014exactly where this boss lady belongs.',
     photo: '/images/team/archana.jpg',
     photoPosition: 'center 20%',
-    photoZoom: '0.85',
-    photoZoomOrigin: 'center',
     avatarColor: '#7D5265',
     dogAvatarColor: '#E6A15C',
     initials: 'AR',
