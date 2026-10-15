@@ -79,7 +79,7 @@ export interface Volunteer {
 export const volunteersWithHeart: Volunteer[] = [
   {
     name: 'Shreya Singh',
-    photo: '/images/team/Shreya.jpeg',
+    photo: '/images/team/Shreya-centered.jpeg',
     photoPosition: 'center 50%',
     whyICare:
       'Helping plan events is my way of bringing people together for dogs who need them. I love turning a shared love for animals into a gathering that inspires people to help.',
