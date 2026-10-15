@@ -16,7 +16,18 @@ import { volunteersWithHeart } from '../../data/team';
     <div class="volunteers-grid">
       {volunteersWithHeart.map((v) => (
         <article class="volunteer-card">
-          <h3 class="volunteer-name">{v.name}</h3>
+          <div class="volunteer-top">
+            {v.photo && (
+              <img
+                src={v.photo}
+                alt={`Photo of ${v.name}`}
+                class="volunteer-photo"
+                loading="lazy"
+                style={v.photoPosition ? `object-position: ${v.photoPosition}` : undefined}
+              />
+            )}
+            <h3 class="volunteer-name">{v.name}</h3>
+          </div>
           <p class="volunteer-why"><strong>Why I care:</strong> {v.whyICare}</p>
         </article>
       ))}
@@ -72,11 +83,28 @@ import { volunteersWithHeart } from '../../data/team';
     box-shadow: 0 2px 10px rgba(56, 34, 19, 0.04);
   }
 
+  .volunteer-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 10px;
+  }
+
+  .volunteer-photo {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 22%;
+    flex-shrink: 0;
+    border: 2px solid #FFEDD6;
+  }
+
   .volunteer-name {
     font-family: var(--font-heading, sans-serif);
     font-size: 18px;
     color: var(--color-text, #382213);
-    margin: 0 0 10px;
+    margin: 0;
   }
 
   .volunteer-why {

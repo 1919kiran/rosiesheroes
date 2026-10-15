@@ -65,27 +65,36 @@ export const foundingPack: FoundingPackMember[] = [
     avatarColor: '#5B7C64',
     dogAvatarColor: '#F4C430',
     initials: 'SD',
+    photo: '/images/team/Sonia.jpg',
   },
 ];
 
 export interface Volunteer {
   name: string;
   whyICare: string;
+  photo?: string;
+  photoPosition?: string;
 }
 
 export const volunteersWithHeart: Volunteer[] = [
   {
     name: 'Shreya Singh',
+    photo: '/images/team/Shreya.jpeg',
+    photoPosition: 'center 35%',
     whyICare:
       'Helping plan events is my way of bringing people together for dogs who need them. I love turning a shared love for animals into a gathering that inspires people to help.',
   },
   {
     name: 'Sai Kiran Mudupu',
+    photo: '/images/team/Kiran.jpg',
+    photoPosition: 'center 22%',
     whyICare:
       'Walking dogs at the shelter in my free time reminds me how much a little attention and kindness can mean. Helping with the Rosie\u2019s Heroes website is another way I can support dogs beyond those walks.',
   },
   {
     name: 'Avani Ashok',
+    photo: '/images/team/avani.jpg',
+    photoPosition: 'center 22%',
     whyICare:
       'From walking dogs at the shelter to helping with the Rosie\u2019s Heroes website, I love finding different ways to help. Time spent with the dogs makes the mission feel personal, and the website helps bring more people into it.',
   },
