@@ -11,17 +11,6 @@ interface Props {
 
 const { member, index } = Astro.props;
 const reverse = index % 2 === 1;
-
-// Inline style for the member photo: optional focal point + optional inset
-// (inset shrinks the photo inside its frame = CSS-only zoom-out, no re-upload)
-const photoStyle = [
-  member.photoPosition ? `object-position: ${member.photoPosition}` : '',
-  member.photoInset
-    ? `padding: ${member.photoInset}; background-color: #FFEDD6; box-sizing: border-box`
-    : '',
-]
-  .filter(Boolean)
-  .join('; ');
 ---
 
 <article class:list={['pack-row', { reverse }]}>
@@ -35,7 +24,7 @@ const photoStyle = [
           loading="lazy"
           width="480"
           height="360"
-          style={photoStyle || undefined}
+          style={member.photoPosition ? `object-position: ${member.photoPosition}` : undefined}
         />
       ) : (
         <div class="pack-photo pack-photo--placeholder" role="img" aria-label={`Placeholder for ${member.fullName} with ${member.dogName}`}>
