@@ -67,7 +67,7 @@ export const foundingPack: FoundingPackMember[] = [
     dogAvatarColor: '#F4C430',
     initials: 'SD',
     photo: '/images/team/Sonia.jpg',
-    photoPosition: '45% 21%',
+    photoPosition: '50% 21%',
     photoZoom: '1.8',
   },
 ];
