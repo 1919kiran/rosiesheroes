@@ -351,10 +351,31 @@ import IndiaMap from '../components/impact/IndiaMap.astro';
 
   .month-tabs {
     display: flex;
-    justify-content: center;
+    justify-content: safe center;
     gap: 10px;
     margin-bottom: 28px;
-    flex-wrap: wrap;
+    overflow-x: auto;
+    padding: 4px 4px 12px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-gold, #EEBE5A) transparent;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .month-tabs::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .month-tabs::-webkit-scrollbar-thumb {
+    background: var(--color-gold, #EEBE5A);
+    border-radius: 100px;
+  }
+
+  .month-tabs::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .month-tab {
+    flex-shrink: 0;
   }
 
   .month-tab {
