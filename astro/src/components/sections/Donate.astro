@@ -92,18 +92,47 @@ import {
       <h3 class="donate-subheading">Help Bring These Projects to Life</h3>
       <p class="donate-subheading-text">Support a project close to your heart and give more dogs a chance at safety and healing.</p>
     </div>
-    <div class="donate-campaigns">
-      {campaigns.map((c) => (
-        <article class="donate-campaign" data-reveal="card">
-          <h4 class="donate-campaign-title">{c.title}</h4>
-          <div class="donate-thermo-slot" data-thermo-src={zeffyThermometerUrl(c.slug)}></div>
-          <div class="donate-form-slot" data-form-src={zeffyEmbedUrl(c.slug)} data-form-title={`Donate to ${c.title} (powered by Zeffy)`}></div>
-          <button type="button" class="btn btn-primary donate-campaign-btn" zeffy-form-link={zeffyModalUrl(c.slug)}>
-            Donate to {c.title}
-          </button>
-        </article>
-      ))}
+    <div class="donate-campaigns-wrap" data-reveal>
+      <button type="button" class="campaign-nav campaign-nav--prev" id="campaign-prev" aria-label="Scroll to previous campaigns">‹</button>
+      <div class="donate-campaigns" id="donate-campaigns">
+        {campaigns.map((c) => (
+          <article class="donate-campaign" data-reveal="card">
+            <h4 class="donate-campaign-title">{c.title}</h4>
+            <div class="donate-thermo-slot" data-thermo-src={zeffyThermometerUrl(c.slug)}></div>
+            <div class="donate-form-slot" data-form-src={zeffyEmbedUrl(c.slug)} data-form-title={`Donate to ${c.title} (powered by Zeffy)`}></div>
+            <button type="button" class="btn btn-primary donate-campaign-btn" zeffy-form-link={zeffyModalUrl(c.slug)}>
+              Donate to {c.title}
+            </button>
+          </article>
+        ))}
+      </div>
+      <button type="button" class="campaign-nav campaign-nav--next" id="campaign-next" aria-label="Scroll to next campaigns">›</button>
     </div>
+    <script is:inline>
+      // Campaign carousel arrows: scroll the strip by one card width.
+      (function () {
+        var strip = document.getElementById('donate-campaigns');
+        var prev = document.getElementById('campaign-prev');
+        var next = document.getElementById('campaign-next');
+        if (!strip || !prev || !next) return;
+        function cardStep() {
+          var card = strip.querySelector('.donate-campaign');
+          if (!card) return strip.clientWidth * 0.8;
+          var gap = parseFloat(getComputedStyle(strip).columnGap) || 0;
+          return card.getBoundingClientRect().width + gap;
+        }
+        function updateArrows() {
+          var max = strip.scrollWidth - strip.clientWidth;
+          prev.disabled = strip.scrollLeft <= 4;
+          next.disabled = strip.scrollLeft >= max - 4;
+        }
+        prev.addEventListener('click', function () { strip.scrollBy({ left: -cardStep(), behavior: 'smooth' }); });
+        next.addEventListener('click', function () { strip.scrollBy({ left: cardStep(), behavior: 'smooth' }); });
+        strip.addEventListener('scroll', updateArrows, { passive: true });
+        window.addEventListener('resize', updateArrows);
+        updateArrows();
+      })();
+    </script>
     <script is:inline>
       // Lazy-load Zeffy embeds: thermometers load when near the viewport;
       // the full donation forms only load on desktop — embedding several of
@@ -603,14 +632,39 @@ import {
     margin: var(--space-1) 0 0;
   }
 
-  .donate-campaigns {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-5);
+  /* ── Campaigns carousel ───────────────────────────────── */
+  .donate-campaigns-wrap {
+    position: relative;
     margin-bottom: var(--space-15);
   }
 
+  .donate-campaigns {
+    display: flex;
+    gap: var(--space-5);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: var(--space-3);
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-gold) transparent;
+  }
+
+  .donate-campaigns::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .donate-campaigns::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .donate-campaigns::-webkit-scrollbar-thumb {
+    background: var(--color-gold);
+    border-radius: 3px;
+  }
+
   .donate-campaign {
+    flex: 0 0 min(360px, 82vw);
+    scroll-snap-align: start;
     background: var(--color-card-bg);
     border: 1px solid var(--color-card-border);
     border-radius: 10px;
@@ -619,6 +673,40 @@ import {
     flex-direction: column;
     gap: var(--space-3);
   }
+
+  .campaign-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1.5px solid var(--color-gold);
+    background: var(--color-card-bg);
+    color: var(--color-gold-hover);
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    transition: opacity 0.2s, background 0.2s;
+  }
+
+  .campaign-nav:hover:not(:disabled) {
+    background: var(--color-gold);
+    color: var(--color-text);
+  }
+
+  .campaign-nav:disabled {
+    opacity: 0.35;
+    cursor: default;
+  }
+
+  .campaign-nav--prev { left: -22px; }
+  .campaign-nav--next { right: -22px; }
 
   .donate-campaign-title {
     font-family: var(--font-heading);
@@ -690,12 +778,6 @@ import {
   .donate-bg--tl { width: 220px; height: 220px; top: 5%; left: 2%; transform: rotate(-22deg); }
   .donate-bg--bl { width: 180px; height: 180px; bottom: 6%; left: 2%; transform: rotate(-18deg); }
   .donate-bg--rm { width: 190px; height: 190px; top: 40%; right: 2%; transform: rotate(28deg); }
-
-  @media (max-width: 960px) {
-    .donate-campaigns {
-      grid-template-columns: 1fr;
-    }
-  }
 
   /* ── Mobile responsive ─────────────────────────────────── */
   @media (max-width: 768px) {
@@ -776,9 +858,13 @@ import {
       margin-top: var(--space-10);
     }
 
-    .donate-campaigns {
+    .donate-campaigns-wrap {
       margin-bottom: var(--space-10);
     }
+
+    /* Keep the arrows inside the viewport on small screens */
+    .campaign-nav--prev { left: 4px; }
+    .campaign-nav--next { right: 4px; }
 
     .donate-match {
       padding: var(--space-4) var(--space-5);
