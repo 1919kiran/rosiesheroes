@@ -103,4 +103,48 @@ export const traumaStoriesByMonth: TraumaMonth[] = [
       },
     ],
   },
+  {
+    month: 'Jun 2026',
+    reportUrl: '/reports/june-2026-trauma-cases.pdf',
+    stories: [
+      {
+        dogName: 'Clara',
+        story: [
+          'Clara had a huge tumour growing in her abdomen, close to her chest. The weight of the growth made even walking an uncomfortable and exhausting task. Radiographs revealed the tumour was also internally attached to part of her chest region, making surgery particularly challenging.',
+          'Despite the risks and apprehensions, the team decided to proceed with the tumour removal surgery \u2014 Clara had an incredible zest for life, and they wanted to give her every chance to reclaim it. She endured the surgery bravely and sailed through her post-operative recovery like a trooper.',
+          'Once she had healed completely, Clara returned to her guardians, who were overjoyed to have her back, healthy and happy. Thanks to the support that makes such treatment possible, Clara got her second chance at life.',
+        ],
+      },
+      {
+        dogName: 'Grey',
+        story: [
+          'Grey was brought in with significant facial swelling caused by a bee sting. He received the necessary medical treatment, including antibiotics and supplements.',
+          'He remained under care for an extended period to ensure his recovery, with prolonged care and close monitoring.',
+          'Grey recovered well and was finally ready to return to his familiar surroundings.',
+        ],
+      },
+    ],
+  },
+  {
+    month: 'May 2026',
+    reportUrl: '/reports/may-2026-trauma-cases.pdf',
+    stories: [
+      {
+        dogName: 'Pepper',
+        story: [
+          'Pepper was brought in with a tumour in the rump region that required surgical intervention. The veterinary team carefully assessed the condition and performed surgical excision to remove the growth.',
+          'Following the surgery, Pepper received the necessary post-operative care and close monitoring to support healing and ensure a smooth recovery.',
+          'With time, care, and patience, Pepper recovered well and was ready to return to the familiar surroundings she calls home \u2014 having received the medical attention she needed to get back on her paws.',
+        ],
+      },
+      {
+        dogName: 'Bruno',
+        story: [
+          'Bruno was brought in with a severe facial wound caused by a tooth abscess that had ruptured and developed into a maggot-infested wound. The condition required immediate medical attention and dedicated wound management.',
+          'The veterinary team initiated treatment with antibiotics, regular wound cleaning and dressing, and nutritional supplements to support healing. Since the underlying dental infection needed to be addressed, the affected tooth was also extracted to prevent further complications.',
+          'With consistent medical care, patience, and close monitoring, Bruno gradually recovered and was released back to his familiar surroundings \u2014 another life given a second chance through timely treatment and compassionate care.',
+        ],
+      },
+    ],
+  },
 ];
