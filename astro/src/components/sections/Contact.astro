@@ -76,19 +76,12 @@
 
       </div><!-- /.contact-card -->
 
-      <!-- Newsletter signup — Zeffy embed -->
-      <div class="newsletter-zeffy">
-        <div>
-          <div data-zeffy-embed data-form-url="/en-US/embed/newsletter-form/sign-up-for-our-newsletter-4568"></div>
-          <div data-zeffy-embed-fallback style="display:none;">
-            <div style="position:relative;overflow:hidden;height:280px;width:100%;"><iframe title='Signup form powered by Zeffy' style='position: absolute; border: 0; top:0;left:0;bottom:0;right:0;width:100%;height:100%' data-zeffy-embed-src='https://www.zeffy.com/en-US/embed/newsletter-form/sign-up-for-our-newsletter-4568'  allowTransparency="true"></iframe></div>
-          </div>
-          <script
-            src="https://www.zeffy.com/embed/v2/zeffy-embed.js"
-            onerror="document.querySelectorAll('[data-zeffy-embed-fallback]').forEach(function(el){el.style.display='block';el.querySelectorAll('iframe[data-zeffy-embed-src]').forEach(function(f){f.src=f.getAttribute('data-zeffy-embed-src');});});">
-          </script>
-        </div>
-      </div>
+      <!-- Newsletter signup card -->
+      <div class="newsletter-card">
+        <h3 class="newsletter-title">Stay in the Loop</h3>
+        <p class="newsletter-sub">Get rescue stories, event invites, and impact updates — straight to your inbox.</p>
+        <a href="https://www.zeffy.com/en-US/newsletter-form/sign-up-for-our-newsletter-4568" target="_blank" rel="noopener" class="btn newsletter-btn">Sign Up for Newsletter</a>
+      </div><!-- /.newsletter-card -->
 
     </div><!-- /.contact-columns -->
 
@@ -126,9 +119,49 @@
     max-width: 700px;
   }
 
-  .newsletter-zeffy {
+  /* ── Newsletter card ──────────────────────────────────── */
+  .newsletter-card {
+    background-color: var(--color-dark-brown); /* #382213 */
+    border-radius: var(--radius-contact-card); /* 10px */
+    padding: var(--space-10) var(--space-8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
     width: 100%;
     max-width: 700px;
+    gap: var(--space-4);
+  }
+
+  .newsletter-title {
+    font-family: var(--font-heading);
+    font-size: 26px;
+    font-weight: 600;
+    line-height: var(--lh-tight);
+    color: var(--color-text-on-dark); /* #FFF8F1 */
+    margin: 0;
+  }
+
+  .newsletter-sub {
+    font-family: var(--font-body);
+    font-size: var(--text-base); /* 16px */
+    line-height: var(--lh-relaxed);
+    color: var(--color-text-on-dark);
+    margin: 0;
+  }
+
+  .newsletter-btn {
+    display: inline-flex;
+    margin-top: var(--space-2);
+    background-color: var(--color-cream-contact); /* #FFEFDA — matches Email Us */
+    color: var(--color-text);
+    border-color: var(--color-cream-contact);
+  }
+
+  .newsletter-btn:hover {
+    background-color: var(--color-gold);
+    border-color: var(--color-gold);
+    color: var(--color-text);
   }
 
 
