@@ -81,19 +81,20 @@
         <h3 class="newsletter-title">Stay in the Loop</h3>
         <p class="newsletter-sub">Get rescue stories, event invites, and impact updates — straight to your inbox.</p>
         <div class="newsletter-form-slot" data-newsletter-src="https://www.zeffy.com/en-US/embed/newsletter-form/sign-up-for-our-newsletter-4568"></div>
-        <a href="https://www.zeffy.com/en-US/newsletter-form/sign-up-for-our-newsletter-4568" target="_blank" rel="noopener" class="btn btn-primary newsletter-btn">Sign Up for Newsletter</a>
+        <a href="https://www.zeffy.com/en-US/newsletter-form/sign-up-for-our-newsletter-4568" target="_blank" rel="noopener" class="btn newsletter-btn">Sign Up for Newsletter</a>
       </div><!-- /.newsletter-card -->
 
     </div><!-- /.contact-columns -->
 
     <script is:inline>
-      // Lazy-load Zeffy newsletter form: desktop only (mobile iframes crash),
-      // only when near the viewport. Mobile users get the signup button instead.
+      // Lazy-load Zeffy newsletter form: desktop only (mobile iframes crash).
+      // Mobile users get the signup button instead.
       (function () {
-        var DESKTOP_MQ = '(min-width: 769px)';
-        var slot = document.querySelector('.newsletter-form-slot');
-        if (!slot) return;
-        function loadForm() {
+        function init() {
+          var DESKTOP_MQ = '(min-width: 769px)';
+          var slot = document.querySelector('.newsletter-form-slot');
+          if (!slot) return;
+          // Only load iframe on desktop
           if (!window.matchMedia(DESKTOP_MQ).matches) return;
           if (slot.dataset.loaded) return;
           slot.dataset.loaded = '1';
@@ -101,19 +102,17 @@
           f.setAttribute('title', 'Newsletter signup powered by Zeffy');
           f.setAttribute('src', slot.getAttribute('data-newsletter-src'));
           f.setAttribute('allowTransparency', 'true');
-          f.style.cssText = 'width:100%;height:280px;border:0;display:block;';
+          f.style.cssText = 'width:100%;height:280px;border:0;display:block;background:transparent;';
           slot.appendChild(f);
         }
-        if ('IntersectionObserver' in window) {
-          var io = new IntersectionObserver(function (entries) {
-            entries.forEach(function (en) {
-              if (en.isIntersecting) { loadForm(); io.unobserve(en.target); }
-            });
-          }, { rootMargin: '200px' });
-          io.observe(slot);
+        // Run on DOM ready and also try immediately (for Astro)
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', init);
         } else {
-          loadForm();
+          init();
         }
+        // Fallback: try again after a short delay in case of timing issues
+        setTimeout(init, 1000);
       })();
     </script>
 
@@ -188,6 +187,15 @@
   .newsletter-btn {
     display: none; /* shown on mobile only */
     margin-top: var(--space-2);
+    background-color: var(--color-cream-contact); /* #FFEFDA — matches Email Us */
+    color: var(--color-text);
+    border-color: var(--color-cream-contact);
+  }
+
+  .newsletter-btn:hover {
+    background-color: var(--color-gold);
+    border-color: var(--color-gold);
+    color: var(--color-text);
   }
 
   /* ── Section header ─────────────────────────────────────── */
