@@ -15,5 +15,5 @@ export const campaigns = [
   { title: 'Trauma Care for Street Dogs',                   slug: 'trauma-care-for-street-dogs' },
   { title: 'Spay & Neuter: Stop Suffering Before It Starts', slug: 'spay-and-neuter-stop-suffering-before-it-starts' },
   { title: 'Medical Equipment for Rescue Dogs',              slug: 'medical-equipment-for-rescue-dogs' },
-  { title: 'Dog Ambulance for PFA',                         slug: 'dog-ambulance-for-pfa' },
+  { title: 'Emergency Dog Ambulance',                       slug: 'dog-ambulance-for-pfa' },
 ];
