@@ -76,13 +76,9 @@
 
       </div><!-- /.contact-card -->
 
-      <!-- RIGHT: newsletter signup -->
-      <div class="newsletter-card">
-        <h3 class="newsletter-title">Stay in the Loop</h3>
-        <p class="newsletter-sub">Get rescue stories, event invites, and impact updates — straight to your inbox.</p>
-        <div class="newsletter-form-slot" data-newsletter-src="https://www.zeffy.com/en-US/embed/newsletter-form/sign-up-for-our-newsletter-4568"></div>
-        <a href="https://www.zeffy.com/en-US/newsletter-form/sign-up-for-our-newsletter-4568" target="_blank" rel="noopener" class="btn newsletter-btn">Sign Up for Newsletter</a>
-      </div><!-- /.newsletter-card -->
+      <!-- Newsletter signup — Zeffy form directly, no wrapper card -->
+      <div class="newsletter-form-slot" data-newsletter-src="https://www.zeffy.com/en-US/embed/newsletter-form/sign-up-for-our-newsletter-4568"></div>
+      <a href="https://www.zeffy.com/en-US/newsletter-form/sign-up-for-our-newsletter-4568" target="_blank" rel="noopener" class="btn newsletter-btn">Sign Up for Newsletter</a>
 
     </div><!-- /.contact-columns -->
 
@@ -148,39 +144,9 @@
     max-width: 700px;
   }
 
-  /* ── Newsletter card (right) ──────────────────────────── */
-  .newsletter-card {
-    background-color: var(--color-dark-brown); /* #382213 */
-    border-radius: var(--radius-contact-card); /* 10px */
-    padding: var(--space-10) var(--space-8);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    width: 100%;
-    max-width: 700px;
-    gap: var(--space-4);
-  }
-
-  .newsletter-title {
-    font-family: var(--font-heading);
-    font-size: 26px;
-    font-weight: 600;
-    line-height: var(--lh-tight);
-    color: var(--color-text-on-dark); /* #FFF8F1 */
-    margin: 0;
-  }
-
-  .newsletter-sub {
-    font-family: var(--font-body);
-    font-size: var(--text-base); /* 16px */
-    line-height: var(--lh-relaxed);
-    color: var(--color-text-on-dark);
-    margin: 0;
-  }
-
   .newsletter-form-slot {
     width: 100%;
+    max-width: 700px;
     min-height: 280px;
   }
 
@@ -399,11 +365,6 @@
     .contact-card {
       padding: var(--space-6) var(--space-4) var(--space-8);
       max-width: 100%;
-    }
-
-    .newsletter-card {
-      max-width: 100%;
-      width: 100%;
     }
 
     .newsletter-form-slot {
