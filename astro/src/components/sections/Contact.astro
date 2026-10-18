@@ -21,8 +21,11 @@
       </p>
     </div>
 
-    <!-- Dark contact card — centered, all content inside centered -->
-    <div class="contact-card" data-reveal="card">
+    <!-- Contact + newsletter — two columns -->
+    <div class="contact-columns" data-reveal="card">
+
+      <!-- LEFT: contact card -->
+      <div class="contact-card">
 
       <!-- Dogs group illustration centered at top -->
       <div class="contact-illus" aria-hidden="true">
@@ -71,7 +74,48 @@
         We typically respond within 24-48 hours. Thank you for your interest in helping keep our brave heroes safe!
       </p>
 
-    </div><!-- /.contact-card -->
+      </div><!-- /.contact-card -->
+
+      <!-- RIGHT: newsletter signup -->
+      <div class="newsletter-card">
+        <h3 class="newsletter-title">Stay in the Loop</h3>
+        <p class="newsletter-sub">Get rescue stories, event invites, and impact updates — straight to your inbox.</p>
+        <div class="newsletter-form-slot" data-newsletter-src="https://www.zeffy.com/en-US/embed/newsletter-form/sign-up-for-our-newsletter-4568"></div>
+        <a href="https://www.zeffy.com/en-US/newsletter-form/sign-up-for-our-newsletter-4568" target="_blank" rel="noopener" class="btn btn-primary newsletter-btn">Sign Up for Newsletter</a>
+      </div><!-- /.newsletter-card -->
+
+    </div><!-- /.contact-columns -->
+
+    <script is:inline>
+      // Lazy-load Zeffy newsletter form: desktop only (mobile iframes crash),
+      // only when near the viewport. Mobile users get the signup button instead.
+      (function () {
+        var DESKTOP_MQ = '(min-width: 769px)';
+        var slot = document.querySelector('.newsletter-form-slot');
+        if (!slot) return;
+        function loadForm() {
+          if (!window.matchMedia(DESKTOP_MQ).matches) return;
+          if (slot.dataset.loaded) return;
+          slot.dataset.loaded = '1';
+          var f = document.createElement('iframe');
+          f.setAttribute('title', 'Newsletter signup powered by Zeffy');
+          f.setAttribute('src', slot.getAttribute('data-newsletter-src'));
+          f.setAttribute('allowTransparency', 'true');
+          f.style.cssText = 'width:100%;height:280px;border:0;display:block;';
+          slot.appendChild(f);
+        }
+        if ('IntersectionObserver' in window) {
+          var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (en) {
+              if (en.isIntersecting) { loadForm(); io.unobserve(en.target); }
+            });
+          }, { rootMargin: '200px' });
+          io.observe(slot);
+        } else {
+          loadForm();
+        }
+      })();
+    </script>
 
   </div><!-- /.section-inner -->
 </section>
@@ -93,6 +137,57 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  /* ── Two-column layout: contact left, newsletter right ── */
+  .contact-columns {
+    display: flex;
+    gap: var(--space-8);
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+    max-width: 980px;
+  }
+
+  /* ── Newsletter card (right) ──────────────────────────── */
+  .newsletter-card {
+    background-color: var(--color-dark-brown); /* #382213 */
+    border-radius: var(--radius-contact-card); /* 10px */
+    padding: var(--space-10) var(--space-8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1;
+    max-width: 420px;
+    gap: var(--space-4);
+  }
+
+  .newsletter-title {
+    font-family: var(--font-heading);
+    font-size: 26px;
+    font-weight: 600;
+    line-height: var(--lh-tight);
+    color: var(--color-text-on-dark); /* #FFF8F1 */
+    margin: 0;
+  }
+
+  .newsletter-sub {
+    font-family: var(--font-body);
+    font-size: var(--text-base); /* 16px */
+    line-height: var(--lh-relaxed);
+    color: var(--color-text-on-dark);
+    margin: 0;
+  }
+
+  .newsletter-form-slot {
+    width: 100%;
+    min-height: 280px;
+  }
+
+  .newsletter-btn {
+    display: none; /* shown on mobile only */
+    margin-top: var(--space-2);
   }
 
   /* ── Section header ─────────────────────────────────────── */
@@ -129,13 +224,13 @@
   .contact-card {
     background-color: var(--color-dark-brown); /* #382213 */
     border-radius: var(--radius-contact-card); /* 10px */
-    padding: var(--space-10) var(--space-12) var(--space-12);
+    padding: var(--space-10) var(--space-8) var(--space-12);
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    width: 100%;
-    max-width: 700px;
+    flex: 1;
+    max-width: 520px;
     gap: var(--space-3);
   }
 
@@ -293,9 +388,27 @@
       font-size: 28px;
     }
 
+    .contact-columns {
+      flex-direction: column;
+      align-items: center;
+    }
+
     .contact-card {
       padding: var(--space-6) var(--space-4) var(--space-8);
       max-width: 100%;
+    }
+
+    .newsletter-card {
+      max-width: 100%;
+      width: 100%;
+    }
+
+    .newsletter-form-slot {
+      display: none; /* no iframe on mobile — use button instead */
+    }
+
+    .newsletter-btn {
+      display: inline-flex;
     }
 
     .contact-illus img {
