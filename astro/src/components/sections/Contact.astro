@@ -138,14 +138,14 @@
     align-items: center;
   }
 
-  /* ── Two-column layout: contact left, newsletter right ── */
+  /* ── Stacked layout: contact card above, newsletter below ── */
   .contact-columns {
     display: flex;
+    flex-direction: column;
     gap: var(--space-8);
-    justify-content: center;
-    align-items: stretch;
+    align-items: center;
     width: 100%;
-    max-width: 980px;
+    max-width: 700px;
   }
 
   /* ── Newsletter card (right) ──────────────────────────── */
@@ -157,8 +157,8 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    flex: 1;
-    max-width: 420px;
+    width: 100%;
+    max-width: 700px;
     gap: var(--space-4);
   }
 
@@ -185,7 +185,7 @@
   }
 
   .newsletter-btn {
-    display: none; /* shown on mobile only */
+    display: inline-flex; /* always visible */
     margin-top: var(--space-2);
     background-color: var(--color-cream-contact); /* #FFEFDA — matches Email Us */
     color: var(--color-text);
@@ -237,8 +237,8 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    flex: 1;
-    max-width: 520px;
+    width: 100%;
+    max-width: 700px;
     gap: var(--space-3);
   }
 
@@ -394,11 +394,6 @@
 
     .contact-title {
       font-size: 28px;
-    }
-
-    .contact-columns {
-      flex-direction: column;
-      align-items: center;
     }
 
     .contact-card {
