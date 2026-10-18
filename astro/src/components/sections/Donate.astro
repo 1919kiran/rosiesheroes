@@ -123,14 +123,25 @@ import {
         }
         function updateArrows() {
           var max = strip.scrollWidth - strip.clientWidth;
-          prev.disabled = strip.scrollLeft <= 4;
-          next.disabled = strip.scrollLeft >= max - 4;
+          // Use a generous threshold: mobile browsers report subpixel
+          // scrollLeft values, and a tight threshold can permanently
+          // disable the next button right after load.
+          prev.disabled = strip.scrollLeft <= 10;
+          next.disabled = max <= 10 || strip.scrollLeft >= max - 10;
         }
         prev.addEventListener('click', function () { strip.scrollBy({ left: -cardStep(), behavior: 'smooth' }); });
         next.addEventListener('click', function () { strip.scrollBy({ left: cardStep(), behavior: 'smooth' }); });
         strip.addEventListener('scroll', updateArrows, { passive: true });
         window.addEventListener('resize', updateArrows);
         updateArrows();
+        // Re-check after layout settles: lazy-loaded thermometers and
+        // fonts can change scrollWidth after the first calculation,
+        // leaving the next arrow wrongly disabled on mobile.
+        setTimeout(updateArrows, 500);
+        setTimeout(updateArrows, 2000);
+        if (document.fonts && document.fonts.ready) {
+          document.fonts.ready.then(updateArrows);
+        }
       })();
     </script>
     <script is:inline>
@@ -688,6 +699,8 @@ import {
     font-size: 24px;
     line-height: 1;
     cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
     display: flex;
     align-items: center;
     justify-content: center;
