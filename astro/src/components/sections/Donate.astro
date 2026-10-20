@@ -95,27 +95,21 @@ import {
     <div class="donate-campaigns-wrap" data-reveal>
       <button type="button" class="campaign-nav campaign-nav--prev" id="campaign-prev" aria-label="Scroll to previous campaigns">‹</button>
       <div class="donate-campaigns" id="donate-campaigns">
-        {campaigns.map((c) => {
-          const pct = c.goal ? Math.min(100, Math.round((c.raised / c.goal) * 100)) : null;
-          return (
-            <article class="donate-campaign" data-reveal="card">
-              <h4 class="donate-campaign-title">{c.title}</h4>
-              <p class="donate-campaign-blurb">{c.blurb}</p>
-              <div class="donate-campaign-stats">
-                <span class="donate-campaign-raised">${c.raised.toLocaleString()}</span>
-                <span class="donate-campaign-goal">{c.goal ? ` raised of $${c.goal.toLocaleString()} goal` : ' raised so far'}</span>
-              </div>
-              {pct !== null && (
-                <div class="donate-progress" role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100} aria-label={`${c.title} fundraising progress`}>
-                  <div class="donate-progress-fill" style={`width:${pct}%`}></div>
-                </div>
-              )}
-              <button type="button" class="btn btn-primary donate-campaign-btn" zeffy-form-link={zeffyModalUrl(c.slug)}>
-                Donate
-              </button>
-            </article>
-          );
-        })}
+        {campaigns.map((c) => (
+          <article class="donate-campaign" data-reveal="card">
+            <h4 class="donate-campaign-title">{c.title}</h4>
+            <p class="donate-campaign-blurb">{c.blurb}</p>
+            {(c.location || c.dogsHelped) && (
+              <p class="donate-campaign-meta">
+                {c.location && <span class="donate-campaign-meta-item">📍 {c.location}</span>}
+                {c.dogsHelped && <span class="donate-campaign-meta-item">🐾 {c.dogsHelped}</span>}
+              </p>
+            )}
+            <button type="button" class="btn btn-primary donate-campaign-btn" zeffy-form-link={zeffyModalUrl(c.slug)}>
+              Donate
+            </button>
+          </article>
+        ))}
       </div>
       <button type="button" class="campaign-nav campaign-nav--next" id="campaign-next" aria-label="Scroll to next campaigns">›</button>
     </div>
@@ -721,35 +715,15 @@ import {
     flex: 1;
   }
 
-  .donate-campaign-stats {
+  .donate-campaign-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-4);
     font-family: var(--font-body);
     font-size: var(--text-sm);
-    color: var(--color-text-muted);
-    margin: 0;
-  }
-
-  .donate-campaign-raised {
-    font-family: var(--font-heading);
-    font-size: var(--text-lg);
-    font-weight: 700;
+    font-weight: 600;
     color: var(--color-gold-hover);
-  }
-
-  /* Our own progress bar (replaces the Zeffy thermometer embed) */
-  .donate-progress {
-    width: 100%;
-    height: 10px;
-    background: #F1E3CE;
-    border-radius: 5px;
-    overflow: hidden;
-  }
-
-  .donate-progress-fill {
-    height: 100%;
-    background: var(--color-gold);
-    border-radius: 5px;
-    min-width: 4px;
-    transition: width 0.6s ease;
+    margin: 0;
   }
 
   .donate-campaign-btn {
