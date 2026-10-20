@@ -14,7 +14,8 @@ export const mainCampaignSlug = 'from-survival-to-safety-2';
 // (per Pri, 2026-10-19 — no raised amounts on the cards).
 // Locations and dog counts come from the Canva campaign flyers
 // (design DAHWYq0o4Jw, read 2026-10-19). The Medical Equipment flyer
-// gives no dog count ("equips a lifesaving clinic"), so it is null.
+// gives no dog count; its "1,300 dogs per year" is Pri's figure
+// (2026-10-19).
 export interface Campaign {
   title: string;
   slug: string;
@@ -50,7 +51,7 @@ export const campaigns: Campaign[] = [
     slug: 'medical-equipment-for-rescue-dogs',
     blurb: 'Provides diagnostic and treatment equipment so rescue teams can triage and treat more dogs.',
     location: 'Bangalore, Karnataka, India',
-    dogsHelped: null,
+    dogsHelped: 'Up to 1,300 dogs helped per year',
   },
   {
     title: 'Emergency Dog Ambulance',
