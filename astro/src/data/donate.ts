@@ -16,6 +16,8 @@ export const mainCampaignSlug = 'from-survival-to-safety-2';
 // (design DAHWYq0o4Jw, read 2026-10-19). The Medical Equipment flyer
 // gives no dog count; its "1,300 dogs per year" is Pri's figure
 // (2026-10-19).
+// Order: dogs helped, greatest to least (per Pri, 2026-10-19) —
+// "countless" ranks above every finite number.
 export interface Campaign {
   title: string;
   slug: string;
@@ -25,6 +27,27 @@ export interface Campaign {
 }
 
 export const campaigns: Campaign[] = [
+  {
+    title: 'Emergency Dog Ambulance',
+    slug: 'dog-ambulance-for-pfa',
+    blurb: 'Provides a dog ambulance for PFA to reach injured and sick dogs across India.',
+    location: 'All Across India',
+    dogsHelped: 'Countless dogs helped',
+  },
+  {
+    title: 'Medical Equipment for Rescue Dogs',
+    slug: 'medical-equipment-for-rescue-dogs',
+    blurb: 'Provides diagnostic and treatment equipment so rescue teams can triage and treat more dogs.',
+    location: 'Bangalore, Karnataka, India',
+    dogsHelped: 'Up to 1,300 dogs helped per year',
+  },
+  {
+    title: 'Portable XRay Machine',
+    slug: 'portable-xray-machine',
+    blurb: 'Provides a portable X-ray machine so vets can diagnose fractures and trauma on the spot.',
+    location: 'Agartala, Tripura, India',
+    dogsHelped: 'Up to 1,000 dogs helped per year',
+  },
   {
     title: 'ICU Roof and Floor Repair',
     slug: 'a-safe-icu-for-dogs',
@@ -45,26 +68,5 @@ export const campaigns: Campaign[] = [
     blurb: 'Provides 100 spay/neuter surgeries through CARE, Bangalore — stopping suffering before it starts.',
     location: 'Bangalore, Karnataka, India',
     dogsHelped: '100 dogs helped',
-  },
-  {
-    title: 'Medical Equipment for Rescue Dogs',
-    slug: 'medical-equipment-for-rescue-dogs',
-    blurb: 'Provides diagnostic and treatment equipment so rescue teams can triage and treat more dogs.',
-    location: 'Bangalore, Karnataka, India',
-    dogsHelped: 'Up to 1,300 dogs helped per year',
-  },
-  {
-    title: 'Emergency Dog Ambulance',
-    slug: 'dog-ambulance-for-pfa',
-    blurb: 'Provides a dog ambulance for PFA to reach injured and sick dogs across India.',
-    location: 'All Across India',
-    dogsHelped: 'Countless dogs helped',
-  },
-  {
-    title: 'Portable XRay Machine',
-    slug: 'portable-xray-machine',
-    blurb: 'Provides a portable X-ray machine so vets can diagnose fractures and trauma on the spot.',
-    location: 'Agartala, Tripura, India',
-    dogsHelped: 'Up to 1,000 dogs helped per year',
   },
 ];
