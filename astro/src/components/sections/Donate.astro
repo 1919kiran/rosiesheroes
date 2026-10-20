@@ -840,11 +840,23 @@ import {
 
     .donate-campaigns-wrap {
       margin-bottom: var(--space-10);
+      /* Arrows become a row under the carousel instead of floating
+         over the cards, where they covered the card text */
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      column-gap: var(--space-3);
+      row-gap: var(--space-3);
     }
 
-    /* Keep the arrows inside the viewport on small screens */
-    .campaign-nav--prev { left: 4px; }
-    .campaign-nav--next { right: 4px; }
+    .donate-campaigns {
+      flex: 0 0 100%;
+    }
+
+    .campaign-nav {
+      position: static;
+      transform: none;
+    }
 
     .donate-match {
       padding: var(--space-4) var(--space-5);
