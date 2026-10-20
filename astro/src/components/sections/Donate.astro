@@ -275,8 +275,14 @@ import {
       var io = new IntersectionObserver(function(entries) {
         if (entries.some(function(e) { return e.isIntersecting; })) {
           io.disconnect();
-          loadPaypal();
-          loadEvery();
+          // Desktop only: auto-loading the PayPal and every.org SDKs when
+          // the section scrolls into view crashes mobile browsers. On mobile
+          // they load only when tapped (the toggles call loadPaypal() /
+          // loadEvery() on click), which is already wired up below.
+          if (window.matchMedia('(min-width: 769px)').matches) {
+            loadPaypal();
+            loadEvery();
+          }
         }
       }, { rootMargin: '300px 0px' });
       io.observe(cards);
@@ -840,23 +846,26 @@ import {
 
     .donate-campaigns-wrap {
       margin-bottom: var(--space-10);
-      /* Arrows become a row under the carousel instead of floating
-         over the cards, where they covered the card text */
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      column-gap: var(--space-3);
-      row-gap: var(--space-3);
+      /* Arrows sit on the sides again, smaller, with the strip padded so
+         cards at rest never slide under them and cover the text */
+      display: block;
     }
 
     .donate-campaigns {
-      flex: 0 0 100%;
+      padding-inline: 52px;
     }
 
     .campaign-nav {
-      position: static;
-      transform: none;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 36px;
+      height: 36px;
+      font-size: 20px;
     }
+
+    .campaign-nav--prev { left: 8px; }
+    .campaign-nav--next { right: 8px; }
 
     .donate-match {
       padding: var(--space-4) var(--space-5);
