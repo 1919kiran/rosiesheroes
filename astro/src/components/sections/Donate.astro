@@ -867,6 +867,11 @@ import {
     .campaign-nav--prev { left: 8px; }
     .campaign-nav--next { right: 8px; }
 
+    /* Smaller cards on mobile so they don't slide under the side arrows */
+    .donate-campaign {
+      flex-basis: min(300px, 68vw);
+    }
+
     .donate-match {
       padding: var(--space-4) var(--space-5);
     }
