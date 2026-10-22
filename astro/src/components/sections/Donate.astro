@@ -139,6 +139,17 @@ import {
         strip.addEventListener('scroll', updateArrows, { passive: true });
         window.addEventListener('resize', updateArrows);
         updateArrows();
+        // Center the first card on mobile so it doesn't sit under the left arrow.
+        function centerFirstCard() {
+          var card = strip.querySelector('.donate-campaign');
+          if (!card || window.innerWidth > 768) return;
+          var cardRect = card.getBoundingClientRect();
+          var stripRect = strip.getBoundingClientRect();
+          var offset = (cardRect.left - stripRect.left) - (stripRect.width - cardRect.width) / 2;
+          if (Math.abs(offset) > 2) strip.scrollLeft += offset;
+        }
+        centerFirstCard();
+        setTimeout(centerFirstCard, 500);
         // Re-check after layout settles: lazy-loaded thermometers and
         // fonts can change scrollWidth after the first calculation,
         // leaving the next arrow wrongly disabled on mobile.
@@ -870,6 +881,11 @@ import {
     /* Smaller cards on mobile so they don't slide under the side arrows */
     .donate-campaign {
       flex-basis: min(300px, 68vw);
+      scroll-snap-align: center;
+    }
+
+    .donate-campaigns {
+      scroll-padding-inline: 52px;
     }
 
     .donate-match {
