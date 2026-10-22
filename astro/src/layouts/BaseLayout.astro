@@ -29,6 +29,9 @@ import '../styles/global.css';
     gtag('config', 'G-KT5FS5F1D4');
   </script>
   <!-- Zeffy popups: binds every [zeffy-form-link] element on DOMContentLoaded, so it can't be loaded lazily -->
+  <!-- Preconnect to Zeffy domains to speed up popup form loading on tap -->
+  <link rel="preconnect" href="https://www.zeffy.com" />
+  <link rel="preconnect" href="https://zeffy-scripts.s3.ca-central-1.amazonaws.com" />
   <script is:inline defer src="https://zeffy-scripts.s3.ca-central-1.amazonaws.com/embed-form-script.min.js"></script>
 </head>
 <body>
