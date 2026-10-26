@@ -1,0 +1,267 @@
+---
+// Events section — simple clickable calendar.
+// Month grid on the left, event detail (flyer + RSVP) on the right.
+// Events with no date appear under "Date to be announced" below the grid.
+// Add or edit events in src/data/events.ts — no other file needs to change.
+import { events } from '../../data/events';
+---
+
+<section id="events">
+  <div class="section-inner">
+    <div class="events-header" data-reveal>
+      <h2 class="events-title">Upcoming Events</h2>
+      <p class="events-intro">
+        Tap an event to see its flyer and RSVP.
+      </p>
+    </div>
+
+    <div class="events-layout">
+      <!-- Month calendar -->
+      <div class="events-calendar" data-reveal="card">
+        <div class="cal-head">
+          <button type="button" class="cal-nav" id="cal-prev" aria-label="Previous month">&larr;</button>
+          <h3 class="cal-month" id="cal-month"></h3>
+          <button type="button" class="cal-nav" id="cal-next" aria-label="Next month">&rarr;</button>
+        </div>
+        <div class="cal-weekdays" aria-hidden="true">
+          <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+        </div>
+        <div class="cal-grid" id="cal-grid"></div>
+      </div>
+
+      <!-- Event detail: flyer + RSVP -->
+      <div class="events-detail" data-reveal="card">
+        <div class="flyer" id="event-flyer"></div>
+        <h3 class="detail-title" id="event-title"></h3>
+        <p class="detail-when" id="event-when"></p>
+        <p class="detail-where" id="event-where"></p>
+        <p class="detail-blurb" id="event-blurb"></p>
+        <p class="detail-note" id="event-note"></p>
+        <a class="btn btn-primary" id="event-rsvp" href="#">RSVP</a>
+      </div>
+    </div>
+
+    <!-- Events with no date yet -->
+    <div class="events-tbd" data-reveal="card">
+      <h3 class="tbd-title">Date to be announced</h3>
+      <div class="tbd-list" id="tbd-list"></div>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ events }}>
+  (function () {
+    var grid = document.getElementById('cal-grid');
+    var monthLabel = document.getElementById('cal-month');
+    var tbdList = document.getElementById('tbd-list');
+    if (!grid) return;
+
+    var dated = events.filter(function (e) { return e.date; });
+    var tbd = events.filter(function (e) { return !e.date; });
+    var byDate = {};
+    dated.forEach(function (e) { byDate[e.date] = e; });
+
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+    var upcoming = dated
+      .filter(function (e) { return new Date(e.date + 'T00:00:00') >= today; })
+      .sort(function (a, b) { return a.date < b.date ? -1 : 1; });
+    var start = upcoming.length
+      ? new Date(upcoming[0].date + 'T00:00:00')
+      : today;
+    var viewYear = start.getFullYear();
+    var viewMonth = start.getMonth();
+    var selectedId = upcoming.length ? upcoming[0].id : (dated[0] && dated[0].id) || (tbd[0] && tbd[0].id);
+
+    function fmtDate(iso) {
+      var d = new Date(iso + 'T00:00:00');
+      return d.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+    }
+
+    function renderCalendar() {
+      var first = new Date(viewYear, viewMonth, 1);
+      var daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+      monthLabel.textContent = first.toLocaleDateString(undefined, { month: 'long', year: 'numeric' });
+      var html = '';
+      for (var i = 0; i < first.getDay(); i++) html += '<span class="cal-blank"></span>';
+      for (var day = 1; day <= daysInMonth; day++) {
+        var iso = viewYear + '-' + String(viewMonth + 1).padStart(2, '0') + '-' + String(day).padStart(2, '0');
+        var ev = byDate[iso];
+        if (ev) {
+          html += '<button type="button" class="cal-day cal-day--event' + (ev.id === selectedId ? ' cal-day--selected' : '') + '" data-event="' + ev.id + '" aria-label="' + ev.title + ' on ' + fmtDate(iso) + '">' + day + '</button>';
+        } else {
+          html += '<span class="cal-day">' + day + '</span>';
+        }
+      }
+      grid.innerHTML = html;
+      grid.querySelectorAll('[data-event]').forEach(function (btn) {
+        btn.addEventListener('click', function () { select(btn.getAttribute('data-event')); });
+      });
+    }
+
+    function renderTbd() {
+      if (!tbd.length) {
+        tbdList.innerHTML = '<p class="tbd-empty">More events coming soon.</p>';
+        return;
+      }
+      tbdList.innerHTML = tbd.map(function (e) {
+        return '<button type="button" class="tbd-card' + (e.id === selectedId ? ' tbd-card--selected' : '') + '" data-event="' + e.id + '">'
+          + '<span class="tbd-card-title">' + e.title + '</span>'
+          + '<span class="tbd-card-meta">' + e.location + ' · ' + (e.dateLabel || 'Date to be announced') + '</span>'
+          + '</button>';
+      }).join('');
+      tbdList.querySelectorAll('[data-event]').forEach(function (btn) {
+        btn.addEventListener('click', function () { select(btn.getAttribute('data-event')); });
+      });
+    }
+
+    function select(id) {
+      selectedId = id;
+      var ev = events.find(function (e) { return e.id === id; });
+      if (!ev) return;
+      var flyer = document.getElementById('event-flyer');
+      flyer.innerHTML = ev.flyer
+        ? '<img src="' + ev.flyer + '" alt="' + ev.title + ' flyer" />'
+        : '<span class="flyer-label">Flyer</span>'
+          + '<span class="flyer-title">' + ev.title + '</span>'
+          + '<span class="flyer-meta">' + (ev.date ? fmtDate(ev.date) : (ev.dateLabel || 'Date to be announced')) + '</span>'
+          + '<span class="flyer-meta">' + ev.location + '</span>';
+      document.getElementById('event-title').textContent = ev.title;
+      document.getElementById('event-when').textContent = ev.date
+        ? fmtDate(ev.date) + (ev.time ? ' · ' + ev.time : '')
+        : (ev.dateLabel || 'Date to be announced');
+      document.getElementById('event-where').textContent = ev.location;
+      document.getElementById('event-blurb').textContent = ev.blurb;
+      var noteEl = document.getElementById('event-note');
+      noteEl.textContent = ev.note || '';
+      noteEl.style.display = ev.note ? '' : 'none';
+      var rsvp = document.getElementById('event-rsvp');
+      rsvp.href = 'mailto:rosiesheroes@gmail.com?subject=' + encodeURIComponent('RSVP: ' + ev.title)
+        + '&body=' + encodeURIComponent('Hi Rosie\'s Heroes,\n\nI\'d like to RSVP for ' + ev.title + (ev.date ? ' on ' + fmtDate(ev.date) : (ev.dateLabel ? ' (' + ev.dateLabel + ')' : '')) + '.\n\nName:\nNumber of guests:\n');
+      renderCalendar();
+      renderTbd();
+    }
+
+    document.getElementById('cal-prev').addEventListener('click', function () {
+      viewMonth -= 1;
+      if (viewMonth < 0) { viewMonth = 11; viewYear -= 1; }
+      renderCalendar();
+    });
+    document.getElementById('cal-next').addEventListener('click', function () {
+      viewMonth += 1;
+      if (viewMonth > 11) { viewMonth = 0; viewYear += 1; }
+      renderCalendar();
+    });
+
+    if (selectedId) select(selectedId);
+    else { renderCalendar(); renderTbd(); }
+  })();
+</script>
+
+<style>
+  #events {
+    background-color: var(--color-cream);
+    padding: 72px 0;
+  }
+  .events-header { text-align: center; margin-bottom: 32px; }
+  .events-title { margin: 0 0 8px; }
+  .events-intro { color: var(--color-text-mid); margin: 0; font-size: var(--text-lg); }
+  .events-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  .events-calendar,
+  .events-detail,
+  .events-tbd {
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-card-border);
+    border-radius: 24px;
+    padding: 24px;
+  }
+  .cal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+  .cal-month { margin: 0; font-size: var(--text-card); }
+  .cal-nav {
+    border: 1px solid var(--color-card-border);
+    background: var(--color-cream);
+    color: var(--color-text);
+    border-radius: 999px;
+    width: 40px; height: 40px;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  .cal-weekdays,
+  .cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+    text-align: center;
+  }
+  .cal-weekdays { color: var(--color-text-muted); font-size: 14px; margin-bottom: 6px; }
+  .cal-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    border: none;
+    background: transparent;
+    color: var(--color-text);
+    font: inherit;
+    font-size: 15px;
+  }
+  button.cal-day--event {
+    background: var(--color-gold);
+    color: var(--color-dark-brown);
+    font-weight: 700;
+    cursor: pointer;
+  }
+  button.cal-day--selected { outline: 3px solid var(--color-dark-brown); outline-offset: 1px; }
+  .flyer {
+    border: 3px solid var(--color-gold);
+    border-radius: 20px;
+    background: var(--color-cream-hero);
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    text-align: center;
+    padding: 24px 16px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .flyer img { width: 100%; height: auto; display: block; border-radius: 12px; }
+  .flyer-label { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-text-muted); }
+  .flyer-title { font-family: var(--font-heading); font-size: 26px; line-height: 1.2; }
+  .flyer-meta { color: var(--color-text-mid); }
+  .detail-title { margin: 0 0 4px; font-size: var(--text-card); }
+  .detail-when, .detail-where { margin: 0 0 4px; color: var(--color-text-mid); }
+  .detail-blurb { margin: 12px 0; }
+  .detail-note { color: var(--color-text-muted); font-size: 15px; margin: 0 0 16px; }
+  .events-tbd { margin-top: 24px; }
+  .tbd-title { margin: 0 0 16px; font-size: var(--text-card); }
+  .tbd-list { display: grid; gap: 12px; }
+  .tbd-card {
+    text-align: left;
+    background: var(--color-cream);
+    border: 1px solid var(--color-card-border);
+    border-radius: 16px;
+    padding: 16px 20px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    color: var(--color-text);
+    font: inherit;
+  }
+  .tbd-card--selected { border-color: var(--color-gold); outline: 2px solid var(--color-gold); }
+  .tbd-card-title { font-weight: 700; font-size: 18px; }
+  .tbd-card-meta { color: var(--color-text-mid); font-size: 15px; }
+  @media (max-width: 768px) {
+    .events-layout { grid-template-columns: 1fr; }
+    #events { padding: 48px 0; }
+  }
+</style>
