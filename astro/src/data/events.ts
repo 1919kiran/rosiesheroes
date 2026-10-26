@@ -35,6 +35,17 @@ export const events: SiteEvent[] = [
     note: null,
   },
   {
+    id: "hike-lake-del-valle",
+    title: "Hike at Lake Del Valle",
+    date: "2026-11-07",
+    month: "November",
+    dateLabel: null,
+    time: null,
+    location: "Lake Del Valle",
+    blurb: "A group hike at Lake Del Valle.",
+    note: null,
+  },
+  {
     id: "paws-petals",
     title: "Paws & Petals",
     date: "2026-11-14",
