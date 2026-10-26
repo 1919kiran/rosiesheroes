@@ -43,7 +43,7 @@ export const events: SiteEvent[] = [
     time: "11:00 AM – 1:00 PM",
     location: "Event lawn, Treehouse Silicon Valley",
     blurb:
-      "Pressed flower arts & crafts, dog friendly, with a fall fashion contest for dogs. $60 per person.",
+      "Pressed flower arts & crafts, dog friendly, with a fall fashion contest for dogs.",
     note: null,
   },
   {

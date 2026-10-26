@@ -51,6 +51,7 @@ const items = events.map((ev) => ({
               <span class="simple-name">{ev.title}</span>
               <span class="simple-desc">{ev.blurb}</span>
               <span class="simple-month">{ev.monthYear}</span>
+              <span class="simple-loc">{ev.location}</span>
             </li>
           ))
         }
@@ -81,24 +82,30 @@ const items = events.map((ev) => ({
     border: 0;
     border-radius: 16px;
   }
-  .events-list { max-width: 760px; margin: 0 auto; }
+  .events-list { max-width: 1080px; margin: 0 auto; }
   .events-list-title { margin: 0 0 20px; text-align: center; font-size: var(--text-card); }
   .events-simple-list {
     list-style: none;
     margin: 0;
     padding: 0;
     display: grid;
-    gap: 20px;
+    gap: 0;
   }
   .events-simple-list li {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
+    display: grid;
+    grid-template-columns: 1.3fr 2.2fr 1fr 1.3fr;
+    gap: 20px;
+    align-items: baseline;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--color-card-border);
   }
+  .events-simple-list li:first-child { border-top: 1px solid var(--color-card-border); }
   .simple-name { font-weight: 700; font-size: 19px; }
   .simple-desc { color: var(--color-text-mid); }
   .simple-month { color: var(--color-text-muted); font-size: 15px; }
+  .simple-loc { color: var(--color-text-mid); font-size: 15px; }
   @media (max-width: 768px) {
+    .events-simple-list li { grid-template-columns: 1fr; gap: 2px; }
     .events-embed iframe { height: 500px; }
     #events { padding: 48px 0; }
   }
