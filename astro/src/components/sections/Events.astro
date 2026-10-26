@@ -44,6 +44,12 @@ const items = events.map((ev) => ({
 
     <div class="events-list">
       <h3 class="events-list-title">Upcoming Events</h3>
+      <div class="events-table-head" aria-hidden="true">
+        <span>Event</span>
+        <span>Description</span>
+        <span>Month / Year</span>
+        <span>Location</span>
+      </div>
       <ul class="events-simple-list">
         {
           items.map((ev) => (
@@ -82,8 +88,27 @@ const items = events.map((ev) => ({
     border: 0;
     border-radius: 16px;
   }
-  .events-list { max-width: 1080px; margin: 0 auto; }
+  .events-list {
+    max-width: 1080px;
+    margin: 0 auto;
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-card-border);
+    border-radius: 24px;
+    padding: 28px 32px;
+  }
   .events-list-title { margin: 0 0 20px; text-align: center; font-size: var(--text-card); }
+  .events-table-head {
+    display: grid;
+    grid-template-columns: 1.3fr 2.2fr 1fr 1.3fr;
+    gap: 20px;
+    padding: 0 0 12px;
+    border-bottom: 3px solid var(--color-gold);
+    color: var(--color-dark-brown);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
   .events-simple-list {
     list-style: none;
     margin: 0;
@@ -96,16 +121,22 @@ const items = events.map((ev) => ({
     grid-template-columns: 1.3fr 2.2fr 1fr 1.3fr;
     gap: 20px;
     align-items: baseline;
-    padding: 18px 0;
+    padding: 18px 12px;
+    margin: 0 -12px;
     border-bottom: 1px solid var(--color-card-border);
+    border-radius: 12px;
   }
-  .events-simple-list li:first-child { border-top: 1px solid var(--color-card-border); }
-  .simple-name { font-weight: 700; font-size: 19px; }
+  .events-simple-list li:last-child { border-bottom: none; }
+  .events-simple-list li:hover { background: var(--color-cream); }
+  .simple-name { font-family: var(--font-heading); font-weight: 700; font-size: 20px; }
   .simple-desc { color: var(--color-text-mid); }
   .simple-month { color: var(--color-text-muted); font-size: 15px; }
   .simple-loc { color: var(--color-text-mid); font-size: 15px; }
   @media (max-width: 768px) {
-    .events-simple-list li { grid-template-columns: 1fr; gap: 2px; }
+    .events-table-head { display: none; }
+    .events-list { padding: 20px; }
+    .events-simple-list li { grid-template-columns: 1fr; gap: 2px; margin: 0; padding: 16px 0; }
+    .events-simple-list li:hover { background: transparent; }
     .events-embed iframe { height: 500px; }
     #events { padding: 48px 0; }
   }
