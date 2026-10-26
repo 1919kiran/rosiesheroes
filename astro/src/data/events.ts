@@ -2,8 +2,6 @@
 // Source: the "Community Events" sheet (plus the Dublin Diwali Mela).
 // Dated events also live on the public "Rosie's Heroes Events" Google
 // Calendar (rosiesheroes@gmail.com), which is embedded in the Events section.
-// Events with date: null show in the upcoming list with their month window
-// (they can't go on Google Calendar until a date is confirmed).
 // To add an event: add an entry here. Note: internal "next steps" from the
 // sheet are deliberately NOT shown here — only public-facing details go on
 // the website.
@@ -33,21 +31,8 @@ export const events: SiteEvent[] = [
     dateLabel: null,
     time: "5:00 – 7:00 PM",
     location: "Beer garden, Treehouse Silicon Valley",
-    blurb:
-      "Pupcakes from Treats by Rumi, with a portion of proceeds providing care for rescue dogs.",
+    blurb: "Pupcakes from Treats by Rumi.",
     note: null,
-  },
-  {
-    id: "dublin-diwali-mela",
-    title: "Dublin Diwali Mela",
-    date: "2026-11-07",
-    month: "November",
-    dateLabel: null,
-    time: "11:00 AM – 8:00 PM",
-    location: "Emerald Glen Park, Dublin",
-    blurb:
-      "Shop Indian-themed dog clothing, with proceeds providing care for rescue dogs.",
-    note: "Event date confirmed. Booth confirmation pending.",
   },
   {
     id: "paws-petals",
@@ -58,7 +43,7 @@ export const events: SiteEvent[] = [
     time: "11:00 AM – 1:00 PM",
     location: "Event lawn, Treehouse Silicon Valley",
     blurb:
-      "Pressed flower arts & crafts, dog friendly, with a fall fashion contest for dogs. $60 per person, with $40 from each ticket providing care for rescue dogs.",
+      "Pressed flower arts & crafts, dog friendly, with a fall fashion contest for dogs. $60 per person.",
     note: null,
   },
   {
@@ -105,7 +90,7 @@ export const events: SiteEvent[] = [
     time: null,
     location: "Santa Clara",
     blurb:
-      "A people-and-dog fitness group class hosted by Bay Area K9, with pup donuts from Treats by Rumi. All event profits go towards rescue.",
+      "A people-and-dog fitness group class hosted by Bay Area K9, with pup donuts from Treats by Rumi.",
     note: null,
   },
   {

@@ -9,30 +9,16 @@ import { events } from '../../data/events';
 const CALENDAR_EMBED =
   'https://calendar.google.com/calendar/embed?src=bfdb73cf1f2fe1d705d7ae0db617d1a36546c629a8219215c40a7363314ee0dc%40group.calendar.google.com&ctz=America%2FLos_Angeles';
 
-function fmtDate(iso: string) {
+function fmtMonthYear(iso: string) {
   return new Date(iso + 'T00:00:00').toLocaleDateString('en-US', {
-    weekday: 'long',
     month: 'long',
-    day: 'numeric',
     year: 'numeric',
   });
 }
 
-const cards = events.map((ev) => ({
+const items = events.map((ev) => ({
   ...ev,
-  when: ev.date
-    ? fmtDate(ev.date) + (ev.time ? ' · ' + ev.time : '')
-    : (ev.dateLabel ?? 'Date to be announced'),
-  rsvp:
-    'mailto:rosiesheroes@gmail.com?subject=' +
-    encodeURIComponent('RSVP: ' + ev.title) +
-    '&body=' +
-    encodeURIComponent(
-      "Hi Rosie's Heroes,\n\nI'd like to RSVP for " +
-        ev.title +
-        (ev.date ? ' on ' + fmtDate(ev.date) : ev.dateLabel ? ' (' + ev.dateLabel + ')' : '') +
-        '.\n\nName:\nNumber of guests:\n',
-    ),
+  monthYear: ev.date ? fmtMonthYear(ev.date) : ev.month,
 }));
 ---
 
@@ -57,22 +43,18 @@ const cards = events.map((ev) => ({
     </div>
 
     <div class="events-list">
-      {
-        cards.map((ev) => (
-          <article class="event-card" data-reveal="card">
-            <span class="event-month">{ev.month}</span>
-            <h3 class="event-title">{ev.title}</h3>
-            <p class="event-blurb">{ev.blurb}</p>
-            <p class="event-meta">
-              {ev.when} · {ev.location}
-            </p>
-            {ev.note && <p class="event-note">{ev.note}</p>}
-            <a class="btn btn-primary event-rsvp" href={ev.rsvp}>
-              RSVP
-            </a>
-          </article>
-        ))
-      }
+      <h3 class="events-list-title">Upcoming Events</h3>
+      <ul class="events-simple-list">
+        {
+          items.map((ev) => (
+            <li>
+              <span class="simple-name">{ev.title}</span>
+              <span class="simple-desc">{ev.blurb}</span>
+              <span class="simple-month">{ev.monthYear}</span>
+            </li>
+          ))
+        }
+      </ul>
     </div>
   </div>
 </section>
@@ -99,39 +81,24 @@ const cards = events.map((ev) => ({
     border: 0;
     border-radius: 16px;
   }
-  .events-list {
+  .events-list { max-width: 760px; margin: 0 auto; }
+  .events-list-title { margin: 0 0 20px; text-align: center; font-size: var(--text-card); }
+  .events-simple-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
+    gap: 20px;
   }
-  .event-card {
-    background: var(--color-card-bg);
-    border: 1px solid var(--color-card-border);
-    border-radius: 24px;
-    padding: 24px;
+  .events-simple-list li {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    gap: 2px;
   }
-  .event-month {
-    display: inline-block;
-    background: var(--color-gold);
-    color: var(--color-dark-brown);
-    font-weight: 700;
-    font-size: 13px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    border-radius: 999px;
-    padding: 6px 14px;
-    margin-bottom: 14px;
-  }
-  .event-title { margin: 0 0 8px; font-size: var(--text-card); }
-  .event-blurb { margin: 0 0 12px; }
-  .event-meta { margin: 0 0 4px; color: var(--color-text-mid); }
-  .event-note { color: var(--color-text-muted); font-size: 15px; margin: 8px 0 0; }
-  .event-card .event-rsvp { margin-top: 20px; }
+  .simple-name { font-weight: 700; font-size: 19px; }
+  .simple-desc { color: var(--color-text-mid); }
+  .simple-month { color: var(--color-text-muted); font-size: 15px; }
   @media (max-width: 768px) {
-    .events-list { grid-template-columns: 1fr; }
     .events-embed iframe { height: 500px; }
     #events { padding: 48px 0; }
   }
