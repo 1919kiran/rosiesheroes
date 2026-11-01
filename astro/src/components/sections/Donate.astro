@@ -281,27 +281,11 @@ import {
       });
     }
 
-    var cards = document.getElementById('donate-cards');
-    if (cards && 'IntersectionObserver' in window) {
-      var io = new IntersectionObserver(function(entries) {
-        if (entries.some(function(e) { return e.isIntersecting; })) {
-          io.disconnect();
-          // Desktop only: auto-loading the PayPal and every.org SDKs when
-          // the section scrolls into view crashes mobile browsers. On mobile
-          // they load only when tapped (the toggles call loadPaypal() /
-          // loadEvery() on click), which is already wired up below.
-          if (window.matchMedia('(min-width: 769px)').matches) {
-            loadPaypal();
-            loadEvery();
-          }
-        }
-      }, { rootMargin: '300px 0px' });
-      io.observe(cards);
-    }
-
     var paypalBtn = document.getElementById('paypal-form-toggle');
     var paypalPanel = document.getElementById('paypal-form-panel');
     if (paypalBtn && paypalPanel) {
+      paypalBtn.addEventListener('pointerenter', loadPaypal, { once: true, passive: true });
+      paypalBtn.addEventListener('focusin', loadPaypal, { once: true, passive: true });
       paypalBtn.addEventListener('click', function() {
         loadPaypal();
         var isOpen = paypalPanel.classList.toggle('open');
@@ -311,6 +295,8 @@ import {
 
     var everyBtn = document.getElementById('every-donate-btn');
     if (everyBtn) {
+      everyBtn.addEventListener('pointerenter', loadEvery, { once: true, passive: true });
+      everyBtn.addEventListener('focusin', loadEvery, { once: true, passive: true });
       everyBtn.addEventListener('click', function() {
         if (everyState === 'ready') {
           openEvery();

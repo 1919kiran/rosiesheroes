@@ -28,14 +28,180 @@ import '../styles/global.css';
     gtag('js', new Date());
     gtag('config', 'G-KT5FS5F1D4');
   </script>
-  <!-- Zeffy popups: binds every [zeffy-form-link] element on DOMContentLoaded, so it can't be loaded lazily -->
-  <!-- Preconnect to Zeffy domains to speed up popup form loading on tap -->
+  <!-- Preconnect to Zeffy domain to speed up popup form loading on tap -->
   <link rel="preconnect" href="https://www.zeffy.com" />
-  <link rel="preconnect" href="https://zeffy-scripts.s3.ca-central-1.amazonaws.com" />
-  <script is:inline defer src="https://zeffy-scripts.s3.ca-central-1.amazonaws.com/embed-form-script.min.js"></script>
 </head>
 <body>
   <slot />
   <script src="/scripts/main.js" is:inline></script>
+  <script is:inline>
+    // Lazy Zeffy modal handler — replaces embed-form-script.min.js, which
+    // eagerly injected and loaded all 7 [zeffy-form-link] iframes on
+    // DOMContentLoaded and blocked window.onload for ~8–11 seconds.
+    // Instead, iframes are created and loaded on demand (or prewarmed on
+    // desktop hover/focus after window.load).
+    (function () {
+      var ATTR = 'zeffy-form-link';
+      var MSG_ID = 'zeffy-iframe';
+      var MODAL_STYLE =
+        'display: none; position: fixed; top: 0; bottom: 0; right: 0; left: 0; z-index: 10000; transition: opacity 0.25s ease-in-out; opacity: 0;';
+
+      function withCacheBust(url) {
+        var u = new URL(url, window.location.href);
+        var params = new URLSearchParams(u.search);
+        params.append('cachebust', String(Date.now()));
+        u.search = params.toString();
+        return u.toString();
+      }
+
+      function initZeffyModals() {
+        var triggers = document.querySelectorAll('[' + ATTR + ']');
+        if (!triggers.length) return;
+
+        var backdrop = document.createElement('div');
+        Object.assign(backdrop, {
+          style:
+            'display: none; position: fixed; top: 0; bottom: 0; right: 0; left: 0; background-color: rgba(0,0,0,0.5); z-index: 10000; transition: opacity 0.25s ease-in-out; opacity: 0;',
+          ariaHidden: 'true',
+        });
+        document.body.appendChild(backdrop);
+
+        var mq = window.matchMedia('(min-width: 769px)');
+        var desktopHoverMq = window.matchMedia('(hover: hover) and (pointer: fine)');
+        var modalsByUrl = {};
+        var activeUrl = null;
+
+        function applyBounds(container, isDesktop) {
+          if (isDesktop) {
+            container.style.top = '5%';
+            container.style.bottom = '5%';
+            container.style.left = '10%';
+            container.style.right = '10%';
+          } else {
+            container.style.top = '0';
+            container.style.bottom = '0';
+            container.style.left = '0';
+            container.style.right = '0';
+          }
+        }
+
+        function ensureModal(url) {
+          if (modalsByUrl[url]) return modalsByUrl[url];
+
+          var container = document.createElement('div');
+          Object.assign(container, { style: MODAL_STYLE, ariaHidden: 'true' });
+          applyBounds(container, mq.matches);
+
+          var iframe = document.createElement('iframe');
+          var entry = {
+            container: container,
+            iframe: iframe,
+            loaded: false,
+            isOpen: false,
+          };
+
+          iframe.addEventListener('load', function () {
+            entry.loaded = true;
+            if (entry.isOpen && iframe.contentWindow) {
+              iframe.contentWindow.postMessage({ id: MSG_ID, open: true }, '*');
+            }
+          });
+
+          Object.assign(iframe, {
+            title: 'Form powered and secured by Zeffy',
+            style: 'width: 100%; height: 100%; border: none; border-radius: 4px;',
+            src: withCacheBust(url),
+            allow: 'payment',
+          });
+
+          container.appendChild(iframe);
+          document.body.appendChild(container);
+          modalsByUrl[url] = entry;
+          return entry;
+        }
+
+        function openModal(url) {
+          var entry = ensureModal(url);
+          activeUrl = url;
+          entry.isOpen = true;
+          backdrop.style.display = 'block';
+          backdrop.ariaHidden = 'false';
+          entry.container.style.display = 'block';
+          entry.container.ariaHidden = 'false';
+          setTimeout(function () {
+            backdrop.style.opacity = '1';
+            entry.container.style.opacity = '1';
+          }, 1);
+          if (entry.loaded && entry.iframe.contentWindow) {
+            entry.iframe.contentWindow.postMessage({ id: MSG_ID, open: true }, '*');
+          }
+        }
+
+        function closeActiveModal() {
+          if (!activeUrl || !modalsByUrl[activeUrl]) return;
+          var entry = modalsByUrl[activeUrl];
+          entry.isOpen = false;
+          activeUrl = null;
+          backdrop.style.opacity = '0';
+          entry.container.style.opacity = '0';
+          setTimeout(function () {
+            if (!activeUrl) {
+              backdrop.style.display = 'none';
+              backdrop.ariaHidden = 'true';
+            }
+            if (!entry.isOpen) {
+              entry.container.style.display = 'none';
+              entry.container.ariaHidden = 'true';
+            }
+          }, 250);
+        }
+
+        mq.addEventListener('change', function (e) {
+          Object.keys(modalsByUrl).forEach(function (u) {
+            applyBounds(modalsByUrl[u].container, e.matches);
+          });
+        });
+
+        backdrop.addEventListener('click', closeActiveModal);
+        window.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') closeActiveModal();
+        });
+        window.addEventListener(
+          'message',
+          function (e) {
+            if (e.isTrusted && e.data && e.data.id === MSG_ID && e.data.close) {
+              closeActiveModal();
+            }
+          },
+          false
+        );
+
+        triggers.forEach(function (el) {
+          var url = el.getAttribute(ATTR);
+          if (!url) return;
+          el.addEventListener('click', function () {
+            openModal(url);
+          });
+          function prewarm() {
+            if (document.readyState === 'complete' && desktopHoverMq.matches) {
+              ensureModal(url);
+            }
+          }
+          el.addEventListener('pointerenter', prewarm, { once: true, passive: true });
+          el.addEventListener('focusin', prewarm, { once: true, passive: true });
+          var card = el.closest('.donate-campaign');
+          if (card) {
+            card.addEventListener('pointerenter', prewarm, { once: true, passive: true });
+          }
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initZeffyModals);
+      } else {
+        initZeffyModals();
+      }
+    })();
+  </script>
 </body>
 </html>
