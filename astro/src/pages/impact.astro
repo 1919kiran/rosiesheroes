@@ -6,6 +6,8 @@ import MobileBottomNav from '../components/layout/MobileBottomNav.astro';
 import { impactMetrics, impactReportedAsOf } from '../data/impact';
 import { rescueProjects, projectDonateUrl, traumaStoriesByMonth } from '../data/impact-page';
 import IndiaMap from '../components/impact/IndiaMap.astro';
+
+const traumaMonths = traumaStoriesByMonth.filter((tm) => tm.stories.length > 0);
 ---
 
 <BaseLayout title="Our Impact | Rosie's Heroes" description="Life-changing care: trauma surgeries, spay/neuters, rescue infrastructure projects, and monthly trauma recovery stories from Rosie's Heroes.">
@@ -56,55 +58,43 @@ import IndiaMap from '../components/impact/IndiaMap.astro';
           makes possible.
         </p>
 
-        <div class="month-tabs" role="tablist" aria-label="Trauma stories by month">
-          {traumaStoriesByMonth.map((tm, i) => (
+        <div class="story-tabs" role="tablist" aria-label="Trauma recovery stories by month">
+          {traumaMonths.map((tm, i) => (
             <button
               type="button"
               role="tab"
-              class="month-tab"
-              class:list={[{ active: i === 0 }]}
+              class:list={['story-tab', { active: i === 0 }]}
               aria-selected={i === 0 ? 'true' : 'false'}
-              data-month-index={i}
+              data-story-tab={i}
             >
               {tm.month}
             </button>
           ))}
         </div>
 
-        <div class="month-panels">
-          {traumaStoriesByMonth.map((tm, i) => (
-            <div
-              role="tabpanel"
-              class="month-panel"
-              class:list={[{ active: i === 0 }]}
-              data-month-index={i}
-              hidden={i !== 0}
-            >
-              {tm.reportUrl ? (
-                <a
-                  href={tm.reportUrl}
-                  target="_blank"
-                  rel="noopener"
-                  class="month-report-link"
-                >
-                  <span class="month-report-text">
-                    <span class="month-report-month">{tm.month}</span>
-                    {tm.stories.length > 0 && (
-                      <span class="month-report-dogs">
-                        Featuring {tm.stories.map((s) => s.dogName).join(' & ')}
-                      </span>
-                    )}
-                  </span>
-                  <span class="month-report-cta">Read the report &rarr;</span>
-                </a>
-              ) : (
-                <p class="stories-coming">
-                  The {tm.month} report is being compiled &mdash; check back soon.
-                </p>
-              )}
+        {traumaMonths.map((tm, i) => (
+          <div
+            class="story-panel"
+            data-story-panel={i}
+            hidden={i !== 0}
+          >
+            <div class="stories-grid">
+              {tm.stories.map((story) => (
+                <article class="story-card">
+                  <h3 class="story-name">{story.dogName}</h3>
+                  {story.story.map((para) => (
+                    <p class="story-text">{para}</p>
+                  ))}
+                </article>
+              ))}
             </div>
-          ))}
-        </div>
+            {tm.reportUrl && (
+              <p class="story-report">
+                <a href={tm.reportUrl} target="_blank" rel="noopener">Read the full {tm.month} report &rarr;</a>
+              </p>
+            )}
+          </div>
+        ))}
       </div>
     </section>
 
@@ -201,26 +191,21 @@ import IndiaMap from '../components/impact/IndiaMap.astro';
 </BaseLayout>
 
 <script>
-  // Month tab switching for trauma stories
-  (function () {
-    var tabs = Array.prototype.slice.call(document.querySelectorAll('.month-tab'));
-    var panels = Array.prototype.slice.call(document.querySelectorAll('.month-panel'));
-    tabs.forEach(function (tab) {
-      tab.addEventListener('click', function () {
-        var idx = tab.getAttribute('data-month-index');
-        tabs.forEach(function (t) {
-          var on = t.getAttribute('data-month-index') === idx;
-          t.classList.toggle('active', on);
-          t.setAttribute('aria-selected', on ? 'true' : 'false');
-        });
-        panels.forEach(function (p) {
-          var on = p.getAttribute('data-month-index') === idx;
-          p.classList.toggle('active', on);
-          if (on) { p.removeAttribute('hidden'); } else { p.setAttribute('hidden', ''); }
-        });
+  // Trauma Recovery Stories — month tab switching (same as landing page)
+  document.querySelectorAll('[data-story-tab]').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const idx = tab.getAttribute('data-story-tab');
+      document.querySelectorAll('[data-story-tab]').forEach(t => {
+        const on = t.getAttribute('data-story-tab') === idx;
+        t.classList.toggle('active', on);
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      document.querySelectorAll('[data-story-panel]').forEach(panel => {
+        const on = panel.getAttribute('data-story-panel') === idx;
+        if (on) { panel.removeAttribute('hidden'); } else { panel.setAttribute('hidden', ''); }
       });
     });
-  })();
+  });
 </script>
 
 <style>
@@ -349,142 +334,84 @@ import IndiaMap from '../components/impact/IndiaMap.astro';
     margin-bottom: 32px;
   }
 
-  .month-report-link {
+  .story-tabs {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    max-width: 560px;
-    margin: 0 auto;
-    background: #FFFDFB;
-    border: 1px solid #FFEDD6;
-    border-radius: 16px;
-    padding: 22px 26px;
-    text-decoration: none;
-    transition: border-color 0.2s ease, transform 0.2s ease;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-bottom: var(--space-8);
   }
 
-  .month-report-link:hover {
-    border-color: var(--color-gold, #EEBE5A);
-    transform: translateY(-2px);
-  }
-
-  .month-report-month {
-    font-family: var(--font-heading, sans-serif);
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--color-text, #382213);
-    display: block;
-  }
-
-  .month-report-dogs {
-    font-family: var(--font-body, sans-serif);
-    font-size: 14px;
-    color: var(--color-text-mid, #5B4D43);
-    display: block;
-    margin-top: 4px;
-  }
-
-  .month-report-cta {
-    font-family: var(--font-heading, sans-serif);
-    font-size: 15px;
+  .story-tab {
+    font-family: var(--font-heading);
+    font-size: var(--text-sm);
     font-weight: 600;
-    color: var(--color-gold-hover, #775F2D);
-    white-space: nowrap;
-  }
-
-  .month-tabs {
-    display: flex;
-    justify-content: safe center;
-    gap: 10px;
-    margin-bottom: 28px;
-    overflow-x: auto;
-    padding: 4px 4px 12px;
-    scrollbar-width: thin;
-    scrollbar-color: var(--color-gold, #EEBE5A) transparent;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .month-tabs::-webkit-scrollbar {
-    height: 6px;
-  }
-
-  .month-tabs::-webkit-scrollbar-thumb {
-    background: var(--color-gold, #EEBE5A);
-    border-radius: 100px;
-  }
-
-  .month-tabs::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  .month-tab {
-    flex-shrink: 0;
-  }
-
-  .month-tab {
-    font-family: var(--font-heading, sans-serif);
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--color-text-mid, #5B4D43);
-    background: #FFFDFB;
-    border: 1.5px solid #FFEDD6;
-    border-radius: 100px;
-    padding: 10px 24px;
+    color: var(--color-text-mid);
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-card-border);
+    border-radius: var(--radius-pill);
+    padding: 8px 20px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
   }
 
-  .month-tab:hover {
-    border-color: var(--color-gold, #EEBE5A);
+  .story-tab:hover {
+    border-color: var(--color-gold);
   }
 
-  .month-tab.active {
-    background: var(--color-gold, #EEBE5A);
-    border-color: var(--color-gold, #EEBE5A);
-    color: var(--color-text, #382213);
+  .story-tab.active {
+    background: var(--color-gold);
+    border-color: var(--color-gold);
+    color: var(--color-text);
   }
 
   .stories-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 24px;
+    gap: var(--space-6);
   }
 
   .story-card {
-    background: #FFFDFB;
-    border: 1px solid #FFEDD6;
-    border-radius: 16px;
-    padding: 28px 26px;
+    border: 1px solid var(--color-card-border);
+    border-radius: 4px;
+    background-color: var(--color-card-bg);
+    padding: var(--space-6) var(--space-8);
   }
 
   .story-name {
-    font-family: var(--font-heading, sans-serif);
-    font-size: 22px;
-    color: var(--color-text, #382213);
-    margin: 0 0 12px;
+    font-family: var(--font-heading);
+    font-size: var(--text-card);
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0 0 var(--space-4);
+    line-height: 1.2;
   }
 
   .story-text {
-    font-family: var(--font-body, sans-serif);
-    font-size: 15px;
-    line-height: 1.65;
-    color: var(--color-text-mid, #5B4D43);
-    margin: 0 0 12px;
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: 1.7;
+    color: var(--color-text);
+    margin: 0 0 var(--space-4);
   }
 
   .story-text:last-child {
     margin-bottom: 0;
   }
 
-  .stories-coming {
-    text-align: center;
-    font-family: var(--font-body, sans-serif);
-    font-size: 16px;
-    font-style: italic;
-    color: var(--color-text-muted, #8C756D);
-    padding: 32px 0;
-    margin: 0;
+  .story-report {
+    margin: var(--space-6) 0 0;
+    font-family: var(--font-heading);
+    font-size: var(--text-sm);
+    font-weight: 600;
+  }
+
+  .story-report a {
+    color: var(--color-gold-hover, #775F2D);
+    text-decoration: none;
+  }
+
+  .story-report a:hover {
+    text-decoration: underline;
   }
 
   /* ── Projects ── */
@@ -573,7 +500,7 @@ import IndiaMap from '../components/impact/IndiaMap.astro';
 
   /* ── Partners ── */
   .impact-partners {
-    padding: 72px 0;
+    padding: 72px 0 24px;
   }
 
   .partners-grid {
@@ -646,7 +573,7 @@ import IndiaMap from '../components/impact/IndiaMap.astro';
 
   /* ── Closing ── */
   .impact-closing {
-    padding: 72px 0 88px;
+    padding: 24px 0 88px;
     text-align: center;
   }
 
