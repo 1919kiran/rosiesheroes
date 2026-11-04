@@ -50,6 +50,18 @@ export const events: SiteEvent[] = [
     past: true,
   },
   {
+    id: "paws-and-portraits",
+    title: "Paws and Portraits",
+    date: null,
+    month: "June 2026",
+    dateLabel: null,
+    time: null,
+    location: "Shinn Park, Fremont",
+    blurb: "Photoshoot celebrating dogs and their loved ones.",
+    note: null,
+    past: true,
+  },
+  {
     id: "hike-lake-del-valle",
     title: "Hike at Lake Del Valle",
     date: "2026-11-07",
