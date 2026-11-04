@@ -48,7 +48,7 @@ import { spayNeuters, traumaSurgeries, infraProjects } from '../../data/impact';
         <div class="hero-stat-divider" aria-hidden="true"></div>
         <div class="hero-stat">
           <span class="hero-stat-number" data-target={infraProjects}>0</span>
-          <span class="hero-stat-label">Community Infrastructure Projects</span>
+          <span class="hero-stat-label hero-stat-label--projects">Community Infrastructure Projects</span>
         </div>
       </div>
     </div>
@@ -290,6 +290,10 @@ import { spayNeuters, traumaSurgeries, infraProjects } from '../../data/impact';
     font-family: var(--font-body);
     font-size: var(--text-sm);
     color: var(--color-text-mid);
+  }
+
+  .hero-stat-label--projects {
+    max-width: 170px;
   }
 
   .hero-stat-divider {
