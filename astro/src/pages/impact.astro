@@ -7,7 +7,7 @@ import { impactMetrics, impactReportedAsOf } from '../data/impact';
 import { rescueProjects, projectDonateUrl, traumaStoriesByMonth } from '../data/impact-page';
 import IndiaMap from '../components/impact/IndiaMap.astro';
 
-const traumaMonths = traumaStoriesByMonth.filter((tm) => tm.stories.length > 0);
+const defaultMonthIndex = traumaStoriesByMonth.findIndex((tm) => tm.stories.length > 0);
 ---
 
 <BaseLayout title="Our Impact | Rosie's Heroes" description="Life-changing care: trauma surgeries, spay/neuters, rescue infrastructure projects, and monthly trauma recovery stories from Rosie's Heroes.">
@@ -59,12 +59,12 @@ const traumaMonths = traumaStoriesByMonth.filter((tm) => tm.stories.length > 0);
         </p>
 
         <div class="story-tabs" role="tablist" aria-label="Trauma recovery stories by month">
-          {traumaMonths.map((tm, i) => (
+          {traumaStoriesByMonth.map((tm, i) => (
             <button
               type="button"
               role="tab"
-              class:list={['story-tab', { active: i === 0 }]}
-              aria-selected={i === 0 ? 'true' : 'false'}
+              class:list={['story-tab', { active: i === defaultMonthIndex }]}
+              aria-selected={i === defaultMonthIndex ? 'true' : 'false'}
               data-story-tab={i}
             >
               {tm.month}
@@ -72,26 +72,36 @@ const traumaMonths = traumaStoriesByMonth.filter((tm) => tm.stories.length > 0);
           ))}
         </div>
 
-        {traumaMonths.map((tm, i) => (
+        {traumaStoriesByMonth.map((tm, i) => (
           <div
             class="story-panel"
             data-story-panel={i}
-            hidden={i !== 0}
+            hidden={i !== defaultMonthIndex}
           >
-            <div class="stories-grid">
-              {tm.stories.map((story) => (
-                <article class="story-card">
-                  <h3 class="story-name">{story.dogName}</h3>
-                  {story.story.map((para) => (
-                    <p class="story-text">{para}</p>
+            {tm.stories.length > 0 ? (
+              <>
+                <div class="stories-grid">
+                  {tm.stories.map((story) => (
+                    <article class="story-card">
+                      <h3 class="story-name">{story.dogName}</h3>
+                      {story.story.map((para) => (
+                        <p class="story-text">{para}</p>
+                      ))}
+                    </article>
                   ))}
-                </article>
-              ))}
-            </div>
-            {tm.reportUrl && (
+                </div>
+                {tm.reportUrl && (
+                  <p class="story-report">
+                    <a href={tm.reportUrl} target="_blank" rel="noopener">Read the full {tm.month} report &rarr;</a>
+                  </p>
+                )}
+              </>
+            ) : tm.reportUrl ? (
               <p class="story-report">
                 <a href={tm.reportUrl} target="_blank" rel="noopener">Read the full {tm.month} report &rarr;</a>
               </p>
+            ) : (
+              <p class="story-coming">The {tm.month} report is being compiled &mdash; check back soon.</p>
             )}
           </div>
         ))}
@@ -412,6 +422,16 @@ const traumaMonths = traumaStoriesByMonth.filter((tm) => tm.stories.length > 0);
 
   .story-report a:hover {
     text-decoration: underline;
+  }
+
+  .story-coming {
+    text-align: center;
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-style: italic;
+    color: var(--color-text-mid);
+    padding: var(--space-8) 0;
+    margin: 0;
   }
 
   /* ── Projects ── */
