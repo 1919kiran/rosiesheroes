@@ -32,7 +32,7 @@ export const events: SiteEvent[] = [
     month: "October",
     dateLabel: null,
     time: null,
-    location: "Los Altos",
+    location: "Los Altos Community Center",
     blurb: "Silent auction and inaugural launch event.",
     note: null,
     past: true,
