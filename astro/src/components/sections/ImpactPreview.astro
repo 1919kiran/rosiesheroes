@@ -23,22 +23,38 @@ import IndiaMap from '../impact/IndiaMap.astro';
       <h3 class="impact-preview-partners-title">Our International Partners</h3>
       <div class="impact-preview-partner-grid">
         <article class="impact-preview-partner">
-          <h4 class="impact-preview-partner-name">Charlie's Animal Rescue Center (CARE)</h4>
+          <a class="impact-preview-partner-link" href="https://charlies-care.com/" target="_blank" rel="noopener">
+            <img class="impact-preview-partner-logo" src="https://static.wixstatic.com/media/a6a3e8_8463822b878b49e79cc4f6fb43984c1d~mv2.png" alt="Charlie's Animal Rescue Center (CARE) logo" loading="lazy" />
+            <h4 class="impact-preview-partner-name">Charlie's Animal Rescue Center (CARE)</h4>
+          </a>
           <div class="impact-preview-partner-loc">Bangalore</div>
           <p class="impact-preview-partner-text">
             CARE supports trauma care and spay/neuter in Bangalore and surrounding villages.
           </p>
         </article>
         <article class="impact-preview-partner">
-          <h4 class="impact-preview-partner-name">People for Animals (PFA)</h4>
+          <a class="impact-preview-partner-link" href="https://peopleforanimalsindia.org/" target="_blank" rel="noopener">
+            <img class="impact-preview-partner-logo" src="https://peopleforanimalsindia.org/img/logo.png" alt="People for Animals (PFA) logo" loading="lazy" />
+            <h4 class="impact-preview-partner-name">People for Animals (PFA)</h4>
+          </a>
           <div class="impact-preview-partner-loc">Pan-India</div>
           <p class="impact-preview-partner-text">
             With PFA, we build rescue infrastructure across India &mdash; ambulances,
             medical equipment, and ICUs that empower communities to take action.
           </p>
         </article>
+        <article class="impact-preview-partner">
+          <a class="impact-preview-partner-link" href="https://strayanimalfoundationindia.org/" target="_blank" rel="noopener">
+            <img class="impact-preview-partner-logo" src="https://strayanimalfoundationindia.org/wp-content/uploads/2022/04/SAFI-Logo_GRY-MED-200x229.png" alt="Stray Animal Foundation of India (SAFI) logo" loading="lazy" />
+            <h4 class="impact-preview-partner-name">Stray Animal Foundation of India (SAFI)</h4>
+          </a>
+          <div class="impact-preview-partner-loc">International Adoptions</div>
+          <p class="impact-preview-partner-text">
+            Through SAFI, we support logistics for international adoptions.
+          </p>
+        </article>
       </div>
-      <p class="impact-preview-partners-note">Both partners are FCRA-compliant rescues.</p>
+      <p class="impact-preview-partners-note">CARE and PFA are FCRA-compliant rescues.</p>
     </div>
 
     <div class="impact-preview-cta" data-reveal="fade">
@@ -120,9 +136,28 @@ import IndiaMap from '../impact/IndiaMap.astro';
 
   .impact-preview-partner-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     text-align: left;
+  }
+
+  .impact-preview-partner-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .impact-preview-partner-link:hover .impact-preview-partner-name {
+    text-decoration: underline;
+  }
+
+  .impact-preview-partner-logo {
+    display: block;
+    height: 64px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    margin: 0 auto 16px;
   }
 
   .impact-preview-partner {
@@ -165,7 +200,7 @@ import IndiaMap from '../impact/IndiaMap.astro';
     margin: 22px 0 0;
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 860px) {
     .impact-preview-partner-grid {
       grid-template-columns: 1fr;
     }
