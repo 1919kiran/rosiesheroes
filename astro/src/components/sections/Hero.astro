@@ -2,7 +2,7 @@
 // Hero section — two-column layout, left text + right image
 // Background: var(--color-cream-hero) = #FFEFDA
 // Parallax beagle illustration positioned absolutely over section
-import { spayNeuters, traumaSurgeries } from '../../data/impact';
+import { spayNeuters, traumaSurgeries, infraProjects } from '../../data/impact';
 ---
 
 <section id="hero">
@@ -44,6 +44,11 @@ import { spayNeuters, traumaSurgeries } from '../../data/impact';
         <div class="hero-stat">
           <span class="hero-stat-number" data-target={traumaSurgeries}>0</span>
           <span class="hero-stat-label">Trauma Surgeries</span>
+        </div>
+        <div class="hero-stat-divider" aria-hidden="true"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-number" data-target={infraProjects}>0</span>
+          <span class="hero-stat-label">Community Infrastructure Projects</span>
         </div>
       </div>
     </div>
@@ -262,8 +267,8 @@ import { spayNeuters, traumaSurgeries } from '../../data/impact';
     gap: var(--space-5);
     margin-top: var(--space-2);
     padding: var(--space-4) var(--space-6);
-    background: rgba(255, 253, 251, 0.7);
-    border: 1px solid rgba(238, 190, 90, 0.45);
+    background: rgba(255, 253, 251, 0.95);
+    border: 1.5px solid rgba(201, 143, 46, 0.75);
     border-radius: var(--radius-pill);
   }
 
@@ -290,7 +295,7 @@ import { spayNeuters, traumaSurgeries } from '../../data/impact';
   .hero-stat-divider {
     width: 1px;
     align-self: stretch;
-    background: rgba(238, 190, 90, 0.5);
+    background: rgba(201, 143, 46, 0.6);
   }
 
   /* ── RIGHT column ───────────────────────────────────────── */
