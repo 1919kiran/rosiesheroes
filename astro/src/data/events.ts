@@ -20,9 +20,23 @@ export interface SiteEvent {
   blurb: string;
   /** Small status line shown in the event card, or null. */
   note: string | null;
+  /** Set true once the event has happened — it moves to the Past Events list. */
+  past?: boolean;
 }
 
 export const events: SiteEvent[] = [
+  {
+    id: "chai-compassion",
+    title: "Chai & Compassion",
+    date: "2026-10-24",
+    month: "October",
+    dateLabel: null,
+    time: null,
+    location: "",
+    blurb: "Silent auction fundraiser — raised $3,900 for the dogs.",
+    note: null,
+    past: true,
+  },
   {
     id: "tricks-treats-tails",
     title: "Tricks, Treats & Tails",
@@ -33,6 +47,7 @@ export const events: SiteEvent[] = [
     location: "Beer garden, Treehouse Silicon Valley",
     blurb: "Pupcakes from Treats by Rumi.",
     note: null,
+    past: true,
   },
   {
     id: "hike-lake-del-valle",

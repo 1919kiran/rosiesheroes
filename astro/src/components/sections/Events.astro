@@ -20,6 +20,9 @@ const items = events.map((ev) => ({
   ...ev,
   monthYear: ev.date ? fmtMonthYear(ev.date) : ev.month,
 }));
+
+const upcomingItems = items.filter((ev) => !ev.past);
+const pastItems = items.filter((ev) => ev.past);
 ---
 
 <section id="events">
@@ -57,7 +60,7 @@ const items = events.map((ev) => ({
       </div>
       <ul class="events-simple-list">
         {
-          items.map((ev) => (
+          upcomingItems.map((ev) => (
             <li>
               <span class="simple-name">{ev.title}</span>
               <span class="simple-desc">{ev.blurb}</span>
@@ -68,6 +71,30 @@ const items = events.map((ev) => ({
         }
       </ul>
     </div>
+
+    {
+      pastItems.length > 0 && (
+        <div class="events-list events-list--past">
+          <h3 class="events-list-title">Past Events</h3>
+          <div class="events-table-head" aria-hidden="true">
+            <span>Event</span>
+            <span>Description</span>
+            <span>Month / Year</span>
+            <span>Location</span>
+          </div>
+          <ul class="events-simple-list">
+            {pastItems.map((ev) => (
+              <li>
+                <span class="simple-name">{ev.title}</span>
+                <span class="simple-desc">{ev.blurb}</span>
+                <span class="simple-month">{ev.monthYear}</span>
+                <span class="simple-loc">{ev.location}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
   </div>
 </section>
 
@@ -112,6 +139,9 @@ const items = events.map((ev) => ({
     width: 100%;
     border: 0;
     border-radius: 16px;
+  }
+  .events-list--past {
+    margin-top: 32px;
   }
   .events-list {
     max-width: 1080px;

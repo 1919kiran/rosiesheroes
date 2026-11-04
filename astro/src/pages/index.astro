@@ -13,7 +13,6 @@ import Volunteer from '../components/sections/Volunteer.astro';
 import HappyTails from '../components/sections/HappyTails.astro';
 import Events from '../components/sections/Events.astro';
 import Donate from '../components/sections/Donate.astro';
-import Store from '../components/sections/Store.astro';
 import Partner from '../components/sections/Partner.astro';
 import Contact from '../components/sections/Contact.astro';
 import WaveDivider from '../components/ui/WaveDivider.astro';
@@ -43,11 +42,8 @@ import WaveDivider from '../components/ui/WaveDivider.astro';
     <GivingPower />
 
     <Donate />
-    <!-- Donate (#FFF5EA) → Store (#FFF8F1): sweep -->
+    <!-- Donate (#FFF5EA) → HappyTails (#FFF8F1): sweep -->
     <WaveDivider shape="B" fill="#FFF8F1" bg="#FFF5EA" height={60} />
-
-    <Store />
-    <!-- Store (#FFF8F1) → HappyTails (#FFF8F1): same background, no sweep -->
 
     <HappyTails />
 
