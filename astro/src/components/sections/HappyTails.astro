@@ -2,6 +2,9 @@
 // Happy Tails section — Adoption success stories
 // Layout: bordered cards with photo carousel left, testimonial text + chips right,
 // plus a soft gold paw watermark in the bottom-right corner of each card.
+import { traumaStoriesByMonth } from '../../data/impact-page';
+
+const traumaMonths = traumaStoriesByMonth.filter((tm) => tm.stories.length > 0);
 ---
 
 <section id="happy-tails">
@@ -148,6 +151,49 @@
         </div>
       </div>
 
+    </div>
+
+    <div class="ht-trauma" data-reveal>
+      <h3 class="ht-trauma-title">Trauma Recovery <span class="ht-title-accent">Stories</span></h3>
+      <p class="ht-trauma-lead">Follow our trauma care cases month by month. Each story is a dog whose recovery your support made possible &mdash; the same stories shared on our Impact page.</p>
+
+      <div class="ht-trauma-tabs" role="tablist" aria-label="Trauma recovery stories by month">
+        {traumaMonths.map((tm, i) => (
+          <button
+            type="button"
+            role="tab"
+            class:list={['ht-trauma-tab', { active: i === 0 }]}
+            aria-selected={i === 0 ? 'true' : 'false'}
+            data-ht-trauma-tab={i}
+          >
+            {tm.month}
+          </button>
+        ))}
+      </div>
+
+      {traumaMonths.map((tm, i) => (
+        <div
+          class="ht-trauma-panel"
+          data-ht-trauma-panel={i}
+          hidden={i !== 0}
+        >
+          <div class="ht-trauma-grid">
+            {tm.stories.map((story) => (
+              <article class="ht-trauma-card">
+                <h4 class="ht-trauma-name">{story.dogName}</h4>
+                {story.story.map((para) => (
+                  <p class="ht-trauma-text">{para}</p>
+                ))}
+              </article>
+            ))}
+          </div>
+          {tm.reportUrl && (
+            <p class="ht-trauma-report">
+              <a href={tm.reportUrl} target="_blank" rel="noopener">Read the full {tm.month} report &rarr;</a>
+            </p>
+          )}
+        </div>
+      ))}
     </div>
 
   </div>
@@ -352,6 +398,110 @@
   }
 
 
+  /* ── Trauma Recovery Stories ───────────────────────────── */
+  .ht-trauma {
+    margin-top: var(--space-15);
+  }
+
+  .ht-trauma-title {
+    font-family: var(--font-heading);
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 1.3em;
+    letter-spacing: var(--ls-tight);
+    color: var(--color-text);
+    margin: 0 0 var(--space-4);
+  }
+
+  .ht-trauma-lead {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: 1.7;
+    color: var(--color-text-mid);
+    margin: 0 0 var(--space-8);
+    max-width: 720px;
+  }
+
+  .ht-trauma-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-bottom: var(--space-8);
+  }
+
+  .ht-trauma-tab {
+    font-family: var(--font-heading);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-text-mid);
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-card-border);
+    border-radius: var(--radius-pill);
+    padding: 8px 20px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+
+  .ht-trauma-tab:hover {
+    border-color: var(--color-gold);
+  }
+
+  .ht-trauma-tab.active {
+    background: var(--color-gold);
+    border-color: var(--color-gold);
+    color: var(--color-text);
+  }
+
+  .ht-trauma-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .ht-trauma-card {
+    border: 1px solid var(--color-card-border);
+    border-radius: 4px;
+    background-color: var(--color-card-bg);
+    padding: var(--space-6) var(--space-8);
+  }
+
+  .ht-trauma-name {
+    font-family: var(--font-heading);
+    font-size: var(--text-card);
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0 0 var(--space-4);
+    line-height: 1.2;
+  }
+
+  .ht-trauma-text {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: 1.7;
+    color: var(--color-text);
+    margin: 0 0 var(--space-4);
+  }
+
+  .ht-trauma-text:last-child {
+    margin-bottom: 0;
+  }
+
+  .ht-trauma-report {
+    margin: var(--space-6) 0 0;
+    font-family: var(--font-heading);
+    font-size: var(--text-sm);
+    font-weight: 600;
+  }
+
+  .ht-trauma-report a {
+    color: var(--color-gold-hover, #775F2D);
+    text-decoration: none;
+  }
+
+  .ht-trauma-report a:hover {
+    text-decoration: underline;
+  }
+
   /* ── Reveal animations ──────────────────────────────────── */
   [data-reveal]:not([data-reveal="card"]) {
     opacity: 0;
@@ -443,6 +593,21 @@
     btn.addEventListener('click', () => {
       current = (current + 1) % imgs.length;
       track.style.transform = `translateX(-${current * 100}%)`;
+    });
+  });
+  // Trauma Recovery Stories — month tab switching
+  document.querySelectorAll('[data-ht-trauma-tab]').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const idx = tab.getAttribute('data-ht-trauma-tab');
+      document.querySelectorAll('[data-ht-trauma-tab]').forEach(t => {
+        const on = t.getAttribute('data-ht-trauma-tab') === idx;
+        t.classList.toggle('active', on);
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      document.querySelectorAll('[data-ht-trauma-panel]').forEach(panel => {
+        const on = panel.getAttribute('data-ht-trauma-panel') === idx;
+        if (on) { panel.removeAttribute('hidden'); } else { panel.setAttribute('hidden', ''); }
+      });
     });
   });
 </script>
