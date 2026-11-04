@@ -4,7 +4,7 @@
 // plus a soft gold paw watermark in the bottom-right corner of each card.
 import { traumaStoriesByMonth } from '../../data/impact-page';
 
-const traumaMonths = traumaStoriesByMonth.filter((tm) => tm.stories.length > 0);
+const defaultMonthIndex = traumaStoriesByMonth.findIndex((tm) => tm.stories.length > 0);
 ---
 
 <section id="happy-tails">
@@ -158,12 +158,12 @@ const traumaMonths = traumaStoriesByMonth.filter((tm) => tm.stories.length > 0);
       <p class="ht-trauma-lead">Follow our trauma care cases month by month. Thanks to your support, these dogs were able to blossom from broken to brave heroes.</p>
 
       <div class="ht-trauma-tabs" role="tablist" aria-label="Trauma recovery stories by month">
-        {traumaMonths.map((tm, i) => (
+        {traumaStoriesByMonth.map((tm, i) => (
           <button
             type="button"
             role="tab"
-            class:list={['ht-trauma-tab', { active: i === 0 }]}
-            aria-selected={i === 0 ? 'true' : 'false'}
+            class:list={['ht-trauma-tab', { active: i === defaultMonthIndex }]}
+            aria-selected={i === defaultMonthIndex ? 'true' : 'false'}
             data-ht-trauma-tab={i}
           >
             {tm.month}
@@ -171,26 +171,36 @@ const traumaMonths = traumaStoriesByMonth.filter((tm) => tm.stories.length > 0);
         ))}
       </div>
 
-      {traumaMonths.map((tm, i) => (
+      {traumaStoriesByMonth.map((tm, i) => (
         <div
           class="ht-trauma-panel"
           data-ht-trauma-panel={i}
-          hidden={i !== 0}
+          hidden={i !== defaultMonthIndex}
         >
-          <div class="ht-trauma-grid">
-            {tm.stories.map((story) => (
-              <article class="ht-trauma-card">
-                <h4 class="ht-trauma-name">{story.dogName}</h4>
-                {story.story.map((para) => (
-                  <p class="ht-trauma-text">{para}</p>
+          {tm.stories.length > 0 ? (
+            <>
+              <div class="ht-trauma-grid">
+                {tm.stories.map((story) => (
+                  <article class="ht-trauma-card">
+                    <h4 class="ht-trauma-name">{story.dogName}</h4>
+                    {story.story.map((para) => (
+                      <p class="ht-trauma-text">{para}</p>
+                    ))}
+                  </article>
                 ))}
-              </article>
-            ))}
-          </div>
-          {tm.reportUrl && (
+              </div>
+              {tm.reportUrl && (
+                <p class="ht-trauma-report">
+                  <a href={tm.reportUrl} target="_blank" rel="noopener">Read the full {tm.month} report &rarr;</a>
+                </p>
+              )}
+            </>
+          ) : tm.reportUrl ? (
             <p class="ht-trauma-report">
               <a href={tm.reportUrl} target="_blank" rel="noopener">Read the full {tm.month} report &rarr;</a>
             </p>
+          ) : (
+            <p class="ht-trauma-coming">The {tm.month} report is being compiled &mdash; check back soon.</p>
           )}
         </div>
       ))}
@@ -499,6 +509,16 @@ const traumaMonths = traumaStoriesByMonth.filter((tm) => tm.stories.length > 0);
 
   .ht-trauma-report a:hover {
     text-decoration: underline;
+  }
+
+  .ht-trauma-coming {
+    text-align: center;
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-style: italic;
+    color: var(--color-text-mid);
+    padding: var(--space-8) 0;
+    margin: 0;
   }
 
   /* ── Reveal animations ──────────────────────────────────── */
