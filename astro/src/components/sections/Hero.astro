@@ -90,7 +90,7 @@ import { spayNeuters, traumaSurgeries, infraProjects } from '../../data/impact';
       nums.forEach(function (el) {
         var target = parseInt(el.getAttribute('data-target') || '0', 10);
         var start = null;
-        var duration = 1400;
+        var duration = 900;
         function step(ts) {
           if (!start) start = ts;
           var p = Math.min((ts - start) / duration, 1);
@@ -190,7 +190,7 @@ import { spayNeuters, traumaSurgeries, infraProjects } from '../../data/impact';
   .hero-delayed {
     opacity: 0;
     transform: translateY(12px);
-    animation: hero-fade-in 1.2s ease-out 2.8s forwards;
+    animation: hero-fade-in 1.2s ease-out 1.8s forwards;
   }
 
   /* Soft gold glow on "to safety" line */
