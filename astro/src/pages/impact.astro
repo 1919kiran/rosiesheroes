@@ -138,6 +138,51 @@ import IndiaMap from '../components/impact/IndiaMap.astro';
       </div>
     </section>
 
+    <!-- International partners -->
+    <section class="impact-partners">
+      <div class="section-container">
+        <h2 class="section-title">Our International Partners</h2>
+        <p class="section-lead">
+          We work alongside established rescues across India &mdash; combining
+          their on-the-ground reach with your support.
+        </p>
+        <div class="partners-grid">
+          <article class="partner-card">
+            <a class="partner-link" href="https://charlies-care.com/" target="_blank" rel="noopener">
+              <img class="partner-logo" src="https://static.wixstatic.com/media/a6a3e8_8463822b878b49e79cc4f6fb43984c1d~mv2.png" alt="Charlie's Animal Rescue Center (CARE) logo" loading="lazy" />
+              <h3 class="partner-name">Charlie's Animal Rescue Center (CARE)</h3>
+            </a>
+            <p class="partner-loc">Bangalore</p>
+            <p class="partner-text">
+              CARE supports trauma care and spay/neuter in Bangalore and surrounding villages.
+            </p>
+          </article>
+          <article class="partner-card">
+            <a class="partner-link" href="https://peopleforanimalsindia.org/" target="_blank" rel="noopener">
+              <img class="partner-logo" src="https://peopleforanimalsindia.org/img/logo.png" alt="People for Animals (PFA) logo" loading="lazy" />
+              <h3 class="partner-name">People for Animals (PFA)</h3>
+            </a>
+            <p class="partner-loc">Pan-India</p>
+            <p class="partner-text">
+              With PFA, we build rescue infrastructure across India &mdash; ambulances,
+              medical equipment, and ICUs that empower communities to take action.
+            </p>
+          </article>
+          <article class="partner-card">
+            <a class="partner-link" href="https://strayanimalfoundationindia.org/" target="_blank" rel="noopener">
+              <img class="partner-logo" src="https://strayanimalfoundationindia.org/wp-content/uploads/2022/04/SAFI-Logo_GRY-MED-200x229.png" alt="Stray Animal Foundation of India (SAFI) logo" loading="lazy" />
+              <h3 class="partner-name">Stray Animal Foundation of India (SAFI)</h3>
+            </a>
+            <p class="partner-loc">International Adoptions</p>
+            <p class="partner-text">
+              Through SAFI, we support logistics for international adoptions.
+            </p>
+          </article>
+        </div>
+        <p class="partners-note">CARE and PFA are FCRA-compliant rescues.</p>
+      </div>
+    </section>
+
     <!-- Closing -->
     <section class="impact-closing">
       <div class="section-container">
@@ -527,6 +572,79 @@ import IndiaMap from '../components/impact/IndiaMap.astro';
     text-decoration: underline;
   }
 
+  /* ── Partners ── */
+  .impact-partners {
+    padding: 72px 0;
+  }
+
+  .partners-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 36px;
+  }
+
+  .partner-card {
+    background: #FFFDFB;
+    border: 1px solid #FFEDD6;
+    border-radius: 16px;
+    padding: 28px 26px;
+    text-align: center;
+  }
+
+  .partner-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .partner-link:hover .partner-name {
+    text-decoration: underline;
+  }
+
+  .partner-logo {
+    display: block;
+    height: 64px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    margin: 0 auto 16px;
+  }
+
+  .partner-name {
+    font-family: var(--font-heading, sans-serif);
+    font-size: 20px;
+    color: var(--color-text, #382213);
+    margin: 0 0 4px;
+    line-height: 1.3;
+  }
+
+  .partner-loc {
+    font-family: var(--font-body, sans-serif);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-gold-hover, #775F2D);
+    margin: 0 0 12px;
+  }
+
+  .partner-text {
+    font-family: var(--font-body, sans-serif);
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--color-text-mid, #5B4D43);
+    margin: 0;
+  }
+
+  .partners-note {
+    font-family: var(--font-body, sans-serif);
+    font-size: 15px;
+    color: var(--color-text-mid, #5B4D43);
+    text-align: center;
+    margin: 22px 0 0;
+  }
+
   /* ── Closing ── */
   .impact-closing {
     padding: 72px 0 88px;
@@ -561,6 +679,10 @@ import IndiaMap from '../components/impact/IndiaMap.astro';
     }
 
     .projects-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .partners-grid {
       grid-template-columns: 1fr;
     }
 
